@@ -1,0 +1,77 @@
+﻿@model PagedList.IPagedList<TC3EF6.Domain.Classes.Stash.Book>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@using (Html.BeginForm())
+{
+    <p>
+        Search: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { style = "color:black" })
+        <input type="submit" value="Search" style="color:black"/>
+    </p>
+}
+@if (Model.Count > 0)
+{
+    var header = Model[0];
+    <table class="table">
+        <tr>
+            <th>@Html.DisplayNameFor(model => header.ID)</th>
+            <th>@Html.DisplayNameFor(model => header.OID)</th>
+            <th>@Html.DisplayNameFor(model => header.AlphaSort)</th>
+            <th>@Html.DisplayNameFor(model => header.WishList)</th>
+            <th>@Html.DisplayNameFor(model => header.Title)</th>
+            <th>@Html.DisplayNameFor(model => header.Author)</th>
+            <th>@Html.DisplayNameFor(model => header.MediaFormat)</th>
+            <th>@Html.DisplayNameFor(model => header.ISBN)</th>
+            <th>@Html.DisplayNameFor(model => header.Cataloged)</th>
+            <th>@Html.DisplayNameFor(model => header.Location.Name)</th>
+            <th>@Html.DisplayNameFor(model => header.DateInventoried)</th>
+            <th>@Html.DisplayNameFor(model => header.Value)</th>
+            <th>@Html.DisplayNameFor(model => header.DateVerified)</th>
+            <th>@Html.DisplayNameFor(model => header.Price)</th>
+            <th>@Html.DisplayNameFor(model => header.DatePurchased)</th>
+            <th>@Html.DisplayNameFor(model => header.Misc)</th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th>@Html.DisplayFor(model => item.ID)</th>
+                <th>@Html.DisplayFor(model => item.OID)</th>
+                <th>@Html.DisplayFor(model => item.AlphaSort)</th>
+                <th><label style="color:black">@Html.DisplayFor(model => item.WishList)</label></th>
+                <th>@Html.DisplayFor(model => item.Title)</th>
+                <th>@Html.DisplayFor(model => item.Author)</th>
+                <th>@Html.DisplayFor(model => item.MediaFormat)</th>
+                <th>@Html.DisplayFor(model => item.ISBN)</th>
+                <th><label style="color:black">@Html.DisplayFor(model => item.Cataloged)</label></th>
+                <th>@Html.DisplayFor(model => item.Location.Name)</th>
+                <th>@Html.DisplayFor(model => item.DateInventoried)</th>
+                <th>@Html.DisplayFor(model => item.Value)</th>
+                <th>@Html.DisplayFor(model => item.DateVerified)</th>
+                <th>@Html.DisplayFor(model => item.Price)</th>
+                <th>@Html.DisplayFor(model => item.DatePurchased)</th>
+                <th>@Html.DisplayFor(model => item.Misc)</th>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+    </table>
+}
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, currentFilter = ViewBag.CurrentFilter }))
