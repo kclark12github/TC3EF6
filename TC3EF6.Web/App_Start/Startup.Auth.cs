@@ -8,6 +8,7 @@ using Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OpenIdConnect;
+using TC3EF6.Data;
 
 namespace TC3EF6.Web
 {
@@ -21,6 +22,7 @@ namespace TC3EF6.Web
 
         public void ConfigureAuth(IAppBuilder app)
         {
+            app.CreatePerOwinContext(TCContext.Create);
             app.SetDefaultSignInAsAuthenticationType(CookieAuthenticationDefaults.AuthenticationType);
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions());

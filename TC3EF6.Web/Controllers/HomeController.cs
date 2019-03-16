@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity.Owin;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -13,14 +14,25 @@ namespace TC3EF6.Web.Controllers
     //[Authorize]
     public class HomeController : Controller
     {
-        IDbContext db = new TCContext();
+        private IDbContext _dbContext;
+        public IDbContext DbContext
+        {
+            get { return _dbContext ?? HttpContext.GetOwinContext().Get<TCContext>(); }
+            private set { _dbContext = value; }
+        }
+        public HomeController() { }
+        public HomeController(IDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
         public ActionResult Index()
         {
             string database = string.Empty;
             string user = string.Empty;
             if (!string.IsNullOrEmpty(User.Identity.Name)) {
                 user = $"User ID: {User.Identity.Name}";
-                string ConnectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString();
+                string ConnectionString = ConfigurationManager.ConnectionStrings["TC3EF6Context"].ToString();
                 SQLUtilities utilities = new SQLUtilities();
                 database = $"Database: {utilities.ParseConnectionString(ConnectionString, SQLUtilities.ConnectionStringParts.Database)}";
             }
@@ -46,7 +58,7 @@ namespace TC3EF6.Web.Controllers
         }
         protected override void Dispose(bool disposing)
         {
-            if (db != null) db.Dispose();
+            if (disposing && _dbContext != null) _dbContext.Dispose();
             base.Dispose(disposing);
         }
     }

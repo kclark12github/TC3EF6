@@ -25,6 +25,13 @@ namespace TC3EF6.Web
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+            //https://www.codeproject.com/Articles/1114208/Beginners-Guide-for-Creating-GridView-in-ASP-NET-M
+            bundles.Add(new ScriptBundle("~/bundles/datatables").Include(
+                                    "~/Scripts/DataTables/jquery.dataTables.min.js",
+                                    "~/Scripts/DataTables/dataTables.bootstrap.js"));
+
+            bundles.Add(new StyleBundle("~/Content/datatables").Include(
+                      "~/Content/DataTables/css/dataTables.bootstrap.css"));
         }
     }
 }

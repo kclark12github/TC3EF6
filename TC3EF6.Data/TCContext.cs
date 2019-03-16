@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Infrastructure.Annotations;
 using System.Diagnostics;
 using System.Linq;
@@ -21,7 +22,40 @@ namespace TC3EF6.Data
         void Add<T>(T entity) where T : class;
         void Update<T>(T entity) where T : class;
         void Remove<T>(T entity) where T : class;
+        DbEntityEntry Entry(object entity);
         int SaveChanges();
+        Task<int> SaveChangesAsync();
+        #region "Reference"
+        DbSet<BlueAngelsHistory> BlueAngelsHistories { get; set; }
+        DbSet<Company> Companies { get; set; }
+
+        DbSet<AircraftDesignation> AircraftDesignations { get; set; }
+        DbSet<ShipClass> ShipClasses { get; set; }
+        DbSet<ShipClassType> ShipClassTypes { get; set; }
+        DbSet<Ship> Ships { get; set; }
+        #endregion
+        #region "Stash"
+        DbSet<Book> Books { get; set; }
+        DbSet<Collectable> Collectables { get; set; }
+        DbSet<Decal> Decals { get; set; }
+        DbSet<DetailSet> DetailSets { get; set; }
+        DbSet<FinishingProduct> FinishingProducts { get; set; }
+        DbSet<Kit> Kits { get; set; }
+        DbSet<Music> Music { get; set; }
+        DbSet<Rocket> Rockets { get; set; }
+        DbSet<Software> Software { get; set; }
+        DbSet<Tool> Tools { get; set; }
+        DbSet<Train> Trains { get; set; }
+        //DbSet<VideoResearch> VideoResearch { get; set; }
+        DbSet<Episode> Episodes { get; set; }
+        DbSet<Video> Videos { get; set; }
+        #endregion
+        #region "Miscellaneous"
+        DbSet<History> Histories { get; set; }
+        DbSet<Image> Images { get; set; }
+        DbSet<Location> Locations { get; set; }
+        DbSet<Query> Queries { get; set; }
+        #endregion
     }
     public class TCContext : DbContext, IDbContext
     {
@@ -34,6 +68,10 @@ namespace TC3EF6.Data
         {
             Database.SetInitializer<TCContext>(null);
             //UserName = this.Database.ExecuteSqlCommand("SELECT SUSER_NAME()", );
+        }
+        public static TCContext Create()
+        {
+            return new TCContext();
         }
 
         IQueryable<T> IDbContext.Query<T>()
