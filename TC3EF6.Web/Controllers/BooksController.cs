@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Dynamic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using System.Net;
 using System.Web;
@@ -14,8 +16,8 @@ using PagedList;
 using TC3EF6.Domain.Classes;
 using TC3EF6.Data.Services;
 using DataTables.Mvc;
-using System.Linq.Expressions;
 using Microsoft.AspNet.Identity.Owin;
+using TC3EF6.Base;
 
 namespace TC3EF6.Web.Controllers
 {
@@ -28,39 +30,28 @@ namespace TC3EF6.Web.Controllers
 
 
 
-        private IImageRepository<Book> repo;
-        public IImageRepository<Book> Repository
-        {
-            get { return repo ?? HttpContext.GetOwinContext().Get<IImageRepository<Book>>(); }
-            private set { repo = value; }
-        }
-        public BooksController(IImageRepository<Book> repository)
-        {
-            repo = repository;
-        }
+        //private IImageRepository<Book> repo;
+        //public IImageRepository<Book> Repository
+        //{
+        //    get { return repo ?? HttpContext.GetOwinContext().Get<IImageRepository<Book>>(); }
+        //    private set { repo = value; }
+        //}
+        //public BooksController(IImageRepository<Book> repository)
+        //{
+        //    repo = repository;
+        //}
 
 
         private IDbContext _dbContext;
         public IDbContext DbContext
         {
-            get
-            {
-                return _dbContext ?? HttpContext.GetOwinContext().Get<TCContext>();
-            }
-            private set
-            {
-                _dbContext = value;
-            }
+            get { return _dbContext ?? HttpContext.GetOwinContext().Get<TCContext>(); }
+            private set { _dbContext = value; }
         }
         public BooksController(IDbContext dbContext)
         {
             _dbContext = dbContext;
         }
-
-
-
-
-
 
 
 
@@ -94,14 +85,13 @@ namespace TC3EF6.Web.Controllers
                   (column.SortDirection ==
                   Column.OrderDirection.Ascendant ? " asc" : " desc");
             }
-            //query = query.OrderBy(orderByString == string.Empty ? "AlphaSort asc" : orderByString);
-            query = repo.OrderBy(query, orderByString == string.Empty ? "AlphaSort asc" : orderByString);
+            query = query.OrderBy(orderByString == string.Empty ? "AlphaSort asc" : orderByString);
+            //query = Repository.OrderBy(query, orderByString == string.Empty ? "AlphaSort asc" : orderByString);
             #endregion Sorting
             #region Paging
             query = query.Skip(requestModel.Start).Take(requestModel.Length);
 
             var data = query.Select(item => new {
-                bookID = item.ID,
                 item.AlphaSort,
                 item.Title,
                 item.Author,
@@ -111,6 +101,8 @@ namespace TC3EF6.Web.Controllers
             }).ToList();
             #endregion
 
+            var mTCBase = new TCBase();
+            ViewBag.CopyrightLabel = $"{mTCBase.Copyright} - {mTCBase.Product}";
             return Json(new DataTablesResponse
                 (requestModel.Draw, data, filteredCount, totalCount),
                 JsonRequestBehavior.AllowGet);
@@ -144,6 +136,8 @@ namespace TC3EF6.Web.Controllers
         {
             //var books = repo.GetAll("Author==\"Terry Brooks\"", "AlphaSort");
             //return View(books.ToList());
+            var mTCBase = new TCBase();
+            ViewBag.CopyrightLabel = $"{mTCBase.Copyright} - {mTCBase.Product}";
             return View();
         }
 

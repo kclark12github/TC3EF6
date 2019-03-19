@@ -9,6 +9,8 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OpenIdConnect;
 using TC3EF6.Data;
+using TC3EF6.Data.Services;
+using TC3EF6.Domain.Classes.Stash;
 
 namespace TC3EF6.Web
 {
@@ -23,6 +25,7 @@ namespace TC3EF6.Web
         public void ConfigureAuth(IAppBuilder app)
         {
             app.CreatePerOwinContext(TCContext.Create);
+            //app.CreatePerOwinContext(SqlImageRepository<Book>.Create);
             app.SetDefaultSignInAsAuthenticationType(CookieAuthenticationDefaults.AuthenticationType);
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions());

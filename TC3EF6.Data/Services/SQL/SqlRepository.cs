@@ -14,7 +14,7 @@ using TC3EF6.Domain.Interfaces;
 
 namespace TC3EF6.Data.Services
 {
-    public abstract class SqlRepository<T> : INPCBase, IRepository<T> where T : class, IDataEntity
+    public abstract class SqlRepository<T> : INPCBase, IRepository<T> where T : class, IDataEntity, IDisposable
     {
         //public SqlRepository(TCContext context = null, PopulateAncillaryData populateAncillaryData = null)
         public SqlRepository()

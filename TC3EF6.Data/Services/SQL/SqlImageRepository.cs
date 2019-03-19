@@ -12,12 +12,16 @@ using TC3EF6.Domain.Interfaces;
 
 namespace TC3EF6.Data.Services
 {
-    public class SqlImageRepository<T> : SqlRepository<T>, IImageRepository<T> where T : class, IImageEntity
+    public class SqlImageRepository<T> : SqlRepository<T>, IImageRepository<T> where T : class, IImageEntity, IDisposable
     {
         internal DbSet<Image> Images;
         public SqlImageRepository() : base()
         {
             InitContextStuff();
+        }
+        public static SqlImageRepository<T> Create()
+        {
+            return new SqlImageRepository<T>();
         }
         //public SqlImageRepository(TCContext context = null) : base(context)
         //{
