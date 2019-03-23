@@ -112,14 +112,15 @@
                             "@Url.Action("Get","Books")"
                         },
                         "columns": [
-                            { "title": "AlphaSort", "data": "AlphaSort", "searchable": true },
-                            { "title": "Title", "data": "Title", "searchable": true },
-                            { "title": "Author", "data": "Author", "searchable": true },
-                            { "title": "Media", "data": "MediaFormat", "searchable": true },
-                            { "title": "ISBN", "data": "IBSN", "searchable": true },
-                            { "title": "Location", "data": "Location.Name", "searchable": true }
+                            { "title": "AlphaSort", "data": "AlphaSort", "searchable": true, "defaultContent": "<i>Null</i>" },
+                            { "title": "Title", "data": "Title", "searchable": true, "defaultContent": "<i>Null</i>" },
+                            { "title": "Author", "data": "Author", "searchable": true, "defaultContent": "<i>Null</i>" },
+                            { "title": "Media", "data": "MediaFormat", "searchable": true, "defaultContent": "<i>Null</i>" },
+                            { "title": "ISBN", "data": "ISBN", "searchable": true, "defaultContent": "<i>Null</i>" },
+                            { "title": "Location", "data": "Location", "searchable": true, "defaultContent": "<i>Null</i>" }
                         ],
-                        "lengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
+                        "displayStart": 25, "pageLength": 25,
+                        "lengthMenu": [[10, 25, 50, 100, 1000], [10, 25, 50, 100, 1000]],
                     });
                 }
             }

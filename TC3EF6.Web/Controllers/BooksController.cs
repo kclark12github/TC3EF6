@@ -95,7 +95,7 @@ namespace TC3EF6.Web.Controllers
                 item.AlphaSort,
                 item.Title,
                 item.Author,
-                Media = item.MediaFormat,
+                item.MediaFormat,
                 item.ISBN,
                 Location = item.Location.Name
             }).ToList();
