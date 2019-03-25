@@ -18,6 +18,7 @@ using TC3EF6.Data.Services;
 using DataTables.Mvc;
 using Microsoft.AspNet.Identity.Owin;
 using TC3EF6.Base;
+using TC3EF6.Web.Models.Books;
 
 namespace TC3EF6.Web.Controllers
 {
@@ -53,14 +54,8 @@ namespace TC3EF6.Web.Controllers
             _dbContext = dbContext;
         }
 
-
-
-        public ActionResult Get([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel)
+        private IQueryable<Book> SearchAssets(IDataTablesRequest requestModel, AdvancedSearchViewModel searchViewModel, IQueryable<Book> query)
         {
-            //IQueryable<Book> query = Repository.GetAll(); ;
-            IQueryable<Book> query = DbContext.Books;
-            var totalCount = query.Count();
-
             #region Filtering
             if (requestModel.Search.Value != string.Empty)
             {
@@ -73,13 +68,27 @@ namespace TC3EF6.Web.Controllers
                                        || b.Location.Name.Contains(value)
                                     );
             }
-            var filteredCount = query.Count();
+            #region AdvancedSearch
+            if (!string.IsNullOrEmpty(searchViewModel.AlphaSort))
+                query = query.Where(b => b.AlphaSort.Contains(searchViewModel.AlphaSort));
+            if (!string.IsNullOrEmpty(searchViewModel.Title))
+                query = query.Where(b => b.Title.Contains(searchViewModel.Title));
+            if (!string.IsNullOrEmpty(searchViewModel.Author))
+                query = query.Where(b => b.Author.Contains(searchViewModel.Author));
+            if (!string.IsNullOrEmpty(searchViewModel.MediaFormat))
+                query = query.Where(b => b.MediaFormat.Contains(searchViewModel.MediaFormat));
+            if (!string.IsNullOrEmpty(searchViewModel.ISBN))
+                query = query.Where(b => b.ISBN.Contains(searchViewModel.ISBN));
+            if (!string.IsNullOrEmpty(searchViewModel.Location))
+                query = query.Where(b => b.Location.Name.Contains(searchViewModel.Location));
+            #endregion
             #endregion Filtering
             #region Sorting
             var sortedColumns = requestModel.Columns.GetSortedColumns();
             var orderByString = String.Empty;
 
-            foreach (var column in sortedColumns) {
+            foreach (var column in sortedColumns)
+            {
                 orderByString += orderByString != String.Empty ? "," : "";
                 orderByString += (column.Data) +
                   (column.SortDirection ==
@@ -88,8 +97,21 @@ namespace TC3EF6.Web.Controllers
             query = query.OrderBy(orderByString == string.Empty ? "AlphaSort asc" : orderByString);
             //query = Repository.OrderBy(query, orderByString == string.Empty ? "AlphaSort asc" : orderByString);
             #endregion Sorting
+            return query;
+        }
+
+
+        public ActionResult Get([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel, AdvancedSearchViewModel searchViewModel)
+        {
+            //IQueryable<Book> query = Repository.GetAll(); ;
+            IQueryable<Book> query = DbContext.Books;
+            var totalCount = query.Count();
+            query = SearchAssets(requestModel, searchViewModel, query);
+            var filteredCount = query.Count();
+
             #region Paging
             query = query.Skip(requestModel.Start).Take(requestModel.Length);
+            #endregion
 
             var data = query.Select(item => new {
                 item.AlphaSort,
@@ -99,13 +121,40 @@ namespace TC3EF6.Web.Controllers
                 item.ISBN,
                 Location = item.Location.Name
             }).ToList();
-            #endregion
 
             var mTCBase = new TCBase();
             ViewBag.CopyrightLabel = $"{mTCBase.Copyright} - {mTCBase.Product}";
             return Json(new DataTablesResponse
                 (requestModel.Draw, data, filteredCount, totalCount),
                 JsonRequestBehavior.AllowGet);
+        }
+        [HttpGet]
+        public ActionResult AdvancedSearch()
+        {
+            var advancedSearchViewModel = new AdvancedSearchViewModel
+            {
+                AuthorList = new SelectList(DbContext.Books
+                    .GroupBy(b => b.Author)
+                    .OrderBy(x => x.Key)
+                    .Select(x => new { Author = x.Key }),
+                "Author",
+                "Author"),
+
+                MediaFormatList = new SelectList(DbContext.Books
+                    .GroupBy(b => b.MediaFormat)
+                    .Where(x => x.Key != null && !x.Key.Equals(string.Empty))
+                    .Select(x => new { MediaFormat = x.Key }),
+                "MediaFormat",
+                "MediaFormat"),
+
+                LocationList = new SelectList(DbContext.Books
+                    .GroupBy(b => b.Location.Name + " (" + b.Location.Description + ") @ " + b.Location.PhysicalLocation)
+                    .Where(x => x.Key != null && !x.Key.Equals(string.Empty))
+                    .Select(x => new { Location = x.Key }),
+                "Location",
+                "Location")
+            };
+            return View("_AdvancedSearchPartial", advancedSearchViewModel);
         }
         // GET: Books
         //public async Task<ActionResult> Index(string currentFilter, string searchString, int? page)
