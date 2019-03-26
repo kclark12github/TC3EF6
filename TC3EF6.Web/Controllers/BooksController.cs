@@ -185,6 +185,7 @@ namespace TC3EF6.Web.Controllers
         {
             //var books = repo.GetAll("Author==\"Terry Brooks\"", "AlphaSort");
             //return View(books.ToList());
+            ViewBag.Title = "Books";
             var mTCBase = new TCBase();
             ViewBag.CopyrightLabel = $"{mTCBase.Copyright} - {mTCBase.Product}";
             return View();

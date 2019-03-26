@@ -21,7 +21,7 @@ namespace TC3EF6.Web.Models
         {
             TCBase mTCBase = new TCBase();
             mCopyright = mTCBase.Copyright;
-            mCopyright = $"{mTCBase.Copyright} - {mTCBase.Product}";
+            mCopyrightLabel = $"{mTCBase.Copyright} - {mTCBase.Product}";
             mDescription = mTCBase.Description;
             mProduct = mTCBase.Product;
             mTitle = mTCBase.Title;

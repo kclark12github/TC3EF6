@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TC3EF6.Base;
 using TC3EF6.Data;
 using TC3EF6.Data.Services.SQL;
 using TC3EF6.Web.Models;
@@ -31,15 +32,17 @@ namespace TC3EF6.Web.Controllers
             string database = string.Empty;
             string user = string.Empty;
             if (!string.IsNullOrEmpty(User.Identity.Name)) {
-                user = $"User ID: {User.Identity.Name}";
+                user = User.Identity.Name;
                 string ConnectionString = ConfigurationManager.ConnectionStrings["TC3EF6Context"].ToString();
                 SQLUtilities utilities = new SQLUtilities();
-                database = $"Database: {utilities.ParseConnectionString(ConnectionString, SQLUtilities.ConnectionStringParts.Database)}";
+                database = utilities.ParseConnectionString(ConnectionString, SQLUtilities.ConnectionStringParts.Database);
             }
             var model = new IndexModel {
                 User = user,
                 Database = database
             };
+            //var mTCBase = new TCBase();
+            //ViewBag.CopyrightLabel = $"{mTCBase.Copyright} - {mTCBase.Product}";
             return View(model);
         }
         public ActionResult About()

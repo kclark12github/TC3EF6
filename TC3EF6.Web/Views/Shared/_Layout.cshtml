@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model TC3EF6.Web.Models.ModelBase
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -6,9 +7,14 @@
     <title>@ViewBag.PageTitle</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    @*<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">*@
+    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">*@
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>*@
+    @*<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>*@
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>*@
+    @*<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>*@
+    <!-- Bootstrap v4 dropped support for glyphicons, so we're using fontawesome below... -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
     @*<environment include="Development">
             <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -34,151 +40,166 @@
         .dropdown-submenu {
             position: relative;
         }
-        .dropdown-submenu > .dropdown-menu {
-            top: 0;
-            left: 100%;
-            margin-top: -6px;
-            margin-left: -1px;
-            -webkit-border-radius: 0 6px 6px 6px;
-            -moz-border-radius: 0 6px 6px 6px;
-            border-radius: 0 6px 6px 6px;
+            .dropdown-submenu > .dropdown-menu {
+                top: 0;
+                left: 100%;
+                margin-top: -6px;
+            }
+        /* rotate caret on hover */
+        .dropdown-menu > li > a:hover:after {
+            text-decoration: underline;
+            transform: rotate(-90deg);
         }
-        .dropdown-submenu:hover > .dropdown-menu {
+        #mynavlist li a {
+            padding-top: 0px !important;
+            padding-bottom: 0px !important;
+            margin-top: 0px !important;
+            margin-bottom: 0px !important;
+        }        /*.navbar-nav li:hover > ul.dropdown-menu {
             display: block;
         }
-        .dropdown-submenu > a:after {
-            display: block;
-            content: " ";
-            float: right;
-            width: 0;
-            height: 0;
-            border-color: transparent;
-            border-style: solid;
-            border-width: 5px 0 5px 5px;
-            border-left-color: #cccccc;
-            margin-top: 5px;
-            margin-right: -10px;
+        .dropdown-submenu {
+            position: relative;
         }
-        .dropdown-submenu:hover > a:after {
-            border-left-color: #ffffff;
-        }
-        .dropdown-submenu.pull-left {
-            float: none;
-        }
-        .dropdown-submenu.pull-left > .dropdown-menu {
-            left: -100%;
-            margin-left: 10px;
-            -webkit-border-radius: 6px 0 6px 6px;
-            -moz-border-radius: 6px 0 6px 6px;
-            border-radius: 6px 0 6px 6px;
-        }
+            .dropdown-submenu > .dropdown-menu {
+                top: 0;
+                left: 100%;
+                margin-top: -6px;
+                margin-left: -1px;
+                -webkit-border-radius: 0 6px 6px 6px;
+                -moz-border-radius: 0 6px 6px 6px;
+                border-radius: 0 6px 6px 6px;
+            }
+            .dropdown-submenu:hover > .dropdown-menu {
+                display: block;
+            }
+            .dropdown-submenu > a:after {
+                display: block;
+                content: " ";
+                float: right;
+                width: 0;
+                height: 0;
+                border-color: transparent;
+                border-style: solid;
+                border-width: 5px 0 5px 5px;
+                border-left-color: #cccccc;
+                margin-top: 5px;
+                margin-right: -10px;
+            }
+            .dropdown-submenu:hover > a:after {
+                border-left-color: #ffffff;
+            }
+            .dropdown-submenu.pull-left {
+                float: none;
+            }
+                .dropdown-submenu.pull-left > .dropdown-menu {
+                    left: -100%;
+                    margin-left: 10px;
+                    -webkit-border-radius: 6px 0 6px 6px;
+                    -moz-border-radius: 6px 0 6px 6px;
+                    border-radius: 6px 0 6px 6px;
+                }*/
     </style>
 </head>
 <body>
     <header>
-        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="navbar-inner">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        @Html.ActionLink("TC3EF6.Web™", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                    </div>
-                    <div class="navbar-collapse collapse">
-                        <ul class="nav">
-                            <!-- navbar-nav-->
-                            <li class="dropdown">
-                                <!-- menu-item -->
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Database</a>
-                                <ul class="dropdown-menu">
-                                    <li>@Html.ActionLink("Books", "Index", "Books")</li>
-                                    <li>@Html.ActionLink("Collectables", "Collectables", "Collectables")</li>
-                                    <li class="menu-item dropdown dropdown-submenu">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hobby</a>
-                                        <ul class="dropdown-menu">
-                                            <li>@Html.ActionLink("Kits", "Kits", "Kits")</li>
-                                            <li>@Html.ActionLink("Decals", "Decals", "Decals")</li>
-                                            <li>@Html.ActionLink("Detail Sets", "DetailSets", "DetailSets")</li>
-                                            <li>@Html.ActionLink("Finishing Products", "", "")</li>
-                                            <li class="divider"></li>
-                                            <li>@Html.ActionLink("Tools", "", "")</li>
-                                            <li>@Html.ActionLink("Video Research", "", "")</li>
-                                            <li>@Html.ActionLink("Rockets", "", "")</li>
-                                            <li>@Html.ActionLink("Trains", "", "")</li>
-                                            <li class="divider"></li>
-                                            <li>@Html.ActionLink("Companies", "", "")</li>
-                                            <li class="divider"></li>
-                                            <li>@Html.ActionLink("Aircraft Designations", "", "")</li>
-                                            <li>@Html.ActionLink("Blue Angels History", "", "")</li>
-                                        </ul>
-                                    </li>
-                                    <li>@Html.ActionLink("Images", "Images", "Images")</li>
-                                    <li>@Html.ActionLink("Music", "Music", "Music")</li>
-                                    <li>@Html.ActionLink("Software", "Software", "Software")</li>
-                                    <li class="menu-item dropdown dropdown-submenu">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">U.S. Navy</a>
-                                        <ul class="dropdown-menu">
-                                            <li>@Html.ActionLink("Ships", "Ships", "Ships")</li>
-                                            <li class="divider"></li>
-                                            <li>@Html.ActionLink("Ship Classes", "ShipClasses", "ShipClasses")</li>
-                                            <li>@Html.ActionLink("Ship Class Types", "ShipClassTypes", "ShipClassTypes")</li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item dropdown dropdown-submenu">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Video Library</a>
-                                        <ul class="dropdown-menu">
-                                            <li>@Html.ActionLink("Movies", "", "")</li>
-                                            <li>@Html.ActionLink("Specials", "", "")</li>
-                                            <li class="divider"></li>
-                                            <li>@Html.ActionLink("TV Episodes", "", "")</li>
-                                        </ul>
-                                    </li>
+        <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            @Html.ActionLink("TC3EF6.Web™", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul  id="mynavlist" class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown bg-dark">
+                        <a class="nav-link dropdown-toggle dropdown-toggle-split" href="#" id="navbarDatabaseDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Database</a>
+                        <ul class="dropdown-menu bg-dark" aria-labelledby="navbarDatabaseDropdown">
+                            <li>@Html.ActionLink("Books", "Index", "Books", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("Collectables", "Collectables", "Collectables", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li class="dropdown-submenu"><a class="nav-link dropdown-toggle" href="#" id="navbarHobbyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Hobby</a>
+                                <ul class="dropdown-menu dropdown-submenu bg-dark" aria-labelledby="navbarHobbyDropdown">
+                                    <li>@Html.ActionLink("Kits", "Kits", "Kits", new { area = "" }, new { @class = "nav-link" })</li>
+                                    <li>@Html.ActionLink("Decals", "Decals", "Decals", new { area = "" }, new { @class = "nav-link" })</li>
+                                    <li>@Html.ActionLink("Detail Sets", "DetailSets", "DetailSets", new { area = "" }, new { @class = "nav-link" })</li>
+                                    <li>@Html.ActionLink("Finishing Products", "", "", new { area = "" }, new { @class = "nav-link" })</li>
+                                    <li class="divider dropdown-divider" role="separator" />
+                                    <li>@Html.ActionLink("Tools", "", "", new { area = "" }, new { @class = "nav-link" })</li>
+                                    <li>@Html.ActionLink("Video Research", "", "", new { area = "" }, new { @class = "nav-link" })</li>
+                                    <li>@Html.ActionLink("Rockets", "", "", new { area = "" }, new { @class = "nav-link" })</li>
+                                    <li>@Html.ActionLink("Trains", "", "", new { area = "" }, new { @class = "nav-link" })</li>
+                                    <li class="divider dropdown-divider" role="separator" />
+                                    <li>@Html.ActionLink("Companies", "", "", new { area = "" }, new { @class = "nav-link" })</li>
+                                    <li class="divider dropdown-divider" role="separator" />
+                                    <li>@Html.ActionLink("Aircraft Designations", "", "", new { area = "" }, new { @class = "nav-link" })</li>
+                                    <li>@Html.ActionLink("Blue Angels History", "", "", new { area = "" }, new { @class = "nav-link" })</li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Reports</a>
-                                <ul class="dropdown-menu">
-                                    <li>@Html.ActionLink("DVDs", "DVDReport", "DVDReport")</li>
-                                    <li>@Html.ActionLink("History", "HistoryReport", "HistoryReport")</li>
-                                    <li>@Html.ActionLink("Model Kits by Location", "LocationReport", "LocationReport")</li>
-                                    <li>@Html.ActionLink("Model Kits for Storage", "StorageReport", "StorageReport")</li>
-                                    <li>@Html.ActionLink("WishList", "WishListReport", "WishListReport")</li>
+                            <li>@Html.ActionLink("Images", "Images", "Images", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("Music", "Music", "Music", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("Software", "Software", "Software", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li class="dropdown-submenu"><a class="nav-link dropdown-toggle" href="#" id="navbarUSNavyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">US Navy</a>
+                                <ul class="dropdown-menu dropdown-submenu dropright bg-dark" aria-labelledby="navbarUSNavyDropdown">
+                                    <li>@Html.ActionLink("Ships", "Ships", "Ships", new { area = "" }, new { @class = "nav-link" })</li>
+                                    <li class="divider dropdown-divider" role="separator" />
+                                    <li>@Html.ActionLink("Ship Classes", "ShipClasses", "ShipClasses", new { area = "" }, new { @class = "nav-link" })</li>
+                                    <li>@Html.ActionLink("Ship Class Types", "ShipClassTypes", "ShipClassTypes", new { area = "" }, new { @class = "nav-link" })</li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Help</a>
-                                <ul class="dropdown-menu">
-                                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                            <li class="dropdown-submenu"><a class="nav-link dropdown-toggle" href="#" id="navbarVideoLibraryDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Video Library</a>
+                                <ul class="dropdown-menu dropdown-submenu dropright bg-dark" aria-labelledby="navbarVideoLibraryDropdown">
+                                    <li>@Html.ActionLink("Movies", "", "", new { area = "" }, new { @class = "nav-link" })</li>
+                                    <li>@Html.ActionLink("Specials", "", "", new { area = "" }, new { @class = "nav-link" })</li>
+                                    <li class="divider dropdown-divider" role="separator" />
+                                    <li>@Html.ActionLink("TV Episodes", "", "", new { area = "" }, new { @class = "nav-link" })</li>
                                 </ul>
                             </li>
                         </ul>
-                        @Html.Partial("_LoginPartial")
-                    </div>
-                </div>
+                    </li>
+                    <li class="nav-item dropdown bg-dark">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarReportsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Reports</a>
+                        <ul class="dropdown-menu bg-dark" aria-labelledby="navbarReportsDropdown">
+                            <li>@Html.ActionLink("DVDs", "DVDReport", "DVDReport", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("History", "HistoryReport", "HistoryReport", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("Model Kits by Location", "LocationReport", "LocationReport", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("Model Kits for Storage", "StorageReport", "StorageReport", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li class="divider dropdown-divider" role="separator"/>
+                            <li>@Html.ActionLink("WishList", "WishListReport", "WishListReport", new { area = "" }, new { @class = "nav-link" })</li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown bg-dark">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarHelpDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Help</a>
+                        <ul class="dropdown-menu bg-dark" aria-labelledby="navbarHelpDropdown">
+                            <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
-        </div>
+        </nav>
     </header>
-    <div id="body" style="position: relative;color: white;top: 50px;left: 10px;">
+    <div id="body" style="position: relative;top: 25px;left: 10px;">
         @RenderSection("featured", required: false)
         <section class="content-wrapper main-content clear-fix">
             @RenderBody()
         </section>
     </div>
-    <footer>
+    <footer style="position: absolute;bottom: 10px;left: 10px;">
         <div class="content-wrapper">
             <div class="float-left">
-                <p>&copy; @DateTime.Now.Year - @ViewBag.CopyrightLabel</p>
+                @if (Model != null)
+                {
+                    <p><b>@Model.CopyrightLabel</b></p>
+                }
+                else
+                {
+                    <p><b>&copy; @DateTime.Now.Year</b></p>
+                }
             </div>
         </div>
     </footer>
 
     @Scripts.Render("~/bundles/otf")
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/popper")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/Content/datatables")
     @Scripts.Render("~/bundles/datatables")
