@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.PageTitle</title>
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/datatables")
+    <!-- Bootstrap v4 dropped support for glyphicons, so we're using fontawesome below... -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     @Scripts.Render("~/bundles/modernizr")
     @*<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">*@
     @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">*@
@@ -13,8 +16,6 @@
     @*<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>*@
     @*<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>*@
     @*<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>*@
-    <!-- Bootstrap v4 dropped support for glyphicons, so we're using fontawesome below... -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
     @*<environment include="Development">
             <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -34,12 +35,15 @@
             background-repeat: no-repeat;
             background-attachment: fixed;
         }
+
         .navbar-nav li:hover > ul.dropdown-menu {
             display: block;
         }
+
         .dropdown-submenu {
             position: relative;
         }
+
             .dropdown-submenu > .dropdown-menu {
                 top: 0;
                 left: 100%;
@@ -50,55 +54,13 @@
             text-decoration: underline;
             transform: rotate(-90deg);
         }
+
         #mynavlist li a {
             padding-top: 0px !important;
             padding-bottom: 0px !important;
             margin-top: 0px !important;
             margin-bottom: 0px !important;
-        }        /*.navbar-nav li:hover > ul.dropdown-menu {
-            display: block;
         }
-        .dropdown-submenu {
-            position: relative;
-        }
-            .dropdown-submenu > .dropdown-menu {
-                top: 0;
-                left: 100%;
-                margin-top: -6px;
-                margin-left: -1px;
-                -webkit-border-radius: 0 6px 6px 6px;
-                -moz-border-radius: 0 6px 6px 6px;
-                border-radius: 0 6px 6px 6px;
-            }
-            .dropdown-submenu:hover > .dropdown-menu {
-                display: block;
-            }
-            .dropdown-submenu > a:after {
-                display: block;
-                content: " ";
-                float: right;
-                width: 0;
-                height: 0;
-                border-color: transparent;
-                border-style: solid;
-                border-width: 5px 0 5px 5px;
-                border-left-color: #cccccc;
-                margin-top: 5px;
-                margin-right: -10px;
-            }
-            .dropdown-submenu:hover > a:after {
-                border-left-color: #ffffff;
-            }
-            .dropdown-submenu.pull-left {
-                float: none;
-            }
-                .dropdown-submenu.pull-left > .dropdown-menu {
-                    left: -100%;
-                    margin-left: 10px;
-                    -webkit-border-radius: 6px 0 6px 6px;
-                    -moz-border-radius: 6px 0 6px 6px;
-                    border-radius: 6px 0 6px 6px;
-                }*/
     </style>
 </head>
 <body>
@@ -109,13 +71,14 @@
             </button>
             @Html.ActionLink("TC3EF6.Web™", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul  id="mynavlist" class="navbar-nav mr-auto">
+                <ul id="mynavlist" class="navbar-nav mr-auto">
                     <li class="nav-item dropdown bg-dark">
                         <a class="nav-link dropdown-toggle dropdown-toggle-split" href="#" id="navbarDatabaseDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Database</a>
                         <ul class="dropdown-menu bg-dark" aria-labelledby="navbarDatabaseDropdown">
                             <li>@Html.ActionLink("Books", "Index", "Books", new { area = "" }, new { @class = "nav-link" })</li>
                             <li>@Html.ActionLink("Collectables", "Collectables", "Collectables", new { area = "" }, new { @class = "nav-link" })</li>
-                            <li class="dropdown-submenu"><a class="nav-link dropdown-toggle" href="#" id="navbarHobbyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Hobby</a>
+                            <li class="dropdown-submenu">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarHobbyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Hobby</a>
                                 <ul class="dropdown-menu dropdown-submenu bg-dark" aria-labelledby="navbarHobbyDropdown">
                                     <li>@Html.ActionLink("Kits", "Kits", "Kits", new { area = "" }, new { @class = "nav-link" })</li>
                                     <li>@Html.ActionLink("Decals", "Decals", "Decals", new { area = "" }, new { @class = "nav-link" })</li>
@@ -136,7 +99,8 @@
                             <li>@Html.ActionLink("Images", "Images", "Images", new { area = "" }, new { @class = "nav-link" })</li>
                             <li>@Html.ActionLink("Music", "Music", "Music", new { area = "" }, new { @class = "nav-link" })</li>
                             <li>@Html.ActionLink("Software", "Software", "Software", new { area = "" }, new { @class = "nav-link" })</li>
-                            <li class="dropdown-submenu"><a class="nav-link dropdown-toggle" href="#" id="navbarUSNavyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">US Navy</a>
+                            <li class="dropdown-submenu">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarUSNavyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">US Navy</a>
                                 <ul class="dropdown-menu dropdown-submenu dropright bg-dark" aria-labelledby="navbarUSNavyDropdown">
                                     <li>@Html.ActionLink("Ships", "Ships", "Ships", new { area = "" }, new { @class = "nav-link" })</li>
                                     <li class="divider dropdown-divider" role="separator" />
@@ -144,7 +108,8 @@
                                     <li>@Html.ActionLink("Ship Class Types", "ShipClassTypes", "ShipClassTypes", new { area = "" }, new { @class = "nav-link" })</li>
                                 </ul>
                             </li>
-                            <li class="dropdown-submenu"><a class="nav-link dropdown-toggle" href="#" id="navbarVideoLibraryDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Video Library</a>
+                            <li class="dropdown-submenu">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarVideoLibraryDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Video Library</a>
                                 <ul class="dropdown-menu dropdown-submenu dropright bg-dark" aria-labelledby="navbarVideoLibraryDropdown">
                                     <li>@Html.ActionLink("Movies", "", "", new { area = "" }, new { @class = "nav-link" })</li>
                                     <li>@Html.ActionLink("Specials", "", "", new { area = "" }, new { @class = "nav-link" })</li>
@@ -161,7 +126,7 @@
                             <li>@Html.ActionLink("History", "HistoryReport", "HistoryReport", new { area = "" }, new { @class = "nav-link" })</li>
                             <li>@Html.ActionLink("Model Kits by Location", "LocationReport", "LocationReport", new { area = "" }, new { @class = "nav-link" })</li>
                             <li>@Html.ActionLink("Model Kits for Storage", "StorageReport", "StorageReport", new { area = "" }, new { @class = "nav-link" })</li>
-                            <li class="divider dropdown-divider" role="separator"/>
+                            <li class="divider dropdown-divider" role="separator" />
                             <li>@Html.ActionLink("WishList", "WishListReport", "WishListReport", new { area = "" }, new { @class = "nav-link" })</li>
                         </ul>
                     </li>
@@ -173,6 +138,7 @@
                         </ul>
                     </li>
                 </ul>
+                @Html.Partial("_LoginPartial")
             </div>
         </nav>
     </header>
@@ -201,7 +167,6 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/popper")
     @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/Content/datatables")
     @Scripts.Render("~/bundles/datatables")
     @RenderSection("scripts", required: false)
 </body>

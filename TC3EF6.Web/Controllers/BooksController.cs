@@ -54,7 +54,7 @@ namespace TC3EF6.Web.Controllers
             _dbContext = dbContext;
         }
 
-        private IQueryable<Book> SearchAssets(IDataTablesRequest requestModel, AdvancedSearchViewModel searchViewModel, IQueryable<Book> query)
+        private IQueryable<Book> Search(IDataTablesRequest requestModel, AdvancedSearchViewModel searchViewModel, IQueryable<Book> query, out int count)
         {
             #region Filtering
             if (requestModel.Search.Value != string.Empty)
@@ -82,6 +82,7 @@ namespace TC3EF6.Web.Controllers
             if (!string.IsNullOrEmpty(searchViewModel.Location))
                 query = query.Where(b => b.Location.Name.Contains(searchViewModel.Location));
             #endregion
+            count = query.Count();
             #endregion Filtering
             #region Sorting
             var sortedColumns = requestModel.Columns.GetSortedColumns();
@@ -100,20 +101,14 @@ namespace TC3EF6.Web.Controllers
             return query;
         }
 
-
         public ActionResult Get([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel, AdvancedSearchViewModel searchViewModel)
         {
-            //IQueryable<Book> query = Repository.GetAll(); ;
-            IQueryable<Book> query = DbContext.Books;
-            var totalCount = query.Count();
-            query = SearchAssets(requestModel, searchViewModel, query);
-            var filteredCount = query.Count();
-
-            #region Paging
+            //IQueryable<Book> query = Repository.GetAll(); 
+            IQueryable<Book> query = Search(requestModel, searchViewModel, DbContext.Books, out int filteredCount);
             query = query.Skip(requestModel.Start).Take(requestModel.Length);
-            #endregion
 
             var data = query.Select(item => new {
+                item.ID,
                 item.AlphaSort,
                 item.Title,
                 item.Author,
@@ -122,10 +117,11 @@ namespace TC3EF6.Web.Controllers
                 Location = item.Location.Name
             }).ToList();
 
+            var TableCount = DbContext.Books.Count();
             var mTCBase = new TCBase();
             ViewBag.CopyrightLabel = $"{mTCBase.Copyright} - {mTCBase.Product}";
             return Json(new DataTablesResponse
-                (requestModel.Draw, data, filteredCount, totalCount),
+                (requestModel.Draw, data, filteredCount, TableCount),
                 JsonRequestBehavior.AllowGet);
         }
         [HttpGet]

@@ -30,8 +30,8 @@ namespace TC3EF6.Web
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
             bundles.Add(new ScriptBundle("~/bundles/popper").Include(
-                      "~/Scripts/popper.js",
-                      "~/Scripts/popper-utils.js"));
+                      "~/Scripts/umd/popper.js",
+                      "~/Scripts/umd/popper-utils.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
@@ -40,11 +40,18 @@ namespace TC3EF6.Web
                       "~/Content/fontawesome/css/all.css"));
             //https://www.codeproject.com/Articles/1114208/Beginners-Guide-for-Creating-GridView-in-ASP-NET-M
             bundles.Add(new ScriptBundle("~/bundles/datatables").Include(
-                        "~/Scripts/DataTables/jquery.dataTables.min.js",
-                        "~/Scripts/DataTables/dataTables.bootstrap.js"));
+                        "~/Scripts/DataTables/jquery.dataTables.js",
+                        "~/Scripts/DataTables/dataTables.bootstrap4.js",
+                        "~/Scripts/DataTables/dataTables.buttons.js",
+                        "~/Scripts/DataTables/buttons.bootstrap4.js",
+                        "~/Scripts/DataTables/buttons.colVis.js",
+                        "~/Scripts/DataTables/buttons.html5.js",
+                        "~/Scripts/DataTables/buttons.print.js"
+                        ));
 
             bundles.Add(new StyleBundle("~/Content/datatables").Include(
-                      "~/Content/DataTables/css/dataTables.bootstrap.css"));
+                      "~/Content/DataTables/css/dataTables.bootstrap4.css",
+                      "~/Content/DataTables/css/buttons.bootstrap4.css"));
         }
     }
 }

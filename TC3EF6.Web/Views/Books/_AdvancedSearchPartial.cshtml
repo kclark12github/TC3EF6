@@ -3,11 +3,11 @@
     Layout = null;
 }
 
-<div class="modal fade" id="advancedSearchModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" style="color: black">
+<div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" style="color: black">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Advanced Search</h4>
+                <h4 class="modal-title">Filter</h4>
             </div>
             @using (Html.BeginForm("Get", "Books", FormMethod.Get, new { id = "frmAdvancedSearch", @class = "form-horizontal", role = "form" }))
             {
@@ -69,8 +69,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button id="btnPerformAdvancedSearch" type="button" class="btn btn-default btn-success" data-dismiss="modal">Search</button>
-                    <button id="btnCancel" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button id="btnPerformFilter" type="button" class="btn btn-secondary bg-success" data-dismiss="modal">Filter</button>
+                    <button id="btnCancel" type="button" class="btn btn-secondary bg-danger" data-dismiss="modal">Cancel</button>
                 </div>
             }
         </div>
