@@ -129,8 +129,10 @@ namespace TC3EF6.Web.Controllers
         {
             var advancedSearchViewModel = new AdvancedSearchViewModel
             {
+                //TODO: Authors is too big - must replace with some sort of auto-complete AJAX mechanism...
                 AuthorList = new SelectList(DbContext.Books
                     .GroupBy(b => b.Author)
+                    .Where(x => x.Key != null && !x.Key.Equals(string.Empty) && x.Key.ToUpper().Contains("MOORCOCK"))
                     .OrderBy(x => x.Key)
                     .Select(x => new { Author = x.Key }),
                 "Author",

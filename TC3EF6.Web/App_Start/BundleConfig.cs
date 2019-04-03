@@ -51,6 +51,7 @@ namespace TC3EF6.Web
 
             bundles.Add(new StyleBundle("~/Content/datatables").Include(
                       "~/Content/DataTables/css/dataTables.bootstrap4.css",
+                      "~/Content/DataTables/css/jquery.dataTables.css",
                       "~/Content/DataTables/css/buttons.bootstrap4.css"));
         }
     }
