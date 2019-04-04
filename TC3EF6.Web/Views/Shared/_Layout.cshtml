@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.PageTitle</title>
     @Styles.Render("~/Content/css")
-    @Styles.Render("~/Content/datatables")
     <!-- Bootstrap v4 dropped support for glyphicons, so we're using fontawesome below... -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    @*@Styles.Render("~/Content/datatables") - Moved to Index.cshtml*@
     @Scripts.Render("~/bundles/modernizr")
     @*<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">*@
     @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">*@
@@ -165,10 +165,10 @@
     </footer>
 
     @Scripts.Render("~/bundles/otf")
-    @Scripts.Render("~/bundles/jquery")
+    @*@Scripts.Render("~/bundles/jquery") - already included in otf above*@
     @Scripts.Render("~/bundles/popper")
     @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/datatables")
+    @*@Scripts.Render("~/bundles/datatables") - Moved to Index.cshtml*@
     @RenderSection("scripts", required: false)
 </body>
 </html>

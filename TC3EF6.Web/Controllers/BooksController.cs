@@ -28,9 +28,6 @@ namespace TC3EF6.Web.Controllers
         //private TCContext db = new TCContext();
         //private IImageRepository<Book> repo = new SqlImageRepository<Book>();
         public BooksController() { }
-
-
-
         //private IImageRepository<Book> repo;
         //public IImageRepository<Book> Repository
         //{
@@ -41,8 +38,6 @@ namespace TC3EF6.Web.Controllers
         //{
         //    repo = repository;
         //}
-
-
         private IDbContext _dbContext;
         public IDbContext DbContext
         {
@@ -54,11 +49,12 @@ namespace TC3EF6.Web.Controllers
             _dbContext = dbContext;
         }
 
-        private IQueryable<Book> Search(IDataTablesRequest requestModel, AdvancedSearchViewModel searchViewModel, IQueryable<Book> query, out int count)
+        private IQueryable<Book> Filter(IDataTablesRequest requestModel, FilterViewModel filterViewModel, IQueryable<Book> query, out int count)
         {
             #region Filtering
-            if (requestModel.Search.Value != string.Empty)
+            if (!string.IsNullOrEmpty(requestModel.Search.Value))
             {
+                //We were triggered from the Search box...
                 var value = requestModel.Search.Value.Trim();
                 query = query.Where(b => b.AlphaSort.Contains(value)
                                        || b.Title.Contains(value)
@@ -69,18 +65,19 @@ namespace TC3EF6.Web.Controllers
                                     );
             }
             #region AdvancedSearch
-            if (!string.IsNullOrEmpty(searchViewModel.AlphaSort))
-                query = query.Where(b => b.AlphaSort.Contains(searchViewModel.AlphaSort));
-            if (!string.IsNullOrEmpty(searchViewModel.Title))
-                query = query.Where(b => b.Title.Contains(searchViewModel.Title));
-            if (!string.IsNullOrEmpty(searchViewModel.Author))
-                query = query.Where(b => b.Author.Contains(searchViewModel.Author));
-            if (!string.IsNullOrEmpty(searchViewModel.MediaFormat))
-                query = query.Where(b => b.MediaFormat.Contains(searchViewModel.MediaFormat));
-            if (!string.IsNullOrEmpty(searchViewModel.ISBN))
-                query = query.Where(b => b.ISBN.Contains(searchViewModel.ISBN));
-            if (!string.IsNullOrEmpty(searchViewModel.Location))
-                query = query.Where(b => b.Location.Name.Contains(searchViewModel.Location));
+            //If we are coming from our frmFilter dialog, filterViewModel may be populated...
+            if (!string.IsNullOrEmpty(filterViewModel.AlphaSort))
+                query = query.Where(b => b.AlphaSort.Contains(filterViewModel.AlphaSort));
+            if (!string.IsNullOrEmpty(filterViewModel.Title))
+                query = query.Where(b => b.Title.Contains(filterViewModel.Title));
+            if (!string.IsNullOrEmpty(filterViewModel.Author))
+                query = query.Where(b => b.Author.Contains(filterViewModel.Author));
+            if (!string.IsNullOrEmpty(filterViewModel.MediaFormat))
+                query = query.Where(b => b.MediaFormat.Contains(filterViewModel.MediaFormat));
+            if (!string.IsNullOrEmpty(filterViewModel.ISBN))
+                query = query.Where(b => b.ISBN.Contains(filterViewModel.ISBN));
+            if (!string.IsNullOrEmpty(filterViewModel.Location))
+                query = query.Where(b => b.Location.Name.Contains(filterViewModel.Location));
             #endregion
             count = query.Count();
             #endregion Filtering
@@ -101,10 +98,10 @@ namespace TC3EF6.Web.Controllers
             return query;
         }
 
-        public ActionResult Get([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel, AdvancedSearchViewModel searchViewModel)
+        public ActionResult Get([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel, FilterViewModel filterViewModel)
         {
             //IQueryable<Book> query = Repository.GetAll(); 
-            IQueryable<Book> query = Search(requestModel, searchViewModel, DbContext.Books, out int filteredCount);
+            IQueryable<Book> query = Filter(requestModel, filterViewModel, DbContext.Books, out int filteredCount);
             query = query.Skip(requestModel.Start).Take(requestModel.Length);
 
             var data = query.Select(item => new {
@@ -125,9 +122,9 @@ namespace TC3EF6.Web.Controllers
                 JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
-        public ActionResult AdvancedSearch()
+        public ActionResult Filter()
         {
-            var advancedSearchViewModel = new AdvancedSearchViewModel
+            var filterViewModel = new FilterViewModel
             {
                 //TODO: Authors is too big - must replace with some sort of auto-complete AJAX mechanism...
                 AuthorList = new SelectList(DbContext.Books
@@ -152,7 +149,7 @@ namespace TC3EF6.Web.Controllers
                 "Location",
                 "Location")
             };
-            return View("_AdvancedSearchPartial", advancedSearchViewModel);
+            return View("_FilterPartial", filterViewModel);
         }
         // GET: Books
         //public async Task<ActionResult> Index(string currentFilter, string searchString, int? page)

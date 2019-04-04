@@ -1,23 +1,20 @@
-﻿@*@model PagedList.IPagedList<TC3EF6.Domain.Classes.Stash.Book>*@
-@model IEnumerable<TC3EF6.Domain.Classes.Stash.Book>
-@*@using PagedList.Mvc;*@
-@*<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />*@
-
-@*<div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-primary list-panel" id="list-panel">
-                <div class="panel-heading list-panel-heading">
-                    <h1 class="panel-title list-panel-title" style="color: white">@ViewBag.Title</h1>
-                    <button type="button" class="btn btn-default btn-md" data-toggle="modal" data-target="#advancedSearchModal" id="advancedsearch-button">
-                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Advanced Search
-                    </button>
-                </div>
-                <div class="panel-body">
-                    <table id="books-data-table" class="table table-striped table-bordered" style="width:100%"></table>
-                </div>
-            </div>
-        </div>
-    </div>*@
+﻿@model IEnumerable<TC3EF6.Domain.Classes.Stash.Book>
+<style>
+    /* Using jquery.dataTables.css with bootstrap4 screws up the padding on pagination 
+       links, however not including it removes the selected row behavior. The following
+       styles were extracted from jquery.dataTables.css in an effort to restore that
+       selection behavior.
+    */
+    table.dataTable tbody tr.selected {
+        background-color: #B0BED9;
+    }
+    table.dataTable.stripe tbody tr.odd.selected, table.dataTable.display tbody tr.odd.selected {
+        background-color: #acbad4;
+    }
+    table.dataTable.hover tbody tr:hover.selected, table.dataTable.display tbody tr:hover.selected {
+        background-color: #aab7d1;
+    }
+</style>
 <div class="card" id="list-panel">
     <div class="card-header">
         <div class="row align-items-center">
@@ -35,11 +32,11 @@
         </div>
     </div>
     <div class="card-body">
-        <table id="books-data-table" class="table table-striped table-bordered table-hover"></table>
+        <table id="books-data-table" class="table table-striped table-bordered table-hover compact order-column"></table>
     </div>
 </div>
 
-@Html.Action("AdvancedSearch")
+@Html.Action("Filter")
 
 @* Edit:    <i class="fas fa-pen-square"></i> *@
 @* New:     <i class="fas fa-plus-square"></i> *@
@@ -54,6 +51,8 @@
 
 @section Scripts
 {
+    @Styles.Render("~/Content/datatables")
+    @Scripts.Render("~/bundles/datatables")
     <script type="text/javascript">
         var bookListVM;
         $(function () {
@@ -71,24 +70,30 @@
                             "<'row'<'col'r><'col-sm-12'f>>" +
                             "<'row'<'col't>>" +
                             "<'row'<'col'B><'col'i><'col'p>>",
-                        "select": true,
+                        //"select": true,
+                        "scrollY": "50vh",
                         "serverSide": true,
                         "processing": true,
+                        //"pagingType": "full_numbers",
                         "ajax": {
-                            "url": "@Url.Action("Get","Books")",
+                            "url": "@Url.Action("Get", "Books")",
                             "data": function (data) {
-                                //data.Details = null;
-                                data.ID = $("#ID").val();
+                                //data.ID = $("#ID").val();
+                                //data.AlphaSort = $("#AlphaSort").val();
+                                //data.Title = $("#Title").val();
+                                //data.Author = $("#Author").val();
+                                //data.Media = $("#Media").val();
+                                //data.ISBN = $("#ISBN").val();
+                                //data.Location = $("#Location").val();
                                 data.AlphaSort = $("#AlphaSort").val();
                                 data.Title = $("#Title").val();
                                 data.Author = $("#Author").val();
-                                data.Media = $("#Media").val();
+                                data.MediaFormat = $("#MediaFormat").val();
                                 data.ISBN = $("#ISBN").val();
                                 data.Location = $("#Location").val();
                             }
                         },
                         "columns": [
-                            //{ "title": "Details",         "searchable": false,    "defaultContent": "<span class=\"fas fa-info-circle\"></span>" },
                             { "title": "ID",        "data": "ID",           "visible": false,       "defaultContent": "<i>Null</i>" },
                             { "title": "AlphaSort", "data": "AlphaSort",    "searchable": true,     "defaultContent": "<i>Null</i>" },
                             { "title": "Title",     "data": "Title",        "searchable": true,     "defaultContent": "<i>Null</i>" },
@@ -103,13 +108,15 @@
                 },
                 refresh: function () {
                     dt.ajax.reload();
-                }
+                },
+                //adjustButtonPadding: function () {
+                //    $('.paginate_button').css("padding", "0em");
+                //}
             }
-            //table.buttons().container()
-            //    .appendTo('#books-data-table_wrapper .col-md-6:eq(0)');
-            
+
             $('#btnPerformFilter').on("click", bookListVM.refresh); // Modal Filter button click handler
             bookListVM.init();  // initialize the datatables
+            //bookListVM.adjustButtonPadding();   //Override padding style on pagination buttons
 
             var table = $('#books-data-table').DataTable();
             $('#books-data-table tbody').on('click', 'tr', function () {
@@ -124,10 +131,10 @@
             });
         });
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.colVis.min.js"></script>
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>*@
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>*@
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>*@
+    @*<script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>*@
+    @*<script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>*@
+    @*<script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.colVis.min.js"></script>*@
 }

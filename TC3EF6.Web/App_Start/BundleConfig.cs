@@ -34,25 +34,29 @@ namespace TC3EF6.Web
                       "~/Scripts/umd/popper-utils.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
+                       //"~/Content/fontawesome/css/all.css", //Bootstrap v4 dropped support for glyphicons, so we're using fontawesome below...
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css",
-                      //Bootstrap v4 dropped support for glyphicons, so we're using fontawesome below...
-                      "~/Content/fontawesome/css/all.css"));
+                      "~/Content/site.css"
+                      ));
             //https://www.codeproject.com/Articles/1114208/Beginners-Guide-for-Creating-GridView-in-ASP-NET-M
             bundles.Add(new ScriptBundle("~/bundles/datatables").Include(
                         "~/Scripts/DataTables/jquery.dataTables.js",
                         "~/Scripts/DataTables/dataTables.bootstrap4.js",
                         "~/Scripts/DataTables/dataTables.buttons.js",
                         "~/Scripts/DataTables/buttons.bootstrap4.js",
+                        "~/node_modules/jszip/dist/jszip.js",
+                        "~/node_modules/pdfmake/build/pdfmake.js",
+                        "~/node_modules/pdfmake/build/vfs_fonts.js",
                         "~/Scripts/DataTables/buttons.colVis.js",
                         "~/Scripts/DataTables/buttons.html5.js",
                         "~/Scripts/DataTables/buttons.print.js"
                         ));
 
             bundles.Add(new StyleBundle("~/Content/datatables").Include(
-                      "~/Content/DataTables/css/dataTables.bootstrap4.css",
-                      "~/Content/DataTables/css/jquery.dataTables.css",
-                      "~/Content/DataTables/css/buttons.bootstrap4.css"));
+                      //"~/Content/DataTables/css/jquery.dataTables.css",
+                      "~/Content/DataTables/css/buttons.bootstrap4.css",
+                      "~/Content/DataTables/css/dataTables.bootstrap4.css"
+                      ));
         }
     }
 }
