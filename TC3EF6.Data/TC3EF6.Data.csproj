@@ -88,5 +88,34 @@
     <Folder Include="Services\SQL\Reference\" />
     <Folder Include="Services\SQL\Stash\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="SQL\Compile Migration.sql" />
+    <Content Include="SQL\Conversion.sql" />
+    <Content Include="SQL\Data Migration.sql" />
+    <Content Include="SQL\sp_MigrateAircraftDesignations.sql" />
+    <Content Include="SQL\sp_MigrateBlueAngelsHistory.sql" />
+    <Content Include="SQL\sp_MigrateBooks.sql" />
+    <Content Include="SQL\sp_MigrateCollectables.sql" />
+    <Content Include="SQL\sp_MigrateCompanies.sql" />
+    <Content Include="SQL\sp_MigrateDecals.sql" />
+    <Content Include="SQL\sp_MigrateDetailSets.sql" />
+    <Content Include="SQL\sp_MigrateEpisodes.sql" />
+    <Content Include="SQL\sp_MigrateFinishingProducts.sql" />
+    <Content Include="SQL\sp_MigrateImages.sql" />
+    <Content Include="SQL\sp_MigrateKits.sql" />
+    <Content Include="SQL\sp_MigrateMovies.sql" />
+    <Content Include="SQL\sp_MigrateMusic.sql" />
+    <Content Include="SQL\sp_MigrateQueries.sql" />
+    <Content Include="SQL\sp_MigrateRockets.sql" />
+    <Content Include="SQL\sp_MigrateShipClasses.sql" />
+    <Content Include="SQL\sp_MigrateShipClassTypes.sql" />
+    <Content Include="SQL\sp_MigrateShips.sql" />
+    <Content Include="SQL\sp_MigrateSoftware.sql" />
+    <Content Include="SQL\sp_MigrateSpecials.sql" />
+    <Content Include="SQL\sp_MigrateTools.sql" />
+    <Content Include="SQL\sp_MigrateTrains.sql" />
+    <Content Include="SQL\sp_MigrateVideoResearch.sql" />
+    <Content Include="SQL\sp_TableSpaceUsed.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
