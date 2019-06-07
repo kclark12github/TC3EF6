@@ -57,7 +57,10 @@
     <Compile Include="CustomMigrationOperations\CustomSeed.cs" />
     <Compile Include="CustomMigrationOperations\TCMigrationSqlGenerator.cs" />
     <Compile Include="CustomMigrationOperations\Utilities.cs" />
-    <Compile Include="Migrations\201902020535131_Initial.cs" />
+    <Compile Include="Migrations\201906062340406_Initial.cs" />
+    <Compile Include="Migrations\201906062340406_Initial.Designer.cs">
+      <DependentUpon>201906062340406_Initial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Services\Login\Login.cs" />
     <Compile Include="Services\Login\LoginEventArgs.cs" />
@@ -87,6 +90,11 @@
     <Folder Include="Services\Memory\" />
     <Folder Include="Services\SQL\Reference\" />
     <Folder Include="Services\SQL\Stash\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201906062340406_Initial.resx">
+      <DependentUpon>201906062340406_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

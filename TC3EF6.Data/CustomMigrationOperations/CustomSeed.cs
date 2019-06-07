@@ -15,15 +15,18 @@ namespace TC3EF6.Data.CustomMigrationOperations
         //
         //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
         //  to avoid creating duplicate seed data.
-        public static void Seed(TCContext context)
+        #region Data
+        public static void SeedData(TCContext context)
         {
+            Console.WriteLine("Seeding Data...");
             SeedAircraftDesignations(context);
             SeedBlueAngelsHistory(context);
             SeedLocations(context);
             SeedShipClassTypes(context);
         }
-        public static void SeedAircraftDesignations(TCContext context)
+        private static void SeedAircraftDesignations(TCContext context)
         {
+            Console.WriteLine("\tAircraftDesignations");
             //SELECT 'new AircraftDesignation { ID = Guid.NewGuid(), ' +
             //    'Designation = "' +[Designation] + '", ' +
             //    'Manufacturer = "' +[Manufacturer] + '", ' +
@@ -194,8 +197,9 @@ namespace TC3EF6.Data.CustomMigrationOperations
                 new AircraftDesignation { ID = Guid.NewGuid(), Designation = "TBM", Manufacturer = "Eastern Motors/GM (M)", Name = "Avenger", Nicknames = null, Notes = null, Number = null, Version = "M", ServiceDate = new DateTime(1942, 1, 30, 0, 0, 0), DateCreated = new DateTime(1900, 1, 1, 0, 0, 0), DateModified = new DateTime(1900, 1, 1, 0, 0, 0) },
                 new AircraftDesignation { ID = Guid.NewGuid(), Designation = "AD2", Manufacturer = "Douglas", Name = "Skyshark", Nicknames = null, Notes = null, Number = null, Version = null, ServiceDate = new DateTime(1950, 1, 1, 0, 0, 0), DateCreated = new DateTime(1900, 1, 1, 0, 0, 0), DateModified = new DateTime(1900, 1, 1, 0, 0, 0) });
         }
-        public static void SeedBlueAngelsHistory(TCContext context)
+        private static void SeedBlueAngelsHistory(TCContext context)
         {
+            Console.WriteLine("\tBlueAngelsHistory");
             //SELECT 'new BlueAngelsHistory { ID = Guid.NewGuid(), ' +
             //    'ServiceDates = "' +[Dates] + '", ' +
             //    'AircraftType = "' +[Aircraft Type] + '", ' +
@@ -217,8 +221,9 @@ namespace TC3EF6.Data.CustomMigrationOperations
                 new BlueAngelsHistory { ID = Guid.NewGuid(), ServiceDates = "1974-86", AircraftType = "A-4F McDonnell Douglas Skyhawk", DecalSets = "72-138", Kits = "Fujimi FU-G19", Notes = null, DateCreated = new DateTime(1900, 1, 1, 0, 0, 0), DateModified = new DateTime(1900, 1, 1, 0, 0, 0) },
                 new BlueAngelsHistory { ID = Guid.NewGuid(), ServiceDates = "1987-", AircraftType = "F/A-18A Northrop Hornet", DecalSets = "72-560", Kits = "Hasegawa HA-812", Notes = null, DateCreated = new DateTime(1900, 1, 1, 0, 0, 0), DateModified = new DateTime(1900, 1, 1, 0, 0, 0) });
         }
-        public static void SeedLocations(TCContext context)
+        private static void SeedLocations(TCContext context)
         {
+            Console.WriteLine("\tLocations");
             //Select Distinct 
             // 'new Location { ID = Guid.NewGuid(), ' +
             //    'Name = ' + IsNull('@"' +[tcLocations].[Location] + '"', '""') + ', ' +
@@ -704,8 +709,9 @@ namespace TC3EF6.Data.CustomMigrationOperations
                 new Location { ID = Guid.NewGuid(), Name = @"WishList", Description = @"", PhysicalLocation = @"", OName = @"WishList" }
             );
         }
-        public static void SeedMusic(TCContext context)
+        private static void SeedMusic(TCContext context)
         {
+            Console.WriteLine("\tMusic");
             //TODO: For some reason the following indexes are not being created as they should.
             //                .Index(t => new { t.Type, t.Artist, t.Year, t.MediaFormat, t.ID }, unique: true, name: "IX_MusicByType")
             //                .Index(t => new { t.Artist, t.Year, t.MediaFormat, t.ID }, unique: true, name: "IX_MusicByArtist")
@@ -743,8 +749,9 @@ namespace TC3EF6.Data.CustomMigrationOperations
             //	Inner Join [Music] On [Music].[OID]=[tcMusic].[ID]
             //Order By [tcMusic].[AlphaSort];
         }
-        public static void SeedShipClassTypes(TCContext context)
+        private static void SeedShipClassTypes(TCContext context)
         {
+            Console.WriteLine("\tShipClassTypes");
             context.ShipClassTypes.AddOrUpdate(x => x.TypeCode,
                 new ShipClassType { ID = Guid.NewGuid(), TypeCode = "XXX", Description = "Unassigned" },
                 new ShipClassType { ID = Guid.NewGuid(), TypeCode = "ACR", Description = "Heavy Armored Cruiser - Battleship prototype" },
@@ -809,6 +816,2843 @@ namespace TC3EF6.Data.CustomMigrationOperations
                 new ShipClassType { ID = Guid.NewGuid(), TypeCode = "T-ARS", Description = "Salvage Ships (assigned to Military Sealift Command)" },
                 new ShipClassType { ID = Guid.NewGuid(), TypeCode = "T-AS", Description = "Submarine Tenders (assigned to Military Sealift Command)" },
                 new ShipClassType { ID = Guid.NewGuid(), TypeCode = "T-LKA", Description = "Amphibious Cargo Ships (assigned to Military Sealift Command)" });
+        }
+        #endregion
+        #region Programmability
+        private static void CreateLogError(TCContext context)
+        {
+            Console.WriteLine("\tLogError");
+            context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_LogError' AND type='P') Drop Procedure sp_LogError;");
+            context.Database.ExecuteSqlCommand(@"
+            --sp_LogError.sql
+            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   Copyright © 2019 All Rights Reserved.
+            --*********************************************************************************************************************************
+            --
+            --	Modification History:
+            --	Date:       Developer:		Description:
+            --	06/06/19	Ken Clark		Created;
+            --=================================================================================================================================
+            
+                Create Procedure sp_LogError(@Milestone nvarchar(max)) As
+                Begin
+                    Declare @Message nvarchar(max), @Number int, @Severity int, @State int, @Line int, @Procedure nvarchar(max);
+                    Select @Number=ERROR_NUMBER(),
+		                @Message=ERROR_MESSAGE(),
+		                @Severity=ERROR_SEVERITY(),
+		                @State=ERROR_STATE(),
+		                @Line=ERROR_LINE(),
+		                @Procedure=ERROR_PROCEDURE();
+	                Declare @Error nvarchar(max)=
+		                'Error '+Convert(nvarchar(10),@Number)+', '+
+		                'Level '+Convert(nvarchar(10),@Severity)+', '+
+		                'State '+Convert(nvarchar(10),@State)+', '+
+		                'Procedure '+@Procedure+', '+
+		                'Line '+Convert(nvarchar(10),@Line)+', '+CHAR(13)+CHAR(10)+
+		                @Message;
+	                Begin Transaction;
+	                Insert Into LOG(MileStone,Message) Values (@Milestone,@Error); Select * From Log;
+	                Commit Transaction;
+                End;");
+        }
+        private static void CreateMusicViews(TCContext context)
+        {
+            Console.WriteLine("\tMusic");
+            context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='Music' AND type='V') Drop View Music;");
+            context.Database.ExecuteSqlCommand(@"
+            		Create View [dbo].[Music] As 
+            		Select M.[ID], M.[Artist], M.[Title], M.[Type], M.[Year], M.[Price], M.[AlphaSort], M.[DateInventoried], 
+            			M.[WishList], M.[Location],M.[DatePurchased], M.[Value], M.[DateVerified], M.[MediaFormat], M.[Notes], M.[DateCreated], 
+            			M.[DateModified], M.[ArtistID],
+            			LP.MediaFormat As [LP],CS.MediaFormat As [CS],CD.MediaFormat As [CD],MP3.MediaFormat As [MP3]
+            		From Albums M
+            			Left Outer Join Albums LP On LP.Type=M.Type And LP.Artist=M.Artist And LP.Year=M.Year And LP.Title=M.Title And LP.MediaFormat='LP' And LP.WishList=0
+            			Left Outer Join Albums CS On CS.Type=M.Type And CS.Artist=M.Artist And CS.Year=M.Year And CS.Title=M.Title And CS.MediaFormat='CS' And CS.WishList=0
+            			Left Outer Join Albums CD On CD.Type=M.Type And CD.Artist=M.Artist And CD.Year=M.Year And CD.Title=M.Title And CD.MediaFormat='CD' And CD.WishList=0
+            			Left Outer Join Albums MP3 On MP3.Type=M.Type And MP3.Artist=M.Artist And MP3.Year=M.Year And MP3.Title=M.Title And MP3.MediaFormat='MP3' And MP3.WishList=0
+            		Where M.WishList=0;");
+
+            context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='CDOnly' AND type='V') Drop View CDOnly;");
+            context.Database.ExecuteSqlCommand(@"Create View [dbo].[CDOnly] As Select * From Music Where LP Is Null And CD Is Not Null And CS Is Null And MP3 Is Null;");
+            context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='CSOnly' AND type='V') Drop View CSOnly;");
+            context.Database.ExecuteSqlCommand(@"Create View [dbo].[CSOnly] As Select * From Music Where LP Is Null And CD Is Null And CS Is Not Null And MP3 Is Null;");
+            context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='LPOnly' AND type='V') Drop View LPOnly;");
+            context.Database.ExecuteSqlCommand(@"Create View [dbo].[LPOnly] As Select * From Music Where LP Is Not Null And CD Is Null And CS Is Null And MP3 Is Null;");
+            context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='MP3Only' AND type='V') Drop View MP3Only;");
+            context.Database.ExecuteSqlCommand(@"Create View [dbo].[MP3Only] As Select * From Music Where LP Is Null And CD Is Null And CS Is Null And MP3 Is Not Null;");
+            context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='NotOnCD' AND type='V') Drop View NotOnCD;");
+            context.Database.ExecuteSqlCommand(@"Create View [dbo].[NotOnCD] As Select * From Music Where CD Is Null;");
+        }
+        private static void CreateParsePathFunctions(TCContext context)
+        {
+            Console.WriteLine("\tSeeding Parse Path Functions...");
+            context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='fnGetFileName' And type='FN') Drop Function fnGetFileName");
+            context.Database.ExecuteSqlCommand(@"
+                CREATE FUNCTION fnGetFileName(@fullpath nvarchar(512)) RETURNS nvarchar(512)
+                AS 
+                    BEGIN
+                    IF(CHARINDEX('\', @fullpath) > 0) --<-- Check to make sure that string has a back slash
+            	       SELECT @fullpath = RIGHT(@fullpath, CHARINDEX('\', REVERSE(@fullpath)) -1)
+            	       RETURN @fullpath
+                END");
+            context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='fnGetFileNameBase' And type='FN') Drop Function fnGetFileNameBase");
+            context.Database.ExecuteSqlCommand(@"
+                CREATE FUNCTION dbo.fnGetFileNameBase(@fullpath NVARCHAR(512)) RETURNS NVARCHAR(512)    -- Usage SELECT dbo.fnGetFileNameBase('C:\Test\Mark.txt')
+                AS
+                BEGIN
+                    IF(CHARINDEX('.', @fullpath) > 0) --<-- Check to make sure that string has a dot
+            	       BEGIN
+            		      SELECT @fullpath = dbo.fnGetFileName(@fullpath)
+                		      SELECT @fullpath = LEFT(@fullpath, LEN(@fullpath)-CHARINDEX('.', REVERSE(@fullpath)))
+            	       END
+                    RETURN @fullpath
+                END");
+            context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='fnGetExtension' And type='FN') Drop Function fnGetExtension");
+            context.Database.ExecuteSqlCommand(@"
+                CREATE FUNCTION dbo.fnGetExtension(@fullpath NVARCHAR(512)) RETURNS NVARCHAR(512)    -- Usage SELECT dbo.fnGetExtension('C:\Test\Mark.txt')
+                AS
+                BEGIN
+                    IF(CHARINDEX('.', @fullpath) > 0) --<-- Check to make sure that string has a dot
+            	       BEGIN
+            		      SELECT @fullpath = dbo.fnGetFileName(@fullpath)
+                		      SELECT @fullpath = RIGHT(@fullpath, CHARINDEX('.', REVERSE(@fullpath)) -1)
+            	       END
+                    RETURN @fullpath
+                END");
+            context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='fnGetFolder' And type='FN') Drop Function fnGetFolder");
+            context.Database.ExecuteSqlCommand(@"
+                CREATE FUNCTION fnGetFolder(@fullpath nvarchar(512)) RETURNS nvarchar(512)    -- Usage SELECT dbo.fnGetFolder('C:\Test\Mark.txt')
+                AS
+                BEGIN
+                    IF(CHARINDEX('\', @fullpath) > 0) --<-- Check to make sure that string has a back slash
+            	       SELECT @fullpath = LEFT(@fullpath, LEN(@fullpath)-CHARINDEX('\', REVERSE(@fullpath)))
+            	       RETURN @fullpath
+                END");
+        }
+        private static void CreateTableSpaceUsed(TCContext context)
+        {
+            Console.WriteLine("\tsp_TableSpaceUsed");
+            context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_TableSpaceUsed' And type='P') Drop Procedure sp_TableSpaceUsed");
+            context.Database.ExecuteSqlCommand(@"
+            Create Procedure sp_TableSpaceUsed @Scale varchar(2) = null As 
+            Begin
+                Set NOCOUNT ON
+                If OBJECT_ID('tempdb..#TableList') Is Not Null Drop Table #TableList
+                Create Table #TableList
+            	(ID int IDENTITY,
+            	[Database] sysname,	
+            	[Owner] sysname,
+            	[TableName] sysname,
+            	[Type] varchar(32),
+            	[Remarks] varchar(254))
+                Insert into #TableList exec sp_tables @table_name='%', @table_owner='dbo', @table_type=""'TABLE'""
+                Declare dsTableList Cursor Fast_Forward For Select [TableName] From #TableList
+            
+                If OBJECT_ID('tempdb..#SpacePerTable') Is Not Null Drop Table #SpacePerTable
+                Create Table #SpacePerTable
+            	(ID int IDENTITY,
+            	[TableName] sysname,	
+            	[Rows] sysname,
+            	[Reserved] sysname,
+            	[Data] sysname,
+            	[IndexSize] sysname,
+            	[Unused]sysname)
+                Declare @TableName sysname
+                Open dsTableList
+                Fetch Next From dsTableList Into @TableName
+                While @@FETCH_STATUS=0 Begin
+                    Insert Into #SpacePerTable exec sp_spaceused @TableName
+                    Fetch Next From dsTableList Into @TableName
+                End
+                Close dsTableList
+                Deallocate dsTableList
+            
+                --Select * From #SpacePerTable Order By CONVERT(decimal(15,0), REPLACE([Reserved],' KB','')) Desc
+                If @Scale is null 
+            	    Select [TableName] As [Table], 
+            		CONVERT(decimal(15,0), [Rows]) As [Rows], 
+            		CONVERT(decimal(15,0), REPLACE([Reserved],' KB','')*CONVERT(decimal(15,0),1024.)) As [Reserved Bytes], 
+            		CONVERT(decimal(15,0), REPLACE([Data],' KB','')*CONVERT(decimal(15,0),1024.)) As [Data Bytes], 
+            		CONVERT(decimal(15,0), REPLACE([IndexSize],' KB','')*CONVERT(decimal(15,0),1024.)) As [IndexSize Bytes], 
+            		CONVERT(decimal(15,0), REPLACE([Unused],' KB','')*CONVERT(decimal(15,0),1024.)) As [Unused Bytes]
+            	    From #SpacePerTable
+            	    Order By CONVERT(decimal(15,0), REPLACE([Reserved],' KB','')) Desc
+                Else If @Scale = 'KB' 
+            	    Select [TableName] As [Table], 
+            		CONVERT(decimal(15,0), [Rows]) As [Rows], 
+            		CONVERT(decimal(15,2), REPLACE([Reserved],' KB','')) As [Reserved KB], 
+            		CONVERT(decimal(15,2), REPLACE([Data],' KB','')) As [Data KB], 
+            		CONVERT(decimal(15,2), REPLACE([IndexSize],' KB','')) As [IndexSize KB], 
+            		CONVERT(decimal(15,2), REPLACE([Unused],' KB','')) As [Unused KB]
+            	    From #SpacePerTable
+            	    Order By CONVERT(decimal(15,0), REPLACE([Reserved],' KB','')) Desc
+                Else If @Scale = 'MB' 
+            	    Select [TableName] As [Table], 
+            		CONVERT(decimal(15,0), [Rows]) As [Rows], 
+            		CONVERT(decimal(15,2), REPLACE([Reserved],' KB','')/CONVERT(decimal(15,0),1024.)) As [Reserved MB], 
+            		CONVERT(decimal(15,2), REPLACE([Data],' KB','')/CONVERT(decimal(15,0),1024.)) As [Data MB], 
+            		CONVERT(decimal(15,2), REPLACE([IndexSize],' KB','')/CONVERT(decimal(15,0),1024.)) As [IndexSize MB], 
+            		CONVERT(decimal(15,2), REPLACE([Unused],' KB','')/CONVERT(decimal(15,0),1024.)) As [Unused MB]
+            	    From #SpacePerTable
+            	    Order By CONVERT(decimal(15,0), REPLACE([Reserved],' KB','')) Desc
+                Else If @Scale = 'GB' 
+            	    Select [TableName] As [Table], 
+            		CONVERT(decimal(15,0), [Rows]) As [Rows], 
+            		CONVERT(decimal(15,4), REPLACE([Reserved],' KB','')/CONVERT(decimal(15,0),1048576.)) As [Reserved GB], 
+            		CONVERT(decimal(15,4), REPLACE([Data],' KB','')/CONVERT(decimal(15,0),1048576.)) As [Data GB], 
+            		CONVERT(decimal(15,4), REPLACE([IndexSize],' KB','')/CONVERT(decimal(15,0),1048576.)) As [IndexSize GB], 
+            		CONVERT(decimal(15,4), REPLACE([Unused],' KB','')/CONVERT(decimal(15,0),1048576.)) As [Unused GB]
+            	    From #SpacePerTable
+            	    Order By CONVERT(decimal(15,0), REPLACE([Reserved],' KB','')) Desc
+            
+                RETURN 1
+            End;");
+        }
+        #region Conversion
+        private static void CreatePrepDataMigration(TCContext context)
+        {
+            Console.WriteLine("\tsp_PrepDataMigration");
+            CreateLogError(context);
+            context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_PrepDataMigration' And type='P') Drop Procedure sp_PrepDataMigration");
+            context.Database.ExecuteSqlCommand(@"
+            --sp_PrepDataMigration.sql
+            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   Copyright © 2019 All Rights Reserved.
+            --*********************************************************************************************************************************
+            --
+            --	Modification History:
+            --	Date:       Developer:		Description:
+            --	06/06/19	Ken Clark		Created;
+            --=================================================================================================================================
+            
+            Create Procedure sp_PrepDataMigration As 
+            Begin
+            	Declare @stTime DateTime; Set @stTime=CURRENT_TIMESTAMP;
+            	Declare @Actual int, @Expected int, @Message nvarchar(2000), @Milestone nvarchar(256)='sp_PrepDataMigration';
+            	Begin Transaction;
+            	Begin Try
+            		Print 'PrepDataMigration...';
+
+                    Print '   Locations (catch-up)';
+	                Insert Into [dbo].[Locations] (Name,Description,PhysicalLocation,OName)
+	                Select Distinct 
+		                Case 
+			                When CHARINDEX('[',[tcLocations].[Location],1)>0 Then RTRIM(SUBSTRING([tcLocations].[Location],1,CHARINDEX('[',[tcLocations].[Location],1)-1))
+			                When CHARINDEX('(',[tcLocations].[Location],1)>0 Then RTRIM(SUBSTRING([tcLocations].[Location],1,CHARINDEX('(',[tcLocations].[Location],1)-1))
+			                Else [tcLocations].[Location]
+		                End As Name,
+		                Case 
+			                When CHARINDEX('(',[tcLocations].[Location],1)>0 Then RTRIM(SUBSTRING([tcLocations].[Location],CHARINDEX('(',[tcLocations].[Location],1)+1,CHARINDEX(')',[tcLocations].[Location],1)-CHARINDEX('(',[tcLocations].[Location],1)-1))
+			                Else ''
+		                End As Description,
+		                Case 
+			                When CHARINDEX('[',[tcLocations].[Location],1)>0 Then RTRIM(SUBSTRING([tcLocations].[Location],CHARINDEX('[',[tcLocations].[Location],1)+1,CHARINDEX(']',[tcLocations].[Location],1)-CHARINDEX('[',[tcLocations].[Location],1)-1))
+			                Else ''
+		                End As PhysicalLocation,
+		                [tcLocations].[Location]
+	                From [GGGSCP1].[TreasureChest].[dbo].[Locations] [tcLocations]
+		                Left Outer Join [dbo].[Locations] [Locations] On [Locations].[OName]=[tcLocations].[Location]
+	                Where [Locations].[OName] Is Null
+	                Order By 1;
+            	End Try
+                Begin Catch
+		            Rollback Transaction;
+		            exec sp_LogError @Milestone;
+		            Throw;
+                End Catch;
+		        Insert Into LOG(MileStone,StartTime,FinishTime,Message) Values (@Milestone,@stTime,CURRENT_TIMESTAMP,'Elapsed: '+Convert(nvarchar(24),CURRENT_TIMESTAMP-@stTime,114));
+		        Commit Transaction;
+            End;");
+            context.Database.ExecuteSqlCommand(@"Grant Execute on [dbo].[sp_PrepDataMigration] to [Public];");
+        }
+        private static void CreateMigrateAircraftDesignations(TCContext context)
+        {
+            Console.WriteLine("\tsp_MigrateAircraftDesignations");
+            context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateAircraftDesignations' And type='P') Drop Procedure sp_MigrateAircraftDesignations;");
+            context.Database.ExecuteSqlCommand(@"
+            --sp_MigrateAircraftDesignations.sql
+            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   Copyright © 2019 All Rights Reserved.
+            --*********************************************************************************************************************************
+            --
+            --	Modification History:
+            --	Date:       Developer:		Description:
+            --	02/01/19	Ken Clark		Created;
+            --=================================================================================================================================
+            
+            Create Procedure sp_MigrateAircraftDesignations As 
+            Begin
+            	Declare @stTime DateTime; Set @stTime=CURRENT_TIMESTAMP;
+            	Declare @Actual int, @Expected int, @Message nvarchar(2000), @Milestone nvarchar(256)='sp_MigrateAircraftDesignations';
+            	Begin Transaction;
+            	Begin Try
+            		Print 'AircraftDesignations...';
+            		Delete From [dbo].[AircraftDesignations];
+            		INSERT INTO [dbo].[AircraftDesignations] ([OID],
+            			[Designation],[Manufacturer],[Name],[Nicknames],[Notes],[Number],[ServiceDate],[Type],[Version],[DateCreated],[DateModified])
+            		SELECT [ID],
+            			[Designation],[Manufacturer],[Name],[Nicknames],[Notes],[Number],[Service Date],[Type],[Version],[DateCreated],[DateModified]
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Aircraft Designations] ORDER By [ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Aircraft Designations];
+            		Select @Actual=Count(*) From [dbo].[AircraftDesignations];
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            
+            		Print '   History';
+            		Delete From [dbo].[History] Where [TableName]='AircraftDesignations';
+            		INSERT INTO [dbo].[History] ([OID],
+            			[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
+            		SELECT [History].[ID],
+            			[History].[Column],[History].[DateChanged],getdate(),getdate(),[History].[OriginalValue],[AircraftDesignations].[ID],'AircraftDesignations',[History].[Value],[History].[Who]
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+            			INNER JOIN [dbo].[AircraftDesignations] [AircraftDesignations] On [History].[TableName]='Aircraft Designations' And [AircraftDesignations].[OID]=[History].[RecordID]
+            		WHERE [History].[TableName]='Aircraft Designations' 
+            		ORDER BY [History].[ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[History] Where [TableName]='Aircraft Designations';
+            		Select @Actual=Count(*) From [dbo].[History] Where [TableName]='AircraftDesignations';
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            
+            		Print '   Images';
+            		Delete From [dbo].[Images] Where [TableName]='AircraftDesignations';
+            		INSERT INTO [dbo].[Images] ([OID],
+            			[AlphaSort],[Caption],[Category],[DateCreated],[DateModified],[FileName],[Height],[Image],[Name],[Notes],
+            			[RecordID],[TableName],[Thumbnail],[URL],[Width])
+            		SELECT Null,Upper('Aircraft Designations: '+[Aircraft Designations].[Name]),Null,'AircraftDesignations',getdate(),getdate(),Null,Null,[Image],[Aircraft Designations].[Name],Null,
+            			[AircraftDesignations].[ID],'AircraftDesignations',0,Null,Null
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Aircraft Designations] [Aircraft Designations]
+            			INNER JOIN [dbo].[AircraftDesignations] [AircraftDesignations] On [Aircraft Designations].[ID]=[AircraftDesignations].[OID]
+            		WHERE [Aircraft Designations].[Image] is not Null
+            		ORDER BY [Aircraft Designations].[ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Aircraft Designations] Where [Image] is not Null;
+            		Select @Actual=Count(*) From [dbo].[Images] Where [TableName]='AircraftDesignations';
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            	End Try
+                Begin Catch
+		            Rollback Transaction;
+		            exec sp_LogError @Milestone;
+		            Throw;
+                End Catch;
+		        Insert Into LOG(MileStone,StartTime,FinishTime,Message) Values (@Milestone,@stTime,CURRENT_TIMESTAMP,'Elapsed: '+Convert(nvarchar(24),CURRENT_TIMESTAMP-@stTime,114));
+		        Commit Transaction;
+            End;");
+            context.Database.ExecuteSqlCommand(@"Grant Execute on [dbo].[sp_MigrateAircraftDesignations] to [Public];");
+        }
+        private static void CreateMigrateBlueAngelsHistory(TCContext context)
+        {
+            Console.WriteLine("\tsp_MigrateBlueAngelsHistory");
+            context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateBlueAngelsHistory' And type='P') Drop Procedure sp_MigrateBlueAngelsHistory");
+            context.Database.ExecuteSqlCommand(@"
+            --sp_MigrateBlueAngelsHistory.sql
+            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   Copyright © 2019 All Rights Reserved.
+            --*********************************************************************************************************************************
+            --
+            --	Modification History:
+            --	Date:       Developer:		Description:
+            --	02/01/19	Ken Clark		Created;
+            --=================================================================================================================================
+            
+            Create Procedure sp_MigrateBlueAngelsHistory As 
+            Begin
+            	Declare @stTime DateTime; Set @stTime=CURRENT_TIMESTAMP;
+            	Declare @Actual int, @Expected int, @Message nvarchar(2000), @Milestone nvarchar(256)='sp_MigrateBlueAngelsHistory';
+            	Begin Transaction;
+            	Begin Try
+            		Print 'BlueAngelsHistory...';
+            		Delete From [dbo].[BlueAngelsHistory];
+            		INSERT INTO [dbo].[BlueAngelsHistory] ([OID],
+            			[ServiceDates],[AircraftType],[Decals],[DecalSets],[Kits],[Notes],[DateCreated],[DateModified])
+            		SELECT 	[ID],
+            			[Dates],[Aircraft Type],[Decal Sets],Null,[Kits],[Notes],[DateCreated],[DateModified]
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Blue Angels History] ORDER By [ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Blue Angels History];
+            		Select @Actual=Count(*) From [dbo].[BlueAngelsHistory];
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            
+            		Print '   Images';
+            		Delete From [dbo].[Images] Where [TableName]='BlueAngelsHistory';
+            		INSERT INTO [dbo].[Images] ([OID],
+            			[AlphaSort],[Caption],[Category],[DateCreated],[DateModified],[FileName],[Height],[Image],[Name],[Notes],
+            			[RecordID],[TableName],[Thumbnail],[URL],[Width])
+            		SELECT Null,Upper('Blue Angels History: '+[Blue Angels History].[Aircraft Type]),Null,'BlueAngelsHistory',getdate(),getdate(),Null,Null,[Image],[Blue Angels History].[Aircraft Type],Null,
+            			[BlueAngelsHistory].[ID],'BlueAngelsHistory',0,Null,Null
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Blue Angels History] [Blue Angels History]
+            			INNER JOIN [dbo].[BlueAngelsHistory] [BlueAngelsHistory] On [Blue Angels History].[ID]=[BlueAngelsHistory].[OID]
+            		WHERE [Blue Angels History].[Image] is not Null
+            		ORDER BY [Blue Angels History].[ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Blue Angels History] Where [Image] is not Null;
+            		Select @Actual=Count(*) From [dbo].[Images] Where [TableName]='BlueAngelsHistory';
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            	End Try
+                Begin Catch
+		            Rollback Transaction;
+		            exec sp_LogError @Milestone;
+		            Throw;
+                End Catch;
+		        Insert Into LOG(MileStone,StartTime,FinishTime,Message) Values (@Milestone,@stTime,CURRENT_TIMESTAMP,'Elapsed: '+Convert(nvarchar(24),CURRENT_TIMESTAMP-@stTime,114));
+		        Commit Transaction;
+            End;");
+            context.Database.ExecuteSqlCommand(@"Grant Execute on [dbo].[sp_MigrateBlueAngelsHistory] to [Public];");
+        }
+        private static void CreateMigrateBooks(TCContext context)
+        {
+            Console.WriteLine("\tsp_MigrateBooks");
+            context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateBooks' And type='P') Drop Procedure sp_MigrateBooks");
+            context.Database.ExecuteSqlCommand(@"
+            --sp_MigrateBooks.sql
+            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   Copyright © 2019 All Rights Reserved.
+            --*********************************************************************************************************************************
+            --
+            --	Modification History:
+            --	Date:       Developer:		Description:
+            --	02/01/19	Ken Clark		Created;
+            --=================================================================================================================================
+            
+            Create Procedure sp_MigrateBooks As 
+            Begin
+            	Declare @stTime DateTime; Set @stTime=CURRENT_TIMESTAMP;
+            	Declare @Actual int, @Expected int, @Message nvarchar(2000), @Milestone nvarchar(256)='sp_MigrateBooks';
+            	Begin Transaction;
+            	Begin Try
+            		Print 'Books...';
+            		Delete From [dbo].[Books];
+            		INSERT INTO [dbo].[Books] ([OID],
+            			[AlphaSort],[Author],[MediaFormat],[ISBN],[Misc],[Subject],[Title],[Cataloged],[DateInventoried],
+            			[DatePurchased],[DateVerified],[Notes],[Price],[Value],[WishList],[DateCreated],[DateModified],[LocationID])
+            		SELECT [Books].[ID],
+            			[Alphasort],[Author],[Format],[ISBN],[Misc],[Subject],[Title],[Cataloged],[DateInventoried],
+            			[DatePurchased],[DateVerified],[Notes],[Price],[Value],[WishList],[Books].[DateCreated],[Books].[DateModified],
+						Case 
+							When [Locations].[ID] Is Null Then
+								Case 
+									When [WishList]=1 Then [WishListLocation].[ID]
+									Else [UnknownLocation].[ID]
+								End
+							Else [UnknownLocation].[ID]
+						End As [LocationID]
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Books] [Books]
+            			LEFT OUTER JOIN [dbo].[Locations] [Locations] On [Books].[Location]=[Locations].[OName]
+						INNER JOIN [dbo].[Locations] [WishListLocation] On [WishListLocation].[Name]='WishList'
+						INNER JOIN [dbo].[Locations] [UnknownLocation] On [UnknownLocation].[Name]='Unknown'
+            		ORDER BY [Books].[ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Books];
+            		Select @Actual=Count(*) From [dbo].[Books];
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            
+            		Print '   History';
+            		Delete From [dbo].[History] Where [TableName]='Books';
+            		INSERT INTO [dbo].[History] ([OID],
+            			[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
+            		SELECT [History].[ID],
+            			[History].[Column],[History].[DateChanged],getdate(),getdate(),[History].[OriginalValue],[Books].[ID],[History].[TableName],[History].[Value],[History].[Who]
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+            			INNER JOIN [dbo].[Books] [Books] On [History].[TableName]='Books' And [Books].[OID]=[History].[RecordID]
+            		WHERE [History].[TableName]='Books' 
+            		ORDER BY [History].[ID];
+            		--Now grab any history for deleted records...
+            		Declare @OID int, @RecordID uniqueidentifier;
+            		If OBJECT_ID('tempdb..#DeletedHistory') Is Not Null Drop Table #DeletedHistory
+            		Select [History].[ID],[History].[Column],[History].[DateChanged],getdate() As [DateCreated],getdate() As [DateModified],[History].[OriginalValue],
+            			[History].[RecordID] As [OID],[History].[TableName],[History].[Value],[History].[Who],NEWID() As [RecordID]
+            		Into #DeletedHistory 
+            		From [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+            		Where [History].[TableName]='Books' And Not Exists(Select * From [GGGSCP1].[TreasureChest].[dbo].[Books] Where [ID]=[History].[RecordID])
+            		Order By [History].[RecordID];	--618
+            		Declare h cursor for Select Distinct [OID] From [#DeletedHistory] Order By [OID];
+            		Open h;
+            		Fetch Next From h Into @OID;
+            		While @@FETCH_STATUS = 0
+            		Begin
+            			Set @RecordID=NEWID();
+            			Update [#DeletedHistory] Set [RecordID]=@RecordID Where [OID]=@OID;
+            			Fetch Next From h Into @OID;
+            		End;
+            		Close h;
+            		Deallocate h;
+            		INSERT INTO [dbo].[History] ([OID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
+            		SELECT [ID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who] FROM [#DeletedHistory] ORDER BY [ID];
+            		Drop Table #DeletedHistory;
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[History] Where [TableName]='Books';
+            		Select @Actual=Count(*) From [dbo].[History] Where [TableName]='Books';
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            
+            		Print '   Images';
+            		Delete From [dbo].[Images] Where [TableName]='Books';
+            		INSERT INTO [dbo].[Images] ([OID],
+            			[AlphaSort],[Caption],[Category],[DateCreated],[DateModified],[FileName],[Height],[Image],[Name],[Notes],
+            			[RecordID],[TableName],[Thumbnail],[URL],[Width])
+            		SELECT Null,Upper('BOOKS: '+[Books].[Title]),[Books].[Title]+' (Front Cover)','Books',getdate(),getdate(),Null,Null,[Image],[Books].[Title],Null,
+            			[newBooks].[ID],'Books',0,Null,Null
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Books] [Books]
+            			INNER JOIN [dbo].[Books] [newBooks] On [Books].[ID]=[newBooks].[OID]
+            		WHERE [Books].[Image] is not Null
+            		ORDER BY [Books].[ID];
+            		INSERT INTO [dbo].[Images] ([OID],
+            			[AlphaSort],[Caption],[Category],[DateCreated],[DateModified],[FileName],[Height],[Image],[Name],[Notes],
+            			[RecordID],[TableName],[Thumbnail],[URL],[Width])
+            		SELECT Null,Upper('BOOKS: '+[Books].[Title]),[Books].[Title]+' (Back Cover)','Books',getdate(),getdate(),Null,Null,[OtherImage],[Books].[Title],Null,
+            			[newBooks].[ID],'Books',0,Null,Null
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Books] [Books]
+            			INNER JOIN [dbo].[Books] [newBooks] On [Books].[ID]=[newBooks].[OID]
+            		WHERE [Books].[OtherImage] is not Null
+            		ORDER BY [Books].[ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Books] Where [Image] is not Null;
+            		Select @Expected=@Expected+Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Books] Where [OtherImage] is not Null;
+            		Select @Actual=Count(*) From [dbo].[Images] Where [TableName]='Books';
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            	End Try
+                Begin Catch
+		            Rollback Transaction;
+		            exec sp_LogError @Milestone;
+		            Throw;
+                End Catch;
+		        Insert Into LOG(MileStone,StartTime,FinishTime,Message) Values (@Milestone,@stTime,CURRENT_TIMESTAMP,'Elapsed: '+Convert(nvarchar(24),CURRENT_TIMESTAMP-@stTime,114));
+		        Commit Transaction;
+            End;");
+            context.Database.ExecuteSqlCommand(@"Grant Execute on [dbo].[sp_MigrateBooks] to [Public];");
+        }
+        private static void CreateMigrateCollectables(TCContext context)
+        {
+            Console.WriteLine("\tsp_MigrateCollectables");
+            context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateCollectables' And type='P') Drop Procedure sp_MigrateCollectables");
+            context.Database.ExecuteSqlCommand(@"
+            --sp_MigrateCollectables.sql
+            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   Copyright © 2019 All Rights Reserved.
+            --*********************************************************************************************************************************
+            --
+            --	Modification History:
+            --	Date:       Developer:		Description:
+            --	02/01/19	Ken Clark		Created;
+            --=================================================================================================================================
+            
+            Create Procedure sp_MigrateCollectables As 
+            Begin
+            	Declare @stTime DateTime; Set @stTime=CURRENT_TIMESTAMP;
+            	Declare @Actual int, @Expected int, @Message nvarchar(2000), @Milestone nvarchar(256)='sp_MigrateCollectables';
+            	Begin Transaction;
+            	Begin Try
+            		Print 'Collectables...';
+            		Delete From [dbo].[Collectables];
+            		INSERT INTO [dbo].[Collectables] ([OID],
+            			[Cataloged],[Condition],[DateCreated],[DateInventoried],[DateModified],[DatePurchased],[DateVerified],
+            			[Manufacturer],[Name],[Notes],[OutOfProduction],[Price],[Reference],[Series],[Type],[Value],[WishList],[LocationID])
+            		SELECT [Collectables].[ID],
+            			1,[Condition],[Collectables].[DateCreated],[DateInventoried],[Collectables].[DateModified],[DatePurchased],[DateVerified],
+            			[Manufacturer],[Collectables].[Name],[Notes],[OutOfProduction],[Price],[Reference],[Series],[Type],[Value],[WishList],
+						Case 
+							When [Locations].[ID] Is Null Then
+								Case 
+									When [WishList]=1 Then [WishListLocation].[ID]
+									Else [UnknownLocation].[ID]
+								End
+							Else [UnknownLocation].[ID]
+						End As [LocationID]
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Collectables] [Collectables]
+            			LEFT OUTER JOIN [dbo].[Locations] [Locations] On [Collectables].[Location]=[Locations].[OName]
+						INNER JOIN [dbo].[Locations] [WishListLocation] On [WishListLocation].[Name]='WishList'
+						INNER JOIN [dbo].[Locations] [UnknownLocation] On [UnknownLocation].[Name]='Unknown'
+            		ORDER BY [Collectables].[ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Collectables];
+            		Select @Actual=Count(*) From [dbo].[Collectables];
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            
+            		Print '   History';
+            		Delete From [dbo].[History] Where [TableName]='Collectables';
+            		INSERT INTO [dbo].[History] ([OID],
+            			[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
+            		SELECT [History].[ID],
+            			[History].[Column],[History].[DateChanged],getdate(),getdate(),[History].[OriginalValue],[Collectables].[ID],[History].[TableName],[History].[Value],[History].[Who]
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+            			INNER JOIN [dbo].[Collectables] [Collectables] On [History].[TableName]='Collectables' And [Collectables].[OID]=[History].[RecordID]
+            		WHERE [History].[TableName]='Collectables' 
+            		ORDER BY [History].[ID];
+            		--Now grab any history for deleted records...
+            		Declare @OID int, @RecordID uniqueidentifier;
+            		If OBJECT_ID('tempdb..#DeletedHistory') Is Not Null Drop Table #DeletedHistory
+            		Select [History].[ID],[History].[Column],[History].[DateChanged],getdate() As [DateCreated],getdate() As [DateModified],[History].[OriginalValue],
+            			[History].[RecordID] As [OID],[History].[TableName],[History].[Value],[History].[Who],NEWID() As [RecordID]
+            		Into #DeletedHistory 
+            		From [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+            		Where [History].[TableName]='Collectables' And Not Exists(Select * From [GGGSCP1].[TreasureChest].[dbo].[Collectables] Where [ID]=[History].[RecordID])
+            		Order By [History].[RecordID];
+            		Declare h cursor for Select Distinct [OID] From [#DeletedHistory] Order By [OID];
+            		Open h;
+            		Fetch Next From h Into @OID;
+            		While @@FETCH_STATUS = 0
+            		Begin
+            			Set @RecordID=NEWID();
+            			Update [#DeletedHistory] Set [RecordID]=@RecordID Where [OID]=@OID;
+            			Fetch Next From h Into @OID;
+            		End
+            		Close h;
+            		Deallocate h;
+            		INSERT INTO [dbo].[History] ([OID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
+            		SELECT [ID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who] FROM [#DeletedHistory] ORDER BY [ID];
+            		Drop Table #DeletedHistory;
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[History] Where [TableName]='Collectables';
+            		Select @Actual=Count(*) From [dbo].[History] Where [TableName]='Collectables';
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            
+            		Print '   Images';
+            		Delete From [dbo].[Images] Where [TableName]='Collectables';
+            		INSERT INTO [dbo].[Images] ([OID],
+            			[AlphaSort],[Caption],[Category],[DateCreated],[DateModified],[FileName],[Height],[Image],[Name],[Notes],
+            			[RecordID],[TableName],[Thumbnail],[URL],[Width])
+            		SELECT Null,Upper('Collectables: '+[Collectables].[Name]),[Collectables].[Name],'Collectables',getdate(),getdate(),Null,Null,[Image],[Collectables].[Name],Null,
+            			[newCollectables].[ID],'Collectables',0,Null,Null
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Collectables] [Collectables]
+            			INNER JOIN [dbo].[Collectables] [newCollectables] On [Collectables].[ID]=[newCollectables].[OID]
+            		WHERE [Collectables].[Image] is not Null
+            		ORDER BY [Collectables].[ID];
+            		INSERT INTO [dbo].[Images] ([OID],
+            			[AlphaSort],[Caption],[Category],[DateCreated],[DateModified],[FileName],[Height],[Image],[Name],[Notes],
+            			[RecordID],[TableName],[Thumbnail],[URL],[Width])
+            		SELECT Null,Upper('Collectables: '+[Collectables].[Name]),[Collectables].[Name],'Collectables',getdate(),getdate(),Null,Null,[OtherImage],[Collectables].[Name],Null,
+            			[newCollectables].[ID],'Collectables',0,Null,Null
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Collectables] [Collectables]
+            			INNER JOIN [dbo].[Collectables] [newCollectables] On [Collectables].[ID]=[newCollectables].[OID]
+            		WHERE [Collectables].[OtherImage] is not Null
+            		ORDER BY [Collectables].[ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Collectables] Where [Image] is not Null;
+            		Select @Expected=@Expected+Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Collectables] Where [OtherImage] is not Null;
+            		Select @Actual=Count(*) From [dbo].[Images] Where [TableName]='Collectables';
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            	End Try
+                Begin Catch
+		            Rollback Transaction;
+		            exec sp_LogError @Milestone;
+		            Throw;
+                End Catch;
+		        Insert Into LOG(MileStone,StartTime,FinishTime,Message) Values (@Milestone,@stTime,CURRENT_TIMESTAMP,'Elapsed: '+Convert(nvarchar(24),CURRENT_TIMESTAMP-@stTime,114));
+		        Commit Transaction;
+            End;");
+            context.Database.ExecuteSqlCommand(@"Grant Execute on [dbo].[sp_MigrateCollectables] to [Public];");
+        }
+        private static void CreateMigrateCompanies(TCContext context)
+        {
+            Console.WriteLine("\tsp_MigrateCompanies");
+            context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateCompanies' And type='P') Drop Procedure sp_MigrateCompanies");
+            context.Database.ExecuteSqlCommand(@"
+            --sp_MigrateCompanies.sql
+            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   Copyright © 2019 All Rights Reserved.
+            --*********************************************************************************************************************************
+            --
+            --	Modification History:
+            --	Date:       Developer:		Description:
+            --	02/01/19	Ken Clark		Created;
+            --=================================================================================================================================
+            
+            Create Procedure sp_MigrateCompanies As 
+            Begin
+            	Declare @stTime DateTime; Set @stTime=CURRENT_TIMESTAMP;
+            	Declare @Actual int, @Expected int, @Message nvarchar(2000), @Milestone nvarchar(256)='sp_MigrateCompanies';
+            	Begin Transaction;
+            	Begin Try
+            		Print 'Companies...';
+            		Delete From [dbo].[Companies];
+            		INSERT INTO [dbo].[Companies] ([OID],
+            			[Account],[Address],[Code],[DateCreated],[DateModified],[Name],[Phone],[ProductType],[ShortName],[WebSite])
+            		SELECT [ID],
+            			[Account],[Address],[Code],[DateCreated],[DateModified],[Name],[Phone],[ProductType],[ShortName],[WebSite]
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Companies] ORDER BY [ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Companies];
+            		Select @Actual=Count(*) From [dbo].[Companies];
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            
+            		Print '   History';
+            		Delete From [dbo].[History] Where [TableName]='Companies';
+            		INSERT INTO [dbo].[History] ([OID],
+            			[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
+            		SELECT [History].[ID],
+            			[History].[Column],[History].[DateChanged],getdate(),getdate(),[History].[OriginalValue],[Companies].[ID],'Companies',[History].[Value],[History].[Who]
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+            			INNER JOIN [dbo].[Companies] [Companies] On [History].[TableName]='Companies' And [Companies].[OID]=[History].[RecordID]
+            		WHERE [History].[TableName]='Companies' 
+            		ORDER BY [History].[ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[History] Where [TableName]='Companies';
+            		Select @Actual=Count(*) From [dbo].[History] Where [TableName]='Companies';
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            	End Try
+                Begin Catch
+		            Rollback Transaction;
+		            exec sp_LogError @Milestone;
+		            Throw;
+                End Catch;
+		        Insert Into LOG(MileStone,StartTime,FinishTime,Message) Values (@Milestone,@stTime,CURRENT_TIMESTAMP,'Elapsed: '+Convert(nvarchar(24),CURRENT_TIMESTAMP-@stTime,114));
+		        Commit Transaction;
+            End;");
+            context.Database.ExecuteSqlCommand(@"Grant Execute on [dbo].[sp_MigrateCompanies] to [Public];");
+        }
+        private static void CreateMigrateDecals(TCContext context)
+        {
+            Console.WriteLine("\tsp_MigrateDecals");
+            context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateDecals' And type='P') Drop Procedure sp_MigrateDecals");
+            context.Database.ExecuteSqlCommand(@"
+            --sp_MigrateDecals.sql
+            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   Copyright © 2019 All Rights Reserved.
+            --*********************************************************************************************************************************
+            --
+            --	Modification History:
+            --	Date:       Developer:		Description:
+            --	02/01/19	Ken Clark		Created;
+            --=================================================================================================================================
+            
+            Create Procedure sp_MigrateDecals As 
+            Begin
+            	Declare @stTime DateTime; Set @stTime=CURRENT_TIMESTAMP;
+            	Declare @Actual int, @Expected int, @Message nvarchar(2000), @Milestone nvarchar(256)='sp_MigrateDecals';
+            	Begin Transaction;
+            	Begin Try
+            		Print 'Decals';
+            		Delete From [dbo].[Decals];
+            		INSERT INTO [dbo].[Decals] ([OID],
+            			[Cataloged],[DateCreated],[DateInventoried],[DateModified],[DatePurchased],[DateVerified],[Designation],
+            			[Manufacturer],[Name],[Nation],[Notes],[Price],[ProductCatalog],[Reference],[Scale],[Type],[Value],[WishList],[LocationID])
+            		SELECT [Decals].[ID],
+            			1,[Decals].[DateCreated],[DateInventoried],[Decals].[DateModified],[DatePurchased],[DateVerified],[Designation],
+            			[Manufacturer],[Decals].[Name],[Nation],[Notes],[Price],[ProductCatalog],[Reference],[Scale],[Type],[Value],[WishList],
+						Case 
+							When [Locations].[ID] Is Null Then
+								Case 
+									When [WishList]=1 Then [WishListLocation].[ID]
+									Else [UnknownLocation].[ID]
+								End
+							Else [UnknownLocation].[ID]
+						End As [LocationID]
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Decals] [Decals]
+            			LEFT OUTER JOIN [dbo].[Locations] [Locations] On [Decals].[Location]=[Locations].[OName]
+						INNER JOIN [dbo].[Locations] [WishListLocation] On [WishListLocation].[Name]='WishList'
+						INNER JOIN [dbo].[Locations] [UnknownLocation] On [UnknownLocation].[Name]='Unknown'
+            		ORDER BY [Decals].[ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Decals];
+            		Select @Actual=Count(*) From [dbo].[Decals];
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            
+            		Print '   History';
+            		Delete From [dbo].[History] Where [TableName]='Decals';
+            		INSERT INTO [dbo].[History] ([OID],
+            			[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
+            		SELECT [History].[ID],
+            			[History].[Column],[History].[DateChanged],getdate(),getdate(),[History].[OriginalValue],[Decals].[ID],[History].[TableName],[History].[Value],[History].[Who]
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+            			INNER JOIN [dbo].[Decals] [Decals] On [History].[TableName]='Decals' And [Decals].[OID]=[History].[RecordID]
+            		WHERE [History].[TableName]='Decals' 
+            		ORDER BY [History].[ID];
+            		--Now grab any history for deleted records...
+            		Declare @OrphanedHistoryCount int, @OID int, @RecordID uniqueidentifier;
+            		If OBJECT_ID('tempdb..#DeletedHistory') Is Not Null Drop Table #DeletedHistory
+            		Select [History].[ID],[History].[Column],[History].[DateChanged],getdate() As [DateCreated],getdate() As [DateModified],[History].[OriginalValue],
+            			[History].[RecordID] As [OID],[History].[TableName],[History].[Value],[History].[Who],NEWID() As [RecordID]
+            		Into #DeletedHistory 
+            		From [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+            		Where [History].[TableName]='Decals' And Not Exists(Select * From [GGGSCP1].[TreasureChest].[dbo].[Decals] Where [ID]=[History].[RecordID])
+            		Order By [History].[RecordID];
+            		Select @OrphanedHistoryCount=Count(*) From [#DeletedHistory];
+            		Declare h cursor for Select Distinct [OID] From [#DeletedHistory] Order By [OID];
+            		Open h;
+            		Fetch Next From h Into @OID;
+            		While @@FETCH_STATUS = 0
+            		Begin
+            			Set @RecordID=NEWID();
+            			Update [#DeletedHistory] Set [RecordID]=@RecordID Where [OID]=@OID;
+            			Fetch Next From h Into @OID;
+            		End;
+            		Close h;
+            		Deallocate h;
+            		INSERT INTO [dbo].[History] ([OID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
+            		SELECT [ID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who] FROM [#DeletedHistory] ORDER BY [ID];
+            		Drop Table #DeletedHistory;
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[History] Where [TableName]='Decals';
+            		Select @Actual=Count(*) From [dbo].[History] Where [TableName]='Decals';
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            
+            		Print '   Images';
+            		Delete From [dbo].[Images] Where [TableName]='Decals';
+            		INSERT INTO [dbo].[Images] ([OID],
+            			[AlphaSort],[Caption],[Category],[DateCreated],[DateModified],[FileName],[Height],[Image],[Name],[Notes],
+            			[RecordID],[TableName],[Thumbnail],[URL],[Width])
+            		SELECT Null,Upper('Decals: '+[Decals].[Name]),
+            			[Decals].[Scale]+' '+[Decals].[Designation]+' '+[Decals].[Name]+' ('+[Decals].[Reference]+')',
+            			'Decals',getdate(),getdate(),Null,Null,[Image],[Decals].[Name],Null,
+            			[newDecals].[ID],'Decals',0,Null,Null
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Decals] [Decals]
+            			INNER JOIN [dbo].[Decals] [newDecals] On [Decals].[ID]=[newDecals].[OID]
+            		WHERE [Decals].[Image] is not Null
+            		ORDER BY [Decals].[ID];
+            		INSERT INTO [dbo].[Images] ([OID],
+            			[AlphaSort],[Caption],[Category],[DateCreated],[DateModified],[FileName],[Height],[Image],[Name],[Notes],
+            			[RecordID],[TableName],[Thumbnail],[URL],[Width])
+            		SELECT Null,Upper('Decals: '+[Decals].[Name]),
+            			[Decals].[Scale]+' '+[Decals].[Designation]+' '+[Decals].[Name]+' ('+[Decals].[Reference]+')',
+            			'Decals',getdate(),getdate(),Null,Null,[OtherImage],[Decals].[Name],Null,
+            			[newDecals].[ID],'Decals',0,Null,Null
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Decals] [Decals]
+            			INNER JOIN [dbo].[Decals] [newDecals] On [Decals].[ID]=[newDecals].[OID]
+            		WHERE [Decals].[OtherImage] is not Null
+            		ORDER BY [Decals].[ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Decals] Where [Image] is not Null;
+            		Select @Expected=@Expected+Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Decals] Where [OtherImage] is not Null;
+            		Select @Actual=Count(*) From [dbo].[Images] Where [TableName]='Decals';
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            
+            		Print '   Kits';
+            		Declare @KitID uniqueidentifier, @DecalOID int, @DecalID uniqueidentifier;
+            		Declare kitCursor Cursor For
+            			Select [Kits].[ID] As [Kits.ID],[OKits].[DecalID] As [Decal.OID],[Decals].[ID] As [Decal.ID]
+            			From [dbo].[Kits] 
+            				Inner Join [GGGSCP1].[TreasureChest].[dbo].[Kits] [OKits] On [OKits].ID=[Kits].[OID]
+            				Inner Join [dbo].[Decals] On [Decals].[OID]=[OKits].[DecalID];
+            		Open kitCursor;
+            		Fetch Next From kitCursor Into @KitID, @DecalOID, @DecalID;
+            		While @@FETCH_STATUS = 0
+            		Begin
+            			Update [dbo].[Kits] Set [Decal_ID]=@DecalID Where [Kits].[ID]=@KitID;
+            			Fetch Next From kitCursor Into @KitID, @DecalOID, @DecalID;
+            		End;
+            		Close kitCursor;
+            		Deallocate kitCursor;
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Kits] Where [DecalID] is not Null;
+            		Select @Actual=Count(*) From [dbo].[Kits] Where [Decal_ID] is not Null;
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            	End Try
+                Begin Catch
+		            Rollback Transaction;
+		            exec sp_LogError @Milestone;
+		            Throw;
+                End Catch;
+		        Insert Into LOG(MileStone,StartTime,FinishTime,Message) Values (@Milestone,@stTime,CURRENT_TIMESTAMP,'Elapsed: '+Convert(nvarchar(24),CURRENT_TIMESTAMP-@stTime,114));
+		        Commit Transaction;
+            End;");
+            context.Database.ExecuteSqlCommand(@"Grant Execute on [dbo].[sp_MigrateDecals] to [Public];");
+        }
+        private static void CreateMigrateDetailSets(TCContext context)
+        {
+            Console.WriteLine("\tsp_MigrateDetailSets");
+            context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateDetailSets' And type='P') Drop Procedure sp_MigrateDetailSets");
+            context.Database.ExecuteSqlCommand(@"
+            --sp_MigrateDetailSets.sql
+            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   Copyright © 2019 All Rights Reserved.
+            --*********************************************************************************************************************************
+            --
+            --	Modification History:
+            --	Date:       Developer:		Description:
+            --	02/01/19	Ken Clark		Created;
+            --=================================================================================================================================
+            
+            Create Procedure sp_MigrateDetailSets As 
+            Begin
+            	Declare @stTime DateTime; Set @stTime=CURRENT_TIMESTAMP;
+            	Declare @Actual int, @Expected int, @Message nvarchar(2000), @Milestone nvarchar(256)='sp_MigrateDetailSets';
+            	Begin Transaction;
+            	Begin Try
+            		Print 'DetailSets';
+            		Delete From [dbo].[DetailSets];
+            		INSERT INTO [dbo].[DetailSets] ([OID],
+            			[Cataloged],[DateCreated],[DateInventoried],[DateModified],[DatePurchased],[DateVerified],[Designation],
+            			[Manufacturer],[Name],[Nation],[Notes],[Price],[ProductCatalog],[Reference],[Scale],[Type],[Value],[WishList],[LocationID])
+            		SELECT [Detail Sets].[ID],
+            			1,[Detail Sets].[DateCreated],[DateInventoried],[Detail Sets].[DateModified],[DatePurchased],[DateVerified],[Designation],
+            			[Manufacturer],[Detail Sets].[Name],[Nation],[Notes],[Price],[ProductCatalog],[Reference],[Scale],[Type],[Value],[WishList],
+						Case 
+							When [Locations].[ID] Is Null Then
+								Case 
+									When [WishList]=1 Then [WishListLocation].[ID]
+									Else [UnknownLocation].[ID]
+								End
+							Else [UnknownLocation].[ID]
+						End As [LocationID]
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Detail Sets] [Detail Sets]
+            			LEFT OUTER JOIN [dbo].[Locations] [Locations] On [Detail Sets].[Location]=[Locations].[OName]
+						INNER JOIN [dbo].[Locations] [WishListLocation] On [WishListLocation].[Name]='WishList'
+						INNER JOIN [dbo].[Locations] [UnknownLocation] On [UnknownLocation].[Name]='Unknown'
+            		ORDER BY [Detail Sets].[ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Detail Sets];
+            		Select @Actual=Count(*) From [dbo].[DetailSets];
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            
+            		Print '   History';
+            		Delete From [dbo].[History] Where [TableName]='DetailSets';
+            		INSERT INTO [dbo].[History] ([OID],
+            			[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
+            		SELECT [History].[ID],
+            			[History].[Column],[History].[DateChanged],getdate(),getdate(),[History].[OriginalValue],[DetailSets].[ID],'DetailSets',[History].[Value],[History].[Who]
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+            			INNER JOIN [dbo].[DetailSets] [DetailSets] On [History].[TableName]='Detail Sets' And [DetailSets].[OID]=[History].[RecordID]
+            		WHERE [History].[TableName]='Detail Sets' 
+            		ORDER BY [History].[ID];
+            		--Now grab any history for deleted records...
+            		Declare @OrphanedHistoryCount int, @OID int, @RecordID uniqueidentifier;
+            		If OBJECT_ID('tempdb..#DeletedHistory') Is Not Null Drop Table #DeletedHistory
+            		Select [History].[ID],[History].[Column],[History].[DateChanged],getdate() As [DateCreated],getdate() As [DateModified],[History].[OriginalValue],
+            			[History].[RecordID] As [OID],'DetailSets' As [TableName],[History].[Value],[History].[Who],NEWID() As [RecordID]
+            		Into #DeletedHistory 
+            		From [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+            		Where [History].[TableName]='Detail Sets' And Not Exists(Select * From [GGGSCP1].[TreasureChest].[dbo].[Detail Sets] Where [ID]=[History].[RecordID])
+            		Order By [History].[RecordID];
+            		Select @OrphanedHistoryCount=Count(*) From [#DeletedHistory];
+            		Declare h cursor for Select Distinct [OID] From [#DeletedHistory] Order By [OID];
+            		Open h;
+            		Fetch Next From h Into @OID;
+            		While @@FETCH_STATUS = 0
+            		Begin
+            			Set @RecordID=NEWID();
+            			Update [#DeletedHistory] Set [RecordID]=@RecordID Where [OID]=@OID;
+            			Fetch Next From h Into @OID;
+            		End;
+            		Close h;
+            		Deallocate h;
+            		INSERT INTO [dbo].[History] ([OID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
+            		SELECT [ID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who] FROM [#DeletedHistory] ORDER BY [ID];
+            		Drop Table #DeletedHistory;
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[History] Where [TableName]='Detail Sets';
+            		Select @Actual=Count(*) From [dbo].[History] Where [TableName]='DetailSets';
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            
+            		Print '   Images';
+            		Delete From [dbo].[Images] Where [TableName]='DetailSets';
+            		INSERT INTO [dbo].[Images] ([OID],
+            			[AlphaSort],[Caption],[Category],[DateCreated],[DateModified],[FileName],[Height],[Image],[Name],[Notes],
+            			[RecordID],[TableName],[Thumbnail],[URL],[Width])
+            		SELECT Null,Upper('Detail Sets: '+[Detail Sets].[Name]),
+            			[Detail Sets].[Scale]+' '+[Detail Sets].[Designation]+' '+[Detail Sets].[Name]+' ('+[Detail Sets].[Reference]+')',
+            			'DetailSets',getdate(),getdate(),Null,Null,[Image],[Detail Sets].[Name],Null,
+            			[DetailSets].[ID],'DetailSets',0,Null,Null
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Detail Sets] [Detail Sets]
+            			INNER JOIN [dbo].[DetailSets] [DetailSets] On [Detail Sets].[ID]=[DetailSets].[OID]
+            		WHERE [Detail Sets].[Image] is not Null
+            		ORDER BY [Detail Sets].[ID];
+            		INSERT INTO [dbo].[Images] ([OID],
+            			[AlphaSort],[Caption],[Category],[DateCreated],[DateModified],[FileName],[Height],[Image],[Name],[Notes],
+            			[RecordID],[TableName],[Thumbnail],[URL],[Width])
+            		SELECT Null,Upper('Detail Sets: '+[Detail Sets].[Name]),
+            			[Detail Sets].[Scale]+' '+[Detail Sets].[Designation]+' '+[Detail Sets].[Name]+' ('+[Detail Sets].[Reference]+')',
+            			'DetailSets',getdate(),getdate(),Null,Null,[OtherImage],[Detail Sets].[Name],Null,
+            			[DetailSets].[ID],'DetailSets',0,Null,Null
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Detail Sets] [Detail Sets]
+            			INNER JOIN [dbo].[DetailSets] [DetailSets] On [Detail Sets].[ID]=[DetailSets].[OID]
+            		WHERE [Detail Sets].[OtherImage] is not Null
+            		ORDER BY [Detail Sets].[ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Detail Sets] Where [Image] is not Null;
+            		Select @Expected=@Expected+Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Detail Sets] Where [OtherImage] is not Null;
+            		Select @Actual=Count(*) From [dbo].[Images] Where [TableName]='DetailSets';
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            
+            		Print '   Kits';
+            		Declare @KitID uniqueidentifier, @DetailSetOID int, @DetailSetID uniqueidentifier;
+            		Declare kitCursor Cursor For
+            			Select [Kits].[ID] As [Kits.ID],[OKits].[DetailSetID] As [DetailSet.OID],[DetailSets].[ID] As [DetailSet.ID]
+            			From [dbo].[Kits] 
+            				Inner Join [GGGSCP1].[TreasureChest].[dbo].[Kits] [OKits] On [OKits].ID=[Kits].[OID]
+            				Inner Join [dbo].[DetailSets] On [DetailSets].[OID]=[OKits].[DetailSetID];
+            		Open kitCursor;
+            		Fetch Next From kitCursor Into @KitID, @DetailSetOID, @DetailSetID;
+            		While @@FETCH_STATUS = 0
+            		Begin
+            			Update [dbo].[Kits] Set [DetailSet_ID]=@DetailSetID Where [Kits].[ID]=@KitID;
+            			Fetch Next From kitCursor Into @KitID, @DetailSetOID, @DetailSetID;
+            		End;
+            		Close kitCursor;
+            		Deallocate kitCursor;
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Kits] Where [DetailSetID] is not Null;
+            		Select @Actual=Count(*) From [dbo].[Kits] Where [DetailSet_ID] is not Null;
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            	End Try
+                Begin Catch
+		            Rollback Transaction;
+		            exec sp_LogError @Milestone;
+		            Throw;
+                End Catch;
+		        Insert Into LOG(MileStone,StartTime,FinishTime,Message) Values (@Milestone,@stTime,CURRENT_TIMESTAMP,'Elapsed: '+Convert(nvarchar(24),CURRENT_TIMESTAMP-@stTime,114));
+		        Commit Transaction;
+            End;");
+            context.Database.ExecuteSqlCommand(@"Grant Execute on [dbo].[sp_MigrateDetailSets] to [Public];");
+        }
+        private static void CreateMigrateEpisodes(TCContext context)
+        {
+            Console.WriteLine("\tsp_MigrateEpisodes");
+            context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateEpisodes' And type='P') Drop Procedure sp_MigrateEpisodes");
+            context.Database.ExecuteSqlCommand(@"
+            --sp_MigrateEpisodes.sql
+            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   Copyright © 2019 All Rights Reserved.
+            --*********************************************************************************************************************************
+            --
+            --	Modification History:
+            --	Date:       Developer:		Description:
+            --	02/01/19	Ken Clark		Created;
+            --=================================================================================================================================
+            
+            Create Procedure sp_MigrateEpisodes As 
+            Begin
+            	Declare @stTime DateTime; Set @stTime=CURRENT_TIMESTAMP;
+            	Declare @Actual int, @Expected int, @Message nvarchar(2000), @Milestone nvarchar(256)='sp_MigrateEpisodes';
+            	Begin Transaction;
+            	Begin Try
+            		Print 'Episodes';
+            		Delete From [dbo].[Episodes];
+            		INSERT INTO [dbo].[Episodes] ([OID],
+            			[Cataloged],[DateCreated],[DateInventoried],[DateModified],[DatePurchased],[DateReleased],[DateVerified],
+            			[Distributor],[MediaFormat],[Notes],[Number],[Price],[Series],[Subject],[Title],[Value],[WishList],[StoreBought],[Taped],[WMV],[LocationID])
+            		SELECT [Episodes].[ID],
+            			1,[Episodes].[DateCreated],[DateInventoried],[Episodes].[DateModified],[DatePurchased],[ReleaseDate],[DateVerified],
+            			[Distributor],[Format],[Notes],[Number],[Price],[Series],[Subject],[Title],[Value],[WishList],[StoreBought],[Taped],[WMV],
+						Case 
+							When [Locations].[ID] Is Null Then
+								Case 
+									When [WishList]=1 Then [WishListLocation].[ID]
+									Else [UnknownLocation].[ID]
+								End
+							Else [UnknownLocation].[ID]
+						End As [LocationID]
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Episodes] [Episodes]
+            			LEFT OUTER JOIN [dbo].[Locations] [Locations] On [Episodes].[Location]=[Locations].[OName]
+						INNER JOIN [dbo].[Locations] [WishListLocation] On [WishListLocation].[Name]='WishList'
+						INNER JOIN [dbo].[Locations] [UnknownLocation] On [UnknownLocation].[Name]='Unknown'
+            		ORDER BY [Episodes].[ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Episodes];
+            		Select @Actual=Count(*) From [dbo].[Episodes];
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            
+            		Print '   History';
+            		Delete From [dbo].[History] Where [TableName]='Episodes';
+            		INSERT INTO [dbo].[History] ([OID],
+            			[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
+            		SELECT [History].[ID],
+            			[History].[Column],[History].[DateChanged],getdate(),getdate(),[History].[OriginalValue],[Episodes].[ID],[History].[TableName],[History].[Value],[History].[Who]
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+            			INNER JOIN [dbo].[Episodes] [Episodes] On [History].[TableName]='Episodes' And [Episodes].[OID]=[History].[RecordID]
+            		WHERE [History].[TableName]='Episodes' 
+            		ORDER BY [History].[ID];
+            		--Now grab any history for deleted records...
+            		Declare @OrphanedHistoryCount int, @OID int, @RecordID uniqueidentifier;
+            		If OBJECT_ID('tempdb..#DeletedHistory') Is Not Null Drop Table #DeletedHistory
+            		Select [History].[ID],[History].[Column],[History].[DateChanged],getdate() As [DateCreated],getdate() As [DateModified],[History].[OriginalValue],
+            			[History].[RecordID] As [OID],[History].[TableName],[History].[Value],[History].[Who],NEWID() As [RecordID]
+            		Into #DeletedHistory 
+            		From [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+            		Where [History].[TableName]='Episodes' And Not Exists(Select * From [GGGSCP1].[TreasureChest].[dbo].[Episodes] Where [ID]=[History].[RecordID])
+            		Order By [History].[RecordID];
+            		Select @OrphanedHistoryCount=Count(*) From [#DeletedHistory];
+            		Declare h cursor for Select Distinct [OID] From [#DeletedHistory] Order By [OID];
+            		Open h;
+            		Fetch Next From h Into @OID;
+            		While @@FETCH_STATUS = 0
+            		Begin
+            			Set @RecordID=NEWID();
+            			Update [#DeletedHistory] Set [RecordID]=@RecordID Where [OID]=@OID;
+            			Fetch Next From h Into @OID;
+            		End;
+            		Close h;
+            		Deallocate h;
+            		INSERT INTO [dbo].[History] ([OID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
+            		SELECT [ID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who] FROM [#DeletedHistory] ORDER BY [ID];
+            		Drop Table #DeletedHistory;
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[History] Where [TableName]='Episodes';
+            		Select @Actual=Count(*) From [dbo].[History] Where [TableName]='Episodes';
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            
+            		Print '   Images';
+            		Delete From [dbo].[Images] Where [TableName]='Episodes';
+            		INSERT INTO [dbo].[Images] ([OID],
+            			[AlphaSort],[Caption],[Category],[DateCreated],[DateModified],[FileName],[Height],[Image],[Name],[Notes],
+            			[RecordID],[TableName],[Thumbnail],[URL],[Width])
+            		SELECT Null,Upper('Episodes: '+[Episodes].[Title]),[Episodes].[Title],'Episodes',getdate(),getdate(),Null,Null,[Image],[Episodes].[Title],Null,
+            			[newEpisodes].[ID],'Episodes',0,Null,Null
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Episodes] [Episodes]
+            			INNER JOIN [dbo].[Episodes] [newEpisodes] On [Episodes].[ID]=[newEpisodes].[OID]
+            		WHERE [Episodes].[Image] is not Null
+            		ORDER BY [Episodes].[ID];
+            		INSERT INTO [dbo].[Images] ([OID],
+            			[AlphaSort],[Caption],[Category],[DateCreated],[DateModified],[FileName],[Height],[Image],[Name],[Notes],
+            			[RecordID],[TableName],[Thumbnail],[URL],[Width])
+            		SELECT Null,Upper('Episodes: '+[Episodes].[Title]),[Episodes].[Title],'Episodes',getdate(),getdate(),Null,Null,[OtherImage],[Episodes].[Title],Null,
+            			[newEpisodes].[ID],'Episodes',0,Null,Null
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Episodes] [Episodes]
+            			INNER JOIN [dbo].[Episodes] [newEpisodes] On [Episodes].[ID]=[newEpisodes].[OID]
+            		WHERE [Episodes].[OtherImage] is not Null
+            		ORDER BY [Episodes].[ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Episodes] Where [Image] is not Null;
+            		Select @Expected=@Expected+Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Episodes] Where [OtherImage] is not Null;
+            		Select @Actual=Count(*) From [dbo].[Images] Where [TableName]='Episodes';
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            	End Try
+                Begin Catch
+		            Rollback Transaction;
+		            exec sp_LogError @Milestone;
+		            Throw;
+                End Catch;
+		        Insert Into LOG(MileStone,StartTime,FinishTime,Message) Values (@Milestone,@stTime,CURRENT_TIMESTAMP,'Elapsed: '+Convert(nvarchar(24),CURRENT_TIMESTAMP-@stTime,114));
+		        Commit Transaction;
+            End;");
+            context.Database.ExecuteSqlCommand(@"Grant Execute on [dbo].[sp_MigrateEpisodes] to [Public];");
+        }
+        private static void CreateMigrateFinishingProducts(TCContext context)
+        {
+            Console.WriteLine("\tsp_MigrateFinishingProducts");
+            context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateFinishingProducts' And type='P') Drop Procedure sp_MigrateFinishingProducts");
+            context.Database.ExecuteSqlCommand(@"
+            --sp_MigrateFinishingProducts.sql
+            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   Copyright © 2019 All Rights Reserved.
+            --*********************************************************************************************************************************
+            --
+            --	Modification History:
+            --	Date:       Developer:		Description:
+            --	02/01/19	Ken Clark		Created;
+            --=================================================================================================================================
+            
+            Create Procedure sp_MigrateFinishingProducts As 
+            Begin
+            	Declare @stTime DateTime; Set @stTime=CURRENT_TIMESTAMP;
+            	Declare @Actual int, @Expected int, @Message nvarchar(2000), @Milestone nvarchar(256)='sp_MigrateFinishingProducts';
+            	Begin Transaction;
+            	Begin Try
+            		Print 'FinishingProducts'
+            		Delete From [dbo].[FinishingProducts];
+            		INSERT INTO [dbo].[FinishingProducts] ([OID],
+            			[Cataloged],[Count],[DateCreated],[DateInventoried],[DateModified],[DatePurchased],[DateVerified],[Manufacturer],[Name],
+            			[Notes],[Price],[ProductCatalog],[Reference],[Type],[Value],[WishList],[LocationID])
+            		SELECT [Finishing Products].[ID],
+            			1,[Count],[Finishing Products].[DateCreated],[DateInventoried],[Finishing Products].[DateModified],[DatePurchased],[DateVerified],[Manufacturer],[Finishing Products].[Name],
+            			[Notes],[Price],[ProductCatalog],[Reference],[Type],[Value],[WishList],
+						Case 
+							When [Locations].[ID] Is Null Then
+								Case 
+									When [WishList]=1 Then [WishListLocation].[ID]
+									Else [UnknownLocation].[ID]
+								End
+							Else [UnknownLocation].[ID]
+						End As [LocationID]
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Finishing Products] [Finishing Products]
+            			LEFT OUTER JOIN [dbo].[Locations] [Locations] On [Finishing Products].[Location]=[Locations].[OName]
+						INNER JOIN [dbo].[Locations] [WishListLocation] On [WishListLocation].[Name]='WishList'
+						INNER JOIN [dbo].[Locations] [UnknownLocation] On [UnknownLocation].[Name]='Unknown'
+            		ORDER BY [Finishing Products].[ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Finishing Products];
+            		Select @Actual=Count(*) From [dbo].[FinishingProducts];
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            
+            		Print '   History';
+            		Delete From [dbo].[History] Where [TableName]='Finishing Products';
+            		INSERT INTO [dbo].[History] ([OID],
+            			[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
+            		SELECT [History].[ID],
+            			[History].[Column],[History].[DateChanged],getdate(),getdate(),[History].[OriginalValue],[FinishingProducts].[ID],'FinishingProducts',[History].[Value],[History].[Who]
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+            			INNER JOIN [dbo].[FinishingProducts] [FinishingProducts] On [History].[TableName]='Finishing Products' And [FinishingProducts].[OID]=[History].[RecordID]
+            		WHERE [History].[TableName]='Finishing Products' 
+            		ORDER BY [History].[ID];
+            		--Now grab any history for deleted records...
+            		Declare @OrphanedHistoryCount int, @OID int, @RecordID uniqueidentifier;
+            		If OBJECT_ID('tempdb..#DeletedHistory') Is Not Null Drop Table #DeletedHistory
+            		Select [History].[ID],[History].[Column],[History].[DateChanged],getdate() As [DateCreated],getdate() As [DateModified],[History].[OriginalValue],
+            			[History].[RecordID] As [OID],[History].[TableName],[History].[Value],[History].[Who],NEWID() As [RecordID]
+            		Into #DeletedHistory 
+            		From [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+            		Where [History].[TableName]='Finishing Products' And Not Exists(Select * From [GGGSCP1].[TreasureChest].[dbo].[Finishing Products] Where [ID]=[History].[RecordID])
+            		Order By [History].[RecordID];
+            		Select @OrphanedHistoryCount=Count(*) From [#DeletedHistory];
+            		Declare h cursor for Select Distinct [OID] From [#DeletedHistory] Order By [OID];
+            		Open h;
+            		Fetch Next From h Into @OID;
+            		While @@FETCH_STATUS = 0
+            		Begin
+            			Set @RecordID=NEWID();
+            			Update [#DeletedHistory] Set [RecordID]=@RecordID Where [OID]=@OID;
+            			Fetch Next From h Into @OID;
+            		End;
+            		Close h;
+            		Deallocate h;
+            		INSERT INTO [dbo].[History] ([OID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
+            		SELECT [ID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],'FinishingProducts',[Value],[Who] FROM [#DeletedHistory] ORDER BY [ID];
+            		Drop Table #DeletedHistory;
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[History] Where [TableName]='Finishing Products';
+            		Select @Actual=Count(*) From [dbo].[History] Where [TableName]='FinishingProducts';
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            
+            		Print '   Images';
+            		Delete From [dbo].[Images] Where [TableName]='FinishingProducts';
+            		INSERT INTO [dbo].[Images] ([OID],
+            			[AlphaSort],[Caption],[Category],[DateCreated],[DateModified],[FileName],[Height],[Image],[Name],[Notes],
+            			[RecordID],[TableName],[Thumbnail],[URL],[Width])
+            		SELECT Null,Upper('Finishing Products: '+[Finishing Products].[Name]),[Finishing Products].[Name],'FinishingProducts',getdate(),getdate(),Null,Null,[Image],[Finishing Products].[Name],Null,
+            			[FinishingProducts].[ID],'FinishingProducts',0,Null,Null
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Finishing Products] [Finishing Products]
+            			INNER JOIN [dbo].[FinishingProducts] [FinishingProducts] On [Finishing Products].[ID]=[FinishingProducts].[OID]
+            		WHERE [Finishing Products].[Image] is not Null
+            		ORDER BY [Finishing Products].[ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Finishing Products] Where [Image] is not Null;
+            		Select @Actual=Count(*) From [dbo].[Images] Where [TableName]='FinishingProducts';
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            	End Try
+                Begin Catch
+		            Rollback Transaction;
+		            exec sp_LogError @Milestone;
+		            Throw;
+                End Catch;
+		        Insert Into LOG(MileStone,StartTime,FinishTime,Message) Values (@Milestone,@stTime,CURRENT_TIMESTAMP,'Elapsed: '+Convert(nvarchar(24),CURRENT_TIMESTAMP-@stTime,114));
+		        Commit Transaction;
+            End;");
+            context.Database.ExecuteSqlCommand(@"Grant Execute on [dbo].[sp_MigrateFinishingProducts] to [Public];");
+        }
+        private static void CreateMigrateImages(TCContext context)
+        {
+            Console.WriteLine("\tsp_MigrateImages");
+            context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateImages' And type='P') Drop Procedure sp_MigrateImages");
+            context.Database.ExecuteSqlCommand(@"
+            --sp_MigrateImages.sql
+            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   Copyright © 2019 All Rights Reserved.
+            --*********************************************************************************************************************************
+            --
+            --	Modification History:
+            --	Date:       Developer:		Description:
+            --	02/01/19	Ken Clark		Created;
+            --=================================================================================================================================
+            
+            Create Procedure sp_MigrateImages As 
+            Begin
+            	Declare @stTime DateTime; Set @stTime=CURRENT_TIMESTAMP;
+            	Declare @Actual int, @Expected int, @Message nvarchar(2000), @Milestone nvarchar(256)='sp_MigrateImages';
+            	Begin Transaction;
+            	Begin Try
+            		Print 'Images (base - not tied to other records)';
+            		Delete From [dbo].[Images] Where [RecordID] is Null And [TableName] is Null;
+            		INSERT INTO [dbo].[Images] ([OID],
+            			[AlphaSort],[Caption],[Category],[DateCreated],[DateModified],[FileName],[Height],[Image],[Name],[Notes],
+            			[RecordID],[TableName],[Thumbnail],[URL],[Width])
+            		SELECT [ID],Upper('IMAGES: '+[Sort]),[Caption],[Category],[DateCreated],[DateModified],[FileName],[Height],[Image],[Name],[Notes],
+            			Null,Null,0,[URL],[Width]
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Images] Where [Images].[Image] is not Null
+            		ORDER BY [Images].[ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Images] Where [Images].[Image] is not Null;
+            		Select @Actual=Count(*) From [dbo].[Images] Where [RecordID] is Null And [TableName] is Null;
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            
+            		Print '   History';
+            		Delete From [dbo].[History] Where [TableName]='Images';
+            		INSERT INTO [dbo].[History] ([OID],
+            			[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
+            		SELECT [History].[ID],
+            			[History].[Column],[History].[DateChanged],getdate(),getdate(),[History].[OriginalValue],[Images].[ID],[History].[TableName],[History].[Value],[History].[Who]
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+            			INNER JOIN [dbo].[Images] [Images] On [History].[TableName]='Images' And [Images].[OID]=[History].[RecordID]
+            		WHERE [History].[TableName]='Images' 
+            		ORDER BY [History].[ID];
+            		--Now grab any history for deleted records...
+            		Declare @OID int, @RecordID uniqueidentifier;
+            		If OBJECT_ID('tempdb..#DeletedHistory') Is Not Null Drop Table #DeletedHistory
+            		Select [History].[ID],[History].[Column],[History].[DateChanged],getdate() As [DateCreated],getdate() As [DateModified],[History].[OriginalValue],
+            			[History].[RecordID] As [OID],[History].[TableName],[History].[Value],[History].[Who],NEWID() As [RecordID]
+            		Into #DeletedHistory 
+            		From [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+            		Where [History].[TableName]='Images' And Not Exists(Select * From [GGGSCP1].[TreasureChest].[dbo].[Images] Where [ID]=[History].[RecordID])
+            		Order By [History].[RecordID];
+            		Declare h cursor for Select Distinct [OID] From [#DeletedHistory] Order By [OID];
+            		Open h;
+            		Fetch Next From h Into @OID;
+            		While @@FETCH_STATUS = 0
+            		Begin
+            			Set @RecordID=NEWID();
+            			Update [#DeletedHistory] Set [RecordID]=@RecordID Where [OID]=@OID;
+            			Fetch Next From h Into @OID;
+            		End;
+            		Close h;
+            		Deallocate h;
+            		INSERT INTO [dbo].[History] ([OID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
+            		SELECT [ID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who] FROM [#DeletedHistory] ORDER BY [ID];
+            		Drop Table #DeletedHistory;
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[History] Where [TableName]='Images';
+            		Select @Actual=Count(*) From [dbo].[History] Where [TableName]='Images';
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            	End Try
+                Begin Catch
+		            Rollback Transaction;
+		            exec sp_LogError @Milestone;
+		            Throw;
+                End Catch;
+		        Insert Into LOG(MileStone,StartTime,FinishTime,Message) Values (@Milestone,@stTime,CURRENT_TIMESTAMP,'Elapsed: '+Convert(nvarchar(24),CURRENT_TIMESTAMP-@stTime,114));
+		        Commit Transaction;
+            End;");
+            context.Database.ExecuteSqlCommand(@"Grant Execute on [dbo].[sp_MigrateImages] to [Public];");
+        }
+        private static void CreateMigrateKits(TCContext context)
+        {
+            Console.WriteLine("\tsp_MigrateKits");
+            context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateKits' And type='P') Drop Procedure sp_MigrateKits");
+            context.Database.ExecuteSqlCommand(@"
+            --sp_MigrateKits.sql
+            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   Copyright © 2019 All Rights Reserved.
+            --*********************************************************************************************************************************
+            --
+            --	Modification History:
+            --	Date:       Developer:		Description:
+            --	02/01/19	Ken Clark		Created;
+            --=================================================================================================================================
+            
+            Create Procedure sp_MigrateKits As 
+            Begin
+            	Declare @stTime DateTime; Set @stTime=CURRENT_TIMESTAMP;
+            	Declare @Actual int, @Expected int, @Message nvarchar(2000), @Milestone nvarchar(256)='sp_MigrateKits';
+            	Begin Transaction;
+            	Begin Try
+            		Print 'Kits'
+            		Delete From [dbo].[Kits];
+            		INSERT INTO [dbo].[Kits] ([OID],
+            			[Cataloged],[Condition],[DateCreated],[DateInventoried],[DateModified],[DatePurchased],[DateVerified],[Decal_ID],
+            			[Designation],[DetailSet_ID],[Era],[Manufacturer],[Name],[Nation],[Notes],[OutOfProduction],[Price],[ProductCatalog],
+            			[Reference],[Scale],[Service],[Type],[Value],[WishList],[LocationID])
+            		SELECT [Kits].[ID],
+            			1,[Condition],[Kits].[DateCreated],[DateInventoried],[Kits].[DateModified],[DatePurchased],[DateVerified],Null,
+            			[Designation],Null,[Era],[Manufacturer],[Kits].[Name],[Nation],[Notes],[OutOfProduction],[Price],[ProductCatalog],
+            			[Reference],[Scale],[Service],[Type],[Value],[WishList],
+						Case 
+							When [Locations].[ID] Is Null Then
+								Case 
+									When [WishList]=1 Then [WishListLocation].[ID]
+									Else [UnknownLocation].[ID]
+								End
+							Else [UnknownLocation].[ID]
+						End As [LocationID]
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Kits] [Kits]
+            			LEFT OUTER JOIN [dbo].[Locations] [Locations] On [Kits].[Location]=[Locations].[OName]
+						INNER JOIN [dbo].[Locations] [WishListLocation] On [WishListLocation].[Name]='WishList'
+						INNER JOIN [dbo].[Locations] [UnknownLocation] On [UnknownLocation].[Name]='Unknown'
+            		ORDER BY [Kits].[ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Kits];
+            		Select @Actual=Count(*) From [dbo].[Kits];
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            
+            		Print '   History';
+            		Delete From [dbo].[History] Where [TableName]='Kits';
+            		INSERT INTO [dbo].[History] ([OID],
+            			[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
+            		SELECT [History].[ID],
+            			[History].[Column],[History].[DateChanged],getdate(),getdate(),[History].[OriginalValue],[Kits].[ID],[History].[TableName],[History].[Value],[History].[Who]
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+            			INNER JOIN [dbo].[Kits] [Kits] On [History].[TableName]='Kits' And [Kits].[OID]=[History].[RecordID]
+            		WHERE [History].[TableName]='Kits' 
+            		ORDER BY [History].[ID];
+            		--Now grab any history for deleted records...
+            		Declare @OrphanedHistoryCount int, @OID int, @RecordID uniqueidentifier;
+            		If OBJECT_ID('tempdb..#DeletedHistory') Is Not Null Drop Table #DeletedHistory
+            		Select [History].[ID],[History].[Column],[History].[DateChanged],getdate() As [DateCreated],getdate() As [DateModified],[History].[OriginalValue],
+            			[History].[RecordID] As [OID],[History].[TableName],[History].[Value],[History].[Who],NEWID() As [RecordID]
+            		Into #DeletedHistory 
+            		From [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+            		Where [History].[TableName]='Kits' And Not Exists(Select * From [GGGSCP1].[TreasureChest].[dbo].[Kits] Where [ID]=[History].[RecordID])
+            		Order By [History].[RecordID];
+            		Select @OrphanedHistoryCount=Count(*) From [#DeletedHistory];
+            		Declare h cursor for Select Distinct [OID] From [#DeletedHistory] Order By [OID];
+            		Open h;
+            		Fetch Next From h Into @OID;
+            		While @@FETCH_STATUS = 0
+            		Begin
+            			Set @RecordID=NEWID();
+            			Update [#DeletedHistory] Set [RecordID]=@RecordID Where [OID]=@OID;
+            			Fetch Next From h Into @OID;
+            		End;
+            		Close h;
+            		Deallocate h;
+            		INSERT INTO [dbo].[History] ([OID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
+            		SELECT [ID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who] FROM [#DeletedHistory] ORDER BY [ID];
+            		Drop Table #DeletedHistory;
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[History] Where [TableName]='Kits';
+            		Select @Actual=Count(*) From [dbo].[History] Where [TableName]='Kits';
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            
+            		Print '   Images';
+            		Delete From [dbo].[Images] Where [TableName]='Kits';
+            		INSERT INTO [dbo].[Images] ([OID],
+            			[AlphaSort],[Caption],[Category],[DateCreated],[DateModified],[FileName],[Height],[Image],[Name],[Notes],
+            			[RecordID],[TableName],[Thumbnail],[URL],[Width])
+            		SELECT Null,Upper('Kits: '+[Kits].[Name]),
+            			[Kits].[Scale]+' '+[Kits].[Designation]+' '+[Kits].[Name]+' ('+[Kits].[Reference]+')',
+            			'Kits',getdate(),getdate(),Null,Null,[Image],[Kits].[Name],Null,
+            			[newKits].[ID],'Kits',0,Null,Null
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Kits] [Kits]
+            			INNER JOIN [dbo].[Kits] [newKits] On [Kits].[ID]=[newKits].[OID]
+            		WHERE [Kits].[Image] is not Null
+            		ORDER BY [Kits].[ID];
+            		INSERT INTO [dbo].[Images] ([OID],
+            			[AlphaSort],[Caption],[Category],[DateCreated],[DateModified],[FileName],[Height],[Image],[Name],[Notes],
+            			[RecordID],[TableName],[Thumbnail],[URL],[Width])
+            		SELECT Null,Upper('Kits: '+[Kits].[Name]),
+            			[Kits].[Scale]+' '+[Kits].[Designation]+' '+[Kits].[Name]+' ('+[Kits].[Reference]+')',
+            			'Kits',getdate(),getdate(),Null,Null,[OtherImage],[Kits].[Name],Null,
+            			[newKits].[ID],'Kits',0,Null,Null
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Kits] [Kits]
+            			INNER JOIN [dbo].[Kits] [newKits] On [Kits].[ID]=[newKits].[OID]
+            		WHERE [Kits].[OtherImage] is not Null
+            		ORDER BY [Kits].[ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Kits] Where [Image] is not Null;
+            		Select @Expected=@Expected+Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Kits] Where [OtherImage] is not Null;
+            		Select @Actual=Count(*) From [dbo].[Images] Where [TableName]='Kits';
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            	End Try
+                Begin Catch
+		            Rollback Transaction;
+		            exec sp_LogError @Milestone;
+		            Throw;
+                End Catch;
+		        Insert Into LOG(MileStone,StartTime,FinishTime,Message) Values (@Milestone,@stTime,CURRENT_TIMESTAMP,'Elapsed: '+Convert(nvarchar(24),CURRENT_TIMESTAMP-@stTime,114));
+		        Commit Transaction;
+            End;");
+            context.Database.ExecuteSqlCommand(@"Grant Execute on [dbo].[sp_MigrateKits] to [Public];");
+        }
+        private static void CreateMigrateMovies(TCContext context)
+        {
+            Console.WriteLine("\tsp_MigrateMovies");
+            context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateMovies' And type='P') Drop Procedure sp_MigrateMovies");
+            context.Database.ExecuteSqlCommand(@"
+            --sp_MigrateMovies.sql
+            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   Copyright © 2019 All Rights Reserved.
+            --*********************************************************************************************************************************
+            --
+            --	Modification History:
+            --	Date:       Developer:		Description:
+            --	02/01/19	Ken Clark		Created;
+            --=================================================================================================================================
+            
+            Create Procedure sp_MigrateMovies As 
+            Begin
+            	Declare @stTime DateTime; Set @stTime=CURRENT_TIMESTAMP;
+            	Declare @Actual int, @Expected int, @Message nvarchar(2000), @Milestone nvarchar(256)='sp_MigrateMovies';
+            	Begin Transaction;
+            	Begin Try
+            		Print 'Videos/Movies'
+            		Delete From [dbo].[Images] Where [TableName]='Videos' And [Images].[RecordID] In (Select ID From [dbo].[Videos] Where [SourceTable]='Movies');
+            		Delete From [dbo].[History] Where [TableName]='Videos' And [History].[RecordID] In (Select ID From [dbo].[Videos] Where [SourceTable]='Movies');
+            		Delete From [dbo].[Videos] Where [SourceTable]='Movies';
+            		INSERT INTO [dbo].[Videos] ([OID],
+            			[AlphaSort],[Cataloged],[DateCreated],[DateInventoried],[DateModified],[DatePurchased],[DateReleased],[DateVerified],
+            			[Distributor],[MediaFormat],[Notes],[Price],[Subject],[Title],[Value],[WishList],[StoreBought],[WMV],[LocationID],[SourceTable])
+            		SELECT [Movies].[ID],
+            			[Sort],1,[Movies].[DateCreated],[DateInventoried],[Movies].[DateModified],[DatePurchased],[ReleaseDate],[DateVerified],
+            			[Distributor],[Format],[Notes],[Price],[Subject],[Title],[Value],[WishList],[StoreBought],[WMV],
+						Case 
+							When [Locations].[ID] Is Null Then
+								Case 
+									When [WishList]=1 Then [WishListLocation].[ID]
+									Else [UnknownLocation].[ID]
+								End
+							Else [UnknownLocation].[ID]
+						End As [LocationID],'Movies'
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Movies] [Movies]
+            			LEFT OUTER JOIN [dbo].[Locations] [Locations] On [Movies].[Location]=[Locations].[OName]
+						INNER JOIN [dbo].[Locations] [WishListLocation] On [WishListLocation].[Name]='WishList'
+						INNER JOIN [dbo].[Locations] [UnknownLocation] On [UnknownLocation].[Name]='Unknown'
+            		ORDER BY [Movies].[ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Movies];
+            		Select @Actual=Count(*) From [dbo].[Videos] Where [SourceTable]='Movies';
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            
+            		Print '   History';
+            		INSERT INTO [dbo].[History] ([OID],
+            			[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
+            		SELECT [History].[ID],
+            			[History].[Column],[History].[DateChanged],getdate(),getdate(),[History].[OriginalValue],[Videos].[ID],'Videos',[History].[Value],[History].[Who]
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+            			INNER JOIN [dbo].[Videos] [Videos] On [History].[TableName]='Movies' And [Videos].[OID]=[History].[RecordID]
+            		WHERE [History].[TableName]='Movies' 
+            		ORDER BY [History].[ID];
+            		--Now grab any history for deleted records...
+            		Declare @OrphanedHistoryCount int, @OID int, @RecordID uniqueidentifier;
+            		If OBJECT_ID('tempdb..#DeletedHistory') Is Not Null Drop Table #DeletedHistory
+            		Select [History].[ID],[History].[Column],[History].[DateChanged],getdate() As [DateCreated],getdate() As [DateModified],[History].[OriginalValue],
+            			[History].[RecordID] As [OID],[History].[TableName],[History].[Value],[History].[Who],NEWID() As [RecordID]
+            		Into #DeletedHistory 
+            		From [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+            		Where [History].[TableName]='Movies' And Not Exists(Select * From [GGGSCP1].[TreasureChest].[dbo].[Movies] Where [ID]=[History].[RecordID])
+            		Order By [History].[RecordID];
+            		Select @OrphanedHistoryCount=Count(*) From [#DeletedHistory];
+            		Declare h cursor for Select Distinct [OID] From [#DeletedHistory] Order By [OID];
+            		Open h;
+            		Fetch Next From h Into @OID;
+            		While @@FETCH_STATUS = 0
+            		Begin
+            			Set @RecordID=NEWID();
+            			Update [#DeletedHistory] Set [RecordID]=@RecordID Where [OID]=@OID;
+            			Fetch Next From h Into @OID;
+            		End
+            		Close h;
+            		Deallocate h;
+            		INSERT INTO [dbo].[History] ([OID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
+            		SELECT [ID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who] FROM [#DeletedHistory] ORDER BY [ID];
+            		Drop Table #DeletedHistory;
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[History] Where [TableName]='Movies';
+            		Select @Actual=@OrphanedHistoryCount+Count(*) From [dbo].[History] Where [TableName]='Videos' And [History].[RecordID] In (Select ID From [dbo].[Videos] Where [SourceTable]='Movies');
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            
+            		Print '   Images';
+            		INSERT INTO [dbo].[Images] ([OID],
+            			[AlphaSort],[Caption],[Category],[DateCreated],[DateModified],[FileName],[Height],[Image],[Name],[Notes],
+            			[RecordID],[TableName],[Thumbnail],[URL],[Width])
+            		SELECT Null,Upper('Videos: '+[Movies].[Title]),[Movies].[Title],'Videos',getdate(),getdate(),Null,Null,[Image],[Movies].[Title],Null,
+            			[newVideos].[ID],'Videos',0,Null,Null
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Movies] [Movies]
+            			INNER JOIN [dbo].[Videos] [newVideos] On [Movies].[ID]=[newVideos].[OID]
+            		WHERE [Movies].[Image] is not Null
+            		ORDER BY [Movies].[ID];
+            		INSERT INTO [dbo].[Images] ([OID],
+            			[AlphaSort],[Caption],[Category],[DateCreated],[DateModified],[FileName],[Height],[Image],[Name],[Notes],
+            			[RecordID],[TableName],[Thumbnail],[URL],[Width])
+            		SELECT Null,Upper('Videos: '+[Movies].[Title]),[Movies].[Title],'Videos',getdate(),getdate(),Null,Null,[OtherImage],[Movies].[Title],Null,
+            			[newVideos].[ID],'Videos',0,Null,Null
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Movies] [Movies]
+            			INNER JOIN [dbo].[Videos] [newVideos] On [Movies].[ID]=[newVideos].[OID]
+            		WHERE [Movies].[OtherImage] is not Null
+            		ORDER BY [Movies].[ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Movies] Where [Image] is not Null;
+            		Select @Expected=@Expected+Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Movies] Where [OtherImage] is not Null;
+            		Select @Actual=Count(*) From [dbo].[Images] Where [TableName]='Videos' And [Images].[RecordID] In (Select ID From [dbo].[Videos] Where [SourceTable]='Movies');
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            	End Try
+                Begin Catch
+		            Rollback Transaction;
+		            exec sp_LogError @Milestone;
+		            Throw;
+                End Catch;
+		        Insert Into LOG(MileStone,StartTime,FinishTime,Message) Values (@Milestone,@stTime,CURRENT_TIMESTAMP,'Elapsed: '+Convert(nvarchar(24),CURRENT_TIMESTAMP-@stTime,114));
+		        Commit Transaction;
+            End;");
+            context.Database.ExecuteSqlCommand(@"Grant Execute on [dbo].[sp_MigrateMovies] to [Public];");
+        }
+        private static void CreateMigrateMusic(TCContext context)
+        {
+            Console.WriteLine("\tsp_MigrateMusic");
+            context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateMusic' And type='P') Drop Procedure sp_MigrateMusic");
+            context.Database.ExecuteSqlCommand(@"
+            --sp_MigrateMusic.sql
+            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   Copyright © 2019 All Rights Reserved.
+            --*********************************************************************************************************************************
+            --
+            --	Modification History:
+            --	Date:       Developer:		Description:
+            --  06/02/19    Ken Clark       Enhanced to handle Artists/Tracks & Albums replacement for Music;
+            --	02/01/19	Ken Clark		Created;
+            --=================================================================================================================================
+            
+            Create Procedure sp_MigrateMusic As 
+            Begin
+            	Declare @stTime DateTime; Set @stTime=CURRENT_TIMESTAMP;
+            	Declare @Actual int, @Expected int, @Message nvarchar(2000), @Milestone nvarchar(256)='sp_MigrateMusic';
+            	Begin Transaction;
+            	Begin Try
+            		Print 'Music'
+            
+            		Print '   Artists'
+            		Delete From [dbo].[Artists];
+            		INSERT INTO [dbo].[Artists] ([OID],
+            			[Name],[AlphaSort],[AKA],[Comments],[DateCreated],[DateModified])
+            		SELECT [Artists].[ID],
+            			[Name],[AlphaSort],[AKA],NULL,getdate() As [DateCreated],getdate() As [DateModified]
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Artists] [Artists]
+            		ORDER BY [Artists].[ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Artists];
+            		Select @Actual=Count(*) From [dbo].[Artists];
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            
+            		Print '   Albums'
+            		Delete From [dbo].[Albums];
+            		INSERT INTO [dbo].[Albums] ([OID],
+            			[AlphaSort],[Artist],[ArtistID],[Cataloged],[DateCreated],[DateInventoried],[DateModified],[DatePurchased],[DateVerified],[MediaFormat],
+            			[Notes],[Price],[Title],[Type],[Value],[WishList],[Year],[LocationID])
+            		SELECT [Music].[ID],
+            			[Music].[AlphaSort],[Artist],[Artists].[ID],[Inventoried],[Music].[DateCreated],[DateInventoried],[Music].[DateModified],[DatePurchased],[DateVerified],[Media],
+            			[Notes],[Price],[Title],[Type],[Value],[WishList],[Year],
+						Case 
+							When [Locations].[ID] Is Null Then
+								Case 
+									When [WishList]=1 Then [WishListLocation].[ID]
+									Else [UnknownLocation].[ID]
+								End
+							Else [UnknownLocation].[ID]
+						End As [LocationID]
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Music] [Music]
+            			LEFT OUTER JOIN [dbo].[Locations] [Locations] On [Music].[Location]=[Locations].[OName]
+						INNER JOIN [dbo].[Locations] [WishListLocation] On [WishListLocation].[Name]='WishList'
+						INNER JOIN [dbo].[Locations] [UnknownLocation] On [UnknownLocation].[Name]='Unknown'
+            			LEFT OUTER JOIN [dbo].[Artists] [Artists] On [Music].[ArtistID]=[Artists].[OID]
+            		ORDER BY [Music].[ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Music];
+            		Select @Actual=Count(*) From [dbo].[Albums];
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            
+            		Print '   History';
+            		Delete From [dbo].[History] Where [TableName]='Music';Delete From [dbo].[History] Where [TableName]='Albums';
+			        INSERT INTO [dbo].[History] ([OID],
+				        [Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
+			        SELECT [History].[ID],
+				        [History].[Column],[History].[DateChanged],getdate(),getdate(),[History].[OriginalValue],[Albums].[ID],'Albums',[History].[Value],[History].[Who]
+			        FROM [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+				        INNER JOIN [dbo].[Albums] [Albums] On [History].[TableName]='Music' And [Albums].[OID]=[History].[RecordID]
+			        WHERE [History].[TableName]='Music' 
+			        ORDER BY [History].[ID];
+            		--Now grab any history for deleted records...
+            		Declare @OID int, @RecordID uniqueidentifier;
+            		If OBJECT_ID('tempdb..#DeletedHistory') Is Not Null Drop Table #DeletedHistory
+            		Select [History].[ID],[History].[Column],[History].[DateChanged],getdate() As [DateCreated],getdate() As [DateModified],[History].[OriginalValue],
+            			[History].[RecordID] As [OID],'Albums' As [TableName],[History].[Value],[History].[Who],NEWID() As [RecordID]
+            		Into #DeletedHistory 
+            		From [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+            		Where [History].[TableName]='Music' And Not Exists(Select * From [GGGSCP1].[TreasureChest].[dbo].[Music] Where [ID]=[History].[RecordID])
+            		Order By [History].[RecordID];
+            		Declare h cursor for Select Distinct [OID] From [#DeletedHistory] Order By [OID];
+            		Open h;
+            		Fetch Next From h Into @OID;
+            		While @@FETCH_STATUS = 0
+            		Begin
+            			Set @RecordID=NEWID();
+            			Update [#DeletedHistory] Set [RecordID]=@RecordID Where [OID]=@OID;
+            			Fetch Next From h Into @OID;
+            		End
+            		Close h;
+            		Deallocate h;
+            		INSERT INTO [dbo].[History] ([OID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
+            		SELECT [ID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who] FROM [#DeletedHistory] ORDER BY [ID];
+            		Drop Table #DeletedHistory;
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[History] Where [TableName]='Music';
+            		Select @Actual=Count(*) From [dbo].[History] Where [TableName]='Albums';
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            
+            		Print '   Images';
+            		Delete From [dbo].[Images] Where [TableName]='Music';Delete From [dbo].[Images] Where [TableName]='Albums';
+            		INSERT INTO [dbo].[Images] ([OID],
+            			[AlphaSort],[Caption],[Category],[DateCreated],[DateModified],[FileName],[Height],[Image],[Name],[Notes],
+            			[RecordID],[TableName],[Thumbnail],[URL],[Width])
+            		SELECT Null,Upper('Albums: '+[Music].[Title]),[Music].[Artist]+': '+[Music].[Title]+' Cover','Albums',getdate(),getdate(),Null,Null,[Image],[Music].[Title],Null,
+            			[newMusic].[ID],'Albums',0,Null,Null
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Music] [Music]
+            			INNER JOIN [dbo].[Albums] [newMusic] On [Music].[ID]=[newMusic].[OID]
+            		WHERE [Music].[Image] is not Null
+            		ORDER BY [Music].[ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Music] Where [Image] is not Null;
+            		Select @Actual=Count(*) From [dbo].[Images] Where [TableName]='Albums';
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            
+            		Print '   Tracks';
+            		Delete From [dbo].[Tracks];
+            		INSERT INTO [dbo].[Tracks] ([OID],[Genre],
+            	        [AlbumArtist],[AlbumArtistID],
+						[Artist],[ArtistID],
+						[Year],[Album],[AlbumID],
+                        [DiscNumber],[TrackNumber],[Title],[Duration],[Composer],[Comment],[Path],[Lyrics],[Publisher],
+                        [DateCreated],[DateModified])
+                    SELECT [Tracks].[ID],[Genre],
+                        [AlbumArtist],[AlbumArtists].[ID] As [AlbumArtistID],
+						[Tracks].[Artist],[Artists].[ID] As [ArtistID],
+						[Tracks].[Year],[Album],[Albums].[ID] As [AlbumID],
+                        [Disc],[Track],[Tracks].[Title],[Duration],[Composer],[Comment],[Path],[Lyrics],[Publisher],
+                        getdate() As [DateCreated],getdate() As [DateModified]
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Tracks] [Tracks]
+            			LEFT OUTER JOIN [dbo].[Artists] [Artists] On [Tracks].[Artist]=[Artists].[Name]
+            			LEFT OUTER JOIN [dbo].[Artists] [AlbumArtists] On [Tracks].[AlbumArtistID]=[AlbumArtists].[OID]
+            			LEFT OUTER JOIN [dbo].[Albums] [Albums] On [Tracks].[AlbumID]=[Albums].[OID]
+            		ORDER BY [Tracks].[ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Tracks];
+            		Select @Actual=Count(*) From [dbo].[Tracks];
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            	End Try
+                Begin Catch
+		            Rollback Transaction;
+		            exec sp_LogError @Milestone;
+		            Throw;
+                End Catch;
+		        Insert Into LOG(MileStone,StartTime,FinishTime,Message) Values (@Milestone,@stTime,CURRENT_TIMESTAMP,'Elapsed: '+Convert(nvarchar(24),CURRENT_TIMESTAMP-@stTime,114));
+		        Commit Transaction;
+            End;");
+            context.Database.ExecuteSqlCommand(@"Grant Execute on [dbo].[sp_MigrateMusic] to [Public];");
+        }
+        private static void CreateMigrateQueries(TCContext context)
+        {
+            Console.WriteLine("\tsp_MigrateQueries");
+            context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateQueries' And type='P') Drop Procedure sp_MigrateQueries");
+            context.Database.ExecuteSqlCommand(@"
+            --sp_MigrateQueries.sql
+            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   Copyright © 2019 All Rights Reserved.
+            --*********************************************************************************************************************************
+            --
+            --	Modification History:
+            --	Date:       Developer:		Description:
+            --	02/01/19	Ken Clark		Created;
+            --=================================================================================================================================
+            
+            Create Procedure sp_MigrateQueries As 
+            Begin
+            	Declare @stTime DateTime; Set @stTime=CURRENT_TIMESTAMP;
+            	Declare @Actual int, @Expected int, @Message nvarchar(2000), @Milestone nvarchar(256)='sp_MigrateQueries';
+            	Begin Transaction;
+            	Begin Try
+            		Print 'Query...';
+            		Delete From [dbo].[Query];
+            		INSERT INTO [dbo].[Query] ([OID],
+            			[Access],[DateCreated],[DateModified],[Description],[Name],[QueryText])
+            		SELECT ROW_NUMBER() OVER (Order by Name) AS ID,
+            			[Access],[DateCreated],[DateModified],[Description],[Name],[Query]
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Query] ORDER BY [ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Query];
+            		Select @Actual=Count(*) From [dbo].[Query];
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            	End Try
+                Begin Catch
+		            Rollback Transaction;
+		            exec sp_LogError @Milestone;
+		            Throw;
+                End Catch;
+		        Insert Into LOG(MileStone,StartTime,FinishTime,Message) Values (@Milestone,@stTime,CURRENT_TIMESTAMP,'Elapsed: '+Convert(nvarchar(24),CURRENT_TIMESTAMP-@stTime,114));
+		        Commit Transaction;
+            End;");
+            context.Database.ExecuteSqlCommand(@"Grant Execute on [dbo].[sp_MigrateQueries] to [Public];");
+        }
+        private static void CreateMigrateRockets(TCContext context)
+        {
+            Console.WriteLine("\tsp_MigrateRockets");
+            context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateRockets' And type='P') Drop Procedure sp_MigrateRockets");
+            context.Database.ExecuteSqlCommand(@"
+            --sp_MigrateRockets.sql
+            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   Copyright © 2019 All Rights Reserved.
+            --*********************************************************************************************************************************
+            --
+            --	Modification History:
+            --	Date:       Developer:		Description:
+            --	02/01/19	Ken Clark		Created;
+            --=================================================================================================================================
+            
+            Create Procedure sp_MigrateRockets As 
+            Begin
+            	Declare @stTime DateTime; Set @stTime=CURRENT_TIMESTAMP;
+            	Declare @Actual int, @Expected int, @Message nvarchar(2000), @Milestone nvarchar(256)='sp_MigrateRockets';
+            	Begin Transaction;
+            	Begin Try
+            		Print 'Rockets'
+            		Delete From [dbo].[Rockets];
+            		INSERT INTO [dbo].[Rockets] ([OID],
+            			[Cataloged],[DateCreated],[DateInventoried],[DateModified],[DatePurchased],[DateVerified],[Designation],[Manufacturer],
+            			[Name],[Nation],[Notes],[Price],[ProductCatalog],[Reference],[Scale],[Type],[Value],[WishList],[LocationID])
+            		SELECT [Rockets].[ID],
+            			1,[Rockets].[DateCreated],[DateInventoried],[Rockets].[DateModified],[DatePurchased],[DateVerified],[Designation],[Manufacturer],
+            			[Rockets].[Name],[Nation],[Notes],[Price],[ProductCatalog],[Reference],[Scale],[Type],[Value],[WishList],
+						Case 
+							When [Locations].[ID] Is Null Then
+								Case 
+									When [WishList]=1 Then [WishListLocation].[ID]
+									Else [UnknownLocation].[ID]
+								End
+							Else [UnknownLocation].[ID]
+						End As [LocationID]
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Rockets] [Rockets]
+            			LEFT OUTER JOIN [dbo].[Locations] [Locations] On [Rockets].[Location]=[Locations].[OName]
+						INNER JOIN [dbo].[Locations] [WishListLocation] On [WishListLocation].[Name]='WishList'
+						INNER JOIN [dbo].[Locations] [UnknownLocation] On [UnknownLocation].[Name]='Unknown'
+            		ORDER BY [Rockets].[ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Rockets];
+            		Select @Actual=Count(*) From [dbo].[Rockets];
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            
+            		Print '   History';
+            		Delete From [dbo].[History] Where [TableName]='Rockets';
+            		INSERT INTO [dbo].[History] ([OID],
+            			[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
+            		SELECT [History].[ID],
+            			[History].[Column],[History].[DateChanged],getdate(),getdate(),[History].[OriginalValue],[Rockets].[ID],[History].[TableName],[History].[Value],[History].[Who]
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+            			INNER JOIN [dbo].[Rockets] [Rockets] On [History].[TableName]='Rockets' And [Rockets].[OID]=[History].[RecordID]
+            		WHERE [History].[TableName]='Rockets' 
+            		ORDER BY [History].[ID];
+            		--Now grab any history for deleted records...
+            		Declare @OrphanedHistoryCount int, @OID int, @RecordID uniqueidentifier;
+            		If OBJECT_ID('tempdb..#DeletedHistory') Is Not Null Drop Table #DeletedHistory
+            		Select [History].[ID],[History].[Column],[History].[DateChanged],getdate() As [DateCreated],getdate() As [DateModified],[History].[OriginalValue],
+            			[History].[RecordID] As [OID],[History].[TableName],[History].[Value],[History].[Who],NEWID() As [RecordID]
+            		Into #DeletedHistory 
+            		From [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+            		Where [History].[TableName]='Rockets' And Not Exists(Select * From [GGGSCP1].[TreasureChest].[dbo].[Rockets] Where [ID]=[History].[RecordID])
+            		Order By [History].[RecordID];
+            		Select @OrphanedHistoryCount=Count(*) From [#DeletedHistory];
+            		Declare h cursor for Select Distinct [OID] From [#DeletedHistory] Order By [OID];
+            		Open h;
+            		Fetch Next From h Into @OID;
+            		While @@FETCH_STATUS = 0
+            		Begin
+            			Set @RecordID=NEWID();
+            			Update [#DeletedHistory] Set [RecordID]=@RecordID Where [OID]=@OID;
+            			Fetch Next From h Into @OID;
+            		End;
+            		Close h;
+            		Deallocate h;
+            		INSERT INTO [dbo].[History] ([OID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
+            		SELECT [ID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who] FROM [#DeletedHistory] ORDER BY [ID];
+            		Drop Table #DeletedHistory;
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[History] Where [TableName]='Rockets';
+            		Select @Actual=Count(*) From [dbo].[History] Where [TableName]='Rockets';
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            
+            		Print '   Images';
+            		Delete From [dbo].[Images] Where [TableName]='Rockets';
+            		INSERT INTO [dbo].[Images] ([OID],
+            			[AlphaSort],[Caption],[Category],[DateCreated],[DateModified],[FileName],[Height],[Image],[Name],[Notes],
+            			[RecordID],[TableName],[Thumbnail],[URL],[Width])
+            		SELECT Null,Upper('Rockets: '+[Rockets].[Name]),[Rockets].[Name],'Rockets',getdate(),getdate(),Null,Null,[Image],[Rockets].[Name],Null,
+            			[newRockets].[ID],'Rockets',0,Null,Null
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Rockets] [Rockets]
+            			INNER JOIN [dbo].[Rockets] [newRockets] On [Rockets].[ID]=[newRockets].[OID]
+            		WHERE [Rockets].[Image] is not Null
+            		ORDER BY [Rockets].[ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Rockets] Where [Image] is not Null;
+            		Select @Actual=Count(*) From [dbo].[Images] Where [TableName]='Rockets';
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            	End Try
+                Begin Catch
+		            Rollback Transaction;
+		            exec sp_LogError @Milestone;
+		            Throw;
+                End Catch;
+		        Insert Into LOG(MileStone,StartTime,FinishTime,Message) Values (@Milestone,@stTime,CURRENT_TIMESTAMP,'Elapsed: '+Convert(nvarchar(24),CURRENT_TIMESTAMP-@stTime,114));
+		        Commit Transaction;
+            End;");
+            context.Database.ExecuteSqlCommand(@"Grant Execute on [dbo].[sp_MigrateRockets] to [Public];");
+        }
+        private static void CreateMigrateShipClasses(TCContext context)
+        {
+            Console.WriteLine("\tsp_MigrateShipClasses");
+            context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateShipClasses' And type='P') Drop Procedure sp_MigrateShipClasses");
+            context.Database.ExecuteSqlCommand(@"
+            --sp_MigrateShipClasses.sql
+            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   Copyright © 2019 All Rights Reserved.
+            --*********************************************************************************************************************************
+            --
+            --	Modification History:
+            --	Date:       Developer:		Description:
+            --	02/01/19	Ken Clark		Created;
+            --=================================================================================================================================
+            
+            Create Procedure sp_MigrateShipClasses As 
+            Begin
+            	Declare @stTime DateTime; Set @stTime=CURRENT_TIMESTAMP;
+            	Declare @Actual int, @Expected int, @Message nvarchar(2000), @Milestone nvarchar(256)='sp_MigrateShipClasses';
+            	Begin Transaction;
+            	Begin Try
+            		Print 'ShipClass/Class...';
+            		Delete From [dbo].[ShipClass];
+            		INSERT INTO [dbo].[ShipClass] ([OID],
+            			[Aircraft],[ASWWeapons],[Beam],[Boilers],[DateCreated],[DateModified],[Description],[Displacement],[Draft],[EW],[FireControl],
+            			[Guns],[Length],[Manning],[Missiles],[Name],[Notes],[Propulsion],[Radars],[Sonars],[Speed],[Year],[ShipClassType_ID])
+            		SELECT [Class].[ID],
+            			[Class].[Aircraft],[Class].[ASW Weapons],[Class].[Beam],[Class].[Boilers],[Class].[DateCreated],[Class].[DateModified],[Class].[Description],[Class].[Displacement],[Class].[Draft],[Class].[EW],[Class].[Fire Control],
+            			[Class].[Guns],[Class].[Length],[Class].[Manning],[Class].[Missiles],[Class].[Name],[Class].[Notes],[Class].[Propulsion],[Class].[Radars],[Class].[Sonars],[Class].[Speed],[Class].[Year],[ShipClassTypes].[ID]
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Class] [Class]
+            			INNER JOIN [dbo].[ShipClassTypes] [ShipClassTypes] On [Class].[ClassificationID]=[ShipClassTypes].[OID]
+            		ORDER BY [Class].[ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Class];
+            		Select @Actual=Count(*) From [dbo].[ShipClass];
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            
+            		Print '   History';
+            		Delete From [dbo].[History] Where [History].[TableName]='ShipClass';
+            		INSERT INTO [dbo].[History] ([OID],
+            			[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
+            		SELECT [History].[ID],
+            			[History].[Column],[History].[DateChanged],getdate(),getdate(),[History].[OriginalValue],[ShipClass].[ID],'ShipClass',[History].[Value],[History].[Who]
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+            			INNER JOIN [dbo].[ShipClass] [ShipClass] On [History].[TableName]='Class' And [ShipClass].[OID]=[History].[RecordID]
+            		WHERE [History].[TableName]='Class' 
+            		ORDER BY [History].[ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[History] Where [TableName]='Class';
+            		Select @Actual=Count(*) From [dbo].[History] Where [TableName]='ShipClass';
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            
+            		Print '   Images';
+            		Delete From [dbo].[Images] Where [TableName]='ShipClass';
+            		INSERT INTO [dbo].[Images] ([OID],
+            			[AlphaSort],[Caption],[Category],[DateCreated],[DateModified],[FileName],[Height],[Image],[Name],[Notes],
+            			[RecordID],[TableName],[Thumbnail],[URL],[Width])
+            		SELECT Null,Upper('Ship Class: '+[Class].[Name]),Null,'ShipClass',getdate(),getdate(),Null,Null,[Image],[Class].[Name],Null,
+            			[ShipClass].[ID],'ShipClass',0,Null,Null
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Class] [Class]
+            			INNER JOIN [dbo].[ShipClass] [ShipClass] On [Class].[ID]=[ShipClass].[OID]
+            		WHERE [Class].[Image] is not Null
+            		ORDER BY [Class].[ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Class] Where [Image] is not Null;
+            		Select @Actual=Count(*) From [dbo].[Images] Where [TableName]='ShipClass';
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            	End Try
+                Begin Catch
+		            Rollback Transaction;
+		            exec sp_LogError @Milestone;
+		            Throw;
+                End Catch;
+		        Insert Into LOG(MileStone,StartTime,FinishTime,Message) Values (@Milestone,@stTime,CURRENT_TIMESTAMP,'Elapsed: '+Convert(nvarchar(24),CURRENT_TIMESTAMP-@stTime,114));
+		        Commit Transaction;
+            End;");
+            context.Database.ExecuteSqlCommand(@"Grant Execute on [dbo].[sp_MigrateShipClasses] to [Public];");
+        }
+        private static void CreateMigrateShipClassTypes(TCContext context)
+        {
+            Console.WriteLine("\tsp_MigrateShipClassTypes");
+            context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateShipClassTypes' And type='P') Drop Procedure sp_MigrateShipClassTypes");
+            context.Database.ExecuteSqlCommand(@"
+            --sp_MigrateShipClassTypes.sql
+            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   Copyright © 2019 All Rights Reserved.
+            --*********************************************************************************************************************************
+            --
+            --	Modification History:
+            --	Date:       Developer:		Description:
+            --	02/01/19	Ken Clark		Created;
+            --=================================================================================================================================
+            
+            Create Procedure sp_MigrateShipClassTypes As 
+            Begin
+            	Declare @stTime DateTime; Set @stTime=CURRENT_TIMESTAMP;
+            	Declare @Actual int, @Expected int, @Message nvarchar(2000), @Milestone nvarchar(256)='sp_MigrateShipClassTypes';
+            	Begin Transaction;
+            	Begin Try
+            		Print 'ShipClassTypes/Classifications...';
+            		--Seed method will have already added most this static data...
+            		Update [ShipClassTypes] Set [OID]=(Select Top 1 ID From [GGGSCP1].[TreasureChest].[dbo].[Classification] Where [Type]=[TypeCode] And [Classification].[Description]=[ShipClassTypes].[Description]);
+            		Update [ShipClassTypes] Set [OID]=(Select Top 1 ID From [GGGSCP1].[TreasureChest].[dbo].[Classification] Where [Type] Is Null And [Classification].[Description]='Unassigned') Where [ShipClassTypes].[Description]='Unassigned';
+            		--INSERT INTO [dbo].[ShipClassTypes] ([OID],
+            		--	[DateCreated],[DateModified],[Description],[TypeCode])
+            		--SELECT [ID],
+            		--	[DateCreated],[DateModified],[Description],[Type]
+            		--FROM [GGGSCP1].[TreasureChest].[dbo].[Classification] ORDER BY [ID];
+            
+            		Print '   History';
+            		Delete From [dbo].[History] Where [History].[TableName]='ShipClassTypes';
+            		INSERT INTO [dbo].[History] ([OID],
+            			[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
+            		SELECT [History].[ID],
+            			[History].[Column],[History].[DateChanged],getdate(),getdate(),[History].[OriginalValue],[ShipClassificationTypes].[ID],'ShipClassTypes',[History].[Value],[History].[Who]
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+            			INNER JOIN [dbo].[ShipClassTypes] [ShipClassificationTypes] On [History].[TableName]='Classification' And [ShipClassificationTypes].[OID]=[History].[RecordID]
+            		WHERE [History].[TableName]='Classification' 
+            		ORDER BY [History].[ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[History] Where [TableName]='Classification';
+            		Select @Actual=Count(*) From [dbo].[History] Where [TableName]='ShipClassTypes';
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            	End Try
+                Begin Catch
+		            Rollback Transaction;
+		            exec sp_LogError @Milestone;
+		            Throw;
+                End Catch;
+		        Insert Into LOG(MileStone,StartTime,FinishTime,Message) Values (@Milestone,@stTime,CURRENT_TIMESTAMP,'Elapsed: '+Convert(nvarchar(24),CURRENT_TIMESTAMP-@stTime,114));
+		        Commit Transaction;
+            End;");
+            context.Database.ExecuteSqlCommand(@"Grant Execute on [dbo].[sp_MigrateShipClassTypes] to [Public];");
+        }
+        private static void CreateMigrateShips(TCContext context)
+        {
+            Console.WriteLine("\tsp_MigrateShips");
+            context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateShips' And type='P') Drop Procedure sp_MigrateShips");
+            context.Database.ExecuteSqlCommand(@"
+            --sp_MigrateShips.sql
+            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   Copyright © 2019 All Rights Reserved.
+            --*********************************************************************************************************************************
+            --
+            --	Modification History:
+            --	Date:       Developer:		Description:
+            --	02/01/19	Ken Clark		Created;
+            --=================================================================================================================================
+            
+            Create Procedure sp_MigrateShips As 
+            Begin
+            	Declare @stTime DateTime; Set @stTime=CURRENT_TIMESTAMP;
+            	Declare @Actual int, @Expected int, @Message nvarchar(2000), @Milestone nvarchar(256)='sp_MigrateShips';
+            	Begin Transaction;
+            	Begin Try
+            		Print 'Ships...';
+            		Delete From [dbo].[Ships];
+            		INSERT INTO [dbo].[Ships] ([OID],
+            			[Aircraft],[ASWWeapons],[Beam],[Boilers],[Command],[DateCommissioned],[DateCreated],[DateModified],[Description],[Displacement],
+            			[Draft],[EW],[FireControl],[Guns],[History],[HomePort],[HullNumber],[InternetURL],[Length],[LocalURL],[Manning],[Missiles],
+            			[Name],[Notes],[Number],[Propulsion],[Radars],[Sonars],[Speed],[Status],[ZipCode],
+            			[ShipClass_ID],[ShipClassType_ID])
+            		SELECT [Ships].[ID],
+            			[Ships].[Aircraft],[Ships].[ASW Weapons],[Ships].[Beam],[Ships].[Boilers],[Ships].[Command],[Ships].[Commissioned],[Ships].[DateCreated],[Ships].[DateModified],Null,[Ships].[Displacement],
+            			[Ships].[Draft],[Ships].[EW],[Ships].[Fire Control],[Ships].[Guns],[Ships].[History]+[Ships].[More History],[Ships].[HomePort],[Ships].[HullNumber],[Ships].[URL_Internet],[Ships].[Length],[Ships].[URL_Local],[Ships].[Manning],[Ships].[Missiles],
+            			[Ships].[Name],[Ships].[Notes],[Ships].[Number],[Ships].[Propulsion],[Ships].[Radars],[Ships].[Sonars],[Ships].[Speed],[Ships].[Status],[Ships].[Zip Code],
+            			[ShipClass].[ID],[ShipClassTypes].[ID]
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Ships]
+            			INNER JOIN [dbo].[ShipClass] [ShipClass] On [Ships].[ClassID]=[ShipClass].[OID]
+            			INNER JOIN [dbo].[ShipClassTypes] [ShipClassTypes] On [Ships].[ClassificationID]=[ShipClassTypes].[OID]
+            		ORDER BY [Ships].[ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Ships];
+            		Select @Actual=Count(*) From [dbo].[Ships];
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            
+            		Print '   History';
+            		Delete From [dbo].[History] Where [TableName]='Ships';
+            		INSERT INTO [dbo].[History] ([OID],
+            			[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
+            		SELECT [History].[ID],
+            			[History].[Column],[History].[DateChanged],getdate(),getdate(),[History].[OriginalValue],[Ships].[ID],'Ships',[History].[Value],[History].[Who]
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+            			INNER JOIN [dbo].[Ships] [Ships] On [History].[TableName]='Ships' And [Ships].[OID]=[History].[RecordID]
+            		WHERE [History].[TableName]='Ships' 
+            		ORDER BY [History].[ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[History] Where [TableName]='Ships';
+            		Select @Actual=Count(*) From [dbo].[History] Where [TableName]='Ships';
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            
+            		Print '   Images';
+            		Delete From [dbo].[Images] Where [TableName]='Ships';
+            		INSERT INTO [dbo].[Images] ([OID],
+            			[AlphaSort],[Caption],[Category],[DateCreated],[DateModified],[FileName],[Height],[Image],[Name],[Notes],
+            			[RecordID],[TableName],[Thumbnail],[URL],[Width])
+            		SELECT Null,Upper('Ships: '+[Ships].[Name]),Null,'Ships',getdate(),getdate(),Null,Null,[Image],[Ships].[Name],Null,
+            			[newShips].[ID],'Ships',0,Null,Null
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Ships] [Ships]
+            			INNER JOIN [dbo].[Ships] [newShips] On [Ships].[ID]=[newShips].[OID]
+            		WHERE [Ships].[Image] is not Null
+            		ORDER BY [Ships].[ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Ships] Where [Image] is not Null;
+            		Select @Actual=Count(*) From [dbo].[Images] Where [TableName]='Ships';
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            	End Try
+                Begin Catch
+		            Rollback Transaction;
+		            exec sp_LogError @Milestone;
+		            Throw;
+                End Catch;
+		        Insert Into LOG(MileStone,StartTime,FinishTime,Message) Values (@Milestone,@stTime,CURRENT_TIMESTAMP,'Elapsed: '+Convert(nvarchar(24),CURRENT_TIMESTAMP-@stTime,114));
+		        Commit Transaction;
+            End;");
+            context.Database.ExecuteSqlCommand(@"Grant Execute on [dbo].[sp_MigrateShips] to [Public];");
+        }
+        private static void CreateMigrateSoftware(TCContext context)
+        {
+            Console.WriteLine("\tsp_MigrateSoftware");
+            context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateSoftware' And type='P') Drop Procedure sp_MigrateSoftware");
+            context.Database.ExecuteSqlCommand(@"
+            --sp_MigrateSoftware.sql
+            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   Copyright © 2019 All Rights Reserved.
+            --*********************************************************************************************************************************
+            --
+            --	Modification History:
+            --	Date:       Developer:		Description:
+            --	02/01/19	Ken Clark		Created;
+            --=================================================================================================================================
+            
+            Create Procedure sp_MigrateSoftware As 
+            Begin
+            	Declare @stTime DateTime; Set @stTime=CURRENT_TIMESTAMP;
+            	Declare @Actual int, @Expected int, @Message nvarchar(2000), @Milestone nvarchar(256)='sp_MigrateSoftware';
+            	Begin Transaction;
+            	Begin Try
+            		Print 'Software'
+            		Delete From [dbo].[Software];
+            		INSERT INTO [dbo].[Software] ([OID],
+            			[AlphaSort],[Cataloged],[CDkey],[DateCreated],[DateInventoried],[DateModified],[DatePurchased],[DateReleased],[DateVerified],
+            			[Developer],[ISBN],[MediaFormat],[Notes],[Platform],[Price],[Publisher],[Title],[Type],[Value],[Version],[WishList],[LocationID])
+            		SELECT [Software].[ID],
+            			[AlphaSort],[Cataloged],[CDkey],[Software].[DateCreated],[DateInventoried],[Software].[DateModified],[DatePurchased],[DateReleased],[DateVerified],
+            			[Developer],[ISBN],[Media],[Notes],[Platform],[Price],[Publisher],[Title],[Type],[Value],[Version],[WishList],
+						Case 
+							When [Locations].[ID] Is Null Then
+								Case 
+									When [WishList]=1 Then [WishListLocation].[ID]
+									Else [UnknownLocation].[ID]
+								End
+							Else [UnknownLocation].[ID]
+						End As [LocationID]
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Software] [Software]
+            			LEFT OUTER JOIN [dbo].[Locations] [Locations] On [Software].[Location]=[Locations].[OName]
+						INNER JOIN [dbo].[Locations] [WishListLocation] On [WishListLocation].[Name]='WishList'
+						INNER JOIN [dbo].[Locations] [UnknownLocation] On [UnknownLocation].[Name]='Unknown'
+            		ORDER BY [Software].[ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Software];
+            		Select @Actual=Count(*) From [dbo].[Software];
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            
+            		Print '   History';
+            		Delete From [dbo].[History] Where [TableName]='Software';
+            		INSERT INTO [dbo].[History] ([OID],
+            			[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
+            		SELECT [History].[ID],
+            			[History].[Column],[History].[DateChanged],getdate(),getdate(),[History].[OriginalValue],[Software].[ID],[History].[TableName],[History].[Value],[History].[Who]
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+            			INNER JOIN [dbo].[Software] [Software] On [History].[TableName]='Software' And [Software].[OID]=[History].[RecordID]
+            		WHERE [History].[TableName]='Software' 
+            		ORDER BY [History].[ID];
+            		--Now grab any history for deleted records...
+            		Declare @OID int, @RecordID uniqueidentifier;
+            		If OBJECT_ID('tempdb..#DeletedHistory') Is Not Null Drop Table #DeletedHistory
+            		Select [History].[ID],[History].[Column],[History].[DateChanged],getdate() As [DateCreated],getdate() As [DateModified],[History].[OriginalValue],
+            			[History].[RecordID] As [OID],[History].[TableName],[History].[Value],[History].[Who],NEWID() As [RecordID]
+            		Into #DeletedHistory 
+            		From [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+            		Where [History].[TableName]='Software' And Not Exists(Select * From [GGGSCP1].[TreasureChest].[dbo].[Software] Where [ID]=[History].[RecordID])
+            		Order By [History].[RecordID];
+            		Declare h cursor for Select Distinct [OID] From [#DeletedHistory] Order By [OID];
+            		Open h;
+            		Fetch Next From h Into @OID;
+            		While @@FETCH_STATUS = 0
+            		Begin
+            			Set @RecordID=NEWID();
+            			Update [#DeletedHistory] Set [RecordID]=@RecordID Where [OID]=@OID;
+            			Fetch Next From h Into @OID;
+            		End
+            		Close h;
+            		Deallocate h;
+            		INSERT INTO [dbo].[History] ([OID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
+            		SELECT [ID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who] FROM [#DeletedHistory] ORDER BY [ID];
+            		Drop Table #DeletedHistory;
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[History] Where [TableName]='Software';
+            		Select @Actual=Count(*) From [dbo].[History] Where [TableName]='Software';
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            
+            		Print '   Images';
+            		Delete From [dbo].[Images] Where [TableName]='Software';
+            		INSERT INTO [dbo].[Images] ([OID],
+            			[AlphaSort],[Caption],[Category],[DateCreated],[DateModified],[FileName],[Height],[Image],[Name],[Notes],
+            			[RecordID],[TableName],[Thumbnail],[URL],[Width])
+            		SELECT Null,Upper('Software: '+[Software].[Title]),Null,'Software',getdate(),getdate(),Null,Null,[Image],[Software].[Title],Null,
+            			[newSoftware].[ID],'Software',0,Null,Null
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Software] [Software]
+            			INNER JOIN [dbo].[Software] [newSoftware] On [Software].[ID]=[newSoftware].[OID]
+            		WHERE [Software].[Image] is not Null
+            		ORDER BY [Software].[ID];
+            		INSERT INTO [dbo].[Images] ([OID],
+            			[AlphaSort],[Caption],[Category],[DateCreated],[DateModified],[FileName],[Height],[Image],[Name],[Notes],
+            			[RecordID],[TableName],[Thumbnail],[URL],[Width])
+            		SELECT Null,Upper('Software: '+[Software].[Title]),Null,'Software',getdate(),getdate(),Null,Null,[OtherImage],[Software].[Title],Null,
+            			[newSoftware].[ID],'Software',0,Null,Null
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Software] [Software]
+            			INNER JOIN [dbo].[Software] [newSoftware] On [Software].[ID]=[newSoftware].[OID]
+            		WHERE [Software].[OtherImage] is not Null
+            		ORDER BY [Software].[ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Software] Where [Image] is not Null;
+            		Select @Expected=@Expected+Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Software] Where [OtherImage] is not Null;
+            		Select @Actual=Count(*) From [dbo].[Images] Where [TableName]='Software';
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            	End Try
+                Begin Catch
+		            Rollback Transaction;
+		            exec sp_LogError @Milestone;
+		            Throw;
+                End Catch;
+		        Insert Into LOG(MileStone,StartTime,FinishTime,Message) Values (@Milestone,@stTime,CURRENT_TIMESTAMP,'Elapsed: '+Convert(nvarchar(24),CURRENT_TIMESTAMP-@stTime,114));
+		        Commit Transaction;
+            End;");
+            context.Database.ExecuteSqlCommand(@"Grant Execute on [dbo].[sp_MigrateSoftware] to [Public];");
+        }
+        private static void CreateMigrateSpecials(TCContext context)
+        {
+            Console.WriteLine("\tsp_MigrateSpecials");
+            context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateSpecials' And type='P') Drop Procedure sp_MigrateSpecials");
+            context.Database.ExecuteSqlCommand(@"
+            --sp_MigrateSpecials.sql
+            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   Copyright © 2019 All Rights Reserved.
+            --*********************************************************************************************************************************
+            --
+            --	Modification History:
+            --	Date:       Developer:		Description:
+            --	02/01/19	Ken Clark		Created;
+            --=================================================================================================================================
+            
+            Create Procedure sp_MigrateSpecials As 
+            Begin
+            	Declare @stTime DateTime; Set @stTime=CURRENT_TIMESTAMP;
+            	Declare @Actual int, @Expected int, @Message nvarchar(2000), @Milestone nvarchar(256)='sp_MigrateSpecials';
+            	Begin Transaction;
+            	Begin Try
+            		Print 'Videos/Specials'
+            		Delete From [dbo].[Images] Where [TableName]='Videos' And [Images].[RecordID] In (Select ID From [dbo].[Videos] Where [SourceTable]='Specials');
+            		Delete From [dbo].[History] Where [TableName]='Videos' And [History].[RecordID] In (Select ID From [dbo].[Videos] Where [SourceTable]='Specials');
+            		Delete From [dbo].[Videos] Where [SourceTable]='Specials';
+            		INSERT INTO [dbo].[Videos] ([OID],
+            			[AlphaSort],[Cataloged],[DateCreated],[DateInventoried],[DateModified],[DatePurchased],[DateReleased],[DateVerified],
+            			[Distributor],[MediaFormat],[Notes],[Price],[Subject],[Title],[Value],[WishList],[StoreBought],[WMV],[LocationID],[SourceTable])
+            		SELECT [Specials].[ID],
+            			[Sort],1,[Specials].[DateCreated],[DateInventoried],[Specials].[DateModified],[DatePurchased],[ReleaseDate],[DateVerified],
+            			[Distributor],[Format],[Notes],[Price],[Subject],[Title],[Value],[WishList],[StoreBought],[WMV],
+						Case 
+							When [Locations].[ID] Is Null Then
+								Case 
+									When [WishList]=1 Then [WishListLocation].[ID]
+									Else [UnknownLocation].[ID]
+								End
+							Else [UnknownLocation].[ID]
+						End As [LocationID],'Specials'
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Specials] [Specials]
+            			LEFT OUTER JOIN [dbo].[Locations] [Locations] On [Specials].[Location]=[Locations].[OName]
+						INNER JOIN [dbo].[Locations] [WishListLocation] On [WishListLocation].[Name]='WishList'
+						INNER JOIN [dbo].[Locations] [UnknownLocation] On [UnknownLocation].[Name]='Unknown'
+            		ORDER BY [Specials].[ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Specials];
+            		Select @Actual=Count(*) From [dbo].[Videos] Where [SourceTable]='Specials';
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            
+            		Print '   History';
+            		INSERT INTO [dbo].[History] ([OID],
+            			[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
+            		SELECT [History].[ID],
+            			[History].[Column],[History].[DateChanged],getdate(),getdate(),[History].[OriginalValue],[Videos].[ID],'Videos',[History].[Value],[History].[Who]
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+            			INNER JOIN [dbo].[Videos] [Videos] On [History].[TableName]='Specials' And [Videos].[OID]=[History].[RecordID]
+            		WHERE [History].[TableName]='Specials' 
+            		ORDER BY [History].[ID];
+            		--Now grab any history for deleted records...
+            		Declare @OrphanedHistoryCount int, @OID int, @RecordID uniqueidentifier;
+            		If OBJECT_ID('tempdb..#DeletedHistory') Is Not Null Drop Table #DeletedHistory
+            		Select [History].[ID],[History].[Column],[History].[DateChanged],getdate() As [DateCreated],getdate() As [DateModified],[History].[OriginalValue],
+            			[History].[RecordID] As [OID],[History].[TableName],[History].[Value],[History].[Who],NEWID() As [RecordID]
+            		Into #DeletedHistory 
+            		From [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+            		Where [History].[TableName]='Specials' And Not Exists(Select * From [GGGSCP1].[TreasureChest].[dbo].[Specials] Where [ID]=[History].[RecordID])
+            		Order By [History].[RecordID];
+            		Select @OrphanedHistoryCount=Count(*) From [#DeletedHistory];
+            		Declare h cursor for Select Distinct [OID] From [#DeletedHistory] Order By [OID];
+            		Open h;
+            		Fetch Next From h Into @OID;
+            		While @@FETCH_STATUS = 0
+            		Begin
+            			Set @RecordID=NEWID();
+            			Update [#DeletedHistory] Set [RecordID]=@RecordID Where [OID]=@OID;
+            			Fetch Next From h Into @OID;
+            		End;
+            		Close h;
+            		Deallocate h;
+            		INSERT INTO [dbo].[History] ([OID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
+            		SELECT [ID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who] FROM [#DeletedHistory] ORDER BY [ID];
+            		Drop Table #DeletedHistory;
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[History] Where [TableName]='Specials';
+            		Select @Actual=@OrphanedHistoryCount+Count(*) From [dbo].[History] Where [TableName]='Videos' And [History].[RecordID] In (Select ID From [dbo].[Videos] Where [SourceTable]='Specials');
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            
+            		Print '   Images';
+            		INSERT INTO [dbo].[Images] ([OID],
+            			[AlphaSort],[Caption],[Category],[DateCreated],[DateModified],[FileName],[Height],[Image],[Name],[Notes],
+            			[RecordID],[TableName],[Thumbnail],[URL],[Width])
+            		SELECT Null,Upper('Videos: '+[Specials].[Title]),[Specials].[Title],'Videos',getdate(),getdate(),Null,Null,[Image],[Specials].[Title],Null,
+            			[newSpecials].[ID],'Videos',0,Null,Null
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Specials] [Specials]
+            			INNER JOIN [dbo].[Videos] [newSpecials] On [Specials].[ID]=[newSpecials].[OID]
+            		WHERE [Specials].[Image] is not Null
+            		ORDER BY [Specials].[ID];
+            		INSERT INTO [dbo].[Images] ([OID],
+            			[AlphaSort],[Caption],[Category],[DateCreated],[DateModified],[FileName],[Height],[Image],[Name],[Notes],
+            			[RecordID],[TableName],[Thumbnail],[URL],[Width])
+            		SELECT Null,Upper('Videos: '+[Specials].[Title]),[Specials].[Title],'Videos',getdate(),getdate(),Null,Null,[OtherImage],[Specials].[Title],Null,
+            			[newSpecials].[ID],'Videos',0,Null,Null
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Specials] [Specials]
+            			INNER JOIN [dbo].[Videos] [newSpecials] On [Specials].[ID]=[newSpecials].[OID]
+            		WHERE [Specials].[OtherImage] is not Null
+            		ORDER BY [Specials].[ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Specials] Where [Image] is not Null;
+            		Select @Expected=@Expected+Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Specials] Where [OtherImage] is not Null;
+            		Select @Actual=Count(*) From [dbo].[Images] Where [TableName]='Videos' And [Images].[RecordID] In (Select ID From [dbo].[Videos] Where [SourceTable]='Specials');
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            	End Try
+                Begin Catch
+		            Rollback Transaction;
+		            exec sp_LogError @Milestone;
+		            Throw;
+                End Catch;
+		        Insert Into LOG(MileStone,StartTime,FinishTime,Message) Values (@Milestone,@stTime,CURRENT_TIMESTAMP,'Elapsed: '+Convert(nvarchar(24),CURRENT_TIMESTAMP-@stTime,114));
+		        Commit Transaction;
+            End;");
+            context.Database.ExecuteSqlCommand(@"Grant Execute on [dbo].[sp_MigrateSpecials] to [Public];");
+        }
+        private static void CreateMigrateTools(TCContext context)
+        {
+            Console.WriteLine("\tsp_MigrateTools");
+            context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateTools' And type='P') Drop Procedure sp_MigrateTools");
+            context.Database.ExecuteSqlCommand(@"
+            --sp_MigrateTools.sql
+            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   Copyright © 2019 All Rights Reserved.
+            --*********************************************************************************************************************************
+            --
+            --	Modification History:
+            --	Date:       Developer:		Description:
+            --	02/01/19	Ken Clark		Created;
+            --=================================================================================================================================
+            
+            Create Procedure sp_MigrateTools As 
+            Begin
+            	Declare @stTime DateTime; Set @stTime=CURRENT_TIMESTAMP;
+            	Declare @Actual int, @Expected int, @Message nvarchar(2000), @Milestone nvarchar(256)='sp_MigrateTools';
+            	Begin Transaction;
+            	Begin Try
+            		Print 'Tools'
+            		Delete From [dbo].[Tools];
+            		INSERT INTO [dbo].[Tools] ([OID],
+            			[Cataloged],[DateCreated],[DateInventoried],[DateModified],[DatePurchased],[DateVerified],[Manufacturer],[Name],
+            			[Notes],[Price],[ProductCatalog],[Reference],[Value],[WishList],[LocationID])
+            		SELECT [Tools].[ID],
+            			1,[Tools].[DateCreated],[DateInventoried],[Tools].[DateModified],[DatePurchased],[DateVerified],[Manufacturer],[Tools].[Name],
+            			[Notes],[Price],[ProductCatalog],[Reference],[Value],[WishList],
+						Case 
+							When [Locations].[ID] Is Null Then
+								Case 
+									When [WishList]=1 Then [WishListLocation].[ID]
+									Else [UnknownLocation].[ID]
+								End
+							Else [UnknownLocation].[ID]
+						End As [LocationID]
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Tools] [Tools]
+            			LEFT OUTER JOIN [dbo].[Locations] [Locations] On [Tools].[Location]=[Locations].[OName]
+						INNER JOIN [dbo].[Locations] [WishListLocation] On [WishListLocation].[Name]='WishList'
+						INNER JOIN [dbo].[Locations] [UnknownLocation] On [UnknownLocation].[Name]='Unknown'
+            		ORDER BY [Tools].[ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Tools];
+            		Select @Actual=Count(*) From [dbo].[Tools];
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            
+            		Print '   History';
+            		Delete From [dbo].[History] Where [TableName]='Tools';
+            		INSERT INTO [dbo].[History] ([OID],
+            			[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
+            		SELECT [History].[ID],
+            			[History].[Column],[History].[DateChanged],getdate(),getdate(),[History].[OriginalValue],[Tools].[ID],[History].[TableName],[History].[Value],[History].[Who]
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+            			INNER JOIN [dbo].[Tools] [Tools] On [History].[TableName]='Tools' And [Tools].[OID]=[History].[RecordID]
+            		WHERE [History].[TableName]='Tools' 
+            		ORDER BY [History].[ID];
+            		--Now grab any history for deleted records...
+            		Declare @OrphanedHistoryCount int, @OID int, @RecordID uniqueidentifier;
+            		If OBJECT_ID('tempdb..#DeletedHistory') Is Not Null Drop Table #DeletedHistory
+            		Select [History].[ID],[History].[Column],[History].[DateChanged],getdate() As [DateCreated],getdate() As [DateModified],[History].[OriginalValue],
+            			[History].[RecordID] As [OID],[History].[TableName],[History].[Value],[History].[Who],NEWID() As [RecordID]
+            		Into #DeletedHistory 
+            		From [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+            		Where [History].[TableName]='Tools' And Not Exists(Select * From [GGGSCP1].[TreasureChest].[dbo].[Tools] Where [ID]=[History].[RecordID])
+            		Order By [History].[RecordID];
+            		Select @OrphanedHistoryCount=Count(*) From [#DeletedHistory];
+            		Declare h cursor for Select Distinct [OID] From [#DeletedHistory] Order By [OID];
+            		Open h;
+            		Fetch Next From h Into @OID;
+            		While @@FETCH_STATUS = 0
+            		Begin
+            			Set @RecordID=NEWID();
+            			Update [#DeletedHistory] Set [RecordID]=@RecordID Where [OID]=@OID;
+            			Fetch Next From h Into @OID;
+            		End;
+            		Close h;
+            		Deallocate h;
+            		INSERT INTO [dbo].[History] ([OID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
+            		SELECT [ID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who] FROM [#DeletedHistory] ORDER BY [ID];
+            		Drop Table #DeletedHistory;
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[History] Where [TableName]='Tools';
+            		Select @Actual=Count(*) From [dbo].[History] Where [TableName]='Tools';
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            
+            		Print '   Images';
+            		Delete From [dbo].[Images] Where [TableName]='Tools';
+            		INSERT INTO [dbo].[Images] ([OID],
+            			[AlphaSort],[Caption],[Category],[DateCreated],[DateModified],[FileName],[Height],[Image],[Name],[Notes],
+            			[RecordID],[TableName],[Thumbnail],[URL],[Width])
+            		SELECT Null,Upper('Tools: '+[Tools].[Name]),[Tools].[Name],'Tools',getdate(),getdate(),Null,Null,[Image],[Tools].[Name],Null,
+            			[newTools].[ID],'Tools',0,Null,Null
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Tools] [Tools]
+            			INNER JOIN [dbo].[Tools] [newTools] On [Tools].[ID]=[newTools].[OID]
+            		WHERE [Tools].[Image] is not Null
+            		ORDER BY [Tools].[ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Tools] Where [Image] is not Null;
+            		Select @Actual=Count(*) From [dbo].[Images] Where [TableName]='Tools';
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            	End Try
+                Begin Catch
+		            Rollback Transaction;
+		            exec sp_LogError @Milestone;
+		            Throw;
+                End Catch;
+		        Insert Into LOG(MileStone,StartTime,FinishTime,Message) Values (@Milestone,@stTime,CURRENT_TIMESTAMP,'Elapsed: '+Convert(nvarchar(24),CURRENT_TIMESTAMP-@stTime,114));
+		        Commit Transaction;
+            End;");
+            context.Database.ExecuteSqlCommand(@"Grant Execute on [dbo].[sp_MigrateTools] to [Public];");
+        }
+        private static void CreateMigrateTrains(TCContext context)
+        {
+            Console.WriteLine("\tsp_MigrateTrains");
+            context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateTrains' And type='P') Drop Procedure sp_MigrateTrains");
+            context.Database.ExecuteSqlCommand(@"
+            --sp_MigrateTrains.sql
+            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   Copyright © 2019 All Rights Reserved.
+            --*********************************************************************************************************************************
+            --
+            --	Modification History:
+            --	Date:       Developer:		Description:
+            --	02/01/19	Ken Clark		Created;
+            --=================================================================================================================================
+            
+            Create Procedure sp_MigrateTrains As 
+            Begin
+            	Declare @stTime DateTime; Set @stTime=CURRENT_TIMESTAMP;
+            	Declare @Actual int, @Expected int, @Message nvarchar(2000), @Milestone nvarchar(256)='sp_MigrateTrains';
+            	Begin Transaction;
+            	Begin Try
+            		Print 'Trains'
+            		Delete From [dbo].[Trains];
+            		INSERT INTO [dbo].[Trains] ([OID],
+            			[Cataloged],[DateCreated],[DateInventoried],[DateModified],[DatePurchased],[DateVerified],[Line],[Manufacturer],[Name],
+            			[Notes],[Price],[ProductCatalog],[Reference],[Scale],[Type],[Value],[WishList],[LocationID])
+            		SELECT [Trains].[ID],
+            			1,[Trains].[DateCreated],[DateInventoried],[Trains].[DateModified],[DatePurchased],[DateVerified],[Line],[Manufacturer],[Line],
+            			[Notes],[Price],[ProductCatalog],[Reference],[Scale],[Type],[Value],[WishList],
+						Case 
+							When [Locations].[ID] Is Null Then
+								Case 
+									When [WishList]=1 Then [WishListLocation].[ID]
+									Else [UnknownLocation].[ID]
+								End
+							Else [UnknownLocation].[ID]
+						End As [LocationID]
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Trains] [Trains]
+            			LEFT OUTER JOIN [dbo].[Locations] [Locations] On [Trains].[Location]=[Locations].[OName]
+						INNER JOIN [dbo].[Locations] [WishListLocation] On [WishListLocation].[Name]='WishList'
+						INNER JOIN [dbo].[Locations] [UnknownLocation] On [UnknownLocation].[Name]='Unknown'
+            		ORDER BY [Trains].[ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Trains];
+            		Select @Actual=Count(*) From [dbo].[Trains];
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            
+            		Print '   History';
+            		Delete From [dbo].[History] Where [TableName]='Trains';
+            		INSERT INTO [dbo].[History] ([OID],
+            			[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
+            		SELECT [History].[ID],
+            			[History].[Column],[History].[DateChanged],getdate(),getdate(),[History].[OriginalValue],[Trains].[ID],[History].[TableName],[History].[Value],[History].[Who]
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+            			INNER JOIN [dbo].[Trains] [Trains] On [History].[TableName]='Trains' And [Trains].[OID]=[History].[RecordID]
+            		WHERE [History].[TableName]='Trains' 
+            		ORDER BY [History].[ID];
+            		--Now grab any history for deleted records...
+            		Declare @OrphanedHistoryCount int, @OID int, @RecordID uniqueidentifier;
+            		If OBJECT_ID('tempdb..#DeletedHistory') Is Not Null Drop Table #DeletedHistory
+            		Select [History].[ID],[History].[Column],[History].[DateChanged],getdate() As [DateCreated],getdate() As [DateModified],[History].[OriginalValue],
+            			[History].[RecordID] As [OID],[History].[TableName],[History].[Value],[History].[Who],NEWID() As [RecordID]
+            		Into #DeletedHistory 
+            		From [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+            		Where [History].[TableName]='Trains' And Not Exists(Select * From [GGGSCP1].[TreasureChest].[dbo].[Trains] Where [ID]=[History].[RecordID])
+            		Order By [History].[RecordID];
+            		Select @OrphanedHistoryCount=Count(*) From [#DeletedHistory];
+            		Declare h cursor for Select Distinct [OID] From [#DeletedHistory] Order By [OID];
+            		Open h;
+            		Fetch Next From h Into @OID;
+            		While @@FETCH_STATUS = 0
+            		Begin
+            			Set @RecordID=NEWID();
+            			Update [#DeletedHistory] Set [RecordID]=@RecordID Where [OID]=@OID;
+            			Fetch Next From h Into @OID;
+            		End;
+            		Close h;
+            		Deallocate h;
+            		INSERT INTO [dbo].[History] ([OID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
+            		SELECT [ID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who] FROM [#DeletedHistory] ORDER BY [ID];
+            		Drop Table #DeletedHistory;
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[History] Where [TableName]='Trains';
+            		Select @Actual=Count(*) From [dbo].[History] Where [TableName]='Trains';
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            
+            		Print '   Images';
+            		Delete From [dbo].[Images] Where [TableName]='Trains';
+            		INSERT INTO [dbo].[Images] ([OID],
+            			[AlphaSort],[Caption],[Category],[DateCreated],[DateModified],[FileName],[Height],[Image],[Name],[Notes],
+            			[RecordID],[TableName],[Thumbnail],[URL],[Width])
+            		SELECT Null,Upper('Trains: '+[Trains].[Line]),[Trains].[Line],'Trains',getdate(),getdate(),Null,Null,[Image],[Trains].[Line],Null,
+            			[newTrains].[ID],'Trains',0,Null,Null
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Trains] [Trains]
+            			INNER JOIN [dbo].[Trains] [newTrains] On [Trains].[ID]=[newTrains].[OID]
+            		WHERE [Trains].[Image] is not Null
+            		ORDER BY [Trains].[ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Trains] Where [Image] is not Null;
+            		Select @Actual=Count(*) From [dbo].[Images] Where [TableName]='Trains';
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            	End Try
+                Begin Catch
+		            Rollback Transaction;
+		            exec sp_LogError @Milestone;
+		            Throw;
+                End Catch;
+		        Insert Into LOG(MileStone,StartTime,FinishTime,Message) Values (@Milestone,@stTime,CURRENT_TIMESTAMP,'Elapsed: '+Convert(nvarchar(24),CURRENT_TIMESTAMP-@stTime,114));
+		        Commit Transaction;
+            End;");
+            context.Database.ExecuteSqlCommand(@"Grant Execute on [dbo].[sp_MigrateTrains] to [Public];");
+        }
+        private static void CreateMigrateVideoResearch(TCContext context)
+        {
+            Console.WriteLine("\tsp_MigrateVideoResearch");
+            context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateVideoResearch' And type='P') Drop Procedure sp_MigrateVideoResearch");
+            context.Database.ExecuteSqlCommand(@"
+            --sp_MigrateVideoResearch.sql
+            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   Copyright © 2019 All Rights Reserved.
+            --*********************************************************************************************************************************
+            --
+            --	Modification History:
+            --	Date:       Developer:		Description:
+            --	02/01/19	Ken Clark		Created;
+            --=================================================================================================================================
+            
+            Create Procedure sp_MigrateVideoResearch As 
+            Begin
+            	Declare @stTime DateTime; Set @stTime=CURRENT_TIMESTAMP;
+            	Declare @Actual int, @Expected int, @Message nvarchar(2000), @Milestone nvarchar(256)='sp_MigrateVideoResearch';
+            	Begin Transaction;
+            	Begin Try
+            		Print 'Videos/Video Research'
+            		Delete From [dbo].[Images] Where [TableName]='Videos' And [Images].[RecordID] In (Select ID From [dbo].[Videos] Where [SourceTable]='Video Research');
+            		Delete From [dbo].[History] Where [TableName]='Videos' And [History].[RecordID] In (Select ID From [dbo].[Videos] Where [SourceTable]='Video Research');
+            		Delete From [dbo].[Videos] Where [SourceTable]='Video Research';
+            		INSERT INTO [dbo].[Videos] ([OID],
+            			[AlphaSort],[Cataloged],[DateCreated],[DateInventoried],[DateModified],[DatePurchased],[DateReleased],[DateVerified],
+            			[Distributor],[MediaFormat],[Notes],[Price],[Subject],[Title],[Value],[WishList],[StoreBought],[WMV],[LocationID],[SourceTable])
+            		SELECT [Video Research].[ID],
+            			[AlphaSort],1,[Video Research].[DateCreated],[DateInventoried],[Video Research].[DateModified],[DatePurchased],[ReleaseDate],[DateVerified],
+            			[Distributor],[Format],[Notes],[Price],[Subject],[Title],[Value],[WishList],0,[WMV],
+						Case 
+							When [Locations].[ID] Is Null Then
+								Case 
+									When [WishList]=1 Then [WishListLocation].[ID]
+									Else [UnknownLocation].[ID]
+								End
+							Else [UnknownLocation].[ID]
+						End As [LocationID],'Video Research'
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Video Research] [Video Research]
+            			LEFT OUTER JOIN [dbo].[Locations] [Locations] On [Video Research].[Location]=[Locations].[OName]
+						INNER JOIN [dbo].[Locations] [WishListLocation] On [WishListLocation].[Name]='WishList'
+						INNER JOIN [dbo].[Locations] [UnknownLocation] On [UnknownLocation].[Name]='Unknown'
+            		ORDER BY [Video Research].[ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Video Research];
+            		Select @Actual=Count(*) From [dbo].[Videos] Where [SourceTable]='Video Research';
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            
+            		Print '   History';
+            		INSERT INTO [dbo].[History] ([OID],
+            			[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
+            		SELECT [History].[ID],
+            			[History].[Column],[History].[DateChanged],getdate(),getdate(),[History].[OriginalValue],[Videos].[ID],'Videos',[History].[Value],[History].[Who]
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+            			INNER JOIN [GGGSCP1].[TreasureChest].[dbo].[Video Research] [Video Research] On [History].[TableName]='Video Research' And [History].[RecordID]=[Video Research].[ID]
+            			INNER JOIN [dbo].[Videos] [Videos] On [Video Research].[ID]=[Videos].[OID]
+            				And [History].[RecordID]=[Video Research].[ID]
+            		WHERE [History].[TableName]='Video Research' 
+            		ORDER BY [History].[ID];
+            		--Now grab any history for deleted records...
+            		Declare @OrphanedHistoryCount int, @OID int, @RecordID uniqueidentifier;
+            		If OBJECT_ID('tempdb..#DeletedHistory') Is Not Null Drop Table #DeletedHistory
+            		Select [History].[ID],[History].[Column],[History].[DateChanged],getdate() As [DateCreated],getdate() As [DateModified],[History].[OriginalValue],
+            			[History].[RecordID] As [OID],[History].[TableName],[History].[Value],[History].[Who],NEWID() As [RecordID]
+            		Into #DeletedHistory 
+            		From [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+            		Where [History].[TableName]='Video Research' And Not Exists(Select * From [GGGSCP1].[TreasureChest].[dbo].[Video Research] Where [ID]=[History].[RecordID])
+            		Order By [History].[RecordID];
+            		Select @OrphanedHistoryCount=Count(*) From [#DeletedHistory];
+            		Declare h cursor for Select Distinct [OID] From [#DeletedHistory] Order By [OID];
+            		Open h;
+            		Fetch Next From h Into @OID;
+            		While @@FETCH_STATUS = 0
+            		Begin
+            			Set @RecordID=NEWID();
+            			Update [#DeletedHistory] Set [RecordID]=@RecordID Where [OID]=@OID;
+            			Fetch Next From h Into @OID;
+            		End;
+            		Close h;
+            		Deallocate h;
+            		INSERT INTO [dbo].[History] ([OID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
+            		SELECT [ID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who] FROM [#DeletedHistory] ORDER BY [ID];
+            		Drop Table #DeletedHistory;
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[History] Where [TableName]='Video Research';
+            		Select @Actual=@OrphanedHistoryCount+Count(*) From [dbo].[History] Where [TableName]='Videos' And [History].[RecordID] In (Select ID From [dbo].[Videos] Where [SourceTable]='Video Research');
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            
+            		Print '   Images';
+            		INSERT INTO [dbo].[Images] ([OID],
+            			[AlphaSort],[Caption],[Category],[DateCreated],[DateModified],[FileName],[Height],[Image],[Name],[Notes],
+            			[RecordID],[TableName],[Thumbnail],[URL],[Width])
+            		SELECT Null,Upper('Videos: '+[Video Research].[Title]),[Video Research].[Title],'Videos',getdate(),getdate(),Null,Null,[Image],[Video Research].[Title],Null,
+            			[newVideo Research].[ID],'Videos',0,Null,Null
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Video Research] [Video Research]
+            			INNER JOIN [dbo].[Videos] [newVideo Research] On [Video Research].[ID]=[newVideo Research].[OID]
+            		WHERE [Video Research].[Image] is not Null
+            		ORDER BY [Video Research].[ID];
+            		INSERT INTO [dbo].[Images] ([OID],
+            			[AlphaSort],[Caption],[Category],[DateCreated],[DateModified],[FileName],[Height],[Image],[Name],[Notes],
+            			[RecordID],[TableName],[Thumbnail],[URL],[Width])
+            		SELECT Null,Upper('Videos: '+[Video Research].[Title]),[Video Research].[Title],'Videos',getdate(),getdate(),Null,Null,[OtherImage],[Video Research].[Title],Null,
+            			[newVideo Research].[ID],'Videos',0,Null,Null
+            		FROM [GGGSCP1].[TreasureChest].[dbo].[Video Research] [Video Research]
+            			INNER JOIN [dbo].[Videos] [newVideo Research] On [Video Research].[ID]=[newVideo Research].[OID]
+            		WHERE [Video Research].[OtherImage] is not Null
+            		ORDER BY [Video Research].[ID];
+            		Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Video Research] Where [Image] is not Null;
+            		Select @Expected=@Expected+Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Video Research] Where [OtherImage] is not Null;
+            		Select @Actual=Count(*) From [dbo].[Images] Where [TableName]='Videos' And [Images].[RecordID] In (Select ID From [dbo].[Videos] Where [SourceTable]='Video Research');
+            		If @Actual <> @Expected Begin 
+            			Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+            			RAISERROR (@Message, 16, 1);
+            		End;
+            	End Try
+                Begin Catch
+		            Rollback Transaction;
+		            exec sp_LogError @Milestone;
+		            Throw;
+                End Catch;
+		        Insert Into LOG(MileStone,StartTime,FinishTime,Message) Values (@Milestone,@stTime,CURRENT_TIMESTAMP,'Elapsed: '+Convert(nvarchar(24),CURRENT_TIMESTAMP-@stTime,114));
+		        Commit Transaction;
+            End;");
+            context.Database.ExecuteSqlCommand(@"Grant Execute on [dbo].[sp_MigrateVideoResearch] to [Public];");
+        }
+        #endregion
+        private static void CreateSQLFunctions(TCContext context)
+        {
+            Console.WriteLine("Creating Functions...");
+            CreateParsePathFunctions(context);
+        }
+        private static void CreateSQLStoredProcedures(TCContext context)
+        {
+            Console.WriteLine("Creating Stored Procedures...");
+            CreatePrepDataMigration(context);
+            CreateMigrateAircraftDesignations(context);
+            CreateMigrateBlueAngelsHistory(context);
+            CreateMigrateBooks(context);
+            CreateMigrateCollectables(context);
+            CreateMigrateCompanies(context);
+            CreateMigrateDecals(context);
+            CreateMigrateDetailSets(context);
+            CreateMigrateEpisodes(context);
+            CreateMigrateFinishingProducts(context);
+            CreateMigrateImages(context);
+            CreateMigrateKits(context);
+            CreateMigrateMovies(context);
+            CreateMigrateMusic(context);
+            CreateMigrateQueries(context);
+            CreateMigrateRockets(context);
+            CreateMigrateShipClasses(context);
+            CreateMigrateShipClassTypes(context);
+            CreateMigrateShips(context);
+            CreateMigrateSoftware(context);
+            CreateMigrateSpecials(context);
+            CreateMigrateTools(context);
+            CreateMigrateTrains(context);
+            CreateMigrateVideoResearch(context);
+            CreateTableSpaceUsed(context);
+    }
+        private static void CreateSQLViews(TCContext context)
+        {
+            Console.WriteLine("Creating Views...");
+            CreateMusicViews(context);
+        }
+        #endregion
+        public static void Seed(TCContext context)
+        {
+            CreateSQLFunctions(context);
+            //CreateSQLViews(context);
+            CreateSQLStoredProcedures(context);
+            SeedData(context);
         }
     }
 }

@@ -57,14 +57,17 @@
     <Compile Include="Classes\History.cs" />
     <Compile Include="Classes\Image.cs" />
     <Compile Include="Classes\Location.cs" />
+    <Compile Include="Classes\Log.cs" />
     <Compile Include="Classes\Query.cs" />
     <Compile Include="Classes\Reference\AircraftDesignation.cs" />
+    <Compile Include="Classes\Reference\Artist.cs" />
     <Compile Include="Classes\Reference\BlueAngelsHistory.cs" />
     <Compile Include="Classes\Reference\Company.cs" />
     <Compile Include="Classes\Reference\Ship.cs" />
     <Compile Include="Classes\Reference\ShipClass.cs" />
     <Compile Include="Classes\Reference\ShipClassBase.cs" />
     <Compile Include="Classes\Reference\ShipClassType.cs" />
+    <Compile Include="Classes\Reference\Track.cs" />
     <Compile Include="Classes\Stash\Book.cs" />
     <Compile Include="Classes\Stash\Collectable.cs" />
     <Compile Include="Classes\Stash\Decal.cs" />
@@ -74,7 +77,7 @@
     <Compile Include="Classes\Stash\HobbyBase.cs" />
     <Compile Include="Classes\Stash\Kit.cs" />
     <Compile Include="Classes\Stash\KitBase.cs" />
-    <Compile Include="Classes\Stash\Music.cs" />
+    <Compile Include="Classes\Stash\Album.cs" />
     <Compile Include="Classes\Stash\Rocket.cs" />
     <Compile Include="Classes\Stash\Software.cs" />
     <Compile Include="Classes\Stash\StashBase.cs" />

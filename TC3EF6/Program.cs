@@ -104,7 +104,7 @@ namespace TC3EF6
                 //Group By Music.ID,Music.OID,Title,Artist,Year
                 //Order By 6 Desc;
                 //Select* From History Where RecordID = '3EF47857-2127-E911-9C25-001583F52824';
-                var data = context.Music
+                var data = context.Albums
                     .OrderByDescending(m => m.Year)
                     .Where(m => m.Artist == "Genesis" && m.MediaFormat == "MP3")
                     .Select(m => new { m.OID, m.Title, m.Artist, m.Year })
