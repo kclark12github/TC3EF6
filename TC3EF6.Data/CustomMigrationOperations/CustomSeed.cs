@@ -825,7 +825,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_LogElapsed' AND type='P') Drop Procedure sp_LogElapsed;");
             context.Database.ExecuteSqlCommand(@"
             --sp_LogElapsed.sql
-            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
             --   Copyright © 2019 All Rights Reserved.
             --*********************************************************************************************************************************
             --
@@ -848,7 +848,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_LogError' AND type='P') Drop Procedure sp_LogError;");
             context.Database.ExecuteSqlCommand(@"
             --sp_LogError.sql
-            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
             --   Copyright © 2019 All Rights Reserved.
             --*********************************************************************************************************************************
             --
@@ -884,7 +884,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_LogMessage' AND type='P') Drop Procedure sp_LogMessage;");
             context.Database.ExecuteSqlCommand(@"
             --sp_LogMessage.sql
-            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
             --   Copyright © 2019 All Rights Reserved.
             --*********************************************************************************************************************************
             --
@@ -1060,7 +1060,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_DataMigration' And type='P') Drop Procedure sp_DataMigration");
             context.Database.ExecuteSqlCommand(@"
                 --Data Migration.sql
-                --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+                --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
                 --   Copyright © 2019 All Rights Reserved.
                 --*********************************************************************************************************************************
                 --
@@ -1077,10 +1077,11 @@ namespace TC3EF6.Data.CustomMigrationOperations
                 Begin
                     Declare @stTime DateTime; Set @stTime=CURRENT_TIMESTAMP;
                     Declare @Actual int, @Expected int, @Message nvarchar(2000), @Milestone nvarchar(256)='sp_DataMigration';
-                    Begin Transaction;
                     Begin Try
                         Set NoCount On;
                         exec sp_PrepDataMigration;
+
+                        exec sp_MigrateVisitors;
 
                         exec sp_MigrateImages;
                         exec sp_MigrateAircraftDesignations;
@@ -1114,10 +1115,11 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         exec sp_TableSpaceUsed;
                     End Try
                     Begin Catch
-                        Rollback Transaction;
-                        exec sp_LogError @Milestone;
+                        --Rollback Transaction;
+                        --exec sp_LogError @Milestone;
                         Throw;
                     End Catch;
+                    Begin Transaction;
                     exec sp_LogElapsed @Milestone, @stTime;
                     Commit Transaction;
                 End;");
@@ -1129,7 +1131,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_PrepDataMigration' And type='P') Drop Procedure sp_PrepDataMigration");
             context.Database.ExecuteSqlCommand(@"
             --sp_PrepDataMigration.sql
-            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
             --   Copyright © 2019 All Rights Reserved.
             --*********************************************************************************************************************************
             --
@@ -1184,7 +1186,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateAircraftDesignations' And type='P') Drop Procedure sp_MigrateAircraftDesignations;");
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateAircraftDesignations.sql
-            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
             --   Copyright © 2019 All Rights Reserved.
             --*********************************************************************************************************************************
             --
@@ -1264,7 +1266,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateBlueAngelsHistory' And type='P') Drop Procedure sp_MigrateBlueAngelsHistory");
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateBlueAngelsHistory.sql
-            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
             --   Copyright © 2019 All Rights Reserved.
             --*********************************************************************************************************************************
             --
@@ -1327,7 +1329,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateBooks' And type='P') Drop Procedure sp_MigrateBooks");
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateBooks.sql
-            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
             --   Copyright © 2019 All Rights Reserved.
             --*********************************************************************************************************************************
             --
@@ -1454,7 +1456,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateCollectables' And type='P') Drop Procedure sp_MigrateCollectables");
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateCollectables.sql
-            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
             --   Copyright © 2019 All Rights Reserved.
             --*********************************************************************************************************************************
             --
@@ -1581,7 +1583,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateCompanies' And type='P') Drop Procedure sp_MigrateCompanies");
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateCompanies.sql
-            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
             --   Copyright © 2019 All Rights Reserved.
             --*********************************************************************************************************************************
             --
@@ -1643,7 +1645,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateDecals' And type='P') Drop Procedure sp_MigrateDecals");
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateDecals.sql
-            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
             --   Copyright © 2019 All Rights Reserved.
             --*********************************************************************************************************************************
             --
@@ -1798,7 +1800,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateDetailSets' And type='P') Drop Procedure sp_MigrateDetailSets");
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateDetailSets.sql
-            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
             --   Copyright © 2019 All Rights Reserved.
             --*********************************************************************************************************************************
             --
@@ -1953,7 +1955,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateEpisodes' And type='P') Drop Procedure sp_MigrateEpisodes");
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateEpisodes.sql
-            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
             --   Copyright © 2019 All Rights Reserved.
             --*********************************************************************************************************************************
             --
@@ -2081,7 +2083,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateFinishingProducts' And type='P') Drop Procedure sp_MigrateFinishingProducts");
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateFinishingProducts.sql
-            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
             --   Copyright © 2019 All Rights Reserved.
             --*********************************************************************************************************************************
             --
@@ -2125,7 +2127,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                     End;
             
                     exec sp_LogMessage @Milestone, '   History';
-                    Delete From [dbo].[History] Where [TableName]='Finishing Products';
+                    Delete From [dbo].[History] Where [TableName]='FinishingProducts';
                     INSERT INTO [dbo].[History] ([OID],
                         [Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
                     SELECT [History].[ID],
@@ -2199,7 +2201,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateImages' And type='P') Drop Procedure sp_MigrateImages");
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateImages.sql
-            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
             --   Copyright © 2019 All Rights Reserved.
             --*********************************************************************************************************************************
             --
@@ -2286,7 +2288,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateKits' And type='P') Drop Procedure sp_MigrateKits");
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateKits.sql
-            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
             --   Copyright © 2019 All Rights Reserved.
             --*********************************************************************************************************************************
             --
@@ -2420,7 +2422,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateMovies' And type='P') Drop Procedure sp_MigrateMovies");
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateMovies.sql
-            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
             --   Copyright © 2019 All Rights Reserved.
             --*********************************************************************************************************************************
             --
@@ -2548,7 +2550,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateMusic' And type='P') Drop Procedure sp_MigrateMusic");
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateMusic.sql
-            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
             --   Copyright © 2019 All Rights Reserved.
             --*********************************************************************************************************************************
             --
@@ -2710,7 +2712,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateQueries' And type='P') Drop Procedure sp_MigrateQueries");
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateQueries.sql
-            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
             --   Copyright © 2019 All Rights Reserved.
             --*********************************************************************************************************************************
             --
@@ -2755,7 +2757,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateRockets' And type='P') Drop Procedure sp_MigrateRockets");
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateRockets.sql
-            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
             --   Copyright © 2019 All Rights Reserved.
             --*********************************************************************************************************************************
             --
@@ -2873,7 +2875,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateShipClasses' And type='P') Drop Procedure sp_MigrateShipClasses");
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateShipClasses.sql
-            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
             --   Copyright © 2019 All Rights Reserved.
             --*********************************************************************************************************************************
             --
@@ -2889,7 +2891,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                 Begin Transaction;
                 Begin Try
                     exec sp_LogMessage @Milestone, 'ShipClass/Class...';
-                    Delete From [dbo].[ShipClass];
+                    Delete From [dbo].[Ships]; Delete From [dbo].[ShipClass];
                     INSERT INTO [dbo].[ShipClass] ([OID],
                         [Aircraft],[ASWWeapons],[Beam],[Boilers],[DateCreated],[DateModified],[Description],[Displacement],[Draft],[EW],[FireControl],
                         [Guns],[Length],[Manning],[Missiles],[Name],[Notes],[Propulsion],[Radars],[Sonars],[Speed],[Year],[ShipClassType_ID])
@@ -2957,7 +2959,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateShipClassTypes' And type='P') Drop Procedure sp_MigrateShipClassTypes");
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateShipClassTypes.sql
-            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
             --   Copyright © 2019 All Rights Reserved.
             --*********************************************************************************************************************************
             --
@@ -3015,7 +3017,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateShips' And type='P') Drop Procedure sp_MigrateShips");
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateShips.sql
-            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
             --   Copyright © 2019 All Rights Reserved.
             --*********************************************************************************************************************************
             --
@@ -3104,7 +3106,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateSoftware' And type='P') Drop Procedure sp_MigrateSoftware");
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateSoftware.sql
-            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
             --   Copyright © 2019 All Rights Reserved.
             --*********************************************************************************************************************************
             --
@@ -3231,7 +3233,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateSpecials' And type='P') Drop Procedure sp_MigrateSpecials");
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateSpecials.sql
-            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
             --   Copyright © 2019 All Rights Reserved.
             --*********************************************************************************************************************************
             --
@@ -3359,7 +3361,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateTools' And type='P') Drop Procedure sp_MigrateTools");
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateTools.sql
-            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
             --   Copyright © 2019 All Rights Reserved.
             --*********************************************************************************************************************************
             --
@@ -3477,7 +3479,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateTrains' And type='P') Drop Procedure sp_MigrateTrains");
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateTrains.sql
-            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
             --   Copyright © 2019 All Rights Reserved.
             --*********************************************************************************************************************************
             --
@@ -3595,7 +3597,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateVideoResearch' And type='P') Drop Procedure sp_MigrateVideoResearch");
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateVideoResearch.sql
-            --   SQL Server TreasureChest Database Converion to the EntityFramweork Version...
+            --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
             --   Copyright © 2019 All Rights Reserved.
             --*********************************************************************************************************************************
             --
@@ -3719,6 +3721,53 @@ namespace TC3EF6.Data.CustomMigrationOperations
             End;");
             context.Database.ExecuteSqlCommand(@"Grant Execute on [dbo].[sp_MigrateVideoResearch] to [Public];");
         }
+        private static void CreateMigrateVisitors(TCContext context)
+        {
+            Console.WriteLine("\tsp_MigrateVisitors");
+            context.Database.ExecuteSqlCommand(@"If Exists(Select name From sysobjects Where name='sp_MigrateVisitors' And type='P') Drop Procedure sp_MigrateVisitors");
+            context.Database.ExecuteSqlCommand(@"
+            --sp_MigrateQueries.sql
+            --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
+            --   Copyright © 2019 All Rights Reserved.
+            --*********************************************************************************************************************************
+            --
+            --    Modification History:
+            --    Date:       Developer:        Description:
+            --    06/19/19    Ken Clark        Created;
+            --=================================================================================================================================
+            
+            Create Procedure sp_MigrateVisitors As 
+            Begin
+                Declare @stTime DateTime; Set @stTime=CURRENT_TIMESTAMP;
+                Declare @Actual int, @Expected int, @Message nvarchar(2000), @Milestone nvarchar(256)='sp_MigrateVisitors';
+                Begin Transaction;
+                Begin Try
+                    exec sp_LogMessage @Milestone, 'Visitor...';
+                    Delete From [dbo].[Visitors];
+                    INSERT INTO [dbo].[Visitors] ([OID],
+                        [LastName],[FirstName],[Address],[Phone],[Email],[DateLastVisit],[Visits],
+                        [Music],[AutoStart],[Detached],[ButtonColor],[DoLake],[LakeGIF])
+                    SELECT [ID],
+                        [LastName],[FirstName],[Address],[Phone],[E-Mail],[DateLastVisit],[Visits],
+                        [Music],[AutoStart],[Detached],[ButtonColor],[DoLake],[LakeGIF]
+                    FROM [GGGSCP1].[TreasureChest].[dbo].[Visitors] ORDER BY [ID];
+                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Visitors];
+                    Select @Actual=Count(*) From [dbo].[Visitors];
+                    If @Actual <> @Expected Begin 
+                        Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
+                        Throw 50000, @Message, 1;
+                    End;
+                End Try
+                Begin Catch
+                    Rollback Transaction;
+                    exec sp_LogError @Milestone;
+                    Throw;
+                End Catch;
+                exec sp_LogElapsed @Milestone, @stTime;
+                Commit Transaction;
+            End;");
+            context.Database.ExecuteSqlCommand(@"Grant Execute on [dbo].[sp_MigrateVisitors] to [Public];");
+        }
         #endregion
         private static void CreateSQLFunctions(TCContext context)
         {
@@ -3732,6 +3781,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             CreateLogError(context);
             CreateLogMessage(context);
             CreatePrepDataMigration(context);
+            CreateMigrateVisitors(context);
             CreateMigrateAircraftDesignations(context);
             CreateMigrateBlueAngelsHistory(context);
             CreateMigrateBooks(context);

@@ -7,8 +7,7 @@ using TC3EF6.Domain.Annotations;
 
 namespace TC3EF6.Domain.Classes.Stash
 {
-    [TableDescription("Library of Music, including physical and electronic media.")]
-    [Table("Albums")]
+    [DataContract, Table("Albums"), TableDescription("Library of Music, including physical and electronic media.")]
     public partial class Album : StashBase
     {
         #region "Locals"
@@ -21,27 +20,21 @@ namespace TC3EF6.Domain.Classes.Stash
         private Guid? mArtistID = null;
         #endregion
 
-        [DataMember]
-        [ColumnDescription("Album artist - Artist under which the album was released (not necessarily each track's artist).")]
-        [StringLength(80)]
+        [DataMember, StringLength(80), ColumnDescription("Album artist - Artist under which the album was released (not necessarily each track's artist).")]
         public string Artist
         {
             get => mArtist;
             set { SetProperty(ref mArtist, value); }
         }
 
-        [DataMember]
-        [ColumnDescription("Album artist (ID) - Artist under which the album was released (not necessarily each track's artist).")]
-        [Required]
+        [DataMember, Required, ColumnDescription("Album artist (ID) - Artist under which the album was released (not necessarily each track's artist).")]
         public virtual Guid? ArtistID
         {
             get => mArtistID;
             set { SetProperty(ref mArtistID, value); }
         }
 
-        [DataMember]
-        [ColumnDescription("Sort string.")]
-        [StringLength(80)]
+        [DataMember, StringLength(80), ColumnDescription("Sort string.")]
         //[Index("IX_AlbumsByAlphaSort", 1, IsUnique = true)]
         public string AlphaSort
         {
@@ -49,38 +42,31 @@ namespace TC3EF6.Domain.Classes.Stash
             set { SetProperty(ref mAlphaSort, value); }
         }
 
-        [DataMember]
-        [ColumnDescription("Media/Format of this album (i.e. LP, CD, MP3, etc.).")]
-        [StringLength(80)]
+        [DataMember, StringLength(80), ColumnDescription("Media/Format of this album (i.e. LP, CD, MP3, etc.)."),
+            MinLength(1),
+            SqlDefaultValue(DefaultValue = "'Unspecified'")]
         //[Index("IX_AlbumsByAlphaSort", 2, IsUnique = true)]
-        [SqlDefaultValue(DefaultValue = "'Unspecified'")]
-        [MinLength(1)]
         public string MediaFormat
         {
             get => mMediaFormat;
             set { SetProperty(ref mMediaFormat, value); }
         }
 
-        [DataMember]
-        [ColumnDescription("Album title.")]
-        [StringLength(80)]
+        [DataMember, StringLength(80), ColumnDescription("Album title.")]
         public string Title
         {
             get => mTitle;
             set { SetProperty(ref mTitle, value); }
         }
 
-        [DataMember]
-        [ColumnDescription("Genre of this title.")]
-        [StringLength(80)]
+        [DataMember, StringLength(80), ColumnDescription("Genre of this title.")]
         public string Type
         {
             get => mType;
             set { SetProperty(ref mType, value); }
         }
 
-        [DataMember]
-        [ColumnDescription("Year this album was originally released.")]
+        [DataMember, ColumnDescription("Year this album was originally released.")]
         public int? Year
         {
             get => mYear;

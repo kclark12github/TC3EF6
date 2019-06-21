@@ -8,7 +8,7 @@ using TC3EF6.Domain.Interfaces;
 
 namespace TC3EF6.Domain.Classes.Stash
 {
-    [TableDescription("TV Episode Library")]
+    [DataContract, Table("Episodes"), TableDescription("TV Episode Library")]
     public partial class Episode : VideoBase
     {
         #region "Locals"
@@ -16,16 +16,14 @@ namespace TC3EF6.Domain.Classes.Stash
         private string mSeries = string.Empty;
         #endregion
 
-        [ColumnDescription("Name of this TV Series.")]
-        [StringLength(80)]
+        [DataMember, StringLength(80), ColumnDescription("Name of this TV Series.")]
         public string Series
         {
             get => mSeries;
             set { SetProperty(ref mSeries, value); }
         }
 
-        [ColumnDescription("Episode number.")]
-        [StringLength(32)]
+        [DataMember, StringLength(32), ColumnDescription("Episode number.")]
         public string Number
         {
             get => mNumber;

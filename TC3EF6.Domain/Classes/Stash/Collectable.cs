@@ -5,7 +5,7 @@ using TC3EF6.Domain.Annotations;
 
 namespace TC3EF6.Domain.Classes.Stash
 {
-    [TableDescription("Collection of Collectables, ranging from baseball cards, to Hot Wheels to Keepsake Ornaments.")]
+    [DataContract, Table("Collectables"), TableDescription("Collection of Collectables, ranging from baseball cards, to Hot Wheels to Keepsake Ornaments.")]
     public partial class Collectable : StashBase
     {
         #region "Locals"
@@ -18,55 +18,49 @@ namespace TC3EF6.Domain.Classes.Stash
         private string mCondition = string.Empty;
         #endregion
 
-        [ColumnDescription("Condition of the item (i.e. Packaged, Opened, etc.).")]
-        [StringLength(80)]
+        [DataMember, StringLength(80), ColumnDescription("Condition of the item (i.e. Packaged, Opened, etc.).")]
         public string Condition
         {
             get => mCondition;
             set { SetProperty(ref mCondition, value); }
         }
 
-        [ColumnDescription("Manufacturer of the item.")]
-        [StringLength(80)]
+        [DataMember, StringLength(80), ColumnDescription("Manufacturer of the item.")]
         public string Manufacturer
         {
             get => mManufacturer;
             set { SetProperty(ref mManufacturer, value); }
         }
 
-        [ColumnDescription("Name of the item.")]
-        [StringLength(132)]
+        [DataMember, StringLength(132), ColumnDescription("Name of the item.")]
         public string Name
         {
             get => mName;
             set { SetProperty(ref mName, value); }
         }
 
-        [ColumnDescription("Is the item out-of-production?")]
+        [DataMember, ColumnDescription("Is the item out-of-production?")]
         public bool OutOfProduction
         {
             get => mOutOfProduction;
             set { SetProperty(ref mOutOfProduction, value); }
         }
 
-        [ColumnDescription("Reference number/code identifying the item.")]
-        [StringLength(32)]
+        [DataMember, StringLength(32), ColumnDescription("Reference number/code identifying the item.")]
         public string Reference
         {
             get => mReference;
             set { SetProperty(ref mReference, value); }
         }
 
-        [ColumnDescription("Series of the item.")]
-        [StringLength(80)]
+        [DataMember, StringLength(80), ColumnDescription("Series of the item.")]
         public string Series
         {
             get => mSeries;
             set { SetProperty(ref mSeries, value); }
         }
 
-        [ColumnDescription("Type of collectable (i.e. baseball card, board game, Hot Wheel, etc.).")]
-        [StringLength(80)]
+        [DataMember, StringLength(80), ColumnDescription("Type of collectable (i.e. baseball card, board game, Hot Wheel, etc.).")]
         public string Type
         {
             get => mType;

@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Serialization;
 using TC3EF6.Domain.Annotations;
+
 namespace TC3EF6.Domain.Classes.Reference
 {
-    [TableDescription("United States Navy Ship Classification Types.")]
+    [DataContract, Table("ShipClassTypes"), TableDescription("United States Navy Ship Classification Types.")]
     public partial class ShipClassType : ImageEntityBase
     {
         #region "Locals"
@@ -20,24 +22,22 @@ namespace TC3EF6.Domain.Classes.Reference
             Ships = new HashSet<Ship>();
         }
 
-        [ColumnDescription("Class Type Description (i.e. Aircraft Carrier, Battleship, Destroyer, etc.).")]
-        [StringLength(80)]
+        [DataMember, StringLength(80), ColumnDescription("Class Type Description (i.e. Aircraft Carrier, Battleship, Destroyer, etc.).")]
         public string Description
         {
             get => mDescription;
             set { SetProperty(ref mDescription, value); }
         }
 
-        [ColumnDescription("List of Ship Classes representing this particular Classification.")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [DataMember, ColumnDescription("List of Ship Classes representing this particular Classification."),
+            System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ShipClass> ShipClasses { get; set; }
 
-        [ColumnDescription("List of Ships for representing this particular Classification.")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [DataMember, ColumnDescription("List of Ships for representing this particular Classification."),
+            System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ship> Ships { get; set; }
 
-        [ColumnDescription("Classification Type Code (i.e. CV, BB, DD, etc.).")]
-        [StringLength(32)]
+        [DataMember, StringLength(32), ColumnDescription("Classification Type Code (i.e. CV, BB, DD, etc.).")]
         public string TypeCode
         {
             get => mTypeCode;

@@ -7,7 +7,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OpenIdConnect;
 using Microsoft.Owin.Security;
 
-namespace TC3EF6.Web.Controllers
+namespace TC3EF6.WebMVC.Controllers
 {
     public class AccountController : Controller
     {

@@ -7,6 +7,7 @@ using TC3EF6.Domain.Annotations;
 
 namespace TC3EF6.Domain.Classes.Stash
 {
+    [DataContract]
     public partial class KitBase : HobbyBase
     {
         #region "Locals"
@@ -15,24 +16,21 @@ namespace TC3EF6.Domain.Classes.Stash
         private string mScale = string.Empty;
         #endregion
 
-        [ColumnDescription("Designation of the Item (i.e. F-14A, BB-63, etc.).")]
-        [StringLength(132)]
+        [DataMember, StringLength(132), ColumnDescription("Designation of the Item (i.e. F-14A, BB-63, etc.).")]
         public string Designation
         {
             get => mDesignation;
             set { SetProperty(ref mDesignation, value); }
         }
 
-        [ColumnDescription("Nationality of the Item.")]
-        [StringLength(132)]
+        [DataMember, StringLength(132), ColumnDescription("Nationality of the Item.")]
         public string Nation
         {
             get => mNation;
             set { SetProperty(ref mNation, value); }
         }
 
-        [ColumnDescription("Scale of Item.")]
-        [StringLength(12)]
+        [DataMember, StringLength(12), ColumnDescription("Scale of Item.")]
         public string Scale
         {
             get => mScale;

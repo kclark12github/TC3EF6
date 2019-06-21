@@ -1,10 +1,12 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Serialization;
 using TC3EF6.Domain.Annotations;
+
 namespace TC3EF6.Domain.Classes.Reference
 {
-    [TableDescription("United States Navy Ships.")]
+    [DataContract, Table("Ships"), TableDescription("United States Navy Ships.")]
     public partial class Ship : ShipClassBase
     {
         #region "Locals"
@@ -20,79 +22,72 @@ namespace TC3EF6.Domain.Classes.Reference
         private string mCommand = string.Empty;
         #endregion
 
-        [ColumnDescription("Command to which this Ship is currently assigned.")]
-        [StringLength(80)]
+        [DataMember, StringLength(80), ColumnDescription("Command to which this Ship is currently assigned.")]
         public string Command
         {
             get => mCommand;
             set { SetProperty(ref mCommand, value); }
         }
 
-        [ColumnDescription("Date this Ship was [last] commissioned.")]
+        [DataMember, ColumnDescription("Date this Ship was [last] commissioned.")]
         public DateTime? DateCommissioned
         {
             get => mDateCommissioned;
             set { SetProperty(ref mDateCommissioned, value); }
         }
 
-        [ColumnDescription("History of this Ship.")]
+        [DataMember, ColumnDescription("History of this Ship.")]
         public string History
         {
             get => mHistory;
             set { SetProperty(ref mHistory, value); }
         }
 
-        [ColumnDescription("Designation of this Ship (i.e. Classification Type Code + Number).")]
-        [StringLength(12)]
+        [DataMember, StringLength(12), ColumnDescription("Designation of this Ship (i.e. Classification Type Code + Number).")]
         public string HullNumber
         {
             get => mHullNumber;
             set { SetProperty(ref mHullNumber, value); }
         }
 
-        [ColumnDescription("Current Home Port of this Ship.")]
-        [StringLength(80)]
+        [DataMember, StringLength(80), ColumnDescription("Current Home Port of this Ship.")]
         public string HomePort
         {
             get => mHomePort;
             set { SetProperty(ref mHomePort, value); }
         }
 
-        [ColumnDescription("Public Internet Web Site of this Ship.")]
-        [StringLength(132)]
-        [Url]
+        [DataMember, StringLength(132), ColumnDescription("Public Internet Web Site of this Ship."),
+            Url]
         public string InternetURL
         {
             get => mInternetURL;
             set { SetProperty(ref mInternetURL, value); }
         }
 
-        [ColumnDescription("Ken's Local intranet web site of this Ship.")]
-        [StringLength(132)]
-        [Url]
+        [DataMember, StringLength(132), ColumnDescription("Ken's Local intranet web site of this Ship."),
+            Url]
         public string LocalURL
         {
             get => mLocalURL;
             set { SetProperty(ref mLocalURL, value); }
         }
 
-        [ColumnDescription("Designation number of this Ship (for sorting).")]
+        [DataMember, ColumnDescription("Designation number of this Ship (for sorting).")]
         public double? Number
         {
             get => mNumber;
             set { SetProperty(ref mNumber, value); }
         }
 
-        [ColumnDescription("Current Status of this Ship.")]
-        [StringLength(80)]
+        [DataMember, StringLength(80), ColumnDescription("Current Status of this Ship.")]
         public string Status
         {
             get => mStatus;
             set { SetProperty(ref mStatus, value); }
         }
 
-        [ColumnDescription("Current Zip Code for snail-mail to the crew of this Ship.")]
-        [StringLength(18)]
+        [DataMember, StringLength(18), ColumnDescription("Current Zip Code for snail-mail to the crew of this Ship.")]
         public string ZipCode
         {
             get => mZipCode;

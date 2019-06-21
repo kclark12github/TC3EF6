@@ -6,8 +6,7 @@ using TC3EF6.Domain.Annotations;
 
 namespace TC3EF6.Domain.Classes
 {
-    [TableDescription("Application Log.")]
-    [Table("Log")]
+    [DataContract, Table("Log"), TableDescription("Application Log.")]
     public partial class Log : EntityBase
     {
         #region "Locals"
@@ -18,52 +17,40 @@ namespace TC3EF6.Domain.Classes
         private DateTime mEffectiveDate = DateTime.MinValue;
         #endregion
 
-        [DataMember]
-        [ColumnDescription("String briefly describing the action being reported.")]
-        [StringLength(256)]
+        [DataMember, StringLength(256), ColumnDescription("String briefly describing the action being reported.")]
         public string Milestone
         {
             get => mMilestone;
             set { SetProperty(ref mMilestone, value); }
         }
 
-        [DataMember]
-        [ColumnDescription("String describing more detail regarding the action taken.")]
+        [DataMember, ColumnDescription("String describing more detail regarding the action taken.")]
         public string Message
         {
             get => mMessage;
             set { SetProperty(ref mMessage, value); }
         }
 
-        [DataMember]
-        [ColumnDescription("Start Time of a timed action.")]
-        [SqlDefaultValue(DefaultValue = "getdate()")]
-        [Display(Name = "Start Time")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+        [DataMember, Display(Name = "Start Time"), ColumnDescription("Start Time of a timed action."),
+            DataType(DataType.Date),  DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true),
+            SqlDefaultValue(DefaultValue = "getdate()")]
         public DateTime? StartTime
         {
             get => mStartTime;
             set { SetProperty(ref mStartTime, value); }
         }
 
-        [DataMember]
-        [ColumnDescription("Finish Time of a timed action.")]
-        [Display(Name = "Finish Time")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+        [DataMember, Display(Name = "Finish Time"), ColumnDescription("Finish Time of a timed action."),
+            DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public DateTime? FinishTime
         {
             get => mFinishTime;
             set { SetProperty(ref mFinishTime, value); }
         }
 
-        [DataMember]
-        [ColumnDescription("Effective date-time of the reported action.")]
-        [SqlDefaultValue(DefaultValue = "getdate()")]
-        [Display(Name = "Effective Date")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+        [DataMember, Display(Name = "Effective Date"), ColumnDescription("Effective date-time of the reported action."),
+            DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true),
+            SqlDefaultValue(DefaultValue = "getdate()")]
         public DateTime EffectiveDate
         {
             get => mEffectiveDate;

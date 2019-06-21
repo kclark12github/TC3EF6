@@ -7,14 +7,14 @@ using TC3EF6.Domain.Annotations;
 
 namespace TC3EF6.Domain.Classes.Stash
 {
-    [TableDescription("Inventory of Finishing Products (i.e. Paint, Brushes, etc.).")]
+    [DataContract, Table("FinishingProducts"), TableDescription("Inventory of Finishing Products (i.e. Paint, Brushes, etc.).")]
     public partial class FinishingProduct : HobbyBase
     {
         #region "Locals"
         private double? mCount = null;
         #endregion
 
-        [ColumnDescription("Count of this item.")]
+        [DataMember, ColumnDescription("Count of this item.")]
         public double? Count
         {
             get => mCount;

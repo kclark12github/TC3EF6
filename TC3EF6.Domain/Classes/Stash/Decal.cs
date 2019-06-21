@@ -6,13 +6,11 @@ using TC3EF6.Domain.Annotations;
 
 namespace TC3EF6.Domain.Classes.Stash
 {
-    [DataContract]
-    [TableDescription("Collection of Decals.")]
+    [DataContract, Table("Decals"), TableDescription("Collection of Decals.")]
     public partial class Decal : KitBase
     {
-        [DataMember]
-        [ColumnDescription("Set of Model Kits to which this Decal may be applied.")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [DataMember, ColumnDescription("Set of Model Kits to which this Decal may be applied."),
+            System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Kit> Kits { get; set; }
     }
 }

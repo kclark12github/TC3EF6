@@ -18,9 +18,9 @@ using TC3EF6.Data.Services;
 using DataTables.Mvc;
 using Microsoft.AspNet.Identity.Owin;
 using TC3EF6.Base;
-using TC3EF6.Web.Models.Books;
+using TC3EF6.WebMVC.Models.Books;
 
-namespace TC3EF6.Web.Controllers
+namespace TC3EF6.WebMVC.Controllers
 {
     //[Authorize]
     public class BooksController : Controller

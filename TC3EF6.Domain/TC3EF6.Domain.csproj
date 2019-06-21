@@ -54,6 +54,7 @@
     </Compile>
     <Compile Include="Annotations\Annotations.cs" />
     <Compile Include="Annotations\CustomConventions.cs" />
+    <Compile Include="Classes\AppState.cs" />
     <Compile Include="Classes\History.cs" />
     <Compile Include="Classes\Image.cs" />
     <Compile Include="Classes\Location.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="Classes\Stash\Train.cs" />
     <Compile Include="Classes\Stash\Video.cs" />
     <Compile Include="Classes\Stash\VideoBase.cs" />
+    <Compile Include="Classes\Visitor.cs" />
     <Compile Include="DataEntityBase.cs" />
     <Compile Include="EntityBase.cs" />
     <Compile Include="ImageEntityBase.cs" />

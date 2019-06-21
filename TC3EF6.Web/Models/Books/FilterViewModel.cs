@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
-namespace TC3EF6.Web.Models.Books
+namespace TC3EF6.WebMVC.Models.Books
 {
     public class FilterViewModel
     {

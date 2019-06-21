@@ -7,6 +7,7 @@ using TC3EF6.Domain.Annotations;
 
 namespace TC3EF6.Domain.Classes.Stash
 {
+    [DataContract]
     public partial class HobbyBase : StashBase
     {
         #region "Locals"
@@ -17,40 +18,35 @@ namespace TC3EF6.Domain.Classes.Stash
         private string mType = string.Empty;
         #endregion
 
-        [ColumnDescription("Manufacturer of the Item.")]
-        [StringLength(132)]
+        [DataMember, StringLength(132), ColumnDescription("Manufacturer of the Item.")]
         public string Manufacturer
         {
             get => mManufacturer;
             set { SetProperty(ref mManufacturer, value); }
         }
 
-        [ColumnDescription("Name of the Item.")]
-        [StringLength(256)]
+        [DataMember, StringLength(256), ColumnDescription("Name of the Item.")]
         public string Name
         {
             get => mName;
             set { SetProperty(ref mName, value); }
         }
 
-        [ColumnDescription("Vendor where the Item was purchased (or priced).")]
-        [StringLength(132)]
+        [DataMember, StringLength(132), ColumnDescription("Vendor where the Item was purchased (or priced).")]
         public string ProductCatalog
         {
             get => mProductCatalog;
             set { SetProperty(ref mProductCatalog, value); }
         }
 
-        [ColumnDescription("Reference number/code identifying the Item.")]
-        [StringLength(132)]
+        [DataMember, StringLength(132), ColumnDescription("Reference number/code identifying the Item.")]
         public string Reference
         {
             get => mReference;
             set { SetProperty(ref mReference, value); }
         }
 
-        [ColumnDescription("Type of Item (i.e. Aircraft, Ship, Tool, etc.).")]
-        [StringLength(132)]
+        [DataMember, StringLength(132), ColumnDescription("Type of Item (i.e. Aircraft, Ship, Tool, etc.).")]
         public string Type
         {
             get => mType;

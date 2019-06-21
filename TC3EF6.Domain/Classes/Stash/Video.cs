@@ -7,15 +7,14 @@ using TC3EF6.Domain.Annotations;
 
 namespace TC3EF6.Domain.Classes.Stash
 {
-    [TableDescription("Video Library")]
+    [DataContract, Table("Videos"), TableDescription("Video Library")]
     public partial class Video : VideoBase
     {
         #region "Locals"
         private string mAlphaSort = string.Empty;
         #endregion
 
-        [ColumnDescription("Sort string.")]
-        [StringLength(132)]
+        [DataMember, StringLength(132), ColumnDescription("Sort string.")]
         public string AlphaSort
         {
             get => mAlphaSort;

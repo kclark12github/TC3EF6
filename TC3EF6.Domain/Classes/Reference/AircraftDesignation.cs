@@ -1,11 +1,12 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Serialization;
 using TC3EF6.Domain.Annotations;
+
 namespace TC3EF6.Domain.Classes.Reference
 {
-    [TableDescription("Aircraft Designations")]
-    [Table("AircraftDesignations")]
+    [DataContract, Table("AircraftDesignations"), TableDescription("Aircraft Designations")]
     public partial class AircraftDesignation : ImageEntityBase
     {
         #region "Locals"
@@ -20,69 +21,63 @@ namespace TC3EF6.Domain.Classes.Reference
         private string mVersion = string.Empty;
         #endregion
 
-        [ColumnDescription("Official Designation of this aircraft.")]
-        [StringLength(32)]
+        [DataMember, StringLength(32), ColumnDescription("Official Designation of this aircraft.")]
         public string Designation
         {
             get => mDesignation;
             set { SetProperty(ref mDesignation, value); }
         }
 
-        [ColumnDescription("Manufacturer of this aircraft.")]
-        [StringLength(72)]
+        [DataMember, StringLength(72), ColumnDescription("Manufacturer of this aircraft.")]
         public string Manufacturer
         {
             get => mManufacturer;
             set { SetProperty(ref mManufacturer, value); }
         }
 
-        [ColumnDescription("Official Name of this aircraft.")]
-        [StringLength(72)]
+        [DataMember, StringLength(72), ColumnDescription("Official Name of this aircraft.")]
         public string Name
         {
             get => mName;
             set { SetProperty(ref mName, value); }
         }
 
-        [ColumnDescription("Unofficial Nicknames of this aircraft.")]
-        [StringLength(80)]
+        [DataMember, StringLength(80), ColumnDescription("Unofficial Nicknames of this aircraft.")]
         public string Nicknames
         {
             get => mNicknames;
             set { SetProperty(ref mNicknames, value); }
         }
 
-        [ColumnDescription("Miscellaneous Notes.")]
+        [DataMember, ColumnDescription("Miscellaneous Notes.")]
         public string Notes
         {
             get => mNotes;
             set { SetProperty(ref mNotes, value); }
         }
 
-        [ColumnDescription("Designation number of this aircraft (for sorting).")]
+        [DataMember, ColumnDescription("Designation number of this aircraft (for sorting).")]
         public double? Number
         {
             get => mNumber;
             set { SetProperty(ref mNumber, value); }
         }
 
-        [ColumnDescription("Date this aircraft entered service.")]
+        [DataMember, ColumnDescription("Date this aircraft entered service.")]
         public DateTime? ServiceDate
         {
             get => mServiceDate;
             set { SetProperty(ref mServiceDate, value); }
         }
 
-        [ColumnDescription("Type of this aircraft (i.e. Fighter, Bomber, etc.).")]
-        [StringLength(32)]
+        [DataMember, StringLength(32), ColumnDescription("Type of this aircraft (i.e. Fighter, Bomber, etc.).")]
         public string Type
         {
             get => mType;
             set { SetProperty(ref mType, value); }
         }
 
-        [ColumnDescription("Version of this aircraft.")]
-        [StringLength(32)]
+        [DataMember, StringLength(32), ColumnDescription("Version of this aircraft.")]
         public string Version
         {
             get => mVersion;

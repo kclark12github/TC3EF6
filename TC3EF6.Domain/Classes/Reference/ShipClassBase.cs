@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Serialization;
 using TC3EF6.Domain.Annotations;
+
 namespace TC3EF6.Domain.Classes.Reference
 {
+    [DataContract]
     public abstract class ShipClassBase : ImageEntityBase
     {
         #region "Locals"
@@ -29,7 +32,7 @@ namespace TC3EF6.Domain.Classes.Reference
         private string mSonars = string.Empty;
         #endregion
 
-        [ColumnDescription("Aircraft typically deployed with this Ship/Class.")]
+        [DataMember, ColumnDescription("Aircraft typically deployed with this Ship/Class.")]
         public string Aircraft
         {
             get => mAircraft;
@@ -43,124 +46,122 @@ namespace TC3EF6.Domain.Classes.Reference
             set { SetProperty(ref mASWWeapons, value); }
         }
 
-        [ColumnDescription("Beam (width) of this Ship/Class.")]
+        [DataMember, ColumnDescription("Beam (width) of this Ship/Class.")]
         public string Beam
         {
             get => mBeam;
             set { SetProperty(ref mBeam, value); }
         }
 
-        [ColumnDescription("Boilers typically outfitted for this Ship/Class.")]
+        [DataMember, ColumnDescription("Boilers typically outfitted for this Ship/Class.")]
         public string Boilers
         {
             get => mBoilers;
             set { SetProperty(ref mBoilers, value); }
         }
 
-        //[ColumnDescription("Classification of this Ship / Class.")]
+        //[DataMember, ColumnDescription("Classification of this Ship / Class.")]
         //public virtual ShipClassType ShipClassType { get; set; }
 
-        [ColumnDescription("General Description of this Ship/Class.")]
+        [DataMember, ColumnDescription("General Description of this Ship/Class.")]
         public string Description
         {
             get => mDescription;
             set { SetProperty(ref mDescription, value); }
         }
 
-        [ColumnDescription("Displacement of this Ship/Class.")]
+        [DataMember, ColumnDescription("Displacement of this Ship/Class.")]
         public string Displacement
         {
             get => mDisplacement;
             set { SetProperty(ref mDisplacement, value); }
         }
 
-        [ColumnDescription("Draft of this Ship/Class.")]
+        [DataMember, ColumnDescription("Draft of this Ship/Class.")]
         public string Draft
         {
             get => mDraft;
             set { SetProperty(ref mDraft, value); }
         }
 
-        [ColumnDescription("Electronic Warfare (EW) capability of this Ship/Class.")]
+        [DataMember, ColumnDescription("Electronic Warfare (EW) capability of this Ship/Class.")]
         public string EW
         {
             get => mEW;
             set { SetProperty(ref mEW, value); }
         }
 
-        [ColumnDescription("FireControl capability of this Ship/Class.")]
+        [DataMember, ColumnDescription("FireControl capability of this Ship/Class.")]
         public string FireControl
         {
             get => mFireControl;
             set { SetProperty(ref mFireControl, value); }
         }
 
-        [ColumnDescription("Gun armament of this Ship/Class.")]
+        [DataMember, ColumnDescription("Gun armament of this Ship/Class.")]
         public string Guns
         {
             get => mGuns;
             set { SetProperty(ref mGuns, value); }
         }
 
-        [ColumnDescription("Length of this Ship/Class.")]
+        [DataMember, ColumnDescription("Length of this Ship/Class.")]
         public string Length
         {
             get => mLength;
             set { SetProperty(ref mLength, value); }
         }
 
-        [ColumnDescription("Crew compliment of this Ship/Class.")]
+        [DataMember, ColumnDescription("Crew compliment of this Ship/Class.")]
         public string Manning
         {
             get => mManning;
             set { SetProperty(ref mManning, value); }
         }
 
-        [ColumnDescription("Missile armament of this Ship/Class.")]
+        [DataMember, ColumnDescription("Missile armament of this Ship/Class.")]
         public string Missiles
         {
             get => mMissiles;
             set { SetProperty(ref mMissiles, value); }
         }
 
-        [ColumnDescription("Name of this Ship/Class.")]
-        [StringLength(80)]
+        [DataMember, StringLength(80), ColumnDescription("Name of this Ship/Class.")]
         public string Name
         {
             get => mName;
             set { SetProperty(ref mName, value); }
         }
 
-        [ColumnDescription("Miscellaneous Notes.")]
+        [DataMember, ColumnDescription("Miscellaneous Notes.")]
         public string Notes
         {
             get => mNotes;
             set { SetProperty(ref mNotes, value); }
         }
 
-        [ColumnDescription("Propulsion system of this Ship/Class.")]
+        [DataMember, ColumnDescription("Propulsion system of this Ship/Class.")]
         public string Propulsion
         {
             get => mPropulsion;
             set { SetProperty(ref mPropulsion, value); }
         }
 
-        [ColumnDescription("RADAR capability of this Ship/Class.")]
+        [DataMember, ColumnDescription("RADAR capability of this Ship/Class.")]
         public string Radars
         {
             get => mRadars;
             set { SetProperty(ref mRadars, value); }
         }
 
-        [ColumnDescription("Speed of this Ship/Class.")]
-        [StringLength(132)]
+        [DataMember, StringLength(132), ColumnDescription("Speed of this Ship/Class.")]
         public string Speed
         {
             get => mSpeed;
             set { SetProperty(ref mSpeed, value); }
         }
 
-        [ColumnDescription("SONAR capability of this Ship/Class.")]
+        [DataMember, ColumnDescription("SONAR capability of this Ship/Class.")]
         public string Sonars
         {
             get => mSonars;

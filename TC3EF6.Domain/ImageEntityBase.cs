@@ -14,10 +14,9 @@ namespace TC3EF6.Domain
         private List<Image> mImages = new List<Image>();
         #endregion
 
-        [DataMember]
-        [ColumnDescription("Image(s) representing the appearance of the item.")]
-        [NotMapped]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [DataMember, ColumnDescription("Image(s) representing the appearance of the item."),
+            NotMapped,
+            System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual List<Image> Images
         {
             get => mImages;

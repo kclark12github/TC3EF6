@@ -14,32 +14,25 @@ namespace TC3EF6.Domain
         private DateTime mDateModified = DateTime.MinValue;
         private DateTime mDateCreated = DateTime.MinValue;
         #endregion
-        [DataMember]
-        [ColumnDescription("Pre-conversion unique system-generated identifier.")]
+        [DataMember, ColumnDescription("Pre-conversion unique system-generated identifier.")]
         public int? OID
         {
             get => mOID;
             set { SetProperty(ref mOID, value); }
         }
 
-        [DataMember]
-        [ColumnDescription("Date the item was added to the database.")]
-        [SqlDefaultValue(DefaultValue = "getdate()")]
-        [Display(Name="Date Created")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode=true)]
+        [DataMember, Display(Name="Date Created"), ColumnDescription("Date the item was added to the database."),
+            DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode=true),
+            SqlDefaultValue(DefaultValue = "getdate()")]
         public DateTime DateCreated
         {
             get => mDateCreated;
             set { SetProperty(ref mDateCreated, value); }
         }
 
-        [DataMember]
-        [ColumnDescription("Date the item was last modified.")]
-        [SqlDefaultValue(DefaultValue = "getdate()")]
-        [Display(Name = "Date Modified")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+        [DataMember, Display(Name = "Date Modified"), ColumnDescription("Date the item was last modified."),
+            DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true),
+            SqlDefaultValue(DefaultValue = "getdate()")]
         public DateTime DateModified
         {
             get => mDateModified;

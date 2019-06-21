@@ -8,9 +8,9 @@ using System.Web.Mvc;
 using TC3EF6.Base;
 using TC3EF6.Data;
 using TC3EF6.Data.Services.SQL;
-using TC3EF6.Web.Models;
+using TC3EF6.WebMVC.Models;
 
-namespace TC3EF6.Web.Controllers
+namespace TC3EF6.WebMVC.Controllers
 {
     //[Authorize]
     public class HomeController : Controller

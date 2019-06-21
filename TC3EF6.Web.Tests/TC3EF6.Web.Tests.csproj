@@ -96,9 +96,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TC3EF6.Web\TC3EF6.Web.csproj">
+    <ProjectReference Include="..\TC3EF6.Web\TC3EF6.WebMVC.csproj">
       <Project>{5889AEAC-7FF9-4652-92B6-A4DCBC84274D}</Project>
-      <Name>TC3EF6.Web</Name>
+      <Name>TC3EF6.WebMVC</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

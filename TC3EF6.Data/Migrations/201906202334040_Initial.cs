@@ -446,6 +446,97 @@ namespace TC3EF6.Data.Migrations
                 .PrimaryKey(t => t.ID);
             
             CreateTable(
+                "dbo.AppStates",
+                c => new
+                    {
+                        ID = c.Guid(nullable: false, identity: true,
+                            annotations: new Dictionary<string, AnnotationValues>
+                            {
+                                { 
+                                    "ColumnDescription",
+                                    new AnnotationValues(oldValue: null, newValue: "Unique system-generated identifier.")
+                                },
+                            }),
+                        AppName = c.String(nullable: false, maxLength: 80,
+                            annotations: new Dictionary<string, AnnotationValues>
+                            {
+                                { 
+                                    "ColumnDescription",
+                                    new AnnotationValues(oldValue: null, newValue: "Supported application name")
+                                },
+                            }),
+                        HitCount = c.Int(nullable: false,
+                            annotations: new Dictionary<string, AnnotationValues>
+                            {
+                                { 
+                                    "ColumnDescription",
+                                    new AnnotationValues(oldValue: null, newValue: "Application hit count")
+                                },
+                            }),
+                        LastVisitor = c.String(maxLength: 80,
+                            annotations: new Dictionary<string, AnnotationValues>
+                            {
+                                { 
+                                    "ColumnDescription",
+                                    new AnnotationValues(oldValue: null, newValue: "Email address of last registered Visitor")
+                                },
+                            }),
+                        DateLastVisit = c.DateTime(nullable: false,
+                            annotations: new Dictionary<string, AnnotationValues>
+                            {
+                                { 
+                                    "ColumnDescription",
+                                    new AnnotationValues(oldValue: null, newValue: "Date of last visit")
+                                },
+                            }),
+                        OID = c.Int(
+                            annotations: new Dictionary<string, AnnotationValues>
+                            {
+                                { 
+                                    "ColumnDescription",
+                                    new AnnotationValues(oldValue: null, newValue: "Pre-conversion unique system-generated identifier.")
+                                },
+                            }),
+                        DateCreated = c.DateTime(nullable: false,
+                            annotations: new Dictionary<string, AnnotationValues>
+                            {
+                                { 
+                                    "ColumnDescription",
+                                    new AnnotationValues(oldValue: null, newValue: "Date the item was added to the database.")
+                                },
+                                { 
+                                    "SqlDefaultValue",
+                                    new AnnotationValues(oldValue: null, newValue: "getdate()")
+                                },
+                            }),
+                        DateModified = c.DateTime(nullable: false,
+                            annotations: new Dictionary<string, AnnotationValues>
+                            {
+                                { 
+                                    "ColumnDescription",
+                                    new AnnotationValues(oldValue: null, newValue: "Date the item was last modified.")
+                                },
+                                { 
+                                    "SqlDefaultValue",
+                                    new AnnotationValues(oldValue: null, newValue: "getdate()")
+                                },
+                            }),
+                        RowID = c.Binary(nullable: false, fixedLength: true, timestamp: true, storeType: "rowversion",
+                            annotations: new Dictionary<string, AnnotationValues>
+                            {
+                                { 
+                                    "ColumnDescription",
+                                    new AnnotationValues(oldValue: null, newValue: "System-managed concurrency control field.")
+                                },
+                            }),
+                    },
+                annotations: new Dictionary<string, object>
+                {
+                    { "TableDescription", "State information of supported applications." },
+                })
+                .PrimaryKey(t => t.ID);
+            
+            CreateTable(
                 "dbo.Artists",
                 c => new
                     {
@@ -616,7 +707,11 @@ namespace TC3EF6.Data.Migrations
                                     new AnnotationValues(oldValue: null, newValue: "System-managed concurrency control field.")
                                 },
                             }),
-                    })
+                    },
+                annotations: new Dictionary<string, object>
+                {
+                    { "TableDescription", "Blue Angels History" },
+                })
                 .PrimaryKey(t => t.ID);
             
             CreateTable(
@@ -631,7 +726,7 @@ namespace TC3EF6.Data.Migrations
                                     new AnnotationValues(oldValue: null, newValue: "Unique system-generated identifier.")
                                 },
                             }),
-                        AlphaSort = c.String(nullable: false, maxLength: 80,
+                        AlphaSort = c.String(nullable: false, maxLength: 132,
                             annotations: new Dictionary<string, AnnotationValues>
                             {
                                 { 
@@ -679,7 +774,7 @@ namespace TC3EF6.Data.Migrations
                                     new AnnotationValues(oldValue: null, newValue: "International Standard Book Number.")
                                 },
                             }),
-                        Misc = c.String(maxLength: 32,
+                        Misc = c.String(maxLength: 132,
                             annotations: new Dictionary<string, AnnotationValues>
                             {
                                 { 
@@ -2413,8 +2508,8 @@ namespace TC3EF6.Data.Migrations
                     { "TableDescription", "History of changes applied by the application." },
                 })
                 .PrimaryKey(t => t.ID)
-                .Index(t => new { t.DateChanged, t.TableName, t.RecordID, t.Column }, name: "IX_HistoryByDate")
-                .Index(t => new { t.TableName, t.RecordID, t.DateChanged, t.Column }, name: "IX_HistoryByRecord");
+                .Index(t => new { t.TableName, t.RecordID, t.DateChanged, t.Column }, name: "IX_HistoryByRecord")
+                .Index(t => new { t.DateChanged, t.TableName, t.RecordID, t.Column }, name: "IX_HistoryByDate");
             
             CreateTable(
                 "dbo.Images",
@@ -4217,7 +4312,7 @@ namespace TC3EF6.Data.Migrations
                             {
                                 { 
                                     "ColumnDescription",
-                                    new AnnotationValues(oldValue: null, newValue: "Reference number/code identifying the item.")
+                                    new AnnotationValues(oldValue: null, newValue: "Scale of Item.")
                                 },
                             }),
                         Manufacturer = c.String(maxLength: 132,
@@ -4635,6 +4730,169 @@ namespace TC3EF6.Data.Migrations
                 .Index(t => t.Subject, name: "IX_VideoBySubject")
                 .Index(t => t.LocationID);
             
+            CreateTable(
+                "dbo.Visitors",
+                c => new
+                    {
+                        ID = c.Guid(nullable: false, identity: true,
+                            annotations: new Dictionary<string, AnnotationValues>
+                            {
+                                { 
+                                    "ColumnDescription",
+                                    new AnnotationValues(oldValue: null, newValue: "Unique system-generated identifier.")
+                                },
+                            }),
+                        LastName = c.String(nullable: false, maxLength: 80,
+                            annotations: new Dictionary<string, AnnotationValues>
+                            {
+                                { 
+                                    "ColumnDescription",
+                                    new AnnotationValues(oldValue: null, newValue: "Last name of registered Visitor")
+                                },
+                            }),
+                        FirstName = c.String(nullable: false, maxLength: 80,
+                            annotations: new Dictionary<string, AnnotationValues>
+                            {
+                                { 
+                                    "ColumnDescription",
+                                    new AnnotationValues(oldValue: null, newValue: "First name of registered Visitor")
+                                },
+                            }),
+                        Email = c.String(nullable: false, maxLength: 80,
+                            annotations: new Dictionary<string, AnnotationValues>
+                            {
+                                { 
+                                    "ColumnDescription",
+                                    new AnnotationValues(oldValue: null, newValue: "Email address of registered Visitor")
+                                },
+                            }),
+                        Phone = c.String(maxLength: 14,
+                            annotations: new Dictionary<string, AnnotationValues>
+                            {
+                                { 
+                                    "ColumnDescription",
+                                    new AnnotationValues(oldValue: null, newValue: "Phone number of registered Visitor (if any)")
+                                },
+                            }),
+                        Address = c.String(maxLength: 132,
+                            annotations: new Dictionary<string, AnnotationValues>
+                            {
+                                { 
+                                    "ColumnDescription",
+                                    new AnnotationValues(oldValue: null, newValue: "Address of registered Visitor (if any)")
+                                },
+                            }),
+                        DateLastVisit = c.DateTime(nullable: false,
+                            annotations: new Dictionary<string, AnnotationValues>
+                            {
+                                { 
+                                    "ColumnDescription",
+                                    new AnnotationValues(oldValue: null, newValue: "Date of last visit")
+                                },
+                            }),
+                        Visits = c.Int(nullable: false,
+                            annotations: new Dictionary<string, AnnotationValues>
+                            {
+                                { 
+                                    "ColumnDescription",
+                                    new AnnotationValues(oldValue: null, newValue: "Number of visits")
+                                },
+                            }),
+                        Music = c.Boolean(nullable: false,
+                            annotations: new Dictionary<string, AnnotationValues>
+                            {
+                                { 
+                                    "ColumnDescription",
+                                    new AnnotationValues(oldValue: null, newValue: "Preferences - Does the visitor wish to play background music?")
+                                },
+                            }),
+                        AutoStart = c.Boolean(nullable: false,
+                            annotations: new Dictionary<string, AnnotationValues>
+                            {
+                                { 
+                                    "ColumnDescription",
+                                    new AnnotationValues(oldValue: null, newValue: "Preferences - Does the visitor wish background music starts automatically?")
+                                },
+                            }),
+                        Detached = c.Boolean(nullable: false,
+                            annotations: new Dictionary<string, AnnotationValues>
+                            {
+                                { 
+                                    "ColumnDescription",
+                                    new AnnotationValues(oldValue: null, newValue: "Preferences - Does the visitor wish the music player appear detached?")
+                                },
+                            }),
+                        ButtonColor = c.String(maxLength: 12,
+                            annotations: new Dictionary<string, AnnotationValues>
+                            {
+                                { 
+                                    "ColumnDescription",
+                                    new AnnotationValues(oldValue: null, newValue: "Preferences - Which button color does the user prefer?")
+                                },
+                            }),
+                        DoLake = c.Boolean(nullable: false,
+                            annotations: new Dictionary<string, AnnotationValues>
+                            {
+                                { 
+                                    "ColumnDescription",
+                                    new AnnotationValues(oldValue: null, newValue: "Preferences - Apply the Lake applet to the Welcome image?")
+                                },
+                            }),
+                        LakeGIF = c.Int(
+                            annotations: new Dictionary<string, AnnotationValues>
+                            {
+                                { 
+                                    "ColumnDescription",
+                                    new AnnotationValues(oldValue: null, newValue: "Preferences - Lake GIF selection")
+                                },
+                            }),
+                        OID = c.Int(
+                            annotations: new Dictionary<string, AnnotationValues>
+                            {
+                                { 
+                                    "ColumnDescription",
+                                    new AnnotationValues(oldValue: null, newValue: "Pre-conversion unique system-generated identifier.")
+                                },
+                            }),
+                        DateCreated = c.DateTime(nullable: false,
+                            annotations: new Dictionary<string, AnnotationValues>
+                            {
+                                { 
+                                    "ColumnDescription",
+                                    new AnnotationValues(oldValue: null, newValue: "Date the item was added to the database.")
+                                },
+                                { 
+                                    "SqlDefaultValue",
+                                    new AnnotationValues(oldValue: null, newValue: "getdate()")
+                                },
+                            }),
+                        DateModified = c.DateTime(nullable: false,
+                            annotations: new Dictionary<string, AnnotationValues>
+                            {
+                                { 
+                                    "ColumnDescription",
+                                    new AnnotationValues(oldValue: null, newValue: "Date the item was last modified.")
+                                },
+                                { 
+                                    "SqlDefaultValue",
+                                    new AnnotationValues(oldValue: null, newValue: "getdate()")
+                                },
+                            }),
+                        RowID = c.Binary(nullable: false, fixedLength: true, timestamp: true, storeType: "rowversion",
+                            annotations: new Dictionary<string, AnnotationValues>
+                            {
+                                { 
+                                    "ColumnDescription",
+                                    new AnnotationValues(oldValue: null, newValue: "System-managed concurrency control field.")
+                                },
+                            }),
+                    },
+                annotations: new Dictionary<string, object>
+                {
+                    { "TableDescription", "Registered Visitors" },
+                })
+                .PrimaryKey(t => t.ID);
+            
         }
         
         public override void Down()
@@ -4681,8 +4939,8 @@ namespace TC3EF6.Data.Migrations
             DropIndex("dbo.ShipClass", "IX_ShipClassesByType");
             DropIndex("dbo.Rockets", new[] { "LocationID" });
             DropIndex("dbo.Images", "IX_ImageByRecord");
-            DropIndex("dbo.History", "IX_HistoryByRecord");
             DropIndex("dbo.History", "IX_HistoryByDate");
+            DropIndex("dbo.History", "IX_HistoryByRecord");
             DropIndex("dbo.FinishingProducts", new[] { "LocationID" });
             DropIndex("dbo.Episodes", new[] { "LocationID" });
             DropIndex("dbo.Episodes", "IX_EpisodesBySubject");
@@ -4727,6 +4985,142 @@ namespace TC3EF6.Data.Migrations
             DropIndex("dbo.Albums", "IX_AlbumsByArtist");
             DropIndex("dbo.Albums", "IX_AlbumsByAlphaSort");
             DropIndex("dbo.AircraftDesignations", "IX_AircraftDesignationsByDesignation");
+            DropTable("dbo.Visitors",
+                removedAnnotations: new Dictionary<string, object>
+                {
+                    { "TableDescription", "Registered Visitors" },
+                },
+                removedColumnAnnotations: new Dictionary<string, IDictionary<string, object>>
+                {
+                    {
+                        "Address",
+                        new Dictionary<string, object>
+                        {
+                            { "ColumnDescription", "Address of registered Visitor (if any)" },
+                        }
+                    },
+                    {
+                        "AutoStart",
+                        new Dictionary<string, object>
+                        {
+                            { "ColumnDescription", "Preferences - Does the visitor wish background music starts automatically?" },
+                        }
+                    },
+                    {
+                        "ButtonColor",
+                        new Dictionary<string, object>
+                        {
+                            { "ColumnDescription", "Preferences - Which button color does the user prefer?" },
+                        }
+                    },
+                    {
+                        "DateCreated",
+                        new Dictionary<string, object>
+                        {
+                            { "ColumnDescription", "Date the item was added to the database." },
+                            { "SqlDefaultValue", "getdate()" },
+                        }
+                    },
+                    {
+                        "DateLastVisit",
+                        new Dictionary<string, object>
+                        {
+                            { "ColumnDescription", "Date of last visit" },
+                        }
+                    },
+                    {
+                        "DateModified",
+                        new Dictionary<string, object>
+                        {
+                            { "ColumnDescription", "Date the item was last modified." },
+                            { "SqlDefaultValue", "getdate()" },
+                        }
+                    },
+                    {
+                        "Detached",
+                        new Dictionary<string, object>
+                        {
+                            { "ColumnDescription", "Preferences - Does the visitor wish the music player appear detached?" },
+                        }
+                    },
+                    {
+                        "DoLake",
+                        new Dictionary<string, object>
+                        {
+                            { "ColumnDescription", "Preferences - Apply the Lake applet to the Welcome image?" },
+                        }
+                    },
+                    {
+                        "Email",
+                        new Dictionary<string, object>
+                        {
+                            { "ColumnDescription", "Email address of registered Visitor" },
+                        }
+                    },
+                    {
+                        "FirstName",
+                        new Dictionary<string, object>
+                        {
+                            { "ColumnDescription", "First name of registered Visitor" },
+                        }
+                    },
+                    {
+                        "ID",
+                        new Dictionary<string, object>
+                        {
+                            { "ColumnDescription", "Unique system-generated identifier." },
+                        }
+                    },
+                    {
+                        "LakeGIF",
+                        new Dictionary<string, object>
+                        {
+                            { "ColumnDescription", "Preferences - Lake GIF selection" },
+                        }
+                    },
+                    {
+                        "LastName",
+                        new Dictionary<string, object>
+                        {
+                            { "ColumnDescription", "Last name of registered Visitor" },
+                        }
+                    },
+                    {
+                        "Music",
+                        new Dictionary<string, object>
+                        {
+                            { "ColumnDescription", "Preferences - Does the visitor wish to play background music?" },
+                        }
+                    },
+                    {
+                        "OID",
+                        new Dictionary<string, object>
+                        {
+                            { "ColumnDescription", "Pre-conversion unique system-generated identifier." },
+                        }
+                    },
+                    {
+                        "Phone",
+                        new Dictionary<string, object>
+                        {
+                            { "ColumnDescription", "Phone number of registered Visitor (if any)" },
+                        }
+                    },
+                    {
+                        "RowID",
+                        new Dictionary<string, object>
+                        {
+                            { "ColumnDescription", "System-managed concurrency control field." },
+                        }
+                    },
+                    {
+                        "Visits",
+                        new Dictionary<string, object>
+                        {
+                            { "ColumnDescription", "Number of visits" },
+                        }
+                    },
+                });
             DropTable("dbo.Videos",
                 removedAnnotations: new Dictionary<string, object>
                 {
@@ -5046,7 +5440,7 @@ namespace TC3EF6.Data.Migrations
                         "Scale",
                         new Dictionary<string, object>
                         {
-                            { "ColumnDescription", "Reference number/code identifying the item." },
+                            { "ColumnDescription", "Scale of Item." },
                         }
                     },
                     {
@@ -7901,6 +8295,10 @@ namespace TC3EF6.Data.Migrations
                     },
                 });
             DropTable("dbo.BlueAngelsHistory",
+                removedAnnotations: new Dictionary<string, object>
+                {
+                    { "TableDescription", "Blue Angels History" },
+                },
                 removedColumnAnnotations: new Dictionary<string, IDictionary<string, object>>
                 {
                     {
@@ -8018,6 +8416,79 @@ namespace TC3EF6.Data.Migrations
                         new Dictionary<string, object>
                         {
                             { "ColumnDescription", "Artist Name." },
+                        }
+                    },
+                    {
+                        "OID",
+                        new Dictionary<string, object>
+                        {
+                            { "ColumnDescription", "Pre-conversion unique system-generated identifier." },
+                        }
+                    },
+                    {
+                        "RowID",
+                        new Dictionary<string, object>
+                        {
+                            { "ColumnDescription", "System-managed concurrency control field." },
+                        }
+                    },
+                });
+            DropTable("dbo.AppStates",
+                removedAnnotations: new Dictionary<string, object>
+                {
+                    { "TableDescription", "State information of supported applications." },
+                },
+                removedColumnAnnotations: new Dictionary<string, IDictionary<string, object>>
+                {
+                    {
+                        "AppName",
+                        new Dictionary<string, object>
+                        {
+                            { "ColumnDescription", "Supported application name" },
+                        }
+                    },
+                    {
+                        "DateCreated",
+                        new Dictionary<string, object>
+                        {
+                            { "ColumnDescription", "Date the item was added to the database." },
+                            { "SqlDefaultValue", "getdate()" },
+                        }
+                    },
+                    {
+                        "DateLastVisit",
+                        new Dictionary<string, object>
+                        {
+                            { "ColumnDescription", "Date of last visit" },
+                        }
+                    },
+                    {
+                        "DateModified",
+                        new Dictionary<string, object>
+                        {
+                            { "ColumnDescription", "Date the item was last modified." },
+                            { "SqlDefaultValue", "getdate()" },
+                        }
+                    },
+                    {
+                        "HitCount",
+                        new Dictionary<string, object>
+                        {
+                            { "ColumnDescription", "Application hit count" },
+                        }
+                    },
+                    {
+                        "ID",
+                        new Dictionary<string, object>
+                        {
+                            { "ColumnDescription", "Unique system-generated identifier." },
+                        }
+                    },
+                    {
+                        "LastVisitor",
+                        new Dictionary<string, object>
+                        {
+                            { "ColumnDescription", "Email address of last registered Visitor" },
                         }
                     },
                     {

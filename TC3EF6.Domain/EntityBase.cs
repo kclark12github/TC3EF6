@@ -16,20 +16,16 @@ namespace TC3EF6.Domain
         private Guid mID;
         #endregion
 
-        [Key]
-        [DataMember]
-        [ColumnDescription("Unique system-generated identifier.")]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [DataMember, Key, ColumnDescription("Unique system-generated identifier."),
+            DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid ID
         {
             get => mID;
             set { SetProperty(ref mID, value); }
         }
 
-        [DataMember]
-        [ColumnDescription("System-managed concurrency control field.")]
-        [ConcurrencyCheck]
-        [Timestamp]
+        [DataMember, ColumnDescription("System-managed concurrency control field."), 
+            ConcurrencyCheck, Timestamp]
         public Byte[] RowID
         {
             get => mRowID;

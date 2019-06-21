@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using TC3EF6.Base;
 
-namespace TC3EF6.Web.Models
+namespace TC3EF6.WebMVC.Models
 {
     public class IndexModel : ModelBase
     {

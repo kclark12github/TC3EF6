@@ -8,8 +8,7 @@ using TC3EF6.Domain.Interfaces;
 
 namespace TC3EF6.Domain.Classes.Reference
 {
-    [TableDescription("Music Track Listing.")]
-    [Table("Tracks")]
+    [DataContract, Table("Tracks"), TableDescription("Music Track Listing.")]
     public class Track : DataEntityBase
     {
         #region "Locals"
@@ -32,73 +31,63 @@ namespace TC3EF6.Domain.Classes.Reference
         private string mPublisher = string.Empty;
         #endregion
 
-        [DataMember]
-        [ColumnDescription("Genre name for this track (if any)")]
+        [DataMember, ColumnDescription("Genre name for this track (if any)")]
         public string Genre
         {
             get => mGenre;
             set { SetProperty(ref mGenre, value); }
         }
 
-        [DataMember]
-        [ColumnDescription("Album artist name - (temporary until post-conversion)")]
+        [DataMember, ColumnDescription("Album artist name - (temporary until post-conversion)")]
         public string AlbumArtist
         {
             get => mAlbumArtist;
             set { SetProperty(ref mAlbumArtist, value); }
         }
 
-        [DataMember]
-        [ColumnDescription("Album artist reference (ID)")]
-        [Required]
+        [DataMember, Required, ColumnDescription("Album artist reference (ID)")]
         public Guid? AlbumArtistID
         {
             get => mAlbumArtistID;
             set { SetProperty(ref mAlbumArtistID, value); }
         }
 
-        [DataMember]
-        [ColumnDescription("Artist name - (temporary until post-conversion)")]
+        [DataMember, ColumnDescription("Artist name - (temporary until post-conversion)")]
         public string Artist
         {
             get => mArtist;
             set { SetProperty(ref mArtist, value); }
         }
 
-        [DataMember]
-        [ColumnDescription("Track artist reference (ID) - (if known)")]
+        [DataMember, ColumnDescription("Track artist reference (ID) - (if known)")]
         public Guid? ArtistID
         {
             get => mArtistID;
             set { SetProperty(ref mArtistID, value); }
         }
 
-        [DataMember]
-        [ColumnDescription("Year track was written/published - (if known)")] //Should this be a DateTime?
+        [DataMember, ColumnDescription("Year track was written/published - (if known)")] //Should this be a DateTime?
         public int Year
         {
             get => mYear;
             set { SetProperty(ref mYear, value); }
         }
 
-        [DataMember]
-        [ColumnDescription("Album name - (temporary until post-conversion)")]
+        [DataMember, ColumnDescription("Album name - (temporary until post-conversion)")]
         public string Album
         {
             get => mAlbum;
             set { SetProperty(ref mAlbum, value); }
         }
 
-        [DataMember]
-        [ColumnDescription("Album reference (ID)")]
+        [DataMember, ColumnDescription("Album reference (ID)")]
         public Guid? AlbumID
         {
             get => mAlbumID;
             set { SetProperty(ref mAlbumID, value); }
         }
 
-        [DataMember]
-        [ColumnDescription("Disc number (if known)")]
+        [DataMember, ColumnDescription("Disc number (if known)")]
         public int DiscNumber
         {
             get => mDisc;
@@ -113,61 +102,50 @@ namespace TC3EF6.Domain.Classes.Reference
             set { SetProperty(ref mTrack, value); }
         }
 
-        [DataMember]
-        [ColumnDescription("Track Title/Name")]
-        [Required]
-        [StringLength(256)]
+        [DataMember, Required, StringLength(256), ColumnDescription("Track Title/Name")]
         public string Title
         {
             get => mTitle;
             set { SetProperty(ref mTitle, value); }
         }
 
-        [DataMember]
-        [ColumnDescription("Track length in seconds")]
-        [Required]
-        [Column(TypeName = "money")]    //4 decimals...
+        [DataMember, Required, ColumnDescription("Track length in seconds"),
+            Column(TypeName = "money")]    //4 decimals...
         public decimal Duration
         {
             get => mDuration;
             set { SetProperty(ref mDuration, value); }
         }
 
-        [DataMember]
-        [ColumnDescription("Composer (if known)")]
+        [DataMember, ColumnDescription("Composer (if known)")]
         public string Composer
         {
             get => mComposer;
             set { SetProperty(ref mComposer, value); }
         }
 
-        [DataMember]
-        [ColumnDescription("Comment (if any)")]
+        [DataMember, ColumnDescription("Comment (if any)")]
         public string Comment
         {
             get => mComment;
             set { SetProperty(ref mComment, value); }
         }
 
-        [DataMember]
-        [ColumnDescription("Path of the Track (MP3/MP4) in file system (if appropriate).")]
-        [StringLength(512)]
+        [DataMember, StringLength(512), ColumnDescription("Path of the Track (MP3/MP4) in file system (if appropriate).")]
         public string Path
         {
             get => mPath;
             set { SetProperty(ref mPath, value); }
         }
 
-        [DataMember]
-        [ColumnDescription("Lyrics (if known)")]
+        [DataMember, ColumnDescription("Lyrics (if known)")]
         public string Lyrics
         {
             get => mLyrics;
             set { SetProperty(ref mLyrics, value); }
         }
 
-        [DataMember]
-        [ColumnDescription("Publisher Name (if known).")]
+        [DataMember, ColumnDescription("Publisher Name (if known).")]
         public string Publisher
         {
             get => mPublisher;

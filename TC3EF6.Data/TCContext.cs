@@ -26,7 +26,10 @@ namespace TC3EF6.Data
         int SaveChanges();
         Task<int> SaveChangesAsync();
 
+        DbSet<AppState> AppStates { get; set; }
         DbSet<Log> Log { get; set; }
+        DbSet<Visitor> Visitors { get; set; }
+
         DbSet<Book> Books { get; set; }
         DbSet<Collectable> Collectables { get; set; }
         #region Hobby
@@ -102,7 +105,10 @@ namespace TC3EF6.Data
             Set<T>().Remove(entity);
         }
 
+        public virtual DbSet<AppState> AppStates { get; set; }
         public virtual DbSet<Log> Log { get; set; }
+        public virtual DbSet<Visitor> Visitors { get; set; }
+
         public virtual DbSet<Book> Books { get; set; }
         public virtual DbSet<Collectable> Collectables { get; set; }
         #region Hobby
@@ -145,6 +151,38 @@ namespace TC3EF6.Data
         #endregion
         private void ConfigureAlternateIndexes(DbModelBuilder modelBuilder)
         {
+            #region Infrastructure
+            #region History
+            modelBuilder.Entity<History>().Property(p => p.Column)
+                .HasColumnAnnotation(IndexAnnotation.AnnotationName,
+                new IndexAnnotation(new[]
+                {
+                    new IndexAttribute("IX_HistoryByRecord", 4) { IsUnique = false},
+                    new IndexAttribute("IX_HistoryByDate", 4) { IsUnique = false}
+                }));
+            modelBuilder.Entity<History>().Property(p => p.DateChanged)
+                .HasColumnAnnotation(IndexAnnotation.AnnotationName,
+                new IndexAnnotation(new[]
+                {
+                    new IndexAttribute("IX_HistoryByRecord", 3) { IsUnique = false},
+                    new IndexAttribute("IX_HistoryByDate", 1) { IsUnique = false}
+                }));
+            modelBuilder.Entity<History>().Property(p => p.RecordID)
+                .HasColumnAnnotation(IndexAnnotation.AnnotationName,
+                new IndexAnnotation(new[]
+                {
+                    new IndexAttribute("IX_HistoryByRecord", 2) { IsUnique = false},
+                    new IndexAttribute("IX_HistoryByDate", 3) { IsUnique = false}
+                }));
+            modelBuilder.Entity<History>().Property(p => p.TableName)
+                .HasColumnAnnotation(IndexAnnotation.AnnotationName,
+                new IndexAnnotation(new[]
+                {
+                    new IndexAttribute("IX_HistoryByRecord", 1) { IsUnique = false},
+                    new IndexAttribute("IX_HistoryByDate", 2) { IsUnique = false}
+                }));
+            #endregion
+            #endregion
             #region Books
             modelBuilder.Entity<Book>().Property(p => p.ID)
                 .HasColumnAnnotation(IndexAnnotation.AnnotationName,
@@ -867,6 +905,7 @@ namespace TC3EF6.Data
             {
                 case "AircraftDesignation":
                 case "Album":
+                case "AppState":
                 case "Artist":
                 case "Book":
                 case "Collectable":
@@ -885,6 +924,7 @@ namespace TC3EF6.Data
                 case "Tool":
                 case "Track":
                 case "Train":
+                case "Visitor":
                     TableName += "s";
                     break;
                 case "__MigrationHistory":

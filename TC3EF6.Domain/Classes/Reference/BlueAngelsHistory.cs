@@ -1,9 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Serialization;
 using TC3EF6.Domain.Annotations;
+
 namespace TC3EF6.Domain.Classes.Reference
 {
-    [Table("BlueAngelsHistory")]
+    [DataContract, Table("BlueAngelsHistory"), TableDescription("Blue Angels History")]
     public partial class BlueAngelsHistory : ImageEntityBase
     {
         #region "Locals"
@@ -12,16 +14,14 @@ namespace TC3EF6.Domain.Classes.Reference
         private string mNotes = string.Empty;
         #endregion
 
-        [ColumnDescription("Dates this aircraft served with the Blue Angels.")]
-        [StringLength(80)]
+        [DataMember, StringLength(80), ColumnDescription("Dates this aircraft served with the Blue Angels.")]
         public string ServiceDates
         {
             get => mServiceDates;
             set { SetProperty(ref mServiceDates, value); }
         }
 
-        [ColumnDescription("Aircraft Type serving with the Blue Angels.")]
-        [StringLength(80)]
+        [DataMember, StringLength(80), ColumnDescription("Aircraft Type serving with the Blue Angels.")]
         public string AircraftType
         {
             get => mAircraftType;
@@ -33,7 +33,7 @@ namespace TC3EF6.Domain.Classes.Reference
         public string DecalSets { get; set; }
         public string Kits { get; set; }
 
-        [ColumnDescription("Miscellaneous Notes.")]
+        [DataMember, ColumnDescription("Miscellaneous Notes.")]
         public string Notes
         {
             get => mNotes;

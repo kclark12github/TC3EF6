@@ -7,7 +7,7 @@ using TC3EF6.Domain.Annotations;
 
 namespace TC3EF6.Domain.Classes.Stash
 {
-    [TableDescription("Collection of Tools.")]
+    [DataContract, Table("Tools"), TableDescription("Collection of Tools.")]
     public partial class Tool : HobbyBase
     {
     }

@@ -13,7 +13,7 @@ namespace TC3EF6.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201906071522321_Initial"; }
+            get { return "201906202334040_Initial"; }
         }
         
         string IMigrationMetadata.Source

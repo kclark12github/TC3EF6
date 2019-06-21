@@ -12,11 +12,11 @@ using TC3EF6.Domain.Annotations;
 
 namespace TC3EF6.Domain.Classes.Stash
 {
-    [TableDescription("Library of Books, Magazines, and electronic media.")]
+    [DataContract, Table("Books"), TableDescription("Library of Books, Magazines, and electronic media.")]
     public class Book : StashBase   //, IEditableObject
     {
         #region "Properties"
-        const int MaxAlphaSortLength = 80;
+        const int MaxAlphaSortLength = 132;
         #region "Locals"
         private string mAlphaSort = string.Empty;
         private string mAuthor = string.Empty;
@@ -29,73 +29,62 @@ namespace TC3EF6.Domain.Classes.Stash
         private List<string> mDefaultAlphaSorts = new List<string>() { };
         #endregion
 
-        [ColumnDescription("Sort string.")]
-        [StringLength(MaxAlphaSortLength)]
-        [Required]
-        [MinLength(1)]
+        [DataMember, Required, StringLength(MaxAlphaSortLength), ColumnDescription("Sort string."),
+            MinLength(1)]
         public string AlphaSort
         {
             get => mAlphaSort;
             set { SetProperty(ref mAlphaSort, value); }
         }
 
-        [ColumnDescription("Author of the publication.")]
-        [StringLength(80)]
-        [Required]
-        [MinLength(1)]
+        [DataMember, Required, StringLength(80), ColumnDescription("Author of the publication."),
+            MinLength(1)]
         public string Author
         {
             get => mAuthor;
             set { SetProperty(ref mAuthor, value); }
         }
 
-        [ColumnDescription("Media/Format of the publication (i.e. Hardcover, Paperback, etc).")]
-        [StringLength(80)]
-        [SqlDefaultValue(DefaultValue = "'Unspecified'")]
-        [MinLength(1)]
+        [DataMember, StringLength(80), ColumnDescription("Media/Format of the publication (i.e. Hardcover, Paperback, etc)."),
+            MinLength(1),
+            SqlDefaultValue(DefaultValue = "'Unspecified'")]
         public string MediaFormat
         {
             get => mMediaFormat;
             set { SetProperty(ref mMediaFormat, value); }
         }
 
-        [ColumnDescription("International Standard Book Number.")]
-        [StringLength(24)]
+        [DataMember, StringLength(24), ColumnDescription("International Standard Book Number.")]
         public string ISBN
         {
             get => mISBN;
             set { SetProperty(ref mISBN, value); }
         }
 
-        [ColumnDescription("Miscellaneous information.")]
-        [StringLength(32)]
+        [DataMember, StringLength(132), ColumnDescription("Miscellaneous information.")]
         public string Misc
         {
             get => mMisc;
             set { SetProperty(ref mMisc, value); }
         }
 
-        [ColumnDescription("Subject of the publication.")]
-        [StringLength(80)]
-        [Required]
-        [MinLength(1)]
+        [DataMember, Required, StringLength(80), ColumnDescription("Subject of the publication."),
+            MinLength(1)]
         public string Subject
         {
             get => mSubject;
             set { SetProperty(ref mSubject, value); }
         }
 
-        [ColumnDescription("Title of the publication.")]
-        [StringLength(132)]
-        [Required]
-        [MinLength(1)]
+        [DataMember, Required, StringLength(132), ColumnDescription("Title of the publication."),
+            MinLength(1)]
         public string Title
         {
             get => mTitle;
             set { SetProperty(ref mTitle, value); }
         }
 
-        [NotMapped]
+        [DataMember, NotMapped]
         public List<string> DefaultAlphaSorts
         {
             get => mDefaultAlphaSorts;

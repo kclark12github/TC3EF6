@@ -1,8 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Serialization;
 using TC3EF6.Domain.Annotations;
+
 namespace TC3EF6.Domain.Classes.Reference
 {
-    [TableDescription("Hobby supply company address book.")]
+    [DataContract, Table("Companies"), TableDescription("Hobby supply company address book.")]
     public partial class Company : ImageEntityBase
     {
         #region "Locals"
@@ -16,63 +19,57 @@ namespace TC3EF6.Domain.Classes.Reference
         private string mAddress = string.Empty;
         #endregion
 
-        [ColumnDescription("Account number for ordering from this company.")]
-        [StringLength(32)]
+        [DataMember, StringLength(32), ColumnDescription("Account number for ordering from this company.")]
         public string Account
         {
             get => mAccount;
             set { SetProperty(ref mAccount, value); }
         }
 
-        [ColumnDescription("Company mailing address.")]
+        [DataMember, ColumnDescription("Company mailing address.")]
         public string Address
         {
             get => mAddress;
             set { SetProperty(ref mAddress, value); }
         }
 
-        [ColumnDescription("Company code.")]
-        [StringLength(32)]
+        [DataMember, StringLength(32), ColumnDescription("Company code.")]
         public string Code
         {
             get => mCode;
             set { SetProperty(ref mCode, value); }
         }
 
-        [ColumnDescription("Full Company Name.")]
-        [StringLength(72)]
+        [DataMember, StringLength(72), ColumnDescription("Full Company Name.")]
         public string Name
         {
             get => mName;
             set { SetProperty(ref mName, value); }
         }
 
-        [ColumnDescription("Company phone number.")]
-        [StringLength(14)]
-        [Phone]
+        [DataMember, StringLength(14), ColumnDescription("Company phone number."),
+            Phone]
         public string Phone
         {
             get => mPhone;
             set { SetProperty(ref mPhone, value); }
         }
 
-        [ColumnDescription("Type of hobby products supplied by this company.")]
-        [StringLength(32)]
+        [DataMember, StringLength(32), ColumnDescription("Type of hobby products supplied by this company.")]
         public string ProductType
         {
             get => mProductType;
             set { SetProperty(ref mProductType, value); }
         }
 
-        [ColumnDescription("Company Short Name.")]
-        [StringLength(32)]
+        [DataMember, StringLength(32), ColumnDescription("Company Short Name.")]
         public string ShortName
         {
             get => mShortName;
             set { SetProperty(ref mShortName, value); }
         }
 
-        [ColumnDescription("Company web site.")]
+        [DataMember, ColumnDescription("Company web site.")]
         public string WebSite
         {
             get => mWebSite;

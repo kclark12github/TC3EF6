@@ -7,7 +7,7 @@ using TC3EF6.Domain.Annotations;
 
 namespace TC3EF6.Domain.Classes.Stash
 {
-    [TableDescription("Collection of Trains/Locomotives/Rolling Stock.")]
+    [DataContract, Table("Trains"), TableDescription("Collection of Trains/Locomotives/Rolling Stock.")]
     public partial class Train : HobbyBase
     {
         #region "Locals"
@@ -15,16 +15,14 @@ namespace TC3EF6.Domain.Classes.Stash
         private string mLine = string.Empty;
         #endregion
 
-        [ColumnDescription("Railroad line of this particular item")]
-        [StringLength(72)]
+        [DataMember, StringLength(72), ColumnDescription("Railroad line of this particular item")]
         public string Line
         {
             get => mLine;
             set { SetProperty(ref mLine, value); }
         }
 
-        [ColumnDescription("Reference number/code identifying the item.")]
-        [StringLength(12)]
+        [DataMember, StringLength(12), ColumnDescription("Scale of Item.")]
         public string Scale
         {
             get => mScale;

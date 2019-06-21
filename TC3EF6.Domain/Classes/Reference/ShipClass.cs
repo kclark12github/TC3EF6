@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Serialization;
 using TC3EF6.Domain.Annotations;
+
 namespace TC3EF6.Domain.Classes.Reference
 {
-    [TableDescription("United States Navy Ship Classes.")]
-    [Table("ShipClass")]
+    [DataContract, Table("ShipClass"), TableDescription("United States Navy Ship Classes.")]
     public partial class ShipClass : ShipClassBase
     {
         #region "Locals"
@@ -19,7 +20,7 @@ namespace TC3EF6.Domain.Classes.Reference
             Ships = new HashSet<Ship>();
         }
 
-        [ColumnDescription("Year this Class was designed.")]
+        [DataMember, ColumnDescription("Year this Class was designed.")]
         public int? Year
         {
             get => mYear;

@@ -6,7 +6,7 @@ using System.Web;
 using TC3EF6.Base;
 using TC3EF6.Data.Services.SQL;
 
-namespace TC3EF6.Web.Models
+namespace TC3EF6.WebMVC.Models
 {
     public class ModelBase
     {

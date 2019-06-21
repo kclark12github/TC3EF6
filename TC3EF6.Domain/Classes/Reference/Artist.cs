@@ -7,8 +7,7 @@ using TC3EF6.Domain.Annotations;
 
 namespace TC3EF6.Domain.Classes.Reference
 {
-    [TableDescription("Dictionary of Music Artists.")]
-    [Table("Artists")]
+    [DataContract, Table("Artists"), TableDescription("Dictionary of Music Artists.")]
     public class Artist : DataEntityBase
     {
         #region "Locals"
@@ -18,36 +17,28 @@ namespace TC3EF6.Domain.Classes.Reference
         private string mName = string.Empty;
         #endregion
 
-        [DataMember]
-        [ColumnDescription("Alternate artist name string (Also Known As).")]
-        [StringLength(32)]
+        [DataMember, StringLength(32), ColumnDescription("Alternate artist name string (Also Known As).")]
         public string AKA
         {
             get => mAKA;
             set { SetProperty(ref mAKA, value); }
         }
 
-        [DataMember]
-        [ColumnDescription("Artist Comments.")]
+        [DataMember, ColumnDescription("Artist Comments.")]
         public string Comments
         {
             get => mComments;
             set { SetProperty(ref mComments, value); }
         }
 
-        [DataMember]
-        [ColumnDescription("Sort string.")]
-        [Required]
-        [StringLength(256)]
+        [DataMember, Required, StringLength(256), ColumnDescription("Sort string.")]
         public string AlphaSort
         {
             get => mAlphaSort;
             set { SetProperty(ref mAlphaSort, value); }
         }
 
-        [DataMember]
-        [ColumnDescription("Artist Name.")]
-        [Required]
+        [DataMember, Required, ColumnDescription("Artist Name.")]
         public string Name
         {
             get => mName;

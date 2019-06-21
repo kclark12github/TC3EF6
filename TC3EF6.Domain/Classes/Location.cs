@@ -1,11 +1,12 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Serialization;
 using TC3EF6.Domain.Annotations;
 
 namespace TC3EF6.Domain.Classes
 {
-    [TableDescription("Location of cataloged items.")]
+    [DataContract, Table("Locations"), TableDescription("Location of cataloged items.")]
     public class Location : DataEntityBase
     {
         #region "Locals"
@@ -15,7 +16,7 @@ namespace TC3EF6.Domain.Classes
         private string mOName = string.Empty;
         #endregion
 
-        [NotMapped]
+        [DataMember, NotMapped]
         public string Caption
         {
             get
@@ -27,32 +28,28 @@ namespace TC3EF6.Domain.Classes
             }
         }
 
-        [ColumnDescription("Description of box/container (if applicable).")]
-        [StringLength(1024)]
+        [DataMember, StringLength(1024), ColumnDescription("Description of box/container (if applicable).")]
         public string Description
         {
             get => mDescription;
             set { SetProperty(ref mDescription, value); OnPropertyChanged("Caption"); }
         }
 
-        [ColumnDescription("Name of location.")]
-        [StringLength(1024)]
+        [DataMember, StringLength(1024), ColumnDescription("Name of location.")]
         public string Name
         {
             get => mName;
             set { SetProperty(ref mName, value); OnPropertyChanged("Caption"); }
         }
 
-        [ColumnDescription("Physical location of the box/container represented by this Location.")]
-        [StringLength(1024)]
+        [DataMember, StringLength(1024), ColumnDescription("Physical location of the box/container represented by this Location.")]
         public string PhysicalLocation
         {
             get => mPhysicalLocation;
             set { SetProperty(ref mPhysicalLocation, value); OnPropertyChanged("Caption"); }
         }
 
-        [ColumnDescription("Original Location field from source database (TODO: Remove after conversion).")]
-        [StringLength(80)]
+        [DataMember, StringLength(80), ColumnDescription("Original Location field from source database (TODO: Remove after conversion).")]
         public string OName
         {
             get => mOName;
