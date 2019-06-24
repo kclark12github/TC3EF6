@@ -1,0 +1,380 @@
+<html>
+
+<head>
+<title>Joel's Page</title>
+</head>
+
+<body>
+
+<p> <script language="JavaScript">
+
+
+<!-- Beginning of JavaScript -----
+
+
+/* 
+
+
+   WARNING! This script example contains an error that may cause 
+
+
+			Netscape to crash on certain systems. Use the script with care!
+
+
+
+
+
+			Copyright (C)1996 Web Integration Systems, Inc. DBA Websys, Inc.
+
+
+   All Rights Reserved.
+
+
+
+
+
+   This applet can be re-used or modified, if credit is given in 
+
+
+   the source code. We will not be held responsible for any unwanted 
+
+
+   effects due to the usage of this applet or any derivative.  
+
+
+   No warrantees for usability for any specific application are given
+
+
+   or implied.
+
+
+
+
+
+   Chris Skinner, January 30th, 1996.
+
+
+   Hacked for CNNfn by RD, Jan. 31, 1996
+
+
+*/
+
+
+
+
+
+function scrollit(seed)
+
+
+{
+
+
+	var m1  = "I think, therefore I";
+
+
+	var m2  = " am Conservative.";
+
+
+	var m3  = "";
+
+
+	
+
+
+	var msg=m1+m2+m3;
+
+
+	var out = " ";
+
+
+	var c   = 1;
+
+
+
+
+
+	if (seed > 100) {
+
+
+		seed--;
+
+
+		var cmd="scrollit(" + seed + ")";
+
+
+		timerTwo=window.setTimeout(cmd,100);
+
+
+	}
+
+
+	else if (seed <= 100 && seed > 0) {
+
+
+		for (c=0 ; c < seed ; c++) {
+
+
+			out+=" ";
+
+
+		}
+
+
+		out+=msg;
+
+
+		seed--;
+
+
+		var cmd="scrollit(" + seed + ")";
+
+
+		    window.status=out;
+
+
+		timerTwo=window.setTimeout(cmd,100);
+
+
+	}
+
+
+	else if (seed <= 0) {
+
+
+		if (-seed < msg.length) {
+
+
+			out+=msg.substring(-seed,msg.length);
+
+
+			seed--;
+
+
+			var cmd="scrollit(" + seed + ")";
+
+
+			window.status=out;
+
+
+			timerTwo=window.setTimeout(cmd,100);
+
+
+		}
+
+
+		else {
+
+
+			window.status=" ";
+
+
+			timerTwo=window.setTimeout("scrollit(100)",75);
+
+
+		}
+
+
+	}
+
+
+}
+
+
+// -- End of JavaScript code -------------- -->
+
+
+</script> </p>
+</body>
+
+<body
+background="../../crusiers/cgn-38%20uss%20virginia/wall4.gif"
+onload="timerONE=window.setTimeout('scrollit(100)',500);">
+<center>
+
+<p><img src="../../crusiers/cgn-38%20uss%20virginia/constru2.gif"
+width="20" height="20" alt="Construction"> This site is
+continuously under construction.</center> </p>
+
+<table width="600">
+    <tr>
+        <td align="center"> <img
+        src="../../crusiers/cgn-38%20uss%20virginia/sig2.gif"
+        width="153" height="86" alt="Sig"> </td>
+    </tr>
+    <tr>
+        <td align="center"> <b><table border="10" width="500">
+            <tr>
+                <td align="LEFT" valign="CENTER">Hi. Welcome to
+                my modest little web page. You most likely know
+                who I am, otherwise you never would have found
+                this page. If we've never met, please drop me a
+                line at <a href="mailto:huston@netgate.net">huston@netgate.net</a>
+                and tell me how you found your way here. This is
+                my first try at HTML, so cut me some slack.
+                Mostly all this site contains is some pictures
+                and links. <a href="mailto:huston@netgate.net">Email
+                me</a> if you have any suggestions or comments.</b></td>
+                <td align="RIGHTVALIGN=CENTER"><img align="right"
+                src="../../crusiers/cgn-38%20uss%20virginia/catpic"
+                width="160" height="120" alt="catpic"></td>
+            </tr>
+        </table>
+        </td>
+    </tr>
+</table>
+
+<p><br>
+</p>
+
+<table border width="600">
+    <tr align="CENTER" valign="CENTER">
+        <td> <a
+        href="http://www.netgate.net/~huston/cgn38/index.html"><img
+        src="../../crusiers/cgn-38%20uss%20virginia/shipicon.gif"
+        width="101" height="66" border="no"></a><br>
+        <a href="http://www.netgate.net/~huston/cgn38/index.html">USS
+        Virginia (CGN-38)<br>
+        Web Site</a> </td>
+        <td> <a
+        href="../../crusiers/cgn-38%20uss%20virginia/album.htm"><img
+        src="../../crusiers/cgn-38%20uss%20virginia/dc50.gif"
+        width="114" height="68" border="NO"></a><br>
+        <a
+        href="../../crusiers/cgn-38%20uss%20virginia/album.htm">My
+        Digital Photo Album</a> </td>
+        <td> <a href="http://www.appliedmaterials.com/"><img
+        src="../../crusiers/cgn-38%20uss%20virginia/card.jpg"
+        width="122" height="70" border="NO"><br>
+        Click here to find out about my employer, <a
+        href="http://www.appliedmaterials.com/">Applied Materials</a>.
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3" align="center"><a
+        href="http://www.netgate.net/~huston/dealey/">Special
+        Feature:</a> A Former Buff Makes the Pilgramage</td>
+    </tr>
+    <tr>
+        <td colspan="3" align="center"><img
+        src="../../crusiers/cgn-38%20uss%20virginia/rednew2.gif"
+        width="16" height="7"> <a
+        href="../../crusiers/cgn-38%20uss%20virginia/lauren1.gif">Extra
+        Special Feature:</a>Lauren's Artwork</td>
+    </tr>
+    <tr>
+        <td colspan="3" align="center"><a
+        href="http://www.dole96.com/"><img src width="468"
+        height="60" border="0" alt="I Support Dole '96!"></a> </td>
+    </tr>
+</table>
+
+<p><br>
+The reviews are in! <a
+href="../../crusiers/cgn-38%20uss%20virginia/reviews.htm">Look
+here.</a> <br>
+<br>
+<img src="../../crusiers/cgn-38%20uss%20virginia/line_bar.gif"
+width="640" height="11"> <br>
+</p>
+
+<table width="600">
+    <tr>
+        <td> Some links you may not have found yet: <br>
+        <br>
+        <a href="http://www.best.com/~myee/ultimate_mac.html"><img
+        src="../../crusiers/cgn-38%20uss%20virginia/ball_gr2.gif"
+        width="12" height="12" border="no"></a> <a
+        href="http://www.best.com/~myee/ultimate_mac.html">The
+        Ultimate Macintosh</a> This site has probably every Mac
+        link there is. <br>
+        <br>
+        <a href="http://www.zdnet.com/~macweek/"><img
+        src="../../crusiers/cgn-38%20uss%20virginia/ball_gr2.gif"
+        width="12" height="12" border="no"></a> <a
+        href="http://www.zdnet.com/~macweek/">MacWeek Online</a>
+        Mac news updated almost daily. <br>
+        <br>
+        <a
+        href="http://www.madmansdream.com/FairyTales/newpcTales2.toc.html"><img
+        src="../../crusiers/cgn-38%20uss%20virginia/ball_gr2.gif"
+        width="12" height="12" border="no"></a> <a
+        href="http://www.madmansdream.com/FairyTales/newpcTales2.toc.html">Top
+        Ten PC Myths Debunked</a> Good stuff. <br>
+        <br>
+        <a
+        href="http://sava.gulfnet.com/user_pages/iway/ghp4.htm"><img
+        src="../../crusiers/cgn-38%20uss%20virginia/ball_gr2.gif"
+        width="12" height="12" border="no"></a> <a
+        href="http://sava.gulfnet.com/user_pages/iway/ghp4.htm">Free
+        Software for Web Pages</a> Where I got my start with
+        HTML. <br>
+        <br>
+        <a href="http://www.cs.mun.ca/~craig/bnl/barenaked.html"><img
+        src="../../crusiers/cgn-38%20uss%20virginia/ball_gr2.gif"
+        width="12" height="12" border="no"></a> <a
+        href="http://www.cs.mun.ca/~craig/bnl/barenaked.html">Gordon's
+        Place</a> Unofficial site for my favorite band. <br>
+        <br>
+        <a href="http://www.drexel.edu/"><img
+        src="../../crusiers/cgn-38%20uss%20virginia/ball_gr2.gif"
+        width="12" height="12" border="no"></a> <a
+        href="http://www.drexel.edu/">Drexel University</a> My
+        alma mater. <br>
+        <br>
+        <a href="http://www.izone.net/~harv55/index.htm"><img
+        src="../../crusiers/cgn-38%20uss%20virginia/ball_gr2.gif"
+        width="12" height="12" border="no"></a> <a
+        href="http://www.izone.net/~harv55/index.htm">Anchors
+        Aweigh</a> A really well done Navy site. <br>
+        <br>
+        <a href="http://www.rnc.org/news/case/"><img
+        src="../../crusiers/cgn-38%20uss%20virginia/ball_gr2.gif"
+        width="12" height="12" border="no"></a> <a
+        href="http://www.rnc.org/news/case/">The Case Against
+        Bill Clinton</a> Facts are stubborn things. <br>
+        <br>
+        <a href="http://www.rushties.com/"><img
+        src="../../crusiers/cgn-38%20uss%20virginia/ball_gr2.gif"
+        width="12" height="12" border="no"></a> <a
+        href="http://www.rushties.com/">Rush Limbaugh No
+        Boundaries Tie Collection</a> I have the &quot;Fire
+        Red&quot; tie. <br>
+        <br>
+        <a href="../../crusiers/cgn-38%20uss%20virginia/jobs.wav"><img
+        src="../../crusiers/cgn-38%20uss%20virginia/sndicon.gif"
+        width="23" height="20" border="no"></a> <a
+        href="../../crusiers/cgn-38%20uss%20virginia/jobs.wav">Jobs
+        on Microsoft</a> Hear Steve Jobs hit the nail on the head
+        describing Microsoft. (595k, wav) <br>
+        <br>
+        <hr noshade>
+        <br>
+        <i>Do you believe in Macintosh? Learn how to help the
+        cause by subscribing to the &quot;EvangeList&quot;
+        listserver! Send email to: <a
+        href="mailto:evangelist@macway.com">evangelist@macway.com</a>
+        or go to: <a
+        href="http://www.solutions.apple.com/ListAdmin/">http://www.solutions.apple.com/ListAdmin/</a>.</i>
+        <br>
+        <br>
+        <hr noshade>
+        <p> This page was last updated 6/28/96. <a
+        href="http://www.algonet.se/~optima/pagespinner.html"><img
+        src="../../crusiers/cgn-38%20uss%20virginia/ps_made2.gif"
+        width="88" height="31" align="MIDDLE"
+        alt="Made with Pagespinner"></a><a
+        href="http://www2.apple.com/whymac/"><img
+        src="../../crusiers/cgn-38%20uss%20virginia/macmade2.gif"
+        width="88" height="31" align="MIDDLE"
+        alt="Made with Macintosh"></a> </p>
+        <p> </p>
+        <hr noshade>
+        <font size="1">According to <a
+        href="http://www.digits.com/">Web-Counter</a>, there have
+        been <img src align="middle" width="30" height="10"
+        border="1" hspace="4" vspace="2"> hits on this site
+        ('course that includes me too).</font> </td>
+    </tr>
+</table>
+</body>
+</html>

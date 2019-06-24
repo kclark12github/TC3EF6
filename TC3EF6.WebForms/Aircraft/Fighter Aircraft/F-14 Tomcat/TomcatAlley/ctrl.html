@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Control panel for Statistics.</TITLE>
+   <META NAME="Author" CONTENT="Catalin Rotaru">
+   <META NAME="GENERATOR" CONTENT="Mozilla/3.01Gold (Win95; I) [Netscape]">
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#C0C0C0" LINK="#0000EE" VLINK="#551A8B" ALINK="#FF0000">
+
+<P><FORM ACTION="/cgi-bin/stats.exe"  METHOD="POST" NAME="panel" TARGET="board"></P>
+
+<TABLE CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+<TR>
+<TD WIDTH="17%"><INPUT NAME="style" TYPE="RADIO" VALUE="toppag">Top 50
+pages.<BR>
+<INPUT NAME="style" TYPE="RADIO" VALUE="topvis">Top 50 visitors.<BR>
+<INPUT NAME="style" TYPE="RADIO" VALUE="avgs">Stats&amp;Averages.</TD>
+
+<TD WIDTH="17%"><INPUT NAME="style" TYPE="RADIO" VALUE="raw">Raw data.<BR>
+<INPUT NAME="style" TYPE="RADIO" VALUE="hitrep" CHECKED>Hits reports.</TD>
+
+<TD>
+<TABLE CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+<TR>
+<TD>Path:</TD>
+
+<TD><INPUT TYPE="text" SIZE=30 NAME="path"
+VALUE="/panels/aircraft/specials/tomcat"></TD>
+</TR>
+
+<TR>
+<TD>Time:</TD>
+
+<TD><INPUT TYPE="text" SIZE=30 NAME="time" VALUE="18/Feb/1997"></TD>
+</TR>
+
+<TR>
+<TD>Pass:</TD>
+
+<TD><INPUT TYPE="password" SIZE=30 NAME="pass" VALUE=""></TD>
+</TR>
+</TABLE>
+</TD>
+
+<TD WIDTH="17%"><INPUT NAME="jhtml" TYPE="CHECKBOX" CHECKED>Html files
+only.<BR>
+<INPUT TYPE="hidden" NAME="nointr" VALUE="on"><INPUT NAME="today" TYPE="CHECKBOX">Today's
+reports.<BR>
+<INPUT NAME="oneday" TYPE="CHECKBOX">One day reports.</TD>
+
+<TD ALIGN=CENTER VALIGN=CENTER><INPUT TYPE="submit" VALUE="Send Form"><BR>
+<INPUT TYPE="reset" VALUE="Clear Form"></TD>
+</TR>
+</TABLE>
+
+<P></FORM></P>
+
+</BODY>
+</HTML>

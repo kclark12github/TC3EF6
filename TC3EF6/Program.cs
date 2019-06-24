@@ -20,7 +20,7 @@ namespace TC3EF6
         static void Main(string[] args)
         {
             //TestLocations();
-            TestBooks();
+            //TestBooks();
             //TestMusic();
             //TestEpisodes();
             //TestGroupByComprehension();
@@ -31,10 +31,27 @@ namespace TC3EF6
             //TestFind();
             //TestFindWithImages();
             //TestDynamicGet();
+            TestAppState();
 
             if (Debugger.IsAttached)
             {
                 Console.Write("\nPress any key to continue . . ."); Console.ReadKey(true); Console.WriteLine();
+            }
+        }
+        static void TestAppState()
+        {
+            using (var context = new TCContext())
+            {   //We may not know the Visitor.Email yet, but update the HitCount now...
+                string appName = "TC3EF6.WebForms";
+                AppState appState = context.AppStates.Where(a => a.AppName == appName).SingleOrDefault();
+                if (appState == null)
+                {
+                    var VisitCount = context.Visitors.Sum(v => v.Visits);
+                    appState = new AppState { AppName = appName, HitCount = VisitCount, LastVisitor = "Anonymous", DateLastVisit = DateTime.Now };
+                    context.AppStates.Add(appState);
+                }
+                appState.HitCount += 1;
+                context.SaveChanges();
             }
         }
         static void TestLocations()

@@ -1,0 +1,55 @@
+RELEASE DATE: November 2, 1995
+
+PHOTO NO.: STScI-PRC95-44b
+
+        STELLAR "EGGS" EMERGE FROM MOLECULAR CLOUD
+               (Star-Birth Clouds in M16)
+
+This eerie, dark structure, resembling an imaginary sea serpent's head,
+is a column of cool molecular hydrogen gas (two atoms of hydrogen in
+each molecule) and dust that is an incubator for new stars.  The stars
+are embedded inside finger-like protrusions extending from the top of
+the nebula.  Each "fingertip" is somewhat larger than our own solar
+system.
+
+The pillar is slowly eroding away by the ultraviolet light from nearby
+hot stars, a process called "photoevaporation".  As it does, small
+globules of especially dense gas buried within the cloud is uncovered.
+These globules have been dubbed "EGGs" -- an acronym for "Evaporating
+Gaseous Globules".  The shadows of the EGGs protect gas behind them,
+resulting in the finger-like structures at the top of the cloud.
+
+Forming inside at least some of the EGGs are embryonic stars -- stars
+that abruptly stop growing when the EGGs are uncovered and they are
+separated from the larger reservoir of gas from which they were drawing
+mass.  Eventually the stars emerge, as the EGGs themselves succumb to
+photoevaporation.
+
+The stellar EGGS are found, appropriately enough, in the "Eagle Nebula"
+(also called M16 -- the 16th object in Charles Messier's 18th century
+catalog of "fuzzy" permanent objects in the sky), a nearby star-forming
+region 7,000 light-years away in the constellation Serpens.
+
+The picture was taken on April 1, 1995 with the Hubble Space Telescope
+Wide Field and Planetary Camera 2.  The color image is constructed from
+three separate images taken in the light of emission from different
+types of atoms.  Red shows emission from singly-ionized sulfur atoms.
+Green shows emission from hydrogen.  Blue shows light emitted by
+doubly- ionized oxygen atoms.
+
+Credit: Jeff Hester and Paul Scowen (Arizona State University), and
+NASA
+
+Image files in GIF and JPEG format and captions may be accessed on
+Internet via anonymous ftp from oposite.stsci.edu in /pubinfo:
+
+                                       GIF               JPEG
+PRC95-44b    M16 1 Pillar        gif/M16WF2.gif      jpeg/M16WF2.jpg
+
+Higher resolution versions (300 dpi JPEG) of the release photographs
+will be available temporarily in /pubinfo/hrtemp: 95-44a.jpg,
+95-44b.jpg and 95-44c.jpg.  GIF and JPEG images, captions and press
+release text are available via World Wide Web at URL
+http://www.stsci.edu/pubinfo/PR95/44.html, or via links in
+http://www.stsci.edu/Latest.html and
+http://www.stsci.edu/pubinfo/Pictures.html.

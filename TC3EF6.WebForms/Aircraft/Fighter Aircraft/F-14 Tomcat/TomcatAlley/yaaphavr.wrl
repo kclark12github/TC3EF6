@@ -1,0 +1,203 @@
+#VRML V1.0 ascii
+
+Separator { # start of entire scene
+# general info
+	Info {
+		string "author: Dorian Dogaru - dog@topedge.com"
+		string "decided I should keep the comments just in case"
+		string "the reader of this might have an interest in VRML"
+		string "if so also check out www.topedge.com/panels/cg"
+		string "visit YAAP - www.topedge.com/panels/aircraft/"
+	}
+	ShapeHints {
+		vertexOrdering 	COUNTERCLOCKWISE
+		shapeType 	SOLID
+		faceType 	CONVEX
+		creaseAngle 	0.5
+	}
+	TextureCoordinate2 {
+		point [	0.0 0.0,
+			1.0 0.0,
+			1.0 1.0,
+			0.0 1.0 ]
+	}
+	DEF VRML_Camera	Separator {
+# we might want to include something in here at a later date
+		PerspectiveCamera {
+			position	0 0 1
+			orientation	0 0 1	0
+			focalDistance	5
+			heightAngle	0.785398
+		}
+	}
+
+	Separator { # start of VRML Models Group
+# group positionning
+	Translation {
+		translation	0 0 -8
+	}
+# ==========================================================================
+# the first panel - F14
+	Separator { # F14 - the first panel
+# position the panel
+		Translation {
+			translation	-6.5 0 -10
+		}	
+		Rotation { # 30 deg
+			rotation	0 1 0	0.5236
+		}
+# setup for image panel
+		Texture2 { # texture for the first instance
+			filename "gift/f14/tsf14-5.gif"
+		}
+		WWWAnchor { # hyperlink for the first instance
+			name "vrml/f14/f14-a.wrl"
+			description "F14 VRML model - ASCII 346KB"
+# --------------------------------------------------------------------------
+# first definition of image_panel
+			DEF image_panel Separator { # define a simple image panel
+# setup coordinates to use
+				Coordinate3 { # a two sided panel in 4/3 format
+					point [	-2 0.25 0,
+						2 0.25 0,
+						2 3.25 0,
+						-2 3.25 0 ]
+				}  # a two sided panel in 4/3 format
+# --------------------------------------------------------------------------
+# first definition of texrec2
+				DEF texrec2 Separator { # 2 sided textured rectangle 
+					IndexedFaceSet { # front panel face
+						coordIndex [ 0, 1, 2, 3, -1 ]
+						textureCoordIndex[0, 1, 2, 3]
+					} # front panel face
+					Texture2Transform {
+						translation	0 0
+						rotation	0
+						scaleFactor	-1 1
+						center		0 -0.75
+					}
+					IndexedFaceSet { # back panel face
+						coordIndex [ 3, 2, 1, 0, -1 ]
+						textureCoordIndex[3, 2, 1, 0]
+					} # back panel face
+				} # 2 sided textured rectangle 
+# definition of texrec2 ends
+# --------------------------------------------------------------------------
+			} # define a simple image panel
+# definition of image_panel ends
+# --------------------------------------------------------------------------
+		} # hyperlink for the first instance
+# setup for text panel
+		Texture2 { # texture for the first instance
+			filename "var/f14/f14txt.gif"
+		}
+# --------------------------------------------------------------------------
+# first definition of text_panel
+		DEF text_panel Separator { # define a simple text panel
+# setup coordinates to use
+			Coordinate3 { # a two sided panel in 4/1 format
+				point [	-2 -1.25 0,
+					2 -1.25 0,
+					2 -0.25 0,
+					-2 -0.25 0 ]
+			}  # a two sided panel in 4/1 format
+			USE	texrec2
+		} # define a simple text panel
+# definition of text_panel ends
+# --------------------------------------------------------------------------
+	} # F14 - the first panel
+# first panel definition ends
+# ==========================================================================
+	Separator { # F16
+		Translation { 	translation	6.5 0 -10 }	
+		Rotation {	rotation	0 1 0	-0.5236 }
+		Texture2 {	filename "gift/f16/tsf16-6.gif" }
+		WWWAnchor {
+			name "vrml/f16/f16-a.wrl"
+			description "F16 VRML model - ASCII 201KB"
+			USE image_panel
+		}
+		Texture2 {	filename "var/f16/f16txt.gif" }
+		USE text_panel
+	} # F16
+# ==========================================================================
+	Separator { # A10
+		Translation { 	translation	-6.5 0 -20 }	
+		Rotation {	rotation	0 1 0	0.5236 }
+		Texture2 {	filename "gift/a10/tsa10-1.gif" }
+		WWWAnchor {
+			name "vrml/a10/a10-a.wrl"
+			description "A10 VRML model - ASCII 97KB"
+			USE image_panel
+		}
+		Texture2 {	filename "var/a10/a10txt.gif" }
+		USE text_panel
+	} # A10
+# ==========================================================================
+	Separator { # F18
+		Translation { 	translation	6.5 0 -20 }	
+		Rotation {	rotation	0 1 0	-0.5236 }
+		Texture2 {	filename "gift/f18/tsf18-3.gif" }
+		WWWAnchor {
+			name "vrml/f18/f18-a.wrl"
+			description "F18 VRML model - ASCII 1107KB"
+			USE image_panel
+		}
+		Texture2 {	filename "var/f18/f18txt.gif" }
+		USE text_panel
+	} # F18
+# ==========================================================================
+	Separator { # B1
+		Translation { 	translation	-6.5 0 -30 }	
+		Rotation {	rotation	0 1 0	0.5236 }
+		Texture2 {	filename "gift/b1/tsb1-3.gif" }
+		WWWAnchor {
+			name "vrml/b1/b1-a.wrl"
+			description "B1 VRML model - ASCII 264KB"
+			USE image_panel
+		}
+		Texture2 {	filename "var/b1/b1txt.gif" }
+		USE text_panel
+	} # B1
+# ==========================================================================
+	Separator { # AH64
+		Translation { 	translation	6.5 0 -30 }	
+		Rotation {	rotation	0 1 0	-0.5236 }
+		Texture2 {	filename "gift/ah64/tsah64-1.gif" }
+		WWWAnchor {
+			name "vrml/ah64/ah64-a.wrl"
+			description "AH64 VRML model - ASCII 110KB"
+			USE image_panel
+		}
+		Texture2 {	filename "var/ah64/ah64txt.gif" }
+		USE text_panel
+	} # AH64
+# ==========================================================================
+	Separator { # F15
+		Translation { 	translation	-6.5 0 -40 }	
+		Rotation {	rotation	0 1 0	0.5236 }
+		Texture2 {	filename "gift/f15/sf15-1.gif" }
+		WWWAnchor {
+			name "vrml/f15/f15-a.wrl"
+			description "F15 VRML model - ASCII 482KB"
+			USE image_panel
+		}
+		Texture2 {	filename "var/f15/f15txt.gif" }
+		USE text_panel
+	} # F15
+
+
+
+# ==========================================================================
+	Separator { # Back Panel VRML Models Group
+		Scale {		scaleFactor	40 40 1 }
+		Translation { 	translation	0 0 -100 } # -0.25 y -> 0	
+		Texture2 {	filename "jpeg/combi/pcombi06.jpg" }
+		USE image_panel
+		Texture2 {	filename "var/yhavrtxt.gif" }
+		USE text_panel
+	} # Back Panel VRML Models Group
+
+	} # end of VRML Models Group
+
+} # end of entire scene

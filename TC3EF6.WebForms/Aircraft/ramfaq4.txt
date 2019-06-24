@@ -1,0 +1,949 @@
+
+             REC.AVIATION.MILITARY FREQUENTLY ASKED QUESTIONS (part 4 of 5)
+
+Please send updates to Urban Fredriksson <griffon@canit.se>
+
+The rec.aviation.military FAQ is posted to the usenet newsgroup 
+rec.aviation.military about once per month and is available via WWW at
+<http://www.canit.se/%7Egriffon/aviation/faq/
+
+------------------------------
+
+Subject:  H.1.  American aircraft designations
+
+The US Air Force (and its predecessor, the US Army Air Force) has used
+several aircraft designation systems in its history.  The three most
+important are the USAAF system adopted in 1924 and used through World War
+II and up to 1948; the USAF system used from 1948 to 1962; and the
+Tri-Service system adopted in 1962 to provide a common system for USAF, US
+Army, and US Navy aircraft.  The three systems are similar enough that they
+can conveniently be described together.
+
+A designation consists of a letter (or set of letters) indicating the type
+and mission of the aircraft, and a sequence number indicating a specific
+aircraft within a category, separated by a hyphen.  The number may be
+followed by a series letter to indicate a variant of an aircraft.  Most
+aircraft are also given a proper name, but this is not part of the formal
+designation.
+
+Mission codes used in the USAAF system included the following:
+
+    A  = Attack
+    AG = Assault glider
+    AT = Advanced trainer
+    B  = Bomber
+    BC = Basic combat
+    BG = Bomb glider
+    BQ = Guided bomb
+    BT = Basic trainer
+    C  = Cargo transport
+    CG = Cargo glider
+    CQ = Target control
+    F  = Photographic reconnaissance
+    FG = Fuel-carrying glider
+    FM = Multiplace fighter
+    G  = Gyroplane
+    GB = Glide bomb
+    GT = Glide torpedo
+    JB = Jet-propelled bomb
+    L  = Liaison
+    O  = Observation
+    OA = Observation amphibian
+    OQ = Target
+    P  = Pursuit
+    PB = Biplace pursuit
+    PG = Powered glider
+    PQ = Manned target
+    PT = Primary trainer
+    R  = Rotorcraft
+    TG = Training glider
+
+These were sometimes modified by one of the following prefixes, indicating
+a special status or modification:
+
+    C = Cargo transport
+    F = Photographic reconnaissance
+    K = Ferret
+    R = Restricted operations
+    T = Trainer
+    U = Utility
+    V = Staff/VIP transport
+    X = Experimental
+    Y = Service test
+    Z = Obsolete
+
+The first version of a type had no series letter; the second was suffixed
+with "A", the third with "B", and so on.  For obvious reasons, the letters
+"I" and "O" are usually skipped.  For example, the B-29A is the second
+version of the 29th bomber aircraft identified by the USAAF.
+
+The USAF system (1948) was similar to the USAAF system; it retained the
+three-part code, although the series letters now started with "A" for the
+first version rather than the second.  The mission codes were rationalised
+somewhat; "F" for "Fighter" replaced "P" for "Pursuit" (the existing
+P-series aircraft being redesignated, and new aircraft receiving F-series
+numbers continuing the old P-series), "H" for "Helicopter" replaced "R" for
+"Rotorcraft", and "R" for "Reconnaissance" replaced "F" for "Photographic".
+The "L" for "Liaison" code was subsumed by "O" for "Observation", and most
+of the two-letter codes were combined into one (e.g.  a single "T" series
+replaced the old "AT", "BT", and "PT").
+
+The Tri-Service system (1962) underwent further changes, although it still
+retained the basic scheme of the older systems.  The most important changes
+were that the system now included Navy aircraft as well as USAF and Army,
+and that most of the numeric sequences were restarted from 1, since some
+were now well past 100 and were becoming unwieldy.
+
+Starting from the central dash and moving *left*, the letter codes now
+consist of up to four letters (although only the "basic mission" code is
+mandatory, and I've never seen a real designation with more than three
+letters).
+
+(1) Vehicle type (optional; indicates something other than a conventional
+fixed-wing aircraft):
+
+    G = Glider
+    H = Helicopter
+    V = VTOL or STOL
+    Z = Lighter than air (Z for Zeppelin)
+
+(2) Basic mission:
+
+    A = Attack
+    B = Bomber
+    C = Cargo transport
+    E = Special electronics
+    F = Fighter
+    O = Observation
+    P = Maritime patrol
+    R = Reconnaissance
+    S = Anti-submarine warfare
+    T = Trainer
+    U = Utility
+    X = Research
+
+(3) Modified mission (optional; indicates that a type originally designed
+for the mission indicated by its "basic mission" code has been modified for
+a different mission); includes the A, C, E, F, O, P, R, S, T, and U mission
+codes, plus:
+
+    D = Drone control
+    H = Search and rescue
+    K = Tanker (K for Kerosene)
+    L = Cold weather
+    M = Multi-mission
+    Q = Drone
+    V = VIP or staff transport
+    W = Weather observation
+
+(4) Status (optional; indicates any unusual status):
+
+    G = Permanently grounded
+    J = Temporary special test
+    N = Permanent special test
+    X = Experimental
+    Y = Prototype
+    Z = Planning
+
+The sequence numbers are based on the vehicle type (if present) or the
+basic mission.  For example, all helicopters (vehicle type "H") are
+numbered in a single sequence regardless of the basic mission code, while
+conventional aircraft (with no vehicle type code) follow separate sequences
+for attack aircraft, bombers, transports, and so on.  There are a few
+oddities here; for example, the AV-8 Harrier seems to have taken the number
+8 slot in both the "A" and "V" sequences.  For some reason, the "T"
+(trainer) sequence, last seen in the Cessna T-47 in 1984, was restarted
+with the Beech T-1 Jayhawk in 1990.
+
+The system has not been followed perfectly; exceptions include the A-37
+Dragonfly (attack version of T-37 trainer; there was an AT-37, so the A-37
+should have either continued the AT-37 designation or been given a proper
+A-series number), F/A-18 Hornet (should have been just F-18, or possibly
+AF-18), FB-111 (bomber version of the F-111; should have been BF-111),
+SR-71 (the letters indicate "strategic reconnaissance", not an
+anti-submarine modification, and the number is actually from the pre-1962
+bomber series!), and a few others.
+
+------------------------------
+
+Subject:  H.2.  US Navy aircraft designations (pre-1962)
+
+Before the adoption of the Tri-Service system in 1962, the US Navy had its
+own system of aircraft designations, completely different from that used by
+the USAAF and USAF.  This consisted of up to five parts:
+
+(1) One or two letters to indicate the function.  These included:
+
+    A  = Attack
+    BF = Fighter-bomber
+    F  = Fighter
+    HC = Transport helicopter
+    HO = Observation helicopter
+    HU = Utility helicopter
+    J  = Utility
+    N  = Trainer
+    O  = Observation
+    P  = Patrol
+    PB = Patrol bomber
+    R  = Transport
+    SB = Scout bomber
+    T  = Trainer
+    TB = Torpedo bomber
+    W  = Early warning
+
+(2) A sequence number, to distinguish between aircraft of the same function
+built by the same manufacturer.  The number was left out if it was 1.
+
+(3) A letter to indicate the manufacturer.  Because the US Navy used
+aircraft from considerably more than 26 different manufacturers, most of
+the letters of the alphabet were shared between several companies; the same
+company frequently used more than one letter at various times.  If the same
+aircraft was built by more than one firm, the designation was changed to
+reflect the individual manufacturers (for example, the Chance-Vought F4U
+Corsair was also built by Goodyear, whose Corsairs were designated FG).
+Some of the most important manufacturers were:
+
+    A = Brewster, Noorduyn
+    B = Beech, Boeing, Vertol
+    C = Cessna, Curtiss, De Havilland Canada
+    D = Douglas, McDonnell
+    E = Cessna, Piper
+    F = Fairchild, Grumman
+    G = Goodyear
+    H = McDonnell
+    J = North American
+    K = Fairchild, Kaman
+    L = Bell
+    M = Bell, Martin
+    O = Lockheed, Piper
+    P = Piasecki
+    Q = Fairchild
+    S = Sikorsky, Stearman
+    T = Northrop
+    U = Chance-Vought
+    V = Lockheed, Vultee
+    W = Wright
+    Y = Consolidated, Convair
+
+(4) After a dash, a number to indicate a subtype.
+
+(5) Optionally, a letter to indicate a minor variation on a subtype.
+
+For example, the F4U was the fourth fighter designed by Chance-Vought for
+the US Navy.  The F4U-1A was a modified version of the first subtype of the
+F4U.  The F4U was commonly known as the Corsair, but, as with Air Force
+types, the name was not part of the formal designation (Vince Norris, who
+has quite a few hours in USN aircraft, reports that they were always
+referred to by their designations, not the proper names; using names
+instead of numbers was the mark of a civilian).
+
+When the Tri-Service system was adopted in 1962, aircraft then in USN
+service (as well as some under development or recently retired) were
+redesignated under the new system.  Some were simply given the designation
+already used by the USAF for the same aircraft; others were given new
+designations.  They included:
+
+    Beech SNB Expediter           = C-45 *
+    Bell HTL/HUL Sioux            = H-13 *
+    Convair F2Y Sea Dart          = F-7
+    Convair P4Y Privateer         = P-4
+    Convair R4Y Samaritan         = C-131 *
+    De Havilland Canada UC Otter  = U-1 *
+    Douglas AD Skyraider          = A-1
+    Douglas A3D Skywarrior        = A-3
+    Douglas A4D Skyhawk           = A-4
+    Douglas F3D Skyknight         = F-10
+    Douglas F4D Skyray            = F-6
+    Douglas JD Invader            = B-26 *
+    Douglas R4D Skytrain          = C-47/117 *
+    Douglas R5D Skymaster         = C-54 *
+    Douglas R6D Liftmaster        = C-118 *
+    Fairchild R4Q Boxcar          = C-119 *
+    Grumman A2F Intruder          = A-6
+    Grumman F9F Panther/Cougar    = F-9
+    Grumman F11F Tiger            = F-11
+    Grumman S2F Tracker           = S-2
+    Grumman TF Trader             = C-1
+    Grumman UF Albatross          = U-16 *
+    Grumman WF Tracer             = E-1
+    Grumman W2F Hawkeye           = E-2
+    Kaman HOK/HTK/HUK Huskie      = H-43 *
+    Kaman HU2K Seasprite          = H-2
+    Lockheed GV/R8V Hercules      = C-130 *
+    Lockheed P2V Neptune          = P-2
+    Lockheed P3V Orion            = P-3
+    Lockheed R7V/WV Constellation = C-121 *
+    Lockheed TV Shooting Star     = T-33 *
+    Lockheed T2V Seastar          = T-1
+    Lockheed UV Jetstar           = C-140 *
+    Martin P5M Marlin             = P-5
+    Martin RM                     = C-3
+    McDonnell F2D/F2H Banshee     = F-2
+    McDonnell F3H Demon           = F-3
+    McDonnell F4H Phantom II      = F-4
+    North American AJ Savage      = A-2
+    North American A3J Vigilante  = A-5
+    North American FJ Fury        = F-1
+    North American T2J Buckeye    = T-2
+    North American T3J Sabreliner = T-39 *
+    Piasecki HUP Retriever        = H-25 *
+    Piper UO Aztec                = U-11
+    Sikorsky HO4S/HRS Chickasaw   = H-19 *
+    Sikorsky HR2S Mojave          = H-37 *
+    Sikorsky HSS Sea King         = H-3 *
+    Sikorsky HUS Seabat/Seahorse  = H-34 *
+    Sikorsky HU2S Seaguard        = H-52
+    Vertol HRB Sea Knight         = H-46
+    Vought F8U Crusader           = F-8
+
+(* Designation already used by USAF)
+
+------------------------------
+
+Subject:  H.3.  USAF/USN fighters and attack aircraft
+
+A complete list of US aircraft would take up far too much space; instead,
+I've listed only the post-war "F" and "A" series, the ones most often asked
+about.
+
+One star indicates a type that existed only as one or more prototypes and
+never entered service; two stars indicate a type that never left the
+drawing board; three stars indicate that the number was never assigned at
+all (as far as I could determine).
+
+USAF fighter designations, since the initiation of the "F" series in 1948:
+
+    F-80:  Lockheed F-80 Shooting Star
+    F-81:  * Convair XF-81 (experimental mixed-power jet/turboprop fighter)
+    F-82:  North American F-82 Twin Mustang
+    F-83:  * Bell XF-83
+    F-84:  Republic F-84 Thunderjet/Thunderstreak/RF-84 Thunderflash
+    F-85:  * McDonnell XF-85 Goblin (parasite fighter experiment)
+    F-86:  North American F-86 Sabre
+    F-87:  * Curtiss XF-87 Blackhawk
+    F-88:  * McDonnell XF-88 Voodoo
+    F-89:  Northrop F-89 Scorpion
+    F-90:  * Lockheed XF-90
+    F-91:  * Republic XF-91 Thunderceptor
+    F-92:  * Convair XF-92
+    F-93:  North American YF-93 (F-86 derivative)
+    F-94:  Lockheed F-94 Starfire (F-80/T-33 derivative)
+    F-95:  North American YF-95 (became F-86D)
+    F-96:  Republic YF-96 (became F-84F)
+    F-97:  Lockheed YF-97 (became F-94C)
+    F-98:  Hughes F-98 Falcon (air-to-air missile; became GAR-1, later
+        AIM-4)
+    F-99:  Boeing F-99 Bomarc (ground-to-air missile; became IM-99, later
+        CIM-10)
+    F-100:  North American F-100 Super Sabre
+    F-101:  McDonnell F-101 Voodoo
+    F-102:  Convair F-102 Delta Dagger
+    F-103:  ** Republic XF-103 (turbojet/ramjet hypersonic interceptor)
+    F-104:  Lockheed F-104 Starfighter
+    F-105:  Republic F-105 Thunderchief
+    F-106:  Convair F-106 Delta Dart
+    F-107:  * North American YF-107 (F-100 derivative)
+    F-108:  ** North American XF-108 Rapier (long range interceptor and
+        XB-70 escort)
+    F-109:  Reserved for the F-101B (but see below)
+    F-110:  McDonnell F-110 Spectre (designation used briefly for USAF
+        version of F4H/F-4 Phantom II)
+    F-111:  General Dynamics F-111 (the common name "Aardvark" is
+        unofficial)
+    F-112-116:  See entry C.1 in part 2 of the FAQ
+    F-117:  Lockheed F-117 Nighthawk
+
+Note:  Bell applied the designation "XF-109" to a VTOL fighter project of
+the late 1950s (one prototype was built but never flew); however, this was
+assigned unilaterally by the company, and was not sanctioned by the USAF.
+The "F-109" designation has never been officially used, probably as a
+result of Bell's breaking the rules.
+
+USAF/USN fighter designations, since the adoption of the Tri-Service
+designations in 1962:
+
+    F-1:  North American F-1 Fury (formerly FJ)
+    F-2:  McDonnell F-2 Banshee (formerly F2H)
+    F-3:  McDonnell F-3 Demon (formerly F3H)
+    F-4:  McDonnell F-4 Phantom II (formerly F4H, briefly F-110)
+    F-5:  Northrop F-5 Freedom Fighter/Tiger II
+    F-6:  Douglas F-6 Skyray (formerly F4D)
+    F-7:  * Convair F-7 Sea Dart (formerly F2Y)
+    F-8:  Vought F-8 Crusader (formerly F8U)
+    F-9:  Grumman F-9 Panther/Cougar (formerly F9F)
+    F-10:  Douglas F-10 Skyknight (formerly F3D)
+    F-11:  Grumman F-11 Tiger (formerly F11F)
+    F-12:  * Lockheed YF-12 (A-12/SR-71 derivative)
+    F-13:  *** (never used)
+    F-14:  Grumman (now Northrop Grumman) F-14 Tomcat
+    F-15:  McDonnell Douglas F-15 Eagle
+    F-16:  General Dynamics (now Lockheed) F-16 Fighting Falcon
+    F-17:  * Northrop YF-17 Cobra (lost to F-16 in Lightweight Fighter
+        contest)
+    F-18:  McDonnell Douglas F/A-18 Hornet (YF-17 derivative)
+    F-19:  *** (never used, at least officially)
+    F-20:  * Northrop F-20 Tigershark (F-5 derivative)
+    F-21:  IAI F-21 Lion (leased Kfirs, used as Aggressors in training)
+    F-22:  Lockheed/Boeing F-22 Lightning II
+    F-23:  * Northrop/McDonnell Douglas YF-23 (lost to F-22 in Advanced
+        Technology Fighter contest)
+
+Note:  The Rockwell XFV-12 was number 12 in the "V" series, not part of the
+"F" series.
+
+USAF/USN attack designations, since the adoption of the Tri-Service
+designations in 1962:
+
+    A-1:  Douglas A-1 Skyraider (formerly AD)
+    A-2:  North American A-2 Savage (formerly AJ)
+    A-3:  Douglas A-3 Skywarrior (formerly A3D)
+    A-4:  Douglas A-4 Skyhawk (formerly A4D)
+    A-5:  North American A-5 Vigilante (formerly A3J)
+    A-6:  Grumman A-6 Intruder (formerly A2F)
+    A-7:  Vought A-7 Corsair II (F-8 derivative)
+    A-8:  British Aerospace/McDonnell Douglas AV-8 Harrier
+    A-9:  ** Northrop YA-9 (lost to A-10 in AX contest)
+    A-10:  Fairchild A-10 Thunderbolt II
+    A-11:  ***?  (apparently never used)
+    A-12:  ** McDonnell Douglas A-12 (cancelled A-6 replacement)
+
+Notes:  The Harrier seems to have taken the number 8 slot in both the "A"
+and "V" series.  The designation A-12 for the original, single-seat version
+of the aircraft that became the SR-71/YF-12/M-21 was an internal Lockheed
+designation, not an official USAF one (the A-12s were operated by the CIA
+and never officially entered military service).  The designation A-37 for
+the attack version of Cessna's T-37 was derived from the trainer version of
+the aircraft and was not part of the real "A" series.
+
+------------------------------
+
+Subject:  H.4.  American missile designations
+
+These have their own version of the Tri-Service designation system,
+consisting of a three-letter prefix, a dash, a series number to indicate
+the specific type, and a letter to indicate subtypes.  Series numbers are
+assigned within vehicle types, so there are only two numeric series, the
+M-series for guided missiles and the R-series for unguided rockets.
+
+The three letters indicate (left to right):
+
+(1) Launch platform:
+
+    A = Aircraft
+    B = Multiple
+    C = Container
+    F = Individual
+    G = Runway
+    H = Silo stored
+    L = Silo launched
+    M = Mobile
+    P = Soft pad
+    R = Ship
+    S = Space
+    U = Underwater
+
+(2) Mission type:
+
+    C = Cargo transport
+    D = Decoy
+    E = Electronics or communication
+    G = Surface attack
+    I = Interception
+    L = Launch detection or surveillance
+    M = Calibration or scientific research
+    N = Navigation
+    Q = Drone
+    S = Space support
+    T = Training
+    U = Underwater attack
+    W = Weather
+
+(3) Vehicle type:
+
+    M = Missile (guided)
+    R = Rocket (unguided)
+
+Example:  AIM-9L Sidewinder.  Aircraft-launched interception missile (i.e.
+air-to-air missile), the ninth missile to be designated since 1962, and the
+eleventh version of the AIM-9.  As with aircraft, an official proper name
+is usually assigned, but is not part of the formal designation.
+
+(See C.17 for current American air-to-air missiles)
+
+------------------------------
+
+Subject:  H.7.  American electronic systems designations
+Updated 1998 Mar 31
+
+All electronic systems developed for the US forces are given a designation
+under the Joint Electronics Type Designation System (JETDS), sometimes
+called the "AN" system.
+
+All designations start with "AN/" which stands for Army Navy, 
+which has its roots in the time before there was a US Air Force,
+and thus really means it's for all branches of the armed forces.
+This is followed by three letters describing the item, a dash, and 
+a number.  The number is sometimes followed by a "variable group", 
+consisting of "(V)" to indicate a variant, optionally followed by another 
+number to indicate subsequent variants.
+
+For example, the radar in the F-16C/D is designated AN/APG-68.  The "APG"
+part can be broken down into an installation code of "A" (piloted
+aircraft), an equipment type code of "P" (radar), and a purpose code of "G"
+(fire control).  If variants were developed, they would be designated
+"AN/APG-68(V)", "AN/APG-68(V)2", and so on.
+
+First letter -- Installation:
+    A -- Piloted aircraft
+    B -- Submarine
+    C -- Air transportable
+    D -- Pilotless carrier
+    E -- Blank
+    F -- Fixed ground installation
+    G -- General purpose
+    K -- Amphibious
+    M -- Ground mobile
+    P -- Portable
+    S -- Water
+    T -- Ground transportable
+    U -- General utility assemblies
+    V -- Ground vehicle
+    W -- Water surface/underwater combination
+    Z -- Piloted/pilotless airborne combination
+
+Second letter -- Equipment type:
+    A -- Infrared/ultraviolet
+    C -- Carrier
+    D -- Radiac
+    E -- Nupac
+    F -- Photographic
+    G -- Telegraph/teletype
+    I -- Interphone/public address
+    J -- Electromechanical/inertial wire covered
+    K -- Telemetering
+    L -- Countermeasure
+    M -- Meteorological
+    N -- Sound in air
+    P -- Radar
+    Q -- Sonar/underwater sound
+    R -- Radio
+    S -- Special types
+    T -- Telephone (wire)
+    V -- Visible light
+    W -- Armament
+    X -- Facsimile/TV
+    Y -- Data processing
+
+Third letter -- Purpose:
+    A -- Auxiliary
+    B -- Bombing
+    C -- Communications
+    D -- Direction finding/reconnaissance/surveillance
+    E -- Ejection/release
+    G -- Fire control/light finding
+    H -- Recording/reproducing
+    K -- Computing
+    M -- Maintenance/test
+    N -- Navigational aids
+    Q -- Special purpose/combination
+    R -- Receiving/passive detecting
+    S -- Detection/range bearing/search
+    T -- Transmitting
+    W -- Automatic flight/remote control
+    X -- Identification/recognition
+    Y -- Surveillance/control
+
+------------------------------
+
+Subject:  H.6.  Russian aircraft designations * Updated 1998 Dec 07 *
+
+In the 1920s and 1930s, many different designation systems were used for
+Russian aircraft; the People's Comissariat of Defence had its own system,
+and each manufacturer had another, usually based on the initials of the
+designer or organisation (for example, A N Tupolev's ANT-6 was also known
+as the TB-3).
+
+Prefixes used included:
+
+    A    = Autogyro
+    ARK  = Arctic coastal reconnaissance
+    B    = Bomber
+    BB   = Short-range bomber
+    BSh  = Armoured attack aircraft (Sh = Shturmovik)
+    DAR  = Long-range arctic reconnaissance
+    DB   = Long-range bomber
+    DVB  = Long-range high-altitude bomber
+    DI   = Two-seat fighter
+    DIS  = Twin-engined escort fighter
+    G    = Paratroop transport
+    I    = Fighter (Istrebitel; literally "destroyer")
+    KOR  = Ship-borne reconnaissance
+    M    = Seaplane
+    MA   = Amphibian
+    MBR  = Short-range maritime reconnaissance
+    MDR  = Long-range maritime reconnaissance
+    MI   = Fighter seaplane
+    MK   = Maritime cruiser (heavily armed seaplane)
+    MP   = Transport seaplane
+    MR   = Reconnaissance seaplane
+    MTB  = Maritime heavy bomber
+    MU   = Trainer seaplane
+    P    = Mailplane
+    PB   = Dive bomber
+    PI   = Single seat fighter
+    PL   = Transport
+    PS   = Mail/passenger transport
+    R    = Reconnaissance
+    ROM  = Open sea reconnaissance
+    SB   = High-speed bomber
+    SCh  = Low-level attacker
+    SChR = Attack fighter/reconnaissance
+    SPB  = Fast dive bomber
+    TB   = Heavy bomber
+    TSh  = Heavy attack aircraft
+    U    = Primary trainer
+    UT   = Basic trainer (Uchebnotrenirovochny)
+    UTI  = Fighter trainer
+    V    = Airship
+    VI   = High-altitude fighter
+    VIT  = High-altitude tank destroyer
+    VT   = Supervised design
+
+In the early years of WW2, a new systematic designation scheme was set up
+for all Soviet aircraft (military and civil), based on (usually) the first
+two letters of the designer's name; this replaced the former military
+designation system.  Later, as the original designers became the heads of
+design bureaus (OKBs), and eventually retired or died, the original
+initials were retained for all aircraft produced by each OKB.
+
+The full designation consists of the OKB initials, a dash, a number to
+indicate a particular aircraft type designed by that OKB, and optionally a
+letter or letters (and sometimes numbers) to indicate a subtype.  Unlike
+the American system, subtype letters are not a simple alphabetic sequence,
+but are assigned arbitrarily, sometimes to indicate some particular feature
+of the subtype.  Common suffix letters include "D" (long range), "K" (which
+can mean export, ground attack, or naval), "M" (modified), "P"
+(interceptor), "R" (reconnaissance), "T" (transport), and "U" (trainer).
+
+Stalin decided that fighters would be given odd numbers, while bombers and
+transports would get even numbers; this rule largely fell out of use after
+his death.
+
+OKB abbreviations include the following (for those still in use I've added
+a description of what the letters look like in the Cyrillic (Russian)
+alphabet, since you will often see an aircraft's designation written on
+it):
+
+    An  = Antonov          (AH)
+    Be  = Beriev           ([broken B] [reversed E])
+    Il  = Ilyushin         ([reversed N] [linked JI or inverted V])
+    Ka  = Kamov            (KA)
+    La  = Lavochkin
+    M   = Myasishchyev     (M)
+    Mi  = Mil              (M [reversed N])
+    MiG = Mikoyan-Gurevich (M [reversed N] [gamma])
+    Pe  = Petlyakov
+    Po  = Polikarpov
+    Su  = Sukhoi           (CY)
+    Tu  = Tupolev          (TY)
+    Yak = Yakovlev         ([reversed R] K)
+
+The Lavochkin OKB still exists, but switched from aircraft to missile and
+space technology in the 1950s.  The Petlyakov and Myasishchyev OKBs are
+really the same bureau, which was headed by Myasishchyev after Petlyakov's
+death in 1942, disbanded in 1946, but revived in 1952 under Myasishchyev's
+name.  Polikarpov's OKB was disbanded after his death in 1944.
+
+The remaining OKBs recently became companies in the wake of perestroika.
+With the breakup of the USSR, Antonov is now a Ukrainian company; The rest
+are Russian. Mikoyan-Gurevich is now just Mikoyan, but the
+original abbreviations are retained in their aircraft designations.
+
+It's been written here that Beriev was renamed, but it really wasn't;
+Its name is literally 'the Taganrog(-based) Aircraft Scientific/Technical 
+Complex named after G.M. Beriev' (TANTK in Russian) or, in proper English 
+translation, the Beriev Aircraft Design Bureau. The Kazan(-based) Helicopter
+Plant that should be called the KHP, rather than Kazan, since nobody calls
+it in such a way in Russia.
+
+One special case is the A-50 AWACS aircraft ("Mainstay").  This was a joint
+venture of the Ilyushin and Beriev OKBs (providing the airframe and
+electronics, respectively); the A-series designation, normally used by
+Beriev to indicate a prototype or experimental aircraft, has been retained
+for the production aircraft. Beriev argued that they had designed the
+most important part of the aircraft, so an Ilyushin designation was
+inappropriate.  They were still arguing when the aircraft entered
+service, so its internal name of A-50 went to the print shop.
+
+A few cases where confusion has reigned should be mentioned; the present
+climate of openness has allowed these to be settled.  All Sukhoi "Flagon"
+versions carried Su-15 designations; the later versions were not Su-21
+(which in fact referred to Sukhoi's Su-27-derived supersonic bizjet
+project, now abandoned).  The designation Tu-20 was used for the early
+"Bear" bombers ("Bear-A/B"), but was changed back to Tupolev's internal
+designation, Tu-95, from "Bear-C" onwards (some later versions were
+Tu-142).  The Tupolev "Backfire" bomber is Tu-22M, not Tu-26.  The
+"Fiddler", Tupolev's only production fighter, was Tu-128, not Tu-28.
+
+
+Why Russian designations can be confusing
+
+Russian designations are complicated, as it's not always the
+manufacturer, the air force and the ASCC agree to what is a new
+type or variant.
+
+The ASCC used to designate trainer versions of fighters
+differently, for example:
+
+Su-7            Fitter
+Su-7U           Moujik
+
+but starting with MiG-23 they have had the same code name as the
+fighter version.
+
+Examples of where the manufacturer and air force have different
+opinion of what's a new type and a variant:
+
+Manufacturer    Air force
+An-2            An-2
+An-4            An-2ZA
+An-6            An-2V
+MiG Ye-5        MiG-21
+MiG Ye-6,7,8,9  MiG-21 with different suffixes
+
+But it gets worse as:
+
+MiG Ye-7        MiG-21PF Type 76
+MiG Ye-7        MiG-21FL Type 77
+
+And sometimes it's the makers designation that's well known, as
+in the case of Tu-95:
+
+Tu-88           Tu-16
+Tu-95           Tu-20
+Tu-22           Tu-22
+Tu-26 (?)       Tu-22M   (this was for budgetary reasons)
+
+Sometimes, the designations change for almost incomprehensible
+reasons. 
+The MiG-29M was at one time almost called MiG-33, but it couldn't
+officially get that designation until adopted by the air force,
+and now it seems like it won't ever.
+
+The Su-27IB first got renamed Su-34, then Su-32FN -- which was
+completely incomprehensible, until we learned that the Su-25TM
+had been re-designated Su-34.
+The military trainer developed from the Su-26/29 series was also
+designated Su-32 for a while, but now it's called Su-39.
+
+And now we hear that the Su-25TM when developed will be designated Su-39.
+
+------------------------------
+
+Subject:  H.7.  Russian aircraft codenames
+
+During the Cold War, it was common for the West to know (or suspect) that
+an aircraft existed in the Soviet inventory, but not know its correct
+designation.  Even when the USSR released publicity pictures of their
+aircraft (or allowed Western journalists to film them flying past during
+displays), the aircraft's name was usually never mentioned.  Because of
+this, a system of reporting codenames was invented by NATO.
+
+Each type was given a name starting with "B" for bombers, "C" for cargo or
+passenger transports, "F" for fighters, "H" for helicopters, or "M" for
+miscellaneous (everything else).  Fixed-wing aircraft received names with
+one syllable if they were propeller-driven, two syllables if they were jets
+(there is no rule for the number of syllables in a helicopter's codename).
+Variants were indicated by suffix letters (e.g.  the fourth version of the
+MiG-25 "Foxbat" to be identified became "Foxbat-D").
+
+With the modern opening up of the Russian military, it's becoming more
+common to refer to Russian aircraft by their real designations (now better
+known in the West).  Some recent types haven't been given codenames, and
+the system seems likely to disappear altogether in the near future.
+
+Seven (at least) foreign-built aircraft have been given codenames: 
+The Czech-built Aero L-29 Delfin ("Maya"), but not its successor
+L-39 Albatros; The Chinese J-8 ("Finback") and Q-5 ("Fantan") 
+(see section H.11); the US-built North American B-25 Mitchell ("Bank"), 
+used by the Soviet air forces for a while after World War II;
+Douglas A-20 Havoc ("Box"); Bell P-63 Kingcobra ("Fred");
+Consolidated Catalinas ("Mop").
+
+    Antonov
+        An-2/3            = "Colt"
+        An-8              = "Camp"
+        An-10             = "Cat"
+        An-12             = "Cub"
+        An-14             = "Clod"
+        An-22             = "Cock"
+        An-24             = "Coke"
+        An-26             = "Curl"
+        An-28             = "Cash"
+        An-30             = "Clank"
+        An-32             = "Cline"
+        An-72/74          = "Coaler"
+        An-74AEW          = "Madcap"
+        An-124            = "Condor"
+        An-225            = "Cossack"
+    Beriev
+        Be-2              = "Mote"
+        Be-6              = "Madge"
+        Be-8              = "Mole"
+        Be-10             = "Mallow"
+        Be-12             = "Mail"
+        Be-30             = "Cuff"
+        Be-40/42/44       = "Mermaid"
+    Chetverikov
+        Che-2             = "Mug"
+    Ilyushin
+        Il-2              = "Bark"
+        Il-4              = "Bob"
+        Il-10             = "Beast"
+        Il-12             = "Coach"
+        Il-14             = "Crate"
+        Il-18/20/22       = "Coot"
+        Il-28             = "Beagle"
+        Il-28U            = "Mascot"
+        Il-38             = "May"
+        Il-40             = "Brawny"
+        Il-54             = "Blowlamp"
+        Il-62             = "Classic"
+        Il-76             = "Candid"
+        Il-78             = "Midas"
+        Il-86             = "Camber"
+    Ilyushin/Beriev
+        A-50              = "Mainstay"
+    Kamov
+        Ka-10             = "Hat"
+        Ka-15             = "Hen"
+        Ka-18             = "Hog"
+        Ka-20             = "Harp"
+        Ka-22             = "Hoop"
+        Ka-25             = "Hormone"
+        Ka-26/126/128/226 = "Hoodlum"
+        Ka-27/28/29/32    = "Helix"
+        Ka-50             = "Hokum"
+    Lavochkin
+        La-7              = "Fin"
+        La-9              = "Fritz"
+        La-11             = "Fang"
+        La-15             = "Fantail"
+    Lisunov
+        Li-2              = "Cab"
+    Mikoyan-Gurevich
+        MiG-9             = "Fargo"
+        MiG-15            = "Fagot"
+        MiG-15U           = "Midget"
+        MiG-17            = "Fresco"
+        MiG-19            = "Farmer"
+        MiG-21            = "Fishbed"
+        MiG-21U           = "Mongol"
+        MiG-23/27         = "Flogger"
+        MiG-23-01         = "Faithless"
+        MiG-25            = "Foxbat"
+        MiG-29/30/33      = "Fulcrum"
+        MiG-31            = "Foxhound"
+        Ye-2A             = "Faceplate"
+        Ye-152A           = "Flipper"
+    Mil
+        Mi-1              = "Hare"
+        Mi-2              = "Hoplite"
+        Mi-4              = "Hound"
+        Mi-6/22           = "Hook"
+        Mi-8/9/17/171     = "Hip"
+        Mi-10             = "Harke"
+        Mi-12             = "Homer"
+        Mi-14             = "Haze"
+        Mi-24/25/35       = "Hind"
+        Mi-26             = "Halo"
+        Mi-28             = "Havoc"
+        Mi-34             = "Hermit"
+    Myasishchyev
+        M-3/4             = "Bison"
+        M-17/55           = "Mystic"
+        M-50/52           = "Bounder"
+    Petlyakov
+        Pe-2              = "Buck"
+    Polikarpov
+        Po-2              = "Mule"
+    Sukhoi
+        Su-7/17/20/22     = "Fitter"
+        Su-7U             = "Moujik"
+        Su-9/11           = "Fishpot"
+        Su-11U            = "Maiden"
+        Su-15             = "Flagon"
+        Su-24             = "Fencer"
+        Su-25/28          = "Frogfoot"
+        Su-27/30/33/34/35 = "Flanker"
+    Tupolev
+        Tu-2/6            = "Bat"
+        Tu-4/80           = "Bull"
+        Tu-10             = "Frosty"
+        Tu-14/89          = "Bosun"
+        Tu-16             = "Badger"
+        Tu-20/95/142      = "Bear"
+        Tu-22             = "Blinder"
+        Tu-22M            = "Backfire"
+        Tu-70             = "Cart"
+        Tu-82             = "Butcher"
+        Tu-85             = "Barge"
+        Tu-91             = "Boot"
+        Tu-98             = "Backfin"
+        Tu-104            = "Camel"
+        Tu-110            = "Cooker"
+        Tu-114            = "Cleat"
+        Tu-124            = "Cookpot"
+        Tu-126            = "Moss"
+        Tu-128            = "Fiddler"
+        Tu-134            = "Crusty"
+        Tu-144            = "Charger"
+        Tu-154            = "Careless"
+        Tu-160            = "Blackjack"
+    Yakovlev
+        Yak-6/8           = "Crib"
+        Yak-7U            = "Mark"
+        Yak-9             = "Frank"
+        Yak-10            = "Crow"
+        Yak-11            = "Moose"
+        Yak-12            = "Creek"
+        Yak-14            = "Mare"
+        Yak-15/17         = "Feather"
+        Yak-16            = "Cork"
+        Yak-17U           = "Magnet"
+        Yak-18            = "Max"
+        Yak-23            = "Flora"
+        Yak-24            = "Horse"
+        Yak-25/27         = "Flashlight"
+        Yak-25RV          = "Mandrake"
+        Yak-27R           = "Mangrove"
+        Yak-28            = "Brewer"
+        Yak-28P           = "Firebar"
+        Yak-28U           = "Maestro"
+        Yak-30            = "Magnum"
+        Yak-32            = "Mantis"
+        Yak-36            = "Freehand"
+        Yak-38            = "Forger"
+        Yak-40            = "Codling"
+        Yak-41/141        = "Freestyle"
+        Yak-42            = "Clobber"
+
+------------------------------
+
+Subject:  H.8.  Russian missile designations and codenames
+
+Russian rockets and missiles are mostly given designations in the "R"
+series (guided rockets), "S" series (unguided rockets), or "Kh" series
+(this seems to be reserved for air-to-surface missiles, but I have no idea
+what the significance of the prefix is; "Kh" is one letter in Russian, and
+looks like an "X", so you will often see these designations quoted with an
+"X" prefix instead).
+
+NATO codenames for Russian missiles start with "A" (air to air), "G"
+(surface to air), "K" (air to surface), or "S" (surface to surface).  In
+addition to the names, they are also given designations consisting of a
+two-letter code for the mission type ("AA", "AS", "SA", or "SS", plus some
+special codes such as "AT" for "anti-tank"), an "N" for naval missiles, and
+a number.
+
+(See C.17 for current Russian air-to-air missiles)

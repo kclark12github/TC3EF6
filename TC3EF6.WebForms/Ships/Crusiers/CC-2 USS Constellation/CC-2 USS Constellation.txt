@@ -1,0 +1,20 @@
+
+
+CC-2 CONSTELLATION
+Displ: 44,638 tons full load
+Dim: 874 x 105 x 31 ft
+Prop: Turbo-electric, 16 295 psi boilers, 4 shafts, 180,000 shp, 33.25 knots 
+Crew: 1297
+Arm: 4 dual 16/50, 16 single 6/53, 4 single 3/50, 8 21 inch TT
+Armor: 7 inch belt, 5-9 inch barbettes, 11 inch (max) turrets, 
+12 inch CT 
+
+Built by Newport News, laid down 18 Aug 1920, suspended
+8 Feb 1922, cancelled 17 Aug 1923 (29.4 % complete)scrapped.
+                    Initially intended to counter Japanese Kongo class, later
+		part of a large high speed scouting force, design
+modified due to lessons learned in WWI.  All cancelled under 
+the Washington Treaty.  Sometimes known as Constellation 
+class.
+
+

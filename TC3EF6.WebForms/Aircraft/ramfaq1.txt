@@ -1,0 +1,1107 @@
+	     REC.AVIATION.MILITARY FREQUENTLY ASKED QUESTIONS (part 1 of 5)
+
+Please send updates to Urban Fredriksson <griffon@canit.se>
+
+The rec.aviation.military FAQ is posted to the usenet newsgroup 
+rec.aviation.military about once per month and is available via WWW at
+<http://www.canit.se/%7Egriffon/aviation/faq/>
+
+For update information, see
+<http://www.canit.se/%7Egriffon/aviation/faq/ramfaq-upd.txt>
+
+------------------------------
+
+Subject:  A.1.  Introduction
+
+Every newsgroup on Usenet finds that certain questions crop up time after
+time.  Regular readers of a group get tired of seeing the same old
+questions (and posting the same old answers) time and time again, while new
+readers wonder why they're getting so many impolite replies, and so few
+useful ones, to perfectly reasonable queries.  The result is frustration
+all round.
+
+This list of Frequently Asked Questions attempts to provide answers to some
+of the most popular questions about military aircraft and aviation.  It
+will be posted to "rec.aviation.military" every month.  If you're fairly
+new to this group (or even if you're not) and have a question related to
+military aviation, you should check here first, to avoid wasting bandwidth
+on a topic that may have already been discussed many times.  Of course,
+this is not intended to discourage interesting discussions; if you have
+something new to say about any of the topics covered here (or any other
+topic, for that matter), by all means share it with us.
+
+Further contributions are welcome; send any comments, corrections, new
+questions, or new answers to me at the address above (note that the address
+for FAQ-related mail is different from my normal address).  If you send me
+mail about the FAQ, please reduce any quoted material to the absolute
+minimum (ideally, just give the number of the question and answer you're
+talking about).
+
+
+------------------------------
+
+Subject:  A.2.  Table of contents
+
+--Start of part 1--
+Section A.  Preliminaries
+    A.1.  Introduction
+    A.2.  Table of contents
+    A.3.  A note on character sets
+    A.4.  Common abbreviations 
+    A.5.  Conversion factors
+
+Section B.  Current Projects
+    B.1.  A/F-X
+    B.2.  Bell/Boeing V-22 Osprey
+    B.3.  Boeing/Sikorsky RAH-66 Comanche 
+    B.4.  Dassault Rafale
+    B.5.  Eurofighter 2000
+    B.6.  JSF (Was JAST) X-32 and X-35  
+    B.7.  LCA
+    B.8.  Lockheed/Boeing F-22
+    B.9.  McDonnell Douglas C-17 Globemaster III
+    B.10.  Mikoyan 1.42/1.44
+    B.11.  Northrop Grumman B-2 Spirit
+    B.12.  Saab/BAe Systems JAS 39 Gripen 
+    B.13.  Shenyang J-8/F-8
+
+-- Start of part 2 --
+    B.15.  Yakovlev Yak-41/141 "Freestyle"
+    B.16.  FLA - Future Large Aircraft
+
+Section C.  Contemporary Aircraft
+    C.1.  Why is the "stealth fighter" called F-117 instead of F-19?
+    C.2.  Does the USAF have a hypersonic spyplane called "Aurora"?
+    C.3.  What's a TR-3?
+    C.4.  Why wasn't the B-1 or B-2 used in Desert Storm?
+    C.5.  Is fighter X better than fighter Y?
+    C.6.  Why was the YF-22 chosen over the YF-23? 
+    C.7.  Did someone buy Grumman?
+    C.8.  Why do recent articles refer to the "Lockheed F-16"?
+    C.9.  Whatever happened to the F/A-16?
+    C.10.  Why do some aircraft have gold-tinted canopies?
+    C.11.  Why do USAF aircraft have tailhooks?
+    C.12.  What's the composition of an aircraft carrier's air wing?
+    C.13.  What's happened to the former USSR's aircraft carriers?
+    C.14.  What's an Su-35?
+
+-- Start of part 3 --
+    C.15.  What were the "new" fighters in _Hot Shots_?
+    C.16.  Why do the USAF/USN use incompatible refuelling systems?
+    C.17.  What air-to-air missiles are in service?
+    C.18.  Do Harriers VIFF in combat?
+    C.19. Is the A-10 actually braked by the gun recoil?
+    C.20. Are the KC-135s Boeing 707s?
+    C.21. What do the designations F-16CG and F-16CJ stand for?
+    C.22. Which aircraft can supercruise?
+
+Section D.  Post-War Aircraft
+    D.1.  Is aircraft X still in service?
+    D.2.  Did one of the XB-70 prototypes crash during a photo shot?
+    D.3.  Jet powered sea planes
+
+Section E.  World War II Aircraft and earlier
+    E.1.  What jet aircraft were the Germans working on during WW2?
+    E.2.  How "stealthy" was the wooden Mosquito?
+    E.3   Early use of aircraft in warfare
+
+Section F.  Books and Sources
+    F.1.  What good books are there on air combat?
+    F.2.  Where can I get a pilot's manual for aircraft X?
+    F.3.  What FTP sites have aircraft pictures and related material?
+    F.4.  What military aviation related mailing lists are available?
+
+Section G.  Museums and Warbirds
+    G.1.  Where can I see surviving examples of famous aircraft? 
+
+-- Start of part 4 --
+Section H.  Aircraft Designations
+    H.1.  American aircraft designations
+    H.2.  US Navy aircraft designations (pre-1962)
+    H.3.  USAF/USN fighters and attack aircraft
+    H.4.  American missile designations
+    H.5.  American electronic systems designations
+    H.6.  Russian aircraft designations
+    H.7.  Russian aircraft codenames
+    H.8.  Russian missile designations and codenames
+
+-- Start of part 5 --
+    H.9.  British aircraft designations 
+    H.10.  Canadian aircraft designations
+    H.11.  Chinese aircraft designations
+    H.12.  German aircraft designations (WW2)
+    H.13.  Japanese aircraft designations and codenames (WW2)
+    H.14.  Swedish aircraft designations
+    H.15   Brazilian aircraft designations
+
+Section J.  Notes
+    J.1.  Reference books
+    J.2.  Magazines
+
+------------------------------
+
+Subject:  A.3.  A note on character sets
+
+A FAQ on a subject like this will necessarily include a lot of non-English
+names and words which contain letters not in the English alphabet, mainly
+accented vowels.  I don't like the idea of forcing foreign words into an
+English straitjacket by converting these letters into diphthongs (or, even
+worse, just ignoring the accents).  There is an international standard
+8-bit character set, ISO 8859/1, also known as Latin 1; it's an extension
+of 7-bit ASCII to include most of the characters used in European
+languages.  I've used the Latin 1 characters in this document.
+
+A lot of news transport and news reading software now supports Latin 1, and
+it's becoming more widely supported; unfortunately, there's still a lot of
+software around that reduces everything to 7-bit ASCII.  For the benefit of
+those using such software, here's a table of the accented letters in Latin
+1 (not all of these appear in this document, of course), so you can tell
+whether you have 8-bit software, and if not, which characters the accented
+letters are being turned into.  If you come across a name that seems to be
+spelled oddly, this should help you figure out what it's meant to be.
+
+    Letter           A a E e I i N n O o U u Y y
+    Acute accent (') Á á É é Í í - - Ó ó Ú ú Ý ý
+    Grave accent (`) À à È è Ì ì - - Ò ò Ù ù - -
+    Caret        (^) Â â Ê ê Î î - - Ô ô Û û - -
+    Tilde        (~) Ã ã - - - - Ñ ñ Õ õ - - - -
+    Umlaut       (") Ä ä Ë ë Ï ï - - Ö ö Ü ü - ÿ
+    Ring         (o) Å å - - - - - - - - - - - -
+    Slash        (/) - - - - - - - - Ø ø - - - -
+
+------------------------------
+
+Subject:  A.4.  Common abbreviations
+
+(See also section H)
+
+Abbreviations in common use on Usenet
+    :-)    = Smile
+    :-(    = Frown
+    AFAIK  = As Far As I Know
+    AKA    = Also Known As
+    BTW    = By The Way
+    FAQ    = Frequently Asked Questions
+    FTP    = File Transfer Protocol
+    FWIW   = For What It's Worth
+    FYI    = For Your Information
+    GIF    = Graphic Interchange Format
+    HTTP   = Hypertext Transfer Protocol
+    IIRC   = If I Remember Correctly
+    IMHO   = In My Humble Opinion
+    IMNSHO = In My Not So Humble Opinion
+    ISTR   = I Seem To Recall
+    RL     = Real Life
+    ROTFL  = Rolling On The Floor Laughing
+    UL     = Urban Legend
+    URL    = Uniform Resource Locator
+    WRT    = With Respect To
+    WWW    = World-Wide Web
+    YMMV   = Your Mileage May Vary
+
+Abbreviations related to military aviation
+    AA      = Anti-Aircraft
+    AAA     = Anti-Aircraft Artillery
+    AAM     = Air-to-Air Missile
+    AB      = Air Base
+    a/c     = Aircraft
+    ACM     = Air Combat Manoeuvring
+    AEW     = Airborne Early Warning
+    AEW&C   = Airborne Early Warning and Control
+    AF      = Air Force
+    AFB     = Air Force Base
+    AFTI    = Advanced Fighter Technology Integration
+    AGM     = Air-to-Ground Missile
+    AH      = Attack Helicopter
+    ALARM   = Air-Launched Anti-Radiation Missile
+    ALCM    = Air-Launched Cruise Missile
+    alpha   = angle of attack
+    AMCM - Airborne Mine Counter Measures
+    AMRAAM  = Advanced Medium-Range Air-to-Air Missile
+    AOA     = Angle of Attack
+    AP      = Armour Piercing
+    APU     = Auxiliary Power Unit
+    ARH     = Active Radar Homing
+    ARM     = Anti-Radiation Missile
+    ASL     = At Sea Level
+    ASM     = Air-to-Surface Missile
+    ASPJ    = Airborne Self-Protection Jammer
+    ASRAAM  = Advanced Short-Range Air-to-Air Missile
+    ASTOVL  = Advanced Short Take-Off/Vertical Landing
+    ASV     = Anti-Surface-Vessel
+    ASuW    = Anti-Submarine Warfare
+    ASW     = Anti-Submarine Warfare
+    AT      = Advanced Trainer
+    ATB     = Advanced Technology Bomber
+    ATC     = Air Traffic Control / Air Training Corps
+    ATF     = Advanced Tactical Fighter
+    ATGM    = Anti-Tank Guided Missile
+    ATGW    = Anti-Tank Guided Weapon
+    ATM     = Anti-Tank Missile
+    AWACS   = Airborne Warning and Control System
+    beta    = sideslip angle
+    BAI     = Battlefield Air Interdiction (RAF-speak for CAS)
+    BARCAP  = Barrier CAP
+    BDA     = Bomb Damage Assessment
+    BUFF    = Big Ugly Fat Fucker (B-52)
+    CAD     = Computer Aided Design
+    CAG     = Commander, Air Group
+    CALF    = Common Advanced Lightweight Fighter
+    CAM     = Computer Aided Manufacturing
+    CAP     = Combat Air Patrol
+    CAS     = Close Air Support
+    CAW     = Carrier Air Wing
+    CCIP    = Continuously Computed Impact Point
+    CO      = Commanding Officer
+    COD     = Carrier On-Board Delivery
+    COIN    = Counter-Insurgency
+    CTOL    = Conventional Take-Off and Landing
+    CV      = Carrier, Heavier-than-Air
+    CVA     = Carrier, Heavier-than-Air, Attack
+    CVE     = Carrier, Heavier-than-Air, Escort
+    CVN     = Carrier, Heavier-than-Air, Nuclear Powered
+    CVS     = Carrier, Heavier-than-Air, Anti-Submarine
+    CVW     = Carrier Air Wing
+    DACT    = Dissimilar Air Combat Training
+    DS      = Desert Storm
+    EAP     = Experimental Aircraft Programme
+    ECCM    = Electronic Counter-Countermeasures
+    ECM     = Electronic Countermeasures
+    ECR     = Electronic Combat and Reconnaissance
+    EFA     = European Fighter Aircraft
+    EFIS    = Electronic Flight Information System
+    ehp     = Equivalent Horsepower
+    ekW     = Equivalent Kilowatts
+    ELINT   = Electronic Intelligence
+    EMP     = Electromagnetic Pulse
+    ESM     = Electronic Support/Surveillance Measures
+    Eurofar = European Future Advanced Rotorcraft
+    EW      = Electronic Warfare
+    F/A     = Fighter/Attack
+    FAC     = Forward Air Control
+    FAST    = Fuel and Sensor, Tactical
+    FB      = Fighter-Bomber
+    FBW     = Fly by Wire
+    FGA     = Fighter/Ground Attack
+    FLA     = Future Large Airlifter
+    FLIR    = Forward-Looking Infrared
+    FMRAAM  = Future Medium Range Air To Air Missile (UK)
+    FOD     = Foreign Object Damage
+    FR      = Flight Refuelling
+    FSW     = Forward-Swept Wings
+    Ftr     = Fighter
+    FY      = Fiscal Year
+    GA      = Ground Attack
+    GCA     = Ground Controlled Approach
+    GCI     = Ground Controlled Interception
+    GPS     = Global Positioning System
+    HARM    = High-Speed Anti-Radiation Missile
+    HE      = High Explosive
+    Helo    = Helicopter
+    HOTAS   = Hands On Throttle and Stick
+    HUD     = Head-Up Display
+    IADS    = Integrated Air Defence System
+    IAS     = Indicated Airspeed
+    IFF     = Identification Friend-or-Foe
+    IFR     = Instrument Flight Rules
+    IFR     = in-flight refuelling
+    IIR     = Imaging Infrared
+    INS     = Inertial Navigation System
+    Intel   = Intelligence
+    INU     = Inertial Navigation Unit
+    IR      = Infrared
+    IRH     = Infrared Homing
+    IRST    = Infrared Search and Track
+    JATO    = Jet-Assisted Take-Off
+    JPATS   = Joint Primary Aircraft Training System
+    JSTARS  = Joint Surveillance Target Attack Radar System
+    JTIDS   = Joint Tactical Information Distribution System
+    KE      = Kinetic Energy
+    LAMPS   = Light Airborne Multi-Purpose System
+    LANA    = Low-Level All-Weather Night Attack
+    LANTIRN = Low-Altitude Navigation and Targeting Infrared for Night
+    LCA     = Light Combat Aircraft
+    LGB     = Laser-Guided Bomb
+    LLLTV   = Low-Light-Level Television
+    LTA     = Lighter Than Air
+    LWF     = Lightweight Fighter
+    M       = Mach
+    MAD     = Magnetic Anomaly Detection
+    MFI     = Multirole Fighter/Interceptor
+    MG      = Machine Gun
+    MiGCAP  = CAP for MiGs.
+    MP      = Maritime Patrol
+    MRF     = Multirole Fighter
+    MSIP    = Multi-Stage Improvement Programme
+    NAS     = Naval Air Station
+    NATF    = Naval Advanced Tactical Fighter
+    NAVSAT  = Navigation Satellite
+    NAW     = Night/All Weather
+    NBC     = Nuclear/Biological/Chemical Warfare
+    NOTAR   = No Tail Rotor
+    NVG     = Night Vision Goggles
+    PGM     = Precision Guided Munitions
+    PR      = Photographic Reconnaissance
+    PRF     = Pulse Repetition Frequency
+    PT      = Primary Trainer
+    RATO    = Rocket-Assisted Take-Off
+    RCS     = Radar Cross-Section
+    Recce   = Reconnaissance
+    Recon   = Reconnaissance
+    RIO     = Radar Intercept Officer
+    RPV     = Remote-Piloted Vehicle
+    RTB     = Return to Base
+    RWR     = Radar Warning Receiver
+    SABA    = Small Agile Battlefield Aircraft
+    SAM     = Surface-to-Air Missile
+    SAR     = Search and Rescue
+    SARH    = Semi-Active Radar Homing
+    SEAD    = Suppression of Enemy Air Defences
+    SDI     = Strategic Defense Initiative
+    SFC     = Specific Fuel Consumption
+    SHAR    = Sea Harrier
+    SL      = Sea Level
+    SLAM    = Standoff Land Attack Missile
+    SLAR    = Sideways-Looking Airborne Radar
+    SLUF    = Short Little Ugly Fucker (A-7)
+    SOP     = Standard Operating Procedure
+    SPAAG   = Self-Propelled Anti-Aircraft Gun
+    Sqn     = Squadron
+    SR      = Strategic Reconnaissance
+    SRAM    = Short-Range Attack Missile
+    STOL    = Short Take-Off and Landing
+    STOVL   = Short Take-Off/Vertical Landing
+    TACAMO  = Take Command and Move Out
+    TARCAP  = Target CAP
+    TARPS   = Tactical Air Reconnaissance Pod System
+    TAS     = True Airspeed
+    TASM    = Tomahawk Anti-Ship Missile
+    TCS     = Television Camera System
+    TFR     = Terrain-Following Radar
+    TFW     = Tactical Fighter Wing
+    TIALD   = Thermal Imager and Airborne Laser Designator
+    TLAM    = Tomahawk Land Attack Missile
+    TO&E    = Table of Organisation and Equipment
+    TOW     = Tube-Launched Optically-Tracked Wire-Guided Missile
+    TRAM    = Target Recognition and Attack Multi-Sensor
+    UAV     = Unmanned Aerial Vehicle
+    UCAV    = Uninhabited Combat Air Vehicle
+    UH      = Utility Helicopter
+    VFR     = Visual Flight Rules
+    VG      = Variable Geometry
+    VIFF    = Vectoring in Forward Flight
+    V/STOL  = Vertical/Short Take-Off and Landing
+    VTO     = Vertical Take-Off
+    VTOL    = Vertical Take-Off and Landing
+    WIG     = Wing In Ground-Effect
+    WSIP    = Weapons System Improvement Programme
+    WSO     = Weapon Systems Officer
+
+Bombardier related abbrevitions 
+    ATF      = actual  time of fall
+    BC       = Balistic coefficient
+    CE       = circular error
+    DA       = Dropping angle
+    PDI      = Pilots directional indicator
+    RCCT     = range component of cross trail error
+    TA       = Trail Angle
+    VFG      = Vertical flight gyro
+
+Abbreviations for air forces and other organisations
+    ACC     = Air Combat Command (USA)
+    AETC    = Air Education and Training Command (USA)
+    AFPLA   = Air Force of the People's Liberation Army (China)
+    AFRES   = Air Force Reserve (USA)
+    AMC     = Air Mobility Command (USA)
+    ANG     = Air National Guard (USA)
+    ARPA    = Advanced Research Projects Agency (USA)
+    AVMF    = Aviatsiya Voenno-Morsko Flota (Naval Air Force) (Russia)
+    BMDO    = Ballistic Missile Defence Office (USA)
+    CIS     = Commonwealth of Independent States
+    DA      = Dalnaya Aviatsiya (Strategic Aviation) (Russia)
+    DARO    = Defence Aerial Reconnaissance Office (USA)
+    DARPA   = Defence Advanced Research Projects Agency (USA)
+    DOD     = Department of Defense (USA)
+    FA      = Frontovaya Aviatsiya (Tactical Aviation) (Russia)
+    FAA     = Fleet Air Arm (UK)
+    FAA     = Argentinian Air Force (Argentina)
+    FSU     = Former Soviet Union
+    FUSSR   = Former USSR
+    IDF/AF  = Israeli Defence Force/Air Force (Heyl Ha'Avir)
+    JASDF   = Japan Air Self-Defence Force
+    KLu     = Koninklijke Luchtmacht (Royal Netherlands Air Force)
+    MAC     = Military Airlift Command (USA)
+    MATS    = Military Air Transport Service (USA)
+    MoD     = Ministry of Defence (UK)
+    NASA    = National Aeronautics and Space Administration (USA)
+    NATO    = North Atlantic Treaty Organisation
+    NRO     = National Reconnaissance Office (USA)
+    PVO     = Protivo-Vozdushnoy Oborony (Air Defence Force) (Russia)
+    PVOS    = Protivo-Vozdushnoy Oborony Strany (Air Defence Force)
+              (Russia)
+    RAAF    = Royal Australian Air Force
+    RAF     = Royal Air Force (UK)
+    RN      = Royal Navy (UK)
+    RNoAF   = Royal Norwegian Air Force
+    RNZAF   = Royal New Zealand Air Force
+    ROKAF   = Republic of Korea Air Force (South Korea)
+    RSAF    = Royal Saudi Air Force
+    RVSN    = Raketnye Voiska Strategityesko Naznatseniya (Strategic
+              Missile Force) (Russia)
+    SAAF    = South African Air Force
+    SAC     = Strategic Air Command (USA)
+    TAC     = Tactical Air Command (USA)
+    USAAF   = United States Army Air Force
+    USAF    = United States Air Force
+    USMC    = United States Marine Corps
+    USN     = United States Navy
+    VTA     = Voenno-Transportnaya Aviatsiya (Military Transport Aviation)
+              (Russia)
+    VVS RF  = Voenno-Vozdushniye Sily Rossiskoi Federatsii (Air Forces of
+              the Russian Federation)
+    WP      = Warsaw Pact
+
+Abbreviations for manufacturers' names
+    AIDC     = Aero Industry Development Centre (Taiwan)
+    An       = Antonov (Ukraine)
+    AS       = Aérospatiale (France)
+    ASTA     = Aerospace Technologies of Australia
+    BAC      = British Aircraft Corporation
+    BAe      = British Aerospace
+    Be       = Beriev (Russia)
+    BMAC     = Boeing Military Aircraft Corporation (USA)
+    CAC      = Chengdu Aircraft Corporation (China)
+    CASA     = Construcciones Aeronauticas SA (Spain)
+    CNIAR    = Centrul National al Industriei Aeronautice Române (Romania)
+    DASA     = Daimler-Benz Aerospace AG (Germany)
+    DH       = De Havilland (UK)
+    DHC      = De Havilland Canada
+    EC       = Eurocopter (France/Germany)
+    EE       = English Electric (UK)
+    EHI      = Ellicoteri/Helicopter Industries (Italy/UK)
+    Embraer  = Empresa Brasileira de Aeronautica (Brazil)
+    Euroflag = European Future Large Airlifter Group
+               (France/Germany/Italy/Portugal/Spain/Turkey/UK)
+    GD       = General Dynamics (USA)
+    GE       = General Electric (USA)
+    HAL      = Hindustan Aeronautics Ltd (India)
+    HAMC     = Harbin Aircraft Manufacturing Corporation (China)
+    HP       = Handley Page (UK)
+    HS       = Hawker Siddeley (UK)
+    IAI      = Israel Aircraft Industries
+    Il       = Ilyushin (Russia)
+    Ka       = Kamov (Russia)
+    LTV      = Ling-Temco-Vought (USA)
+    MBB      = Messerschmitt-Bölkow-Blohm (Germany)
+    MD       = McDonnell Douglas (USA)
+    Mi       = Mil (Russia)
+    MiG      = Mikoyan-Gurevich (Russia)
+    NAMC     = Nanchang Aircraft Manufacturing Company (China)
+    P&W      = Pratt and Whitney (USA)
+    P&WC     = Pratt and Whitney Canada
+    RR       = Rolls-Royce (UK)
+    SAAB     = Svenska Aeroplan Aktiebolaget (Sweden) (Aktiebolaget usually 
+                       abbreviated AB, meaning Ltd)
+    SAC      = Shenyang Aircraft Corporation (China)
+    SEPECAT  = Société Européenne de Production de l'Avion d'Ecole de
+               Combat et d'Appui Tactique (France/UK)
+    Su       = Sukhoi (Russia)
+    Tu       = Tupolev (Russia)
+    XAC      = Xian Aircraft Company (China)
+    Yak      = Yakovlev (Russia)
+
+
+
+------------------------------
+
+Subject:  A.5.  Conversion factors
+
+I've used metric units throughout this FAQ.  The following conversion
+factors may come in useful.
+
+Length
+    Inch           = 2.540 cm
+    Foot           = 0.3048 m
+    Yard           = 0.9144 m
+    Mile           = 1.609 km
+    Nautical mile  = 1.852 km
+
+Volume
+    Gallon (US)    = 3.785 L
+    Gallon (UK)    = 4.546 L
+
+Mass
+    Pound          = 0.4536 kg
+    Short ton      = 907.2 kg
+    Long ton       = 1016 kg
+
+Speed
+    Mile per hour  = 1.609 km/h
+    Knot           = 1.852 km/h
+
+Force
+    Pound force    = 4.448 N
+    Kilogram force = 9.807 N
+
+Power
+    Horsepower     = 0.7457 kW
+
+------------------------------
+
+Subject:  B.1.  A/F-X
+
+The A/F-X (Attack/Fighter X) was a joint USAF/USN project to produce a
+heavy attack aircraft with a secondary fighter role; it would have replaced
+the F-111 and A-6 in the attack role, and (partially) the F-14 in the
+fighter role.  It was a short-lived programme, originating in 1991 after
+the cancellation of the McDonnell Douglas/General Dynamics A-12, a highly
+advanced, highly stealthy aircraft intended to replace the A-6.  A new
+programme, originally designated A-X, was initiated to provide a cheaper
+A-6 replacement.  At the same time, the NATF (Naval Advanced Tactical
+Fighter) programme, intended to produce an F-14 replacement, had recently
+been put on hold, and the USAF was starting to think seriously about an
+F-111 replacement.  The three programmes were merged under the title A/F-X.
+
+The leading contender was the Lockheed/Boeing AFX-653, essentially a
+navalised version of the USAF's F-22 Advanced Tactical Fighter (see below).
+This would have been a two-seat aircraft with Tomcat-like swing wings, but
+otherwise similar to the F-22.  The A/F-X project was cancelled at the end
+of 1993; the US Navy intends to procure the F/A-18E/F series as partial
+replacements for its aircraft.  Lockheed and Boeing are still working on
+the AFX-653, and hope to offer a further developed version for a future
+project (but probably not JAST (see below), for which the AFX-653 would
+probably be too big).
+
+You can find an article on the subject, with plans of the AFX-653, in the
+26-Jan-94 issue of _Flight International_.
+
+Vital statistics (AFX-653):  power plant:  two 113 kN Pratt & Whitney
+PW7000 augmented turbofans; armament:  one 20mm cannon, internal bays for
+various air-to-air and air-to-ground weapons, including AGM-86E missiles
+and GBU-24 guided bombs.
+
+------------------------------
+
+Subject:  B.2.  Bell/Boeing V-22 Osprey
+
+The tilt-rotor programme began with Bell's XV-15 technology demonstrator.
+A tilt-rotor multimission aircraft was commissioned under the title JVX
+(Joint VTOL X); the aircraft, developed jointly by Bell Helicopter Textron
+and Boeing Vertol, was later designated V-22 Osprey.  The first prototype
+flew on 19 March 1989; development has been interrupted by the destruction
+of two of the prototypes in crashes.
+
+Despite attempts by the US Secretary of Defence to have the programme
+halted in favour of conventional helicopters and transport aircraft, the
+Osprey has survived several rounds of budget cutting, thanks mainly to
+lobbying by the US Marine Corps.  The first production aircraft is expected
+to fly in December 1996.
+
+Current production plans consist of 552 MV-22A assault transports for the
+USMC, 50 HV-22A combat rescue aircraft for the US Navy, and 55 CV-22A
+special mission transports for the Special Operations Forces.  The US
+Army's original requirement for 251 of the transport version has been
+deferred, but not irrevocably cancelled.  Japan is expected to order four
+search and rescue aircraft, and is considering the V-22 for the
+anti-submarine role.
+
+Vital statistics (MV-22A):  length 19.09 m, span 14.36 m, empty weight
+14463 kg, max weight 27442 kg, max speed 556 km/h, range 3892 km, payload
+9072 kg; power plant:  two 4586 kW Allison T406-AD-400 turboshafts.
+
+------------------------------
+
+Subject:  B.3.  Boeing/Sikorsky RAH-66 Comanche (1998 Nov 18)
+
+The LHX (Light Helicopter X) programme, to provide the US Army with a light
+scout/attack helicopter to replace the AH-1 Cobra, OH-6 Cayuse, and OH-56
+Kiowa, was initiated in 1982.  The original plan was to acquire 5000
+helicopters, in a mixture of LHX SCAT (scout/attack) and LHX Utility
+versions; the latter was intended as a UH-1 replacement.  The utility role
+was dropped, and the requirement reduced to 2096 aircraft, in 1987.  Two
+consortia were awarded demonstration and validation contracts in October
+1988, one consisting of Bell and McDonnell Douglas, the other Boeing and
+Sikorsky.  On 5 April 1991, the Boeing/Sikorsky team was awarded a contract
+for development of the LHX, now designated RAH-66A Comanche.
+
+Aircraft 1 (S/N 94-0327) first flew on 4 January 1996.  At this point in its
+development (1998 Nov 18), it has flown a total of 111 hours, reached 
+speeds of 171 KTAS in level flight, and is conducting envelope 
+expansion for continued development.  Aircraft 2 (S/N 95-0001) is being 
+prepared for its first flight, scheduled to occur on March 1,  1999.  
+95-0001 will serve as the primary test aircraft for the system's mission 
+equipment package.  Initial Operational Capability for the aircraft is 
+scheduled for 15 December 2006.
+
+The production total is now expected to be 1292 aircraft, of which about 
+one third will be the RAH-66B version, carrying a slightly smaller version 
+of the Longbow radar fitted to the AH-64D Apache.
+
+Vital statistics (RAH-66A):  fuselage length 13.22 m, rotor diameter 11.90
+m, empty weight 3402 kg, max weight 7790 kg, max speed 328 km/h, range 2335
+km; power plant:  two 690 kW LHTEC T800-LHT-800 turboshafts; armament:
+20mm cannon, internal and external carriage for up to 14 Hellfire or 18
+Stinger missiles.
+
+------------------------------
+
+Subject:  B.4.  Dassault Rafale
+
+When France withdrew from what was then the FEFA programme (now Eurofighter
+2000; see below) in 1985, Dassault went ahead with a very similar multirole
+fighter of its own, named Rafale (squall).  In the first few years there
+were half-hearted attempts to bring in foreign partners, but nothing came
+of this.  The first prototype Rafale A flew on 4 July 1986.
+
+The Armée de l'Air (French AF) has ordered the "Rafale D", a generic name
+covering the two-seat Rafale B and single-seat Rafale C; the first
+pre-production Rafale C flew on 19 May 1991.  The original plan was for a
+force consisting mainly of single-seat aircraft, but the Armée de l'Air now
+appears to like the idea of two-seat combat aircraft, and it is expected
+that most, possibly all, of the Rafales for the Armée de l'Air will be the
+Rafale B version.  The Armée de l'Air is expected to order 235 Rafales,
+entering service in 2000, or possibly 2002.
+
+The Aéronavale (French Navy air arm) has ordered the Rafale M, a single
+seat carrier-borne fighter; the first Rafale M flew on 12 December 1991,
+and made its first carrier landing on the _Foch_ on 19 April 1993.  The
+Aéronavale intends to purchase 86 Rafales, probably entering service in
+1999.
+
+Vital statistics (Rafale B):  length 15.30 m, span 10.90 m, empty weight
+9550 kg, max weight 19500 kg, max speed 2124 km/h (Mach 2.0), ferry range
+3706 km; power plant:  two 72.90 kN Snecma M88-2 augmented turbofans;
+armament:  30mm cannon, AAM rail on each wingtip, 14 hardpoints; max
+external load 8000 kg.
+
+------------------------------
+
+Subject:  B.5.  Eurofighter Typhoon (formerly Eurofighter 2000)
+
+The origins of Eurofighter 2000 go back to 1972 and an RAF request for
+a future STOVL capable ground attack aircraft. After later discussions 
+between Britain, France and Germany a common STOL capable platform was 
+requested. This led to the European Combat Aircraft (ECA) program being 
+initiated, it later failed due to differences in baseline requirements 
+primarily imposed by France. The project was later resurrected by BAe 
+and MBB of Germany as the European Combat Fighter (ECF). Both the 
+British and German governments showed interest but budgetary constraints 
+consigned this project to history. By this time BAe was already 
+examining its own future fighter technology in the form of the P.106 
+and P.110, MBB initiated the TFK-90 project and Dassault the ACX which 
+later found form as the Rafale.
+
+In 1982 Britain's P.110 and Germany's TFK-90 were combined with work 
+by Italy's Aeritalia to form the ACA, Agile Combat Aircraft. Funding 
+problems led to official German and Italian government support being 
+withdrawn. Work continued though with the construction of the EAP, 
+Experimental Aircraft Program demonstrator primarily funded by BAe 
+and the British MoD, but with input from MBB and Aeritalia. This 
+demonstrator, flying a total of 259 sorties between August 1986 and 
+May 1991 would save hundreds of millions of pounds in development costs 
+and demonstrate a number of new technologies for the Eurofighter.
+
+A new British, German, French, Italian and Spanish effort was launched 
+in 1983 to develop a common European fighter, termed F/EFA (Future 
+European Fighter Aircraft). However like its predecessors it was 
+doomed to failure primarily due to French demands on project workshare 
+and requirements. In August 1985 Britain, Germany and Italy split from 
+the F/EFA to form their own fighter project, they were joined in 1986 
+by Spain leading to the formation of Eurofighter. Initial future 
+workshares based on governmental orders were 33% each to Britain and 
+Germany, 21% to Italy and 13% to Spain.
+
+Progress on Eurofighter was swift with a joint baseline requirement being 
+issued in 1987 and contracts for the structure and engines being signed 
+in 1988. In 1992 Germany announced its intention to withdraw from the 
+project due mainly to budgetary constraints and the reduction in 
+forseable threat. After examinations by Eurofighter of seven variants 
+of the aircraft the conclusion was that none matched the baseline systems 
+performance and only two (single engined) variants were cheaper. To 
+achieve the 30% cost reduction demanded, Germany instead would be allowed 
+to delay service entry by two years and fit cheaper equipment.
+
+In 1994 the first two Development Aircraft (DA) were to fly, one German 
+(DA1) and one British (DA2). A year later in 1995 the first aircraft 
+to be fitted with the newly developed EJ200 turbofans was to fly, the 
+Italian DA3. Four more DA's were to follow including two dual seat 
+models and avionics integration aircraft fitted with the ECR-90 radar.
+
+In 1995 problems arose concerning workshare. Although the number of 
+fighters to be purchased by each country had reduced, 250 to 232 fighters 
+for Britain, 250 to 140 for Germany, 130 to 121 for Italy and 100 to 87 
+for Spain, the workshares had remained the same. After much discussion 
+a new workshare agreement was signed giving 37% for Britain, 30% for 
+Germany, 20% for Italy and 13% for Spain with Germany taking 180 fighters 
+instead of 140. 
+
+In September 1996 Britain announced funding of the construction phase 
+followed by Spain in November. Germany continued to drag its heels through 
+1996 and 1997. Following pressure from Britain Germany agreed to additional 
+funding of DM100million in July 1997 to keep the DA program on schedule. 
+Finally, in December 1997 Germany announced full funding for 180 
+Eurofighter's, Italy quickly followed suit. 
+
+In January 1998 official Memoranda of Understanding were signed between 
+NETMA, Eurofighter and EuroJet for production of 620 aircraft (and 90 
+options) costing around $32b. This was followed in March and May by the 
+signing of production investment agreements between Eurofighter, EuroRADAR and 
+EuroDASS respectively. The Eurofighter finally took the official name 
+'Typhoon' on the 2nd of September 1998 although this only applies to 
+export models. Fatigue testing of the airframe was completed a few 
+days later with a total of 18000 hours of simulated flight on the clock, 
+this equates to three times the life of the aircraft. A major milestone 
+was reached later that September (the 21st) when the first tranche of 
+148 aircraft were ordered. Of this number, 55 will go to the RAF, 44 to 
+the Luftwaffe, 29 to the Italian airforce and 20 to Spain.
+
+Earlier this year in January construction began on what will become the 
+first of five IPAs or Instrumented Production Aircraft. These will be 
+delivered to the operational evaluation units of each founder consortium 
+nation between summer and winter 2001. The project at this time remains on 
+schedule with over 800 sorties completed and the vast majority of the 
+Initial Operational Capability of the aircraft having been examined. In 
+addition a number of systems are in the process of being upgraded to a 
+'post 2000' standard. These include the replacement of cockpit displays 
+with Active Matrix Liquid Crystal units as well as changes to the 
+flight helment and other systems. The ITP developed 3D Thrust Vectoring 
+Control nozzle started undergoing static rig trials in summer 1998 and 
+it remains on schedule for possible Eurofighter based trials in 2001. 
+In addition the GTDAR consortium have revealed that a preliminary 
+version of its AMSAR (Airborne Multi-mode Solid-state Active-array 
+Radar) is undergoing trials with a full scale prototype excepted in 2002.
+
+Beyond sales to the founding four nations there are potential export markets 
+for the Eurofighter. In a surprise move in February 1999 Greece announced 
+its intention to purchase between 60 and 80 Eurofighters to enter service 
+from around 2005. At this time (May 1999) negotiations are under way between 
+Eurofighter, NETMA, the founding consortium nation governments and the 
+Greek Defence Ministry on terms of entry into the Eurofighter consortium. 
+Norway has requested a bid from Eurofighter for 20 aircraft (in competition 
+with Lockheed Martin for the F-16). Australia who recently published details 
+on their future fighter requirements are potential suitors, as are South 
+Korea, Saudi Arabia, Chile, Brazil, Turkey and others.
+
+Eurofighter Design Statistics :
+
+Pitch unstable air combat optimised design with 53degree leading edge 
+sweep on main wing. 70% of the skin comprises composites (mainly Carbon 
+Fibre). Fully integrated structural health monitoring system. Features 
+a reduced frontal RCS even with a standard air combat weapons load.
+
+Empty Weight : 10995kg (24239lb), Max TO weight : 23000kg (50700lb)
+Fuel load : >4000kg, In-flight refuelling nozzle housed in starboard 
+             compartment below canopy.
+Length : 15.96m, Height : 5.28m, Wingspan (including pods) : 10.95m, 
+Wing area : 50sqm, Canard area : 2.4sqm
+Combat radii : Ferry range, 2000nm, Air combat 3hr CAP, 100nm, 
+Ground attack (lo-lo-lo), 325nm
+
+Stores stations : 13  with 4  (1 wet) per wing  and 5 on fuselage 
+(1 wet). Multicarriage of stores possible on some stations.
+Max stores load : 6500kg
+Total AAM load : 10 missiles, (6*MRAAM, 4*SRAAM), MRAAM primary 
+locations consists of four conformal recessed troughs under 
+fuselage (reduced drag and RCS)
+Internal Mauser BK27 cannon, 150 rounds of 27mm high explosive 
+shells carried.
+
+Max required level speed at 11000m : Mach 2 (achieved December 1997)
+Acceleration from 200kts to mach 1 at low altitudes in under 30 seconds, 
+Climb performance : runway alert to 35,000ft @ Mach 1.5 : 2 mins 30 secs  
+
+Propulsion : 2*EJ200 (EuroJet) advanced turbofans (each delivering 
+>60kN dry thrust, >90kN reheat), possible future upgrades to 78kN dry, 
+120kN reheated. EJ200 features low specific fuel consumption, 
+supercruise capability and Full Authority Digital Engine Control 
+(FADEC) system. First two Development Aircraft (DA1 and DA2) utilise 
+Tornado ADV class RB199-104 turbofans with 42.5kN dry thrust and 
+74kN reheat.
+
+High level of automation and integration (sensor fusion). All defensive 
+and offensive systems integrated under Attack and Identification 
+System (AIS). Secure datalink (MIDS) for Eurofighter to Eurofighter 
+and friendly surveillance aircraft information transfer. Cockpit 
+systems include wide angle HUD, Helmet Mounted Sight (HMS) and three 
+colour AMLCD Multifunction Head Down Displays (MHDD).  In addition cockpit 
+features newly developed VTAS (Voice, Throttle and Stick) system 
+allowing Direct Voice Input (DVI) for control of certain functions 
+with stick and throttle mounted buttons (HOTAS) for other functions. 
+Return to level feature returns aircraft to nose up, wings level and 
+an intermediate throttle setting upon a single button press. Pilot 
+wears newly developed integrated g-suit with both body and leg anti-g 
+protection.
+
+Primary sensor : ECR-90 pulse doppler multimode radar, 31 modes, AA 
+and AG capable, multi-track while scan, detection ranges quoted as 
+being >>160km for fighter sized targets, >>320km for larger aircraft. 
+Features high-ECM resistance, auto-prioritisation and IFF. Passive 
+sensor based on Infra Red Search and Track (IRST) and Forward Looking 
+Infra Red (FLIR), known as PIRATE.
+
+Defences integrated under DASS, Defensive Aids Sub-System. Incorporates 
+RWR, MAW, LWR, ECM, 2*TRD, Chaff and Flares, all are carried internally 
+with no hardpoints used. Features automated characterisation and 
+prioritisation of threats and auto-release of appropriate counter measures.
+
+------------------------------
+
+Updated: 2000 mar 24 (minor update, rest since 1998) (several correspondents)
+Subject:  B.6.  JSF (Was JAST) X-32, X-35
+
+The US Joint Advanced Strike Technology programme, established in early
+1994, was intended to be a technology development programme rather than an
+actual service aircraft.  It involved all the improvements that would be
+expected for a next generation aircraft (advanced materials, stealth,
+reduced costs, better systems integration, and so forth), plus two
+particularly innovative concepts.  The first is the idea of a modular
+aircraft design, so that individual aircraft could be built with different
+combinations of components for different services and missions (take-off
+capability, for example -- the same basic airframe could be built in
+conventional runway versions for the USAF, carrier-borne versions for the
+USN, and V/STOL versions for the USMC).  The second is the possibility of
+providing a "virtual reality" environment for the pilot, which would
+integrate tactical information with the outside view.
+
+JAST inherited much of the defunct A/F-X project, and has been
+partially combined with ARPA's X-32 project and is now called JSF, Joint
+Strike Fighter. 
+
+Twelve technology development contracts were awarded in May 1994, the
+largest going to Boeing. Out of the three contractor teams Lockeed Martin, 
+McDonnell Douglas/Northrop and Boeing two were awarded contracts to
+each build two demonstrators, one to demonstrate the STOVL concept
+and the two together showing all three variants through rebuilds.
+The winners were Lockheed Martin, whose design will be called X-35A,
+B and C and Boeing whose design will be X-32A, B and C. 
+Any production fighter resulting from this competition will get
+a completely different designation.
+
+The chosen JSF will begin to replace the F-16 in USAF service, the 
+F/A-18 (and possibly F-14 in some roles) in USN service, and the 
+Harrier in USMC/RN service by 2008.
+
+(The X-32 started life as ARPA's ASTOVL (Advanced Short Take-Off/Vertical
+Landing) project, intended as a technology demonstrator to lead to a
+supersonic successor to the Harrier.  This later became CALF (Common
+Advanced Lightweight Fighter), a more general demonstrator for a future
+lightweight fighter.  The UK is also involved in the project, putting up
+about one third of the money.  The design has been made small enough for
+service on Royal Navy carriers.)
+
+See also:
+JAST programme office: <http://www.jast.mil>
+JSF team: <http://www.jsfteam.com>
+Boeing: <http://www.boeing.com/defense-space/military/jsf/>
+Lockheed Martin: <http://www.thefighterenterprise.com/FighterPrograms/JSF/index.html>
+
+
+------------------------------
+
+Subject:  B.7.  LCA
+
+The LCA (Light Combat Aircraft) is India's second indigenous jet fighter
+design, after the HF-24 Marut of the 1950s.  Development began in 1983; the
+basic design was finalised in 1990, and two prototypes are currently
+approaching completion, with first flight expected sometime in 1995.
+
+The configuration is a delta wing, with no tailplanes or foreplanes, and a
+single vertical fin.  The LCA will be constructed of aluminium-lithium
+alloys, carbon-fibre composites, and titanium.  The design incorporates
+"control-configured vehicle" concepts to enhance manoeuvrability, and
+quadruplex fly-by-wire controls.
+
+Both prototypes are powered by General Electric F404-GE-F2J3 engines, but
+an indigenous engine, the GTX-35VS Kaveri, is being developed for the
+production LCA.
+
+No official name or other designation has been assigned to the LCA yet.
+
+Vital statistics:  length 13.20 m, span 8.20 m, empty weight 5500 kg, clean
+TO weight 8500 kg, max TO weight not given, max speed 1699 km/h (Mach 1.6);
+power plant:  one 83.4 kN GTRE GTX-35VS augmented turbofan; armament:  one
+GSh-23 twin-barrel 23mm cannon (220 rounds); 7 hardpoints; max external
+load over 4000 kg.
+
+------------------------------
+
+Subject:  B.8.  Lockheed/Boeing F-22
+
+The ATF (Advanced Technology Fighter) programme began in September 1983,
+when design contracts were awarded to seven companies; in October 1986,
+development contracts were awarded to two consortia, one consisting of
+Lockheed (prime contractor), Boeing, and General Dynamics, the other of
+Northrop (prime contractor) and McDonnell Douglas.  The first Northrop/MD
+YF-23A (unofficially "Black Widow II") flew on 27 August 1990, followed by
+the first Lockheed/Boeing/GD YF-22A (unofficially "Lightning II") on 29
+September 1990.  In April 1991, the YF-22A was selected for development and
+eventual service.
+
+Recent budget cuts have slowed down the schedule slightly; the first flight
+of the production Lockheed/Boeing F-22A (General Dynamics sold its fighter
+division to Lockheed in December 1992), originally scheduled for June 1996,
+will now be in (probably) March 1997.  Service entry is expected to begin
+in 2003; the USAF is currently fighting an attempt by the General
+Accounting Office to delay this to 2010.  Total production, originally
+planned to be 648 aircraft, it was first reduced to 442 and has now 
+been reduced to 338.
+
+The F-22's official name is Raptor, but there were reports that
+it would be Superstar, Rapier or Lightning II.
+
+Vital statistics (YF-22A):  length 18.90 m, span 13.56 m, empty weight
+15422 kg, max weight 28123 kg, max speed 2655 km/h (Mach 2.5), ferry range
+3704 km; power plant:  two 155.68 kN Pratt & Whitney F119-100 augmented
+turbofans; armament:  20mm cannon, internal bays for two AIM-9 and four
+AIM-120A or six AIM-120C air-to-air missiles, or two AIM-9, two AIM-120,
+and two air-to-surface missiles, external hardpoints for four more AIM-120s
+or other ordnance; radar:  Westinghouse/Texas Instruments APG-77.
+
+The F-22 will have room internally for two 900 kg JDAM bombs in
+place of the AMRAAMS, the four external hardpoints can accept either
+an external tank each, a ground attack weapon, JDAM or cruise missile
+or two AMRAAMs.
+
+------------------------------
+
+Subject:  B.9.  McDonnell Douglas C-17 Globemaster III
+
+The USAF initiated the C-X (Cargo X) programme in October 1980; McDonnell
+Douglas was selected as prime contractor on 19 August 1981.  The C-X, later
+designated C-17, is primarily a C-141 replacement, with some overlap with
+the roles of the C-5 and C-130.  The first prototype flew in September
+1991.  The programme has suffered many technical and political setbacks,
+but production has begun, although the USAF's order has been reduced from
+the original 210.  40 have been definitely ordered, of which 10 had been
+delivered by February 1994.  A follow-up order for another 80 is on hold,
+conditional on MD correcting design flaws and cost overruns; a decision
+will be made by the end of 1995.
+
+McDonnell Douglas are considering a civilian airfreight version, under the
+designation MD-17.
+
+Vital statistics (C-17A):  length 53.04 m, span 52.20 m, empty weight
+122016 kg, max weight 263083 kg, cruise speed 818 km/h, range 8710 km,
+payload 78108 kg; power plant:  four 185.50 kN Pratt & Whitney F117-PW-100
+turbofans.
+
+------------------------------
+
+Subject:  B.10.  Mikoyan 1.42/1.44
+(Updated 2000-10-20)
+
+Also known as MFI (Multirole Fighter/Interceptor), and sometimes referred
+to in the West as "ATFski", Mikoyan's Project 1.42 is a low-visibility
+multirole fighter, with air superiority as the primary mission, intended as
+an Su-27/35 replacement; in short, the Russian equivalent of the F-22.  The
+1.42 is one of the few Mikoyan projects to survive the recent wave of
+defence budget cuts from the Kremlin, although its schedule has apparently
+been slowed by shortage of funds as well as technical problems.
+
+It has flown, but it's not expected to enter service.
+
+Photos at <http://members.xoom.com/Alex743/index.html>.
+
+The related Project 7.01, a heavier and stealthier interceptor designed
+along similar lines, has been cancelled.
+
+The only available vital statistic is a maximum take-off weight of 30000
+kilograms.
+
+------------------------------
+
+Subject:  B.11.  Northrop Grumman B-2 Spirit
+
+Development of the ATB (Advanced Technology Bomber) began in 1978; the
+programme was revealed to the public in 1981, when Northrop's design was
+chosen over a Lockheed/Rockwell proposal.  Although no details of the
+design were revealed, it was widely assumed that the aircraft would be a
+"flying wing" design, based on Northrop's experience with the XB-35 and
+YB-49, and this was confirmed when the first prototype was rolled out on 22
+November 1988.  It made its first flight on 17 July 1989, and the first
+production B-2 was delivered to the USAF in 1993.  Production plans have
+been drastically cut from 135 aircraft to only 20, of which the last is
+expected to be delivered in 1997.  The aircraft was officially named
+"Spirit" in February 1994; Northrop became Northrop Grumman in May 1994.
+
+Vital statistics (B-2A):  length 21.03 m, span 52.42 m, empty weight 72575
+kg, max weight 168434 kg, max speed 1103 km/h, range 13898 km, payload
+22370 kg; power plant:  four 84.51 kN General Electric F118-100 turbofans.
+
+------------------------------
+
+Subject:  B.12.  Saab/BAe Systems JAS 39 Gripen  (1998 Nov 18)
+
+Development of the JAS 39 Gripen (JAS = Jakt/Attack/Spaning =
+Fighter/Attack/Reconnaissance; Gripen = Griffon) began in 1980.  It is a
+light weight multirole fighter, intended to gradually replace all versions
+of the Saab 35 Draken and Saab 37 Viggen in Flygvapnet (Swedish AF) service;
+development and production is carried out by IG-JAS, a consortium consisting
+of Saab, Ericsson and Volvo Aero Corporation.
+
+The first prototype flew on 9 December 1988; development has been delayed
+by the loss of two aircraft in crashes attributed to faults in the digital
+flight control software.  The programme remains intact, however, and the
+Swedish government has ordered 204 of which more than 60 had been delivered
+towards the end of 1998.
+
+Designation  No              Deliveries
+JAS 39A     106  Single seat 1993-
+JAS 39B      14  Two seat    1998-
+JAS 39C      70  Single seat 2003-2006  slightly heavier, more stations
+JAS 39D      14  Two seat    2003-2006
+
+The first squadron was declared fully operational with the F 7 wing
+at Såtenäs on Oct 1:st 1997. Eight squadrons will be operational
+with the Swedish air force in 2004.
+
+An agreement with Britain was signed in February 1994, under which 
+British Aerospace will market the aircraft; BAe will be responsible 
+for 45% of the fuselage production for export aircraft.
+
+On 1998 Nov 18 the South African government announced that it had selected
+Gripen and over the following months will negotiate a contract for 28 aircraft.
+
+Data for JAS 39A Gripen
+Length:                14.1 m
+Span:                   8.4 m
+Height:                 4.5 m
+Normal take off weight: 8.5 tons
+Max take off weight:   12.5 tons
+Range:                 3000 km
+Max speed:       Supersonic at all altitudes
+Engine:          Volvo Aero RM12 (GE F404)
+Max thrust:      approx 80 kN
+Radar:           Ericsson PS-05/A pulse doppler radar
+Armament:        27mm Mauser BK27 cannon with 120 rounds, 
+                 8 hardpoints including 2 wingtip AAM rails
+
+See also: <http://www.canit.se/%7Egriffon/aviation/gripen/>
+------------------------------
+
+Subject:  B.13.  Shenyang J-8/F-8
+
+Development of this large interceptor, the first jet fighter designed in
+China to enter service, began in 1964.  The first prototype flew on 5 July
+1969.  Production of the J-8I began in July 1979; about 100 were delivered
+to the AFPLA before production ended in 1987.  The J-8I resembled a
+scaled-up MiG-21 (J-7), with a tailed delta configuration powered by two
+engines fed from a single annular nose intake, carrying radar in the
+centrebody cone (it resembled Mikoyan's experimental Ye-152A, although,
+contrary to some early reports, it was not based on that aircraft).
+
+The more advanced J-8II was developed in the early 1980s, the first
+prototype flying on 12 June 1984.  It differed externally in having two
+side intakes (similar to an F-4 or MiG-23) and a solid nose with a much
+larger radome.  A plan to fit American avionics, including an advanced
+radar, fell through in the early 1990s; however, the J-8II has entered
+production anyway, carrying a Chinese SR-4 "lookdown-shootdown" radar.
+Both versions have been offered for export, as the F-8I and F-8II, but
+there have been no takers so far.
+
+Vital statistics (J-8II, estimated):  length 21.59 m, span 9.34 m, empty
+weight 9820 kg, max weight 17800 kg, max speed 2336 km/h (Mach 2.2), ferry
+range 2200 km; power plant:  two 65.90 kN Wopen 13A-II augmented turbojets;
+armament:  one Type 23-3 twin-barrel 23mm cannon with 200 rounds, 7
+hardpoints, max external load 3500 kg.
+

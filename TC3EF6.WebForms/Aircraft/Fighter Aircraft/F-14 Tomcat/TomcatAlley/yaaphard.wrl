@@ -1,0 +1,123 @@
+#VRML V1.0 ascii
+
+Separator { # start of entire scene
+# general info
+	Info {
+		string "author: Dorian Dogaru - dog@topedge.com"
+		string "decided I should keep the comments just in case"
+		string "the reader of this might have an interest in VRML"
+		string "if so also check out www.topedge.com/panels/cg"
+		string "visit YAAP - www.topedge.com/panels/aircraft/"
+	}
+	ShapeHints {
+		vertexOrdering 	COUNTERCLOCKWISE
+		shapeType 	SOLID
+		faceType 	CONVEX
+		creaseAngle 	0.5
+	}
+	TextureCoordinate2 {
+		point [	0.0 0.0,
+			1.0 0.0,
+			1.0 1.0,
+			0.0 1.0 ]
+	}
+	DEF VRML_Camera	Separator {
+# we might want to include something in here at a later date
+		PerspectiveCamera {
+			position	0 0 1
+			orientation	0 0 1	0
+			focalDistance	5
+			heightAngle	0.785398
+		}
+	}
+
+	Separator { # start of Rendered Images Group
+# group positionning
+	Translation {
+		translation	0 0 -4
+	}
+# ==========================================================================
+# the first panel - under construction
+	Separator { # under construction - the first panel
+# position the panel
+		Translation {
+			translation	0 0 -10
+		}	
+		Rotation { # ~10 deg
+			rotation	1 0 0	0.15
+		}	
+# setup for image panel
+		Texture2 { # texture for the first instance
+			filename "var/vrucico.gif"
+		}
+		WWWAnchor { # hyperlink for the first instance
+			name "yaaphard.html"
+			description "Back to the HTML interface"
+# --------------------------------------------------------------------------
+# first definition of image_panel
+			DEF image_panel Separator { # define a simple image panel
+# setup coordinates to use
+				Coordinate3 { # a two sided panel in 4/3 format
+					point [	-2 0.25 0,
+						2 0.25 0,
+						2 3.25 0,
+						-2 3.25 0 ]
+				}  # a two sided panel in 4/3 format
+# --------------------------------------------------------------------------
+# first definition of texrec2
+				DEF texrec2 Separator { # 2 sided textured rectangle 
+					IndexedFaceSet { # front panel face
+						coordIndex [ 0, 1, 2, 3, -1 ]
+						textureCoordIndex[0, 1, 2, 3]
+					} # front panel face
+					Texture2Transform {
+						translation	0 0
+						rotation	0
+						scaleFactor	-1 1
+						center		0 -0.75
+					}
+					IndexedFaceSet { # back panel face
+						coordIndex [ 3, 2, 1, 0, -1 ]
+						textureCoordIndex[3, 2, 1, 0]
+					} # back panel face
+				} # 2 sided textured rectangle 
+# definition of texrec2 ends
+# --------------------------------------------------------------------------
+			} # define a simple image panel
+# definition of image_panel ends
+# --------------------------------------------------------------------------
+		} # hyperlink for the first instance
+# setup for text panel
+		Texture2 { # texture for the first instance
+			filename "var/vrundcon.gif"
+		}
+# --------------------------------------------------------------------------
+# first definition of text_panel
+		DEF text_panel Separator { # define a simple text panel
+# setup coordinates to use
+			Coordinate3 { # a two sided panel in 4/1 format
+				point [	-2 -1.25 0,
+					2 -1.25 0,
+					2 -0.25 0,
+					-2 -0.25 0 ]
+			}  # a two sided panel in 4/1 format
+			USE	texrec2
+		} # define a simple text panel
+# definition of text_panel ends
+# --------------------------------------------------------------------------
+	} # under construction - the first panel
+# first panel definition ends
+
+# ==========================================================================
+	Separator { # Back Panel Rendered Images Group
+		Scale {		scaleFactor	40 40 1 }
+		Translation { 	translation	0 0 -100 } # -0.25 y -> 0	
+		Texture2 {	filename "jpeg/f14/tompicrd.jpg" }
+		USE image_panel
+		Texture2 {	filename "var/yhardtxt.gif" }
+		USE text_panel
+	} # Back Panel Rendered Images Group
+
+	} # end of Rendered Images Group
+
+} # end of entire scene

@@ -1,0 +1,116 @@
+#VRML V1.0 ascii
+
+Separator {
+	Info {
+		string "YAAP Hangar VRML world - an aviation media repository"
+		string "based on Marc Pesce's tutorial in Iris Universe no 36"
+		string "Prepared by : Dorian Dogaru - dog@topedge.com"
+		string "visit YAAP - www.topedge.com/panels/aircraft/"
+	}
+	PerspectiveCamera {
+		position	3 -0.75 3
+		orientation	1 1 1	1	
+		focalDistance	5
+		heightAngle	0.785398
+	}
+	Coordinate3 {
+		point [	0 0 0,
+			1 0 0,
+			1 1 0,
+			0 1 0,
+			0 0 1,
+			1 0 1,
+			1 1 1,
+			0 1 1 ]
+	}
+	TextureCoordinate2 {
+		point [	0.0 0.0,
+			1.0 0.0,
+			1.0 1.0,
+			0.0 1.0 ]
+	}
+	WWWAnchor {
+		name "yaaphavr.wrl"
+		description "A selection of aircraft VRML models"
+		Texture2 {
+			filename "var/yhavr.jpg"
+		}
+		IndexedFaceSet {
+			coordIndex [4, 5, 6, 7, -1]
+			textureCoordIndex[0, 1, 2, 3]
+		}
+	}
+	WWWAnchor {
+		name "yaaphaan.wrl"
+		description "A collection of aviation animated clips"
+		Texture2 {
+			filename "var/yhaan.jpg"
+		}
+		Texture2Transform {
+			translation	0 0
+			rotation	0
+			scaleFactor	-1 1
+			center		0.5 0.5
+		}
+		IndexedFaceSet {
+			coordIndex [3, 2, 1, 0, -1]
+			textureCoordIndex[3, 2, 1, 0]
+		}
+	}
+	WWWAnchor {
+		name "yaaphamv.wrl"
+		description "A collection of aviation related movie clips"
+		Texture2 {
+			filename "var/yhamv.jpg"
+		}
+		IndexedFaceSet {
+			coordIndex [3, 7, 6, 2, -1]
+			textureCoordIndex[0, 1, 2, 3]
+		}
+	}
+	WWWAnchor {
+		name "yaaphard.wrl"
+		description "A collection of aircraft - rendered images"
+		Texture2 {
+			filename "var/yhard.jpg"
+		}
+		Texture2Transform {
+			translation	0 0
+			rotation	0
+			scaleFactor	-1 1
+			center		0.5 0.5
+		}	
+		IndexedFaceSet {
+			coordIndex [1, 5, 4, 0, -1]
+			textureCoordIndex[3, 2, 1, 0]
+		}
+	}
+	WWWAnchor {
+		name "yaapha3d.wrl"
+		description "A collection of aviation related 3D models"
+		Texture2 {
+			filename "var/yha3d.jpg"
+		}
+		IndexedFaceSet {
+			coordIndex [2, 6, 5, 1, -1]
+			textureCoordIndex[0, 1, 2, 3]
+		}
+	}
+	WWWAnchor {
+		name "yaaphapi.wrl"
+		description "A collection of aviation related pictures"
+		Texture2 {
+			filename "var/yhapi.jpg"
+		}
+		Texture2Transform {
+			translation	0 0
+			rotation	0
+			scaleFactor	-1 1
+			center		0.5 0.5
+		}
+		IndexedFaceSet {
+			coordIndex [0, 4, 7, 3, -1]
+			textureCoordIndex[3, 2, 1, 0]
+		}
+	}
+}

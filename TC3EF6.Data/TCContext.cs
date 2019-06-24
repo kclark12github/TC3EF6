@@ -802,6 +802,11 @@ namespace TC3EF6.Data
             #endregion
             #endregion
         }
+        public void LogMessage(string Milestone, string Message)
+        {
+            Debug.WriteLine($"{Milestone}: {Message}");
+            Database.ExecuteSqlCommand($"Execute [dbo].[sp_LogMessage] @Milestone=N'{Milestone.Replace("'", "''")}', @Message=N'{Message.Replace("'","''")}';");
+        }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             CustomConventions.Add(modelBuilder);
@@ -826,7 +831,9 @@ namespace TC3EF6.Data
             foreach (var propName in entry.CurrentValues.PropertyNames.Where(p => p.Trim() != "RowID"))
             {
                 var original = entry.State == EntityState.Added ? "Record Added" : entry.OriginalValues[propName]?.ToString();
+                var originalValue = original == null ? "Null" : $"\"{original}\"";
                 var current = entry.State == EntityState.Deleted ? "Record Deleted" : entry.CurrentValues[propName]?.ToString();
+                var currentValue = current == null ? "Null" : $"\"{current}\"";
                 History history = null;
                 switch (entry.State)
                 {
@@ -843,7 +850,7 @@ namespace TC3EF6.Data
                             DateChanged = dateChanged,
                             Who = "System"
                         };
-                        Debug.WriteLine("Record Added: {0}.ID #{1}: {2} {3}", tableName, ID, propName, current == null ? "Null" : $"\"{current}\"");
+                        LogMessage($"SaveHistory({tableName})", $"Record Added: {tableName}.ID #{ID}: {propName} {currentValue}");
                         break;
                     case EntityState.Deleted:
                         history = new History
@@ -858,12 +865,12 @@ namespace TC3EF6.Data
                             DateChanged = dateChanged,
                             Who = "System"
                         };
-                        Debug.WriteLine("Record Deleted: {0}.ID #{1}: {2} {3}", tableName, ID, propName, original == null ? "Null" : $"\"{original}\"");
+                        LogMessage($"SaveHistory({tableName})", $"Record Deleted: {tableName}.ID #{ID}: {propName} {originalValue}");
                         break;
                     case EntityState.Modified:
                         if (original != current)
                         {
-                            Debug.WriteLine("{0}.ID #{1}: {2} changed from {3} to {4}", tableName, ID, propName, original == null ? "Null" : $"\"{original}\"", current == null ? "Null" : $"\"{current}\"");
+                            LogMessage($"SaveHistory({tableName})", $"{tableName}.ID #{ID}: {propName} changed from {originalValue} to {currentValue}");
                             history = new History
                             {
                                 TableName = tableName,

@@ -1,0 +1,12 @@
+<!-- #include virtual="/Includes/ActionTemplateTop.inc.asp"-->
+<!-- #include virtual="/Includes/ActionList.inc.asp"-->
+<!-- #include virtual="/Includes/ActionCancel.inc.asp"-->
+<!-- #include virtual="/Includes/ActionFilter.inc.asp"-->
+<!-- #include virtual="/Includes/ActionNew.inc.asp"-->
+<!-- #include virtual="/Includes/ActionFind.inc.asp"-->
+<!-- #include virtual="/Includes/ActionAllRecords.inc.asp"-->
+<!-- #include virtual="/Includes/ActionApply.inc.asp"-->
+<!-- #include virtual="/Includes/ActionInsert.inc.asp"-->
+<!-- #include virtual="/Includes/ActionUpdate.inc.asp"-->
+<!-- #include virtual="/Includes/ActionDelete.inc.asp"-->
+<!-- #include virtual="/Includes/ActionTemplateBottom.inc.asp"-->

@@ -1,0 +1,1288 @@
+
+             REC.AVIATION.MILITARY FREQUENTLY ASKED QUESTIONS (part 3 of 5)
+
+Please send updates to Urban Fredriksson <griffon@canit.se>
+Last updated 2001 Aug 24
+
+The rec.aviation.military FAQ is posted to the usenet newsgroup 
+rec.aviation.military about once per month and is available via WWW at
+<http://www.canit.se/%7Egriffon/aviation/faq/>
+
+------------------------------
+
+Subject:  C.15.  What were the "new" fighters in _Hot Shots_?
+
+They were Folland Gnats, an early British jet fighter that first flew in
+1954 (as the Midge).  It was designed as a private venture by Folland, to
+demonstrate that a lightweight fighter was a practical alternative to the
+trend towards heavier and more complex aircraft.  It entered RAF service
+only as a trainer (Gnat T.1), but both the fighter and trainer versions
+were built under licence by HAL in India, as the Ajeet (unconquerable);
+India, Finland, and Yugoslavia also imported British-built Gnat fighters
+(as well as a reconnaissance version for Finland).  The trainer version
+equipped the RAF's Red Arrows aerobatic team before the arrival of the
+Hawk.  The Ajeet remains in service with India.  The Gnats seen in _Hot
+Shots_ were all privately owned.
+
+Vital statistics (Gnat F.1):  length 9.06 m, span 6.75 m, empty weight 2200
+kg, max TO weight 4030 kg, max speed 1150 km/h, max range 1900 km; power
+plant:  one 20.10 kN Bristol Orpheus 701 turbojet; armament:  two 30mm Aden
+cannon (115 rounds each), four hardpoints, max external load 454 kg.
+
+------------------------------
+
+Subject:  C.16.  Why do the USAF/USN use incompatible refuelling systems?
+Updated 1998 Feb 02
+
+By far the most common method for in-flight refuelling is the
+"probe-and-drogue" system, in which the tanker unreels a hose behind it
+with a drogue on the end (a meshwork cone whose drag keeps the end of the
+hose in a stable position). The receiving aircraft has a probe attached to
+it, which is inserted into the drogue to link the fuel systems. Some
+receiving aircraft have probes permanently mounted, some have bolt-on
+probes that can be attached if a mission requires them, and some have
+retractable probes. This method is used by the US Navy, modern Russian
+aircraft, and every other country that uses in-flight refuelling
+except those who operate aircraft fitted with the USAF "flying-boom"
+system.
+
+The US Air Force uses the "flying-boom" system. In this system, a
+rigid boom, with control surfaces on the end, is extended from the tanker
+and inserted into a socket on the receiving aircraft. This method has two
+major disadvantages over the probe-and-drogue method. First, the boom has
+to be attached directly to the tanker's fuselage, which prevents refuelling
+from detachable pods attached to a tanker's wings (allowing more than one
+receiver to link up at a time) or to the centreline hardpoint on a fighter
+or strike aircraft (allowing such aircraft to refuel each other without a
+dedicated tanker), both of which are commonly done with probe-and-drogue
+refuelling. Second, the equipment on the receiving aircraft is
+incompatible with the probe-and-drogue system, which means that USAF
+aircraft can only recieve fuel from USAF tankers. 
+
+USAF KC-10 tankers have both a boom and drogue on the centerline, so
+they can give fuel to aircraft using either system on the same mission,
+and some of them have also been fitted with underwing pods with drogues. 
+USAF KC-135s can be fitted with a drogue on the boom, so it can deliver 
+fuel to one of the two systems during a mission, and starting in 1996 USAF
+KC-135Rs are being fitted with two underwing pods with drogues so they 
+also can refuel aircraft using either system, at the same time.
+
+The reason why the USAF puts up with this is that the flying-boom system
+can achieve much greater fuel flow rates than the probe-and-drogue system
+(mainly because the rigid boom is shorter and wider than the flexible
+hose). This is mainly for the benefit of large bombers such as the B-52
+and B-1; refuelling such large aircraft by probe-and-drogue would take much
+longer, enough (in the USAF's judgement) to cause significant tactical
+problems. Few other air forces operate aircraft of similar size; the
+handful that do are prepared to live with the refuelling delays in the
+interests of compatibility.
+Another reason is that the basket on the drogue is vulnerable to blow-out 
+if the probe contacts the drogue incorrectly, and when the basket blows, 
+the drogue becomes highly unstable and useless.
+It's also been said that for large aircraft, it's easier if they don't 
+have to fly a probe into a drogue and hold it there, but that doesn't
+seem to an issue nowadays, and Russian pilots says it's much easier
+than the wingtip to wingtip system.
+
+The RAF deploys two sizes of IFR system aboard its tankers - a thin one
+for fighters, and a wider bore one for transports / Nimrods / Sentry.
+
+The third refuelling system used is the "wingtip-to-wingtip" system, used
+only by older Russian bombers. In this system, a hose is unreeled from one
+wingtip of the tanker, and caught by a socket in the opposite wingtip of
+the receiver; the two aircraft then fly side by side, with the hose joining
+their wingtips (the length of the hose is comparable to the wingspan of the
+aircraft). The tankers are all converted bombers (Tu-16 Badgers) 
+themselves, and Tu-16 Badgers are the only operational bombers to 
+receive fuel this way. This system is very tricky to link up,
+occasionally dangerous, only usable with bombers (smaller aircraft can't
+carry the necessary receiving equipment on their wingtips), and gives flow
+rates even worse than probe-and-drogue; not surprisingly, the Russians have
+largely replaced it with the probe-and-drogue system, and it will probably
+become extinct with the retirement of the last Tu-16 Badgers, tankers 
+and bombers both.
+
+------------------------------
+
+Subject:  C.17.  What air-to-air missiles are in service?
+
+The following list covers the air-to-air missiles known to be in service or
+under development, as of 1996.
+
+Guidance types:  AR = active radar, IMTARH = Inertial, Midcourse
+updates, terminal active, IR = infrared, Opt = optical, 
+PR = passive radar, SAR = semi-active radar.
+
+    Missile                        Length Mass Range Speed Warhead Guidance
+                                   (m)    (kg) (km)  (M)   (kg)
+    ------------------------------ ------ ---- ----- ----- ------- --------
+    International
+      AIM-132A ASRAAM (ordered,    2.90   87   15    ?     10      IR
+              not in service)
+      Meteor (S225X merged with A3M,  ?   ?    100   ?     ?       IMTARH
+              not in service)
+    Brazil
+      MAA-1 Mol                    2.82   90   10    2.0   12      IR
+    China
+      PL-2                         2.99   76   3     ?     11      IR
+      PL-3                         2.99   82   3     ?     14      IR
+      PL-5B                        2.89   85   16    ?     9       IR
+      PL-7                         2.75   90   ?     ?     13      IR
+      PL-8                         3.00   120  5     ?     11      IR
+      PL-9                         2.99   120  5     ?     10      IR
+      PL-10                        3.99   300  15    3.0   ?       SAR
+    France
+      MICA AR                      3.10   110  60    ?     ?       AR
+      MICA IR                      3.10   110  60    ?     ?       IR
+      R.550 Magic 1                2.72   89   10    2.0   13      IR
+      R.550 Magic 2                2.75   90   10    2.0   13      IR
+      Super 530D                   3.80   270  40    4.5   30      SAR
+      Super 530F                   3.54   245  35    4.5   30      SAR
+    Germany
+      IRIS-T                       ?      ?    ?     ?     ?       IR
+    India
+      Astra                        ?      ?    ?     ?     ?       AR
+    Israel
+      Python 3                     3.00   120  15    3.5   11      IR
+      Python 4                     3.00   ?    ?     ?     ?       IR
+      Shafrir 2                    2.60   93   5     ?     11      IR
+    Italy
+      Aspide 1                     3.70   220  100   4.0   35      SAR
+      Aspide 2                     3.65   230  100   4.0   35      SAR
+    Japan
+      AAM-3 Type 90                2.60   70   5     ?     ?       IR
+    Russia
+      K-13A/R-13S "AA-2 Atoll"     2.84   75   8     2.5   11      IR
+      K-13M/R-13M "AA-2-2 Atoll-D" 2.87   90   13    2.5   11      IR
+      K-13R/R-13R "AA-2-2 Atoll-C" 3.50   93   8     2.5   11      SAR
+      Kh-31P "AS-17 Krypton"       5.23   600  200   3.0   90      PR
+      KS-172 RVV-L                 7.40   750  400   ?     ?       AR
+      R-23R "AA-7 Apex"            4.46   244  27    3.4   35      SAR
+      R-23T "AA-7 Apex"            4.16   217  27    3.4   35      IR
+      R-24R "AA-7 Apex"            4.46   ?    ?     ?     ?       SAR
+      R-24T "AA-7 Apex"            4.16   ?    ?     ?     ?       IR
+      R-27EA "AA-10 Alamo"         4.78   350  130   ?     39      AR
+      R-27EM "AA-10 Alamo"         4.78   350  170   ?     39      SAR
+      R-27ER "AA-10 Alamo-C"       4.78   350  130   ?     39      SAR
+      R-27ET "AA-10 Alamo-D"       4.78   350  130   ?     39      IR
+      R-27P "AA-10 Alamo"          ?      ?    ?     ?     39      PR
+      R-27R "AA-10 Alamo-A"        4.08   235  60    ?     39      SAR
+      R-27T "AA-10 Alamo-B"        3.80   245  40    ?     39      IR
+      R-33 "AA-9 Amos"             4.15   490  120   ?     47      SAR
+      R-37                         ?      600  150   ?     ?       AR
+      R-40RD "AA-6 Acrid"          5.98   461  70    4.5   38      SAR
+      R-40TD "AA-6 Acrid"          5.98   460  30    4.5   38      IR
+      R-60 "AA-8 Aphid"            2.14   45   7     2.5   4       IR
+      R-60M "AA-8 Aphid"           2.14   45   ?     2.5   4       IR
+      R-60MK "AA-8 Aphid"          2.14   45   12    2.5   4       IR
+      R-73/R-73M1 "AA-11 Archer"   2.90   105  15    ?     7       IR
+      R-73E/R-73M2 "AA-11 Archer"  2.90   110  30    ?     7       IR
+      R-77 RVV-AE "AA-12"          3.60   175  90    3.0   18      IMTARH
+    South Africa
+      Darter                       2.75   89   10    4.2   16      IR
+      V3B Kukri                    2.94   73   4     3.9   ?       IR
+    Taiwan
+      Sky Sword I                  2.87   90   15    ?     ?       IR
+      Sky Sword II                 3.60   190  40    ?     ?       SAR
+    United Kingdom
+      Active Sky Flash (cancelled) 3.66   208  50    4.0   30      AR
+      Sky Flash                    3.66   192  50    4.0   30      SAR
+    United States of America
+      AIM-7M Sparrow               3.66   230  100   2.5   39      SAR
+      AIM-7P Sparrow               3.66   230  45    ?     39      SAR
+      AIM-7R Sparrow               3.66   ?    45    ?     ?       IR+SAR
+      AIM-9J Sidewinder            3.07   78   15    2.5   ?       IR
+      AIM-9L Sidewinder            2.87   87   18    2.5   10      IR
+      AIM-9M Sidewinder            2.87   87   8     2.5   10      IR
+      AIM-9P Sidewinder            3.07   82   8     2.5   12      IR
+      AIM-9R Sidewinder            2.87   87   8     2.5   10      Opt
+      AIM-9S Sidewinder            2.87   87   8     2.5   10      IR
+      AIM-54C Phoenix              4.30   463  200   4.0   60      IMTARH
+      AIM-92A Stinger              1.52   14   5     2.0   3       IR
+      AIM-120A AMRAAM              3.65   157  75    4.0   22      IMTARH
+      Have Dash                    3.00   180  50    3.0   ?       AR+IR
+
+[Most of the information here is from Doug Richardson and Piotr Butowski's
+survey of AAMs in the October 1993 issue of _Air International_]
+
+Some additional information can be found at:
+<http://www.canit.se/%7Egriffon/aviation/text/missiles/>
+
+------------------------------
+
+Subject:   C.18.  Do Harriers VIFF in combat?
+
+No. While VIFFing *could* cause an enemy to overshoot, it bleeds so much
+energy that it makes the Harrier a sitting duck. It was not used during
+the Falklands (source: Cdr `Sharky' Ward, 801 Sqn). The current consensus,
+accepted by P. Bowen (an ex-Harrier pilot) is that VIFFing might be usable
+in a `once-off save your life' manoeuvre, but it is generally a poor combat
+tactic.
+
+------------------------------
+
+C.19. Is the A-10 actually braked by the gun recoil?
+
+No, not noticably. Pilots report no speed loss even during long bursts.
+   A 70 round burst of 0.4 kg shells fired at 1000 m/s corresponds to
+to a speed reduction of a 15 ton aircraft of 0.2 m/s, which is less than 
+half a knot.
+
+------------------------------
+C.20. Are the KC-135s Boeing 707s?
+(Entry new 1999-11-22)
+
+No. The C-135 family has a resemblance to the Boeing 707 (and 720) family, 
+but they are not identical. The Boeing model number for KC-135 is Boeing 717, 
+and for some, ex C-135Bs and RC-135s, Boeing 739. 
+
+The model number 717 has now been "reused" and given to what was previously 
+the McDonnell Douglas MD-95, as the number hasn't been used in the commercial 
+airliner division of Boeing before, only in the military division.
+
+Note that the C-137, E-3, E-6 and E-8 are Boeing 707s.
+
+The differences between the families (367-80 was the prototype) include:
+                                  367-80    717/739    707/720
+Fuselage upper lobe width         132 in    144 in     148 in
+         cross-sectional height   164 in    168 in     170.5 in
+The 367-80, 707-120 and KC-135 have almost the same wing, but the
+720 has a wing root glove and the 707-320 and -420 a different
+inner wing and tip planform and airfoil shape.
+The KC-135 fuselage is the same length as 367-80's.  The 707-138 and
+720 are 20 inches longer, the 707-120 is 120 inches longer and the
+707-320 and -420 are 200 inches longer.
+Also the types of aluminium alloy used in the KC-135 and 707 are different.
+
+KC-135s first had J57s (JT3Cs) without thrust reversers. Some were
+reengined with TF33s (JT3Ds) with thrust reversers (from scrapped 707s), 
+others got F108s (CFM56s), without thrust reversers. 367-80 and all 
+early 707s and 720s were powered by JT3Cs, with thrust reversers. Most 
+were reengined with JT3Ds, with thrust reversers. 707-320s were powered by JT3Ds, 
+while -420s were powered by RR Conways, both with thrust reversers. Some military 707s 
+(RAF and French E-3s, USN E-6s and one E-8C) were built with F108s (CFM56s).
+
+USAF tail numbers USAF model numbers Boeing model numbers
+55-3118 to 55-3146     KC-135A 717-100A
+56-3591 to 56-3658     KC-135A 717-146
+57-1418 to 57-1514     KC-135A 717-148
+57-2589 to 57-2609     KC-135A 717-148
+58-1 to 58-130         KC-135A 717-148
+59-1443 to 59-1523     KC-135A 717-148
+60-313 to 60-368       KC-135A 717-146
+60-369 to 60-378       C-135A  717-157
+61-261 to 61-325       KC-135A 717-146
+61-326 to 61-330       C-135A  717-157
+61-331 to 61-332       C-135B  717-158
+62-3497 to 62-3580     KC-135A 717-146
+62-3581 to 62-3585     KC-135B 717-166 (Looking Glass)
+63-7976 to 63-8045     KC-135A 717-146
+63-8046 to 63-8057     KC-135B 717-166
+63-8058 to 63-8061     RC-135A 739-700
+63-8470 to 63-8475     C-135F  717-164
+63-8871 to 63-8888     KC-135A 717-146
+63-9792                RC-135B 739-445B
+63-12735 to 63-12740   C-135F  717-146
+64-14841 to 64-14849   RC-135B 739-445B
+
+KC-135S, KC-135W       ex C-135B  717-158
+KC-135V, KC-135U       ex RC-135B
+KC-135?                ex RC-135A
+
+
+------------------------------
+Subject: C.21.  What do the designations F-16CG and F-16CJ stand for?
+
+The unofficial designations F-16CG and F-16CJ refers to
+F-16 Block 40/42 and Block 50/52 respectively. (Block 40 and
+50 uses GE engines, 42 and 52 P&W engines.) F-16CG is fitted
+for LANTIRN (enabling it to do night attacks for example), 
+F-16CJ is fitted with an improved data modem, ALR-56 RWR
+and Harm Targetting System (HTS) enabling it for the SEAD
+role.
+------------------------------
+Subject:  C.22. Which aircraft can supercruise?
+(New 2001 Aug 24)
+
+The definition of supercruise
+
+Engineers have always considered supercruise to mean flying 
+supersonically -- that is with all airflow around the airframe
+supersonic (subsonic = no supersonic airflow, transsonic =
+some airflow supersonic; So different aircraft goes supersonic
+at different speeds, all faster than Mach 1, typically around
+Mach 1.3) -- without the use of afterburner.
+   There is no clear agreement whether afterburner can be used
+to accellerate through the transsonic region or not, but it doesn't
+seem unreasonable to allow it, since the definition is about
+the cruise phase.
+
+In more recent times some people have started to use another
+definition, one meaning anything faster than Mach 1 without afterburner,
+usually as to include some aircraft in the very small group of
+supercruisers.
+
+Supercruising aircraft
+
+Using the strict definition the supercruisers include
+Concorde and F-22.
+   If one includes anything faster than Mach 1 the list becomes
+longer with English Electric Lightning (M 1.2), Lockheed F-104A
+with J79-19 engine (M 1.05 at altitude), probably Draken, 
+F/A-18C/D Hornet with F404-402 engines, F-15E Eagle with CFTs 
+and LANTIRN either -220 or -229 engines (with the -229 engines 
+it's reported to have accelerated to M 1.15 from subsonic and 
+from supersonic speeds with afterburner slowed down to M 1.3 
+when the afterburner was turned off), Gripen, Eurofighter Typhoon, 
+Rafale and likely others.
+   This is of course depending on altitude, weights and external
+loads and exact numbers are usually classified.
+
+
+------------------------------
+Subject:  D.1.  Is aircraft X still in service?
+
+* Blackburn Buccaneer:  NO -- The last squadron of Buccaneers in RAF
+service was disbanded in early 1994.  South Africa, the only other
+Buccaneer user, had already disposed of its aircraft by then.
+
+* Boeing B-29 Superfortress:  SORT OF -- China still has 15 Russian-built
+B-29 copies (Tu-4) on its inventory; these are now used entirely for
+training and research.  One was fitted with a pylon-mounted disk for AEW
+radar experiments.
+
+* Convair F-106 Delta Dart:  NO -- The last aircraft in US service
+were retired in 1988.  About 180 were converted to QF-106 target drones;
+most were destroyed by 1994, and the last ones were dumpted in the ocean 
+at the end of 1997. The last flyable F-106 of all (flying with NASA) 
+was retired in the late summer/fall of 1998.
+
+* Dassault Ouragan:  YES -- El Salvador still has two Ouragans in
+service.
+
+* De Havilland Vampire:  NO -- There are no Vampires in military service;
+several are still flying in private hands.
+
+* De Havilland Venom:  NO -- There are no Venoms in military service;
+several are still flying in private hands.
+
+* English Electric Canberra:  YES -- The Canberra is still in service with
+Chile, India (largest user, with 46), Peru, and the UK.  The 20
+aircraft on the British inventory are used for training and photographic
+reconnaissance, not in the bomber role. As of 1 Apr 1996, the RAF has 
+9 Canberra, a mix of PR.7 and PR.9.
+Argentina retired its last one on 5th April 2000.
+
+* Grumman S-2 Tracker:  YES -- Eight countries still have S-2s in service.
+Many retired examples have been converted to civilian firebombers.
+
+* Handley Page Victor:  NO -- The RAF retired its last Victor K.2 tanker on
+30 November 1993.
+
+* Hawker Hunter:  YES -- The Hunter is still in service with India.
+Lebanon and Somalia still have a handful of Hunters listed, but these are 
+almost certainly unserviceable.  
+Chile, Oman and Switzerland have retired theirs in the 1990's.
+The handful of Hunters still flying in the UK are operated
+by civilian organisations.
+
+* Ilyushin Il-28 ("Beagle"):  YES -- The Chinese-built Hong-5 is in service
+in large numbers (about 650) with China, as well as North Korea and
+Romania (confirmed in 2000), but only Egypt still operates five 
+Russian-built Il-28s.
+
+* Lockheed F-104 Starfighter:  YES -- Remains in service with Greece,
+Italy, Taiwan, and Turkey (largest user, with 220).
+Taiwan will retire her entire F-104 fleet in 1997.  Currently, only
+a small number of RF-104G and TF-104G are in active service.  The
+single-seaters (mostly G) are placed on partial curtailment to
+prolong service life and reduce accident rates.
+
+* Lockheed P-2 Neptune:  YES -- Japan still flies 14 of its locally-built
+P-2J version.
+
+* Lockheed SR-71 Blackbird:  SORT OF -- These were retired from USAF
+service in 1990.  Three aircraft were transferred to NASA, and are used for
+atmospheric research.  Currently (June '94) there seems to be serious talk
+of reactivating some USAF SR-71s for reconnaissance, probably in connection
+with the Korean situation.
+
+* Lockheed T-33 Shooting Star:  YES -- 14 countries still use T-33s for
+training; the largest user is Japan, with 113.
+
+* Mikoyan-Gurevich MiG-15 ("Fagot/Midget"):  YES -- About 20 countries
+operate the MiG-15UTI trainer; two (Albania and Cuba) still operate 
+the single-seat fighter.  Romanian MiG-15s haven't been uses since 1991.
+All Chinese MiG-15s have been retired
+(see also section H.11).
+
+* Mikoyan-Gurevich MiG-17 ("Fresco"):  YES -- About 25 countries still use
+the MiG-17, or the Chinese-built J-5.  The Chinese PLA Air Force only
+operates the JJ-5 trainer version.
+
+* Mikoyan-Gurevich MiG-19 ("Farmer"):  YES -- The Chinese J-6 is still in
+service with 14 countries, but only Cuba still flies the genuine article
+(about 30).  Production of the J-6 stopped about 1981.
+
+* Myasishchyev M-3/4 ("Bison"):  YES -- The last M-3M and M-4 "Bison-A"
+bombers and M-3MD "Bison-C" maritime patrol aircraft were retired or
+converted in 1987.  A small number of M-3MS-2 "Bison-B" tankers remain in
+service with the Russian AF, but are being replaced by the Il-78T "Midas",
+and will probably be gone by the end of 1994.  A few aircraft (possibly
+only one) have been converted to M-3VM-T Atlant heavy transports; these
+remain in use, mainly for transporting space hardware, pending the
+manufacture of more An-225 transports.
+
+* North American F-86 Sabre:  NO -- The Bolivian Air Force its last
+three F-86Fs around 1996.
+
+* North American F-100 Super Sabre:  NO -- Turkey, the last operator of the
+F-100, disposed of its aircraft in 1989.
+
+* Saab Lansen: NO. -- About 25 (the last built in 1960) 
+of the fighter version were in Swedish service as target towing, ECM 
+and trials aircraft. The ECM/aggressor sqn was disbanded in summer
+1997 and almost all of them retired. A small number were retained by
+the trials establishement until 1999.
+
+* Sukhoi Su-7 ("Fitter/Moujik"):  YES -- Only Algeria, Iraq, and North
+Korea (largest user, with 30) still fly the Su-7.
+
+* Sukhoi Su-15 ("Flagon"):  NO -- This was withdrawn from Russian service
+about 1992.
+
+* Tupolev Tu-128 ("Fiddler"):  NO -- This was withdrawn from Russian
+service about 1992.
+
+* Vought A-7 Corsair II:  YES -- In service with Greece (largest user, with
+85) and Portugal.  The last A-7s in US service were withdrawn at the end of
+1993.
+
+* Vought F-8 Crusader:  YES -- 19 F-8E(FN) Crusaders serve with the French
+Navy, and are expected to remain in service until the Rafale M is available
+in 1999.
+
+* Yakovlev Yak-28 ("Brewer/Firebar/Maestro"):  NO -- The last Yak-28P
+"Firebar" interceptors were withdrawn in the 1980s, the last Yak-28R
+"Brewer-D" reconnaissance aircraft about 1990, and the last Yak-28PP
+"Brewer-E" electronic warfare aircraft (along with the last Yak-28U
+"Maestro" trainers) about 1992.
+
+* Yakovlev Yak-38 ("Forger"):  NO -- The Russian Navy retired the last of
+its Yak-38 fleet around the end of 1993.
+
+* McDonnel Douglas F-4 Phantom II: YES -- It has been retired from 
+US service, as other than QF-4 target drones, but approximate
+numbers in service with other nations, as of 1998:
+Egypt: F-4E 32
+Germany: F-4F 151
+Greece: F-4E 74, RF-4E 30
+Iran: F-4D 10, F-4E 30, RF-4E 6
+Israel: F-4E 40, F-4E-2000 55, F-4E(S) 2, RF-4E 10
+Japan: F-4EJ Kai 90, RF-4EJ Kai 17
+South Korea: RF-4C 18, F-4D 60, F-4E 55
+Spain: RF-4C 14
+Turkey: F-4E 165, RF-4E 39
+
+[Most of the above comes from the "Air Forces of the World" directory in
+the 24-Nov-93 issue of _Flight International_]
+
+------------------------------
+
+Subject:  D.2.  Did one of the XB-70 prototypes crash during a photo shot?
+
+On 8 June 1966, XB-70 AV/2 (Air Vehicle 2) took part in a publicity flight
+involving five aircraft powered by General Electric engines, over the
+Mojave Desert.  The aircraft were flying in a V formation; from left to
+right, a Northrop T-38A Talon, a McDonnell Douglas F-4B Phantom II, the
+North American XB-70 Valkyrie, a Lockheed F-104N Starfighter, and a
+Northrop F-5A Freedom Fighter.  Two more aircraft, a Learjet and an F-104D,
+carried photographers.
+
+At 9:26 a.m., just after the end of the photo session, with no warning or
+explanation, the F-104N's tail hit the XB-70's right wingtip.  The F-104
+flipped over and passed above the XB-70, slicing off parts of both of its
+vertical fins on the way, then rammed into its port wing several times.
+The XB-70 then flipped over and began spinning, spraying fuel from the
+ruins of its port wing.  Both aircraft dived into the ground.
+
+The command pilot of AV/2, Al White (North American's test pilot), ejected
+and survived, although he suffered back injuries when the air bag that
+should have served as shock absorber on his ejection capsule failed.  He
+said later that the other pilot, Major Carl Cross (USAF), was slumped
+forward in his seat; White tried to activate Cross's ejection capsule but
+was unable to do so before he had to eject himself.  It was speculated that
+Cross had suffered a blow to the head, or was incapacitated by G forces.
+The F-104N pilot, Joseph A Walker (NASA's chief research pilot) was
+apparently killed in the initial collision.
+
+The collision is believed to have been caused by the F-104 getting too
+close to the XB-70 and getting caught in its wingtip vortices, but nobody
+knows for certain.
+
+The surviving XB-70, AV/1 (tail number 20001), is on display at the Air
+Force Museum at Wright-Patterson AFB, Dayton, Ohio.
+
+[Information from _Valkyrie -- North American XB-70_ by Steve Pace (thanks
+Dan); also thanks to Al Bowers for additional details]
+
+------------------------------
+
+Subject:  D.3.  Jet powered sea planes
+
+Saunders-Roe SR.A/1  ("Philip R Morten" <pmorten@VNET.IBM.COM>)
+                                                                        
+The SR.A/1 is an example of one of the rarest categories of  aircraft - 
+a jet fighter flying-boat  - and is also one of Britain's earliest jet  
+aircraft. This wartime design was intended to operate from islands or   
+depot ships in remote parts of the world but was not completed until the
+war was over.  The three aircraft built were used for experimental      
+purposes for several years.                                             
+                                                                        
+SR.A/1 was designed by Saunders-Roe of Cowes, Isle of Wight during 1943.
+The design was accepted by the Ministry in 1944 and five (later reduced 
+to three) prototypes were ordered.  Construction was at Cowes and the   
+first example flew from the Solent on 16th July 1947.  The SR.A/1 was   
+demonstrated at the Farnborough air show in 1947 and 1948 where test    
+pilot Geoffrey Tyson thrilled the crowds with his low-level inverted    
+flypasts.                                                               
+                                                                        
+Flight tests of all three prototypes proceeded until August 1949 when   
+both the second and third aircraft were lost in accidents, one sinking  
+after hitting a floating object while landing on the Solent and the     
+other after loss of control during an aerobatic display practice. Around
+this time the Ministry lost interest in the project, and also           
+effectively cancelled development of the Beryl engine, but Saunders-Roe 
+brought the first prototype out of storage for trials of their own for  
+which purposes it received the "B-Conditions" civil registration G-12-1.
+These trials continued until 1951 when, after  being displayed at the   
+Festival of Britain site on the Thames, it was retired to the  College  
+of Aeronautics at Cranfield.                                            
+                                                                        
+The SR.A/1 is also noteworthy in that it  was the first British aircraft
+to be fitted  with a production ejection-seat and  was the only aircraft
+designed to fly with the  Metrovick Beryl axial flow jet engine,        
+probably the most advanced aero engine in the world at the time.  Both  
+the seat and the engine are displayed in the Museum alongside the       
+aircraft.                                                               
+                                                                        
+TG263 is the first, and sole surviving, example of the three SR.A/1s.   
+When trials were complete it was presented to the College of Aeronautics
+at Cranfield where it was used as an instructional  airframe until      
+1966 when it was purchased by Peter Thomas for his Skyfame Aircraft     
+Museum at Staverton.   In 1978 it was purchased by the Trustees of the  
+Imperial War Museum and  transferred to their museum at Duxford,        
+Cambridgeshire where it was restored to its original service markings.
+In 1993 it was made available to the Southampton Hall of Aviation so  
+that it could be displayed at the museum closest to its original home.
+
+
+------------------------------
+
+Subject:  E.1.  What jet aircraft were the Germans working on during WW2?
+Updated 1998 Nov 20, 2001 Nov 26
+
+* Arado Ar 234 Blitz (Lightning):  The world's first jet bomber.  First
+flight, 15 June 1943; service entry, September 1944.  The two versions to
+see service, the Ar 234B-1 unarmed reconnaissance aircraft and B-2 bomber,
+were single-seat aircraft powered by two 8.83 kN thrust Jumo 004B
+turbojets.  The Ar 234C series, with four 7.85 kN BMW 003A-1 turbojets,
+never reached service, although several prototypes flew.  210 Ar 234s were
+completed before the end of the war; the Ar 234 was involved in the Battle
+of the Bulge, the destruction of the Remagen bridge, and several other
+battles and at least one Ar 234C made a reconnaissance mission.  
+Plans included the Ar 234C-1 reconnaissance plane, C-2 bomber,
+and C-3 in bomber, ground attack, and night fighter subtypes; a C-3 variant
+carrying a V-1 cruise missile on its back was also planned.  Other
+proposals included the Ar 234D (two Heinkel HeS 011A turbojets), Ar 234E
+(fighter based on Ar 234D), Ar 234P (night fighter), and the Ar 234R 
+which was a rocket powered recon version (without the jets) which was
+in direct competition with the DFS 228 (and lost).
+
+Vital statistics (Ar 234B-2):  length 12.65 m, span 14.20 m, empty weight
+5200 kg, max weight 8410 kg, max speed 742 km/h, range 1630 km; 
+armament: 1500 kg bomb load.
+
+The typical Ar 234B had no guns; there were a handful field modified with
+a 20mm (or 30mm) gun-pack in the bomb recess and the 234B-N nightfighter
+had a similar gun pack. The 234C would have had (eventually) two 20
+or 30mm cannon in the nose, just under and to the sides of the pilot.
+
+
+* Bachem Ba 349 Natter (Viper):  This was a tiny, extremely short-range
+rocket-powered interceptor.  It was designed to be launched vertically,
+fire its rocket armament into a bomber formation, and then come apart in
+mid-air; the forward section would be thrown away, the rear section would
+descend by parachute to be re-used, and the pilot would descend on his 
+own parachute. The initial version, the Ba 349A, was powered by four 11.77 
+kN Schmidding 109-533 booster rockets and one 16.67 kN Walter 109-509A-2 
+sustainer rocket; 20 of this version were built, the Ba 349B had a 509C motor, 
+with cruise setting, doubling endurance. There were plans for a Ba 349C with 
+a more powerful rocket and a larger tail for better control.
+   Data for Ba 349A
+Time to 11.000 m:     60 s
+Max speed:          1000 km/h
+Range:             20-80 km depending on altitude
+Endurance:           130 s at 800 km/h at 3000 m
+Take off weight:    2230 kg including boosters
+Empty weight:        880 kg
+Internal fuel:       750 kg
+Weapons:             185 kg  24 x 73 mm Föhn rockets 
+                          or 33 x 55 mm R4M rockets
+Solid fuel boosters: 495 kg
+Length:                6.02 m
+Span:                  4.0 m
+
+* DFS 228:  High-altitude, air-launched reconnaissance aircraft with a
+rocket engine, in development during 1945. Claimed are a ceiling of 
+20000 m, a speed of 1000 km/h, and a range of 720 km -- but no DFS 228, 
+and few documents, survived the war.
+
+* DFS 346:  A 1945 design for an aircraft with two 20 kN Walter rocket
+engines, swept wings and a prone pilot position.  It had an estimated top
+speed of Mach 2.6 at 30500 m. The incomplete prototype was captured by the
+USSR and test flown, with one of the interned B-29s as launch aircraft
+and a variant of it was built and flown.
+
+* Fieseler Fi 103R Reichenberg:  Basically a manned version of the Fi 103
+("V-1") flying bomb (the first cruise missile).  In theory, this wasn't a
+Kamikaze-style suicide weapon, since the pilot was intended to bail out
+after aiming the aircraft/missile at its target.  In practice, this would
+have presented certain difficulties, since the cockpit was placed directly
+underneath the jet intake!  The engine was the same one used on the V-1,
+one 2.94 kN As 109-014 pulse-jet.  Versions planned were the Fi 103R-I and
+R-II training gliders, R-III powered trainer, and R-IV operational version.
+About 175 were built, and a few test flights were made by the R-III, but
+none flew operationally.
+
+Vital statistics (for the V-1; the Fi 103R-IV would have been very
+similar):  length 7.90 m, span 5.30 m, weight 2180 kg, max speed 645 km/h,
+range 240 km; armament:  850 kg warhead.
+
+* Focke-Wulf Ta 183: Single-seat jet fighter powered by one 12.75 kN
+Heinkel HeS 011 turbojet. Planned versions included the Ta 183A-1 and A-2
+fighters, and A-3 photo-reconnaissance version. It is unlikely a 
+prototype was assembled, much less flew. Luftwaffe selected the 
+Messerschmidt P.1101 instead of the Ta 183.
+
+Vital statistics (Ta 183A-1):  length 9.20 m, span 10.00 m, max weight 4300
+kg, max speed 954 km/h, range 722 km; armament:  four 15mm or 20mm cannon
+or two 30mm cannon; 500 kg bomb load.
+
+The Saab 29 and MiG-15 resembles the Ta 183 slightly, but they're
+different enough that they cannot have been based on it, at most inspired, 
+but certainly German aerodynamic data contributed to their design.
+
+* Heinkel He 162 Salamander:  A tiny, single-engine fighter, famous for the
+speed of the development programme -- the first prototype flew on 6
+December 1944, less than three months after the requirement was issued!  It
+was intended to be a "Volksjäger" (people's fighter) that could be flown by
+Hitler Youth volunteers after minimal training; fortunately for the youths
+concerned, the war ended before this plan could be put into action.  280
+aircraft were completed before the end of the war (and another 800 were
+found in various stages of completion in the factories), but only a handful
+actually saw combat, in the hands of expert pilots.  By all accounts the
+Salamander had lousy handling characteristics and was difficult for even
+experienced pilots to fly.  In addition, the high-tech glue used to make
+the wooden laminate wings in the prototypes was replaced with a cheaper
+type in the production aircraft, resulting in frequent catastrophic
+failures.  Versions built were the He 162A-1 and A-2, both powered by one
+7.85 kN BMW 003E-1 or E-2 turbojet (differing only in being armed with two
+30mm or two 20mm cannon, respectively); proposals included the He 162B (one
+or two pulse-jet engines), He 162C (forward-swept wings), He 162D
+(swept-back wings), and various combinations of jet and rocket propulsion.
+
+Vital statistics (He 162A-2):  length 9.00 m, span 7.20 m, empty weight
+2180 kg, max weight 2695 kg, max speed 784 km/h, range 695 km; armament:
+two 20mm cannon.
+
+* Heinkel He 280:  The first jet fighter to fly, the He 280 was powered by
+two 8.24 kN Junkers Jumo 004 turbojets.  Development was delayed, and
+eventually abandoned in favour of the superior Me 262.
+
+Vital statistics (He 280 V6):  max speed 817 km/h; armament:  three 20mm
+cannon.
+
+* Henschel Hs 132:  A dive bomber powered by a single 7.85 kN BMW 003A-1
+turbojet, the Hs 132 was built along the same general lines as the He 162,
+with the engine mounted dorsally on the fuselage.  The unique feature was a
+prone pilot position, intended to improve G tolerance.  The factory was
+overrun by the Soviet Army shortly before the first flight was planned.
+
+Vital statistics:  Max speed 700 km/h; armament:  one 500 kg bomb.
+
+* Horten Ho IX (also inaccurately sometimes known as Gotha Go 229):  
+A flying wing fighter of futuristic and elegant appearance. It had a flat, 
+tailless design, and was intended to be constructed mainly of wood, 
+with special glues and lacquers to minimise radar signature -- in other 
+words, it was the first stealth fighter!  
+
+Only one prototype flew, the Ho IX V2, the first flight in January 1945
+went very well, but in a later unauthorised flight it crashed during
+an emergency landing.
+The prototype was powered by two 8.73 kN Jumo 004B turbojets (which would 
+also have powered the production Ho 229 versions). Production of the 
+fighter was assigned to the Gotha factory; versions planned were the 
+single-seat Ho 229A day fighter, and the two-seat, radar-equipped 
+Go 229B night fighter. 
+Gotha had a mofified Ho 229 in the works -- a two to three seat night 
+fighter called the P.60 - which was based on the Horten design.
+
+A captured prototype rests at Silver Hill, Maryland, USA.
+
+Vital statistics (Go 229A-0):  empty weight 4600 kg, max weight 7507 kg,
+max speed 977 km/h, range 1900 km; armament:  four 30mm cannon; 2000 kg
+bomb load.
+
+* Horten Ho X:  Single-engined flying wing fighter, basically a slightly
+scaled-down Ho IX.  None were built.
+
+* Horten Ho XVIII "Amerika bomber":  Six-engine flying wing bomber.  Apart
+from the curved trailing edge, this design bore an amazing resemblance to
+the Northrop B-2.  None were built, although the first prototype was under
+construction at the end of the war.  Rumour has it this aircraft was
+intended to carry the German atomic bomb to America, but this is very
+implausible, as at that time the Germans didn't know large or heavy
+an atomic bomb would have been, and you can't design an aircraft
+without knowing the indended payload!
+
+Vital statistics:  range 11900 km; armament:  3600 kg bomb load.
+
+* Junkers Ju 287:  A heavy jet bomber, unusual in having forward swept
+wings.  A single prototype flew before the end of the war (a second was
+completed and flown in Russia after the war).  The prototype was built
+largely from salvaged parts, including an He 177 fuselage, a Ju 388 tail
+part of the landing gear came from a crashed B-24. 
+It was powered by four turbojets, one under each wing and one on either 
+side of the nose; planned versions included several different 
+arrangements of two, four, or six engines.
+
+* Lippisch P13a:  This one takes the prize (any prize).  It was a
+ramjet-powered, sharply swept delta, with the cockpit built into the tail
+fin.  It was powered by coal gas generated from solid fuel, and had a
+nominal design speed of 1650 km/h.  Yes, you read that right -- a
+coal-powered supersonic fighter.  A small rocket engine was provided for
+take-off.  Alas, it never flew.  The DM-1 glider, built along the same
+general lines and intended to validate the airframe design, was completed
+after the war and test-flown in the US; some results were published in
+_Lippisch P13a and Experimental DM-1_ by Hans-Peter Dabrowski (Schiffer
+Military History; ISBN 0-88740-479-0).  Aerodynamic testing in a
+wind-tunnel took place at Langley field, by what was then NACA, in 1946.
+Results were "disappointing", but led eventually to the successful delta
+wing concept.
+
+Vital statistics:  length 6.7 m, span 6.0 m, max speed 1650 km/h (Mach
+1.55; this was the original design speed, although wind tunnel tests went
+up to Mach 2.6), range 1240 km; armament:  two cannon.
+
+* Messerschmitt Me 163 Komet:  The only rocket-powered aircraft ever to
+enter service.  First flight, early 1941; service entry, May 1944.  Unusual
+in appearance as well as propulsion, it had a short fuselage with swept
+wings and no horizontal tail; despite the tailless design, it had excellent
+flight characteristics and was reportedly very easy to fly.  Landing was a
+different matter, though -- the awkward centreline skid arrangement (to
+save weight, the wheeled trolley used for take-off was jettisoned once the
+plane was airborne), combined with the presence of highly volatile and
+explosive rocket fuel, resulted in many Komets living up to their name and
+ending their days as fireballs.  In the air, however, the combination of
+tremendous speed, small size, and the element of surprise made them
+reasonably successful against American bomber formations, on the few
+occasions they entered combat.  There was only one service version, the Me
+163B-1, powered by one 16.67 kN Walter HWK 509A-2 liquid fuel rocket; about
+370 of these saw service.  Plans existed for a greatly improved version,
+the Me 263 (also known as the Junkers Ju 248; Junkers did much of the
+development work), with a new engine (16.67 kN Walter HWK 109-509C-4, with
+separate boost and cruise chambers, giving a longer (30+ min?) endurance), 
+more fuel, and a real landing gear. There was one Me 263 built and 
+flown, but it was only flown as a glider; the engine was not ignited in 
+flight. 
+The Russians used the Me 263 as the basis of their I-270 rocket interceptor.
+
+Vital statistics (Me 163B-1):  length 5.69 m, span 9.30 m, empty weight
+1905 kg, max weight 4110 kg, max speed 960 km/h, range 100 km; armament:
+two 30mm cannon.
+
+* Messerschmitt Me 262 Schwalbe (Swallow):  The first jet fighter to enter
+service with any country.  First flight, 4 April 1941; service entry, 30
+June 1944.  The Me 262 was much faster and more heavily armed than the
+contemporary Gloster Meteor, and could have had a much greater effect on
+the war than it actually did if it had been produced in larger numbers in
+time.  The story that delays were caused by Hitler's insistence that the
+promising fighter be used only as a bomber appears to be a myth.  The Me
+262 was designed as a versatile fighter-bomber from the start; delays were
+mainly caused by the difficulty of manufacturing the engines in large
+enough quantities in the face of materials shortages caused by Allied
+bombing (the service life of an engine was only about 20 hours!).  The Me
+262 was also the first aircraft in service with swept wings, although this
+came about by accident -- a redesign of the fuselage happened to move the
+centre of gravity further back than had originally been intended (an early
+design had the engines mounted in the wing roots), and the wings were
+angled slightly back to compensate; it was only later that it was
+discovered that this had fortuitously improved the aerodynamics.  Not quite
+enough, though; transonic aerodynamics were not considered in the design,
+and the Me 262 became effectively uncontrollable in a shallow dive, some
+pilots having to jettison the canopy to recover from spins!  Variants to
+see service were the Me 262A-1a fighter, A-2a fighter-bomber, B-1a two-seat
+trainer, and B-1a/U1 radar-equipped night fighter, all powered by two 8.83
+kN Junkers Jumo 004B turbojets.  Although 1433 Me 262s had been delivered
+by VE day, shortage of fuel (and pilots) meant that only about 100 of them
+ever saw active service.  Plans included the Me 262B-2a night fighter with
+enlarged fuselage carrying more fuel and Schräge Musik upward-firing
+cannon, and Me 262C with rocket boosters (a few prototypes flew before the
+war ended).
+
+Vital statistics (Me 262A-1a):  length 10.60 m, span 12.50 m, empty weight
+4000 kg, max weight 7045 kg, max speed 870 km/h, range 1050 km; armament:
+four 30mm cannon.
+
+* Messerschmitt Me 328:  This was a short-lived design, powered by two 2.94
+kN Argus As 014 pulse-jets and intended to be a cheap and quickly-built
+ground attack aircraft, with a secondary role as a day fighter.  Only one
+prototype flew, sometime in 1944; this was enough to convince even the
+desperate Germans that a pulse-jet powered fighter was a Dumb Idea.
+
+Vital statistics (Me 328A-1):  max speed 755 km/h; armament:  two 15mm
+machine guns.
+
+* Messerschmitt P.1101: Jet fighter powered by one Junkers Jumo 004B
+turbojet, mounted in the lower forward fuselage and fed by a nose inlet, in
+a design similar to the post-war Yak-17 or Saab 29. The unique feature was
+the variable geometry wings, the first time "swing wings" had been tried on
+an aircraft.  Only one prototype was completed before the P-1101 was
+cancelled in favour of the Focke-Wulf Ta 183; it was never flown during the
+war, but was taken back to the US and fitted with an Allison J35 turbojet,
+but not flown as it had been damaged in transport. The Bell X-5
+was based on the P.1101's design, and was successfully used to investigate
+variable sweep. The P.1101 prototype (unlike the X-5) lacked true variable
+geometry; the sweep angle could only be adjusted on the ground, and could
+not be varied in flight. The cancelled production version would have had
+true variable sweep.
+
+* Mistel 5:  This was an unmanned flying bomb, intended to carry an He 162
+fighter piggyback, in the same way as the Me 109 or Fw 190 was coupled with
+a warhead-carrying Ju 88 in the original Mistel versions.  The He 162 pilot
+would aim the missile at its target, then separate the two aircraft and fly
+his fighter back home.  The unmanned component is referred to by different
+sources as either the Arado E-377a or the Junkers Ju 268.  Power plant was
+two BMW 003 turbojets.  This one never left the drawing board.
+
+Some surviving examples of German jets can be seen at the NASM facility in
+Silver Hill, Maryland, USA, where they have a restored Ar 234, 
+a Ba 349 and He 162 waiting to undergo restoration.
+For those interested in plastic modelling, the Dragon
+line of kits includes many of the above types (Ar 234B/C/C+V1, Ba 349, Fi
+103, Go 229A/B, He 162, Me 163, Me 262A/B, Mistel 5, P-1101) in 1/48 or
+1/72 scale; the Japanese company Mauve produce a 1/48 kit of the Lippisch
+P13a; PM Models make a Ta 183 kit.
+
+A few other projects are worthy of note.  The A4b was a winged A4 ("V-2")
+rocket, with a gliding trajectory giving it a range of 750 km, compared to
+the A4's 33 km.  It was test flown in 1945 but never used in the war.  A
+winged rocket was reported to reach 4340 km/h (Mach 4.1), although it isn't
+clear whether this was the A4b or A10.
+
+The A9/A10 was a planned two-stage missile; the first stage (A10) was
+basically a scaled-up V-2, while the second stage (A9) was a winged
+skip-glide re-entry vehicle, based on the A4b, that could have carried a
+massive warhead (how large?) to the United States.
+Prototype versions of the two components were tested separately, but not
+together. There were also plans for a manned version.
+
+The Sänger-Bredt "spaceplane" was a design for a manned craft launched by a
+captive rocket booster on rails; the booster remained on the ground after
+the spaceplane separated (at about Mach 1.5!).  The 100-tonne plane (of
+which 90 tonnes was fuel) would not reach orbit, but would attain a maximum
+altitude of 185 kilometres in a series of boosts and glides which would
+carry it all the way around the world.  It was designed as a bomber, but
+could easily have been adapted for other purposes.  An orbital version,
+although not officially investigated, must surely have been on the minds of
+the designers, Eugen Sänger and Irene Bredt.
+
+[Most of the above is from Bill Gunston's _Encyclopaedia of the World's
+Combat Aircraft_ and Kenneth Munson's _German War Birds_; also thanks to
+Steve Malikoff for further information on the Lippisch deltas, and Emmanuel
+Gustin and Bernd Felsche for much additional information]
+
+------------------------------
+
+Subject:  E.2.  How "stealthy" was the wooden Mosquito?
+
+The suggestion that the Mosquito, being made largely of wood, would have
+made a good "stealth bomber" is brought up every now and then.  It's a
+myth.  It's true that wood absorbs some radio waves, but it also reflects
+some and transmits some.  The Mosquito showed up perfectly well on radar,
+mainly because the waves that passed through the wood reflected very well
+off the metal internal structures -- framework, wing spars, bomb racks,
+cockpit, and (especially) engines.
+
+On modern stealth aircraft, the cockpit in particular is still a problem;
+most canopy materials are almost as transparent to radio waves as they are
+to visible light, and the complex shape of the interior of the cockpit (not
+to mention the pilot, especially their helmet) is an excellent radar
+reflector.  The materials used for canopy coatings are among the most
+secret parts of stealth designs (see C.10).
+
+It would, however, have been possible to built a stealth aircraft out of
+wood, if (unlike the Mosquito) it was designed with stealth in mind from
+the start.  The Germans tried it with the Horten Ho IX flying-wing fighter,
+which (besides its tailless design, which helped a lot) was constructed
+with special glues and coatings designed to absorb radar.  Presumably the
+same would have been true of the Ho XVIII bomber.  (See E.1 for further
+details.)
+
+------------------------------
+
+Subject:  E.3   Early use of aircraft in warfare
+
+1794 Jun 2
+French balloon reconnaissance against the
+Austrian and Dutch during the siege of Maubeuge in Flanders.
+During the fifth ascent, the Austrians fired against it
+with a howitzer, one ball glancing off the basket,
+after that altitude was raised to 400 m and it wasn't
+fired upon effectively any more.
+
+1849
+Bombs dropped, commanded electrically via trailing 
+copper wires, from unmanned ballons over Venice
+during the siege.
+
+1861-65
+US civil war. Reconnaissance and artillery direction.
+
+1870-71
+Baloons carried mostly mail out of Paris 66 times
+during the siege.
+Prompted the design of the first dedicated anti
+aircraft artillery guns, a 25 mm one made by Krupp.
+Rather ineffective, as it wasn't adjustable for
+range and not there were no tracer rounds.
+One baloon was hit and forced to land in Preussian
+controlled area, after that the flights were made
+nights only.
+
+1911-12
+The first use of aeroplanes in combat was by the Italian
+expeditionary corps in Libya, fighting Turkish forces.
+It consisted of nine aircraft, eleven pilots and 30
+ground crew.
+They directed artillery, including shipborne, flew
+reconnaissance flights and dropped grenades on tribes
+allied with Turkey.
+This was also the occasion for the first aeroplane loss
+during war, when one aircraft crashed during take off,
+killing the pilot.
+
+1914 Oct 05
+A French Voisin pusher shoots down a German
+Aviatik with machine gun fire.
+
+
+------------------------------
+
+Subject:  F.1.  What good books are there on air combat?
+
+The definitive work on air combat manoeuvring (ACM) is generally believed
+to be _Fighter Combat_ by Robert L Shaw (the full title is either _Fighter
+Combat:  Tactics and Manoeuvring_ or _Fighter Combat:  The Art and Science
+of Air-to-Air Warfare_, depending on which edition you have).  The book is
+published by the US Naval Institute, Annapolis, Maryland (ISBN
+1-85260-201-5).  It covers a wide range of mission profiles, engagements
+(one-on-one to many-on-many), and weapon types.
+
+------------------------------
+
+Subject:  F.2.  Where can I get a pilot's manual for aircraft X?
+Updated 1998 Feb 17
+
+You might try:
+
+Historic Aviation
+    Snail:  1401 Kings Wood Rd, Eagan, Minn 55122, USA
+    Voice:  US/Canada 1-800-225-5575, overseas 1-612-454-2493
+
+They have a wide selection of aircraft related books, including
+reproduction pilot's manuals (and Shaw's book, mentioned above).  Most
+manuals cost about US$10.00, some running up to US$15.00; the SR-71 manual
+is a special case, costing US$99.95.  Dwight Brown reports good service
+from them.
+
+Manuals available include AT-6, B-17, B-24, B-25, B-26, B-29, F-80, F-82,
+F4U, F6F, FM-2, Hurricane, Me 262, Mosquito, P-38, P-39, P-40, P-47, P-51,
+P-61, P-63, Spitfire, and SR-71.
+
+Another company is:
+
+        WESTAIR INT'L USA, INC.
+        BOX 771
+        MONUMENT, CO 80132
+        TELEPHONE: (719) 481-2286
+        FAX: (719) 481-2203
+
+"Military Flight Handbooks, Maintenance Manuals, Structural Repair,
+Illustrated Parts Books, Engine Manuals Turbine and Recip, Propeller
+Manuals, Avionics, APU Manuals, WWI to the Present. Thousands of
+Originals."
+
+They provide manuals for general aviation (light, civil) aircraft,
+business jets, airliners, historic and modern military, etc. They also
+cover both civil and military helicopters. 
+------------------------------
+
+Subject:  F.3.  What FTP sites have aircraft pictures and related material?
+
+
+{ftp://ftp.cs.ruu.nl/pub/AIRCRAFT-IMAGES/}
+{http://www.cs.ruu.nl/ftp/aircraft-images.html}
+    -- Aircraft pictures.
+
+{ftp://ftp.rutgers.edu/pub/wwii/usaf/}
+    -- Part of the USAF history.
+
+{ftp://ftp.shell.portal.com/pub/trader/} (IP 156.151.3.4)
+    -- Information related to "excessive military secrecy", Groom Lake, and
+similar subjects.
+
+{ftp://ftp.sunet.se/pub/pictures/vehicles/aircraft/}
+    -- A lot of modern aircraft pictures.
+
+{ftp://ftp.uws.edu.au/pub/images/}
+    -- A number of ".bmp" images, including F-111 dump-and-burn,
+helicopters, Mustangs, Neptunes, others.
+
+{ftp://harbor.ecn.purdue.edu/pub/skunk-works/}
+    -- Articles, lists and pictures of Lockheed "Skunk Works" aircraft.
+
+{ftp://rascal.ics.utexas.edu/misc/av/}
+    -- Numerous aviation-related files.  Includes "combat-aircraft",
+"humor-folder", "aircraft-info-folder", etc.
+
+{ftp://rtfm.mit.edu/pub/usenet/rec.travel.air/}
+{ftp://rtfm.mit.edu/pub/usenet/sci.military/}
+    -- FAQs nd other regular postings.
+
+------------------------------
+
+Subject:  F.4.  What military aviation related mailing lists are available?
+
+Groom Lake Desert Rat:  Covers America's secret aircraft mecca.  To
+subscribe, send requests to Glenn Campbell at {psychospy@aol.com}.
+
+Neon Azimuth:  Devoted to the sources and methods that can be used to
+locate secret US military programs.  To subscribe, send requests to Paul
+McGinnis at {trader@cup.portal.com}.
+
+Skunk Works Digest:  To subscribe, send a message 
+to {skunk-works-digest-request@netwrx1.com}; in the body of the 
+message, include the line "subscribe".
+Back issues are available for viewing by a www interface located at:
+http://www.netwrx1.com/skunk-works
+
+[Thanks to Paul McGinnis]
+
+------------------------------
+
+Subject:  G.1.  Where can I see surviving examples of famous aircraft?
+Last updated 02 Apr 24
+     but much of the information dates back to 1994 or earlier
+
+There are many museums all over the world with historic aircraft in their
+collections; the following are just the random sample assembled from
+posts on the newsgroup and contributions by email.  Further contributions
+are solicited.
+
+Canada:
+
+* Canadian Warplane Heritage, Hamilton, Ontario
+- Flying Lancaster, A-26, B-25, FG-1D, PBY, Anson, Crane, C-45, Stearman,
+Harvard, Yale, Chipmunk, Mentor, Tiger Moth, and MANY others.  Static
+Vampire, T-33, CF-104, and Hunter.
+
+* National Aviation Museum, Ottawa, Ontario
+- Large Civilian and Military collection, including Lancaster, B-24,
+Spitfire(s), Hurricane, Lysander, Me-163, Fokker D-VII, Spad 13, Sopwith
+Camel, Sopwith Snipe (note - WWI types NOT replicas!), F-86, Avro Arrow,
+CF-100, CF-101, CF-104, Etc, Etc. 
+
+* The Aerospace Museum of Calgary, Calgary, Alberta
+- Sopwith Triplane replica, Lancaster, Swordfish, Mosquito, Anson, 
+Crane, Oxford, Vampire, Seafire, Sea Fury, Harvard, CF-100, CF-101,
+F2H Banshee.               
+
+Other collections (with military contents):
+
+* Atlantic Canada Aviation Museum
+Located in Halifax County across the highway from the Halifax
+International Airport.
+- Silver Dart replica, CF-104 Starfighter, Bell 206
+Jetranger, Gruman Tracker, CF-100 Canuck, Consolidated Canso, CF-86
+Sabre, NA Harvard, CF-101 Voodoo plus a glider and other smaller
+civilian aircraft. Collection also includes engines, photo's, uniforms,
+a link trainer and other memrobilia. Open mid-May to mid-October 9-5
+every day.
+
+* Western Canada Aviation Musueum (Winnipeg, Manitoba)
+
+* Canadian Museum of Flight and Transportation (Vancouver, British Columbia)
+
+United States:
+
+    * EAA Aviation Museum, Oshkosh, Wisconsin (B-17, Voyager)
+    * Hill AFB Museum, Utah (SR-71C, others)
+    * Museum of Flight, Boeing Field, Seattle, Washington (707 and 747
+prototypes, B-29, B-47, F4U, SR-71 + D-21, others)
+    * Pima County Air Museum, Davis-Monthan AFB, Tucson, Arizona (B-29,
+B-58, SR-71, YF-107, others)
+    * San Diego Aerospace Museum, San Diego, California (Bf 109, F-4,
+Spitfire, SR-71)
+    * Sea, Air, and Space Museum, New York City (A-12, others; the museum
+itself is the retired aircraft carrier USS _Intrepid_)
+    * Smithsonian Air and Space Museum, Washington, DC (many historically
+significant aircraft)
+    * US Marine Corps Air-Ground Museum in Quantico, VA, about 25 miles 
+south of Washington DC and open from around 1 April to 31 Oct. Exhibits on 
+USMC activities throughout the 20th century. Aircraft include a Grumman built 
+F4F Wildcat, SBD Dauntless, F4U Corsair. Admission free (in 1996).
+    * Wright Field USAF Museum, Wright-Patterson AFB, Dayton, Ohio (B-36,
+B-58, Fw 190, Kawanishi N1K2 Shinden, Me 262, P-75, Storch, Wright 1909
+Military Flyer, XB-70, many more; probably the largest aircraft museum in
+the world)
+    * US Navy Aviation Museum, Pensacola, Florida
+    * Virginia Air and Space Museum, Hampton, Virginia (F-4, F4U, F-84,
+F-104, F-106, Langley Aerodrome, P-39, YF-16)
+    *  The Strategic Air Command Museum, Belleview, NE, U.S.A., right
+outside Offutt AFB. This museum has about 50 aircraft that served
+mainly with or in conjunction with SAC, including an SR-71, B-52, and an
+EC-135; several missiles also.  The museum also has a lot of items on
+display depicting the history of SAC.  The museum is in the process of
+moving from Belleview to a location on I-80 between Omaha and Lincoln,
+NE (near Mahoney State Park), to provide more room for the aircraft
+displays.  www.strategicaircommand.com has more details.
+
+Argentina:
+   * The National Museum of Aeronautics (Museo Nacional de Aeronautica)
+Buenos Aires, Argentina, has several aircraft on display: 
+a Gloster Meteor, Avro Lincoln, Junkers Ju-52, Fouga Trainer, 
+IA-58 Pucara, Mirage, Douglas Skyhawk, English Electric Canberra,
+IA-27 Pulqui I, Horten Urubu, IA-35 Huanquero.
+
+United Kingdom:
+
+    * Brooklands Museum, Weybridge (SW of London)
+    * Cosford Air Museum, Wolverhampton (Avro 707, F.D.2, Hunter, Lincoln,
+Me 163, P.5, S.R.177, TSR.2, many others)
+    * Fleet Air Arm Museum, Yeovilton, Somerset
+    * Imperial War Museum, Duxford, Cambridgeshire (probably the biggest
+collection in Europe)
+    * Imperial War Museum, Lambeth, London
+    * Mosquito Museum, Salisbury Hall, near Hatfield, St Albans (several
+Mosquitos, including the first prototype; closed in winter for restoration
+work)
+    * RAF Museum, Hendon, London
+    * Science Museum, South Kensington, London
+    * Shuttleworth Collection, Old Warden, Sandy, Bedfordshire ("string and
+fabric" planes)
+    * Yorkshire Air Museum and Allied Air Force Memorial, Elvington, near
+York, North Yorkshire (Halifax, Lightning, Mosquito, Vampire, Victor,
+others)
+
+Western Europe:
+
+    * Aviodome, Schiphol, Netherlands (many Dutch aircraft)
+    * Caproni Museum, Trento, Italy (Breda 19, Ca 6, Ca 9, Ca 100, Ca 163,
+Ca 193, Fokker D.VIII, others)
+    * Deutsches Museum, München, Germany (Ba 349, Do 335, Ju 52, Me 262
+many other aircraft from pre-WW1 to present)
+    * Le Bourget, Paris, France (large collection), where you for example
+can see the original Spad VII of Georges Guynemer, a Junkers J9 (DI), the 
+only survivor in the world, Concorde 001, a B26 Marauder which is the only 
+on display outside of the USA. URL: <http://w3.mae.org/>
+    * Luftwaffenmuseum Untersen, 2081 Appen, near Hamburg, Germany (all
+aircraft flown by both Germanies since 1945)
+    * Military Museum, Brussels, Belgium (CF-100, Draken, F-86, Hanriot
+HD-1, Hurricane, MiG-15, Spad XIII, others)
+    * Motor und Technik Museum, Sinsheim, Germany (F-104, Fw 190, He 111,
+Ju 52, Ju 87, Ju 88, Me 109, MiG-21, MiG-23, Venom, others)
+    * Musee de l'Hydravion, Biscarosse, France
+    * Museo Nazionale Leonardo da Vinci, Milano, Italy
+    * Museum of the Aviation Legere de l'Armee, Dax, France (mainly
+helicopters)
+    * Cuatro Vientos, Madrid, Spain. 
+Aircraft include: MIG-23, MIG-21, Su-22, F-104G, F-4 PHANTOM II (REPLICA?), 
+SA.319B ALOUETTE III, T-33, CASA(BREGUET) XIX GRAND RAID, FIAT(HISPANO) CR.32(HA132L), 
+F-86F, TB-25N MITCHELL, HISPANO SAETA/HA220D SUPER SAETA, SF-5A FREEDOM FIGHTER, 
+AVRO 504 REPLICA, GRUMMAN SA-16A-GRrdHU-16B ALBATROSS, AVION BRISTOL F.2B FIGHTER, 
+HISPANO HA1112K-1L, HISPANO HA1112M-1L, POLIKARPOV I-15 and I-16 REPLICAS, RF-4C, 
+Bu.133C, BEECH A45 T-34A MENTOR, CASA(BUCKER) 1131H(Bu131), AISA I-115, CAUDRON C.272, 
+DH.60GIII MOTH MAJOR, DH.82A TIGER MOTH, Do.24T(HD.8), HUARTE-MENDICOA HM1B, 
+L-19A-CErdO-1A BIRD DOG, NORD N1002(Me.108), Fi.156C, AISA I-11B PEQUE, AISA P.E.38, 
+CASA(JUNKERS) 352L(Ju52), C-47B, C-54A, C-54D, CASA 207C/207A AZOR, 
+CASA(HEINKEL) 2.111H(He111), C-7A CARIBOU(AC-1-DHrdCV-2ArdC-7A), BOEING KC-97G-BOcvKC-97L, 
+DORNIER Do.28A-1, DORNIER(CASA) Do.27(127), GURRIPATO II, CASA  101ED AVIOJET, 
+AEROTECNICA  AC-12/AC-14, CANT Z.506 AIRONE, CATALINA.
+    * Flygvapenmuseum, Malmslätt (Linköping), Sweden.
+More than 50 aircraft on display, including rarities as
+Nieuport IV-G Monoplane, Macchi M7, Junkers 86 and more modern types.
+URL: <http://www.flygvapenmuseum.nu/> (official)
+<http://www.canit.se/%7Egriffon/aviation/img/fvmus/> (unofficial, photos)
+
+Eastern Europe:
+    * Kbely base, Prague(Praha), Czech Republic
+Aircraft include: YAK-40, PIPER J-3C-65 CUB (L-4J)(K-68)(L.10), MIG-15bis,
+MIG-15UTI, MRAZ(FIESELER) K-65 CAP(STORCH), YAK-23 (S-101), L-29, MIG-17PF,
+MIG-21PF, MIG-21PF or MIG-21F-13, MIG-19S, LET L-200iAorL-200A MORAVA, 
+MIG-19P, MIG-17PF, AVIA(MESSERSCHMIDT) CS-199(Bf.109G-12), S-199(Bf.109G/K),
+S-92(Me.262A-1 SCWEIBE), YAK-17 (S-100), LA-7, Su-7(U)BMK or Su-7UB, MIG-19PM,
+LET(YAKOVLEV)   C-11(YAK-11) IL-28B, Mi-4, L-29R, MIG-15UTI(P), MIG-21U-600, 
+LISUNOV Li-2F 'CAB', IL-14, L-39, Mi-1, AVIA(ILYUSHIN) B-33(IL-10), 
+Su-7BKL, SPAD S.VIIC-1, AERO(BUCKER) C-104 (Bu.131 JUNGMANN), 
+ZLIN(BUCKER) C-106(Z-381)(BESTMANN)(Bu.181), IL-28U, IL-28RT, IL-28RTR, 
+DH.82A TIGER MOTH, SPITFIRE LF.XIE, F-4M PHANTOM FGR.2
+    * Teknik  Museum, Prague, Czech Republic.
+Aircraft include: PRAHA 1, KNOLLER C.11, ANATRAJ ANASALJ.
+    * Aviation Museum, Krakow, Poland (large collection, including An-2,
+Il-2, Il-10, Il-28, MiG-15, MiG-17, MiG-19, MiG-21, PZL P-11, Yak-9,
+Yak-11, many others)
+    * Monino, Moscow, Russia (vast collection of rare and unusual Russian
+types, e.g.  La-250, M-52, T-4, T-6, V-12, Yak-36, Ye-166, Ye-231, many
+others)
+    * Plovdiv Museum, Plovdiv, Bulgaria (Ar 196, Il-2, Il-28, Li-2, Mi-1,
+Mi-4, MiG-15, MiG-17, Yak-9, Yak-11, Yak-23, many others)
+    * The museum at Beograd-Surcin airport, Beograd (Belgrade), Serbia
+Aircraft include: SOKO 522, UTVA 213/3 and 213, YAK-3, FW.190F-8, 
+IKARUS  214P, SHORT   SA.6 SEALAND Mk.1, IKARUS  451 PIONYR  PROTOTYPE, 
+UTVA    213 VIHOR, IKARUS 451 PIONYR (PRONE PILOT-1951), UTVA 66v, F-84G,
+IKARUS  S-49A and S-49C, YAK-9P, FIAT G.50(bis), IL-2m(3), Pe-2, 
+AAC(JUNKERS) AAC.1(Ju.52), 349 SPITFIRE F.VC, HURRICANE Mk.4 RP, Bf.109G-2,
+LOCKHEED (R)T-33(A), WS-51A (DRAGONFLY), FOLLAND Fo.141 GNAT F.1, 
+IKARUS  S-451MM MATICA PROTOTYPE, IKARUS  T-451MM STRSLJEN, MIG-21PF, 
+IAR IAR-93 ORAO, SOKO J-22 ORAO, DHC.2 BEAVER Mk.1
+
+China:
+
+    * Chinese People's Revolutionary Military Museum, West-City Region,
+Beijing (J-5/MiG-17, MiG-15, captured U-2, many missiles, tanks, model
+warships)
+    * Datang Mountain Aerospace Museum (Da4-Tang1-Shan1-Hang2-Kong1-Bo2-
+Wu4-Guan3), Chang-Ping, Beijing (all Chinese military aircraft, including
+prototypes such as J-12 and Tu-4/B-29 AWACS plane, plus many missiles and
+Russian aircraft; this is the Chinese equivalent of Monino in Russia, and
+is probably the largest aircraft collection in Asia)
+
+Australia:
+
+    * Airworld, Wangaratta, Victoria (Dragon, Hudson, Rapide, Staggerwing,
+others; mainly civil aircraft)
+    * Australian War Memorial Museum, Canberra, ACT (Bf 109, Lancaster, Me
+163, Me 262, P-40, Spitfire, Zero, others)
+    * RAAF Museum, Point Cook, Victoria (Boomerang, Canberra, F-4, F-86,
+Meteor, Mirage, P-2, P-51, Vampire, Ventura, Walrus, Wirraway, others;
+claimed to be the largest collection of military aircraft in the Southern
+Hemisphere)
+    * RAN Fleet Air Arm Museum, Nowra, NSW (A-4, Firefly, Gannet, MiG-15,
+S-2, Sea Fury, Sea Venom, Vampire, others)
+    * Camden Museum of Aviation, Narellan in New South Wales.
+Firefly Mk6, Gloster Meteor F Mk8, Seafury Mk11, Vultee Vengeance Mk1, 
+Wirraway Mk3, Tiger Moth, Anson Mk1, Bell 47G3.
+    
+ 

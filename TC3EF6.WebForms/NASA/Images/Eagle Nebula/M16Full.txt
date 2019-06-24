@@ -1,0 +1,64 @@
+FOR RELEASE: November 2, 1995
+PHOTO NO.: STScI-PRC95-44a
+
+        PILLARS OF CREATION IN A STAR-FORMING REGION
+             (Gas Pillars in M16 - Eagle Nebula)
+
+Undersea corral?  Enchanted castles?  Space serpents?  These eerie,
+dark pillar-like structures are actually columns of cool interstellar
+hydrogen gas and dust that are also incubators for new stars.  The
+pillars protrude from the interior wall of a dark molecular cloud like
+stalagmites from the floor of a cavern.  They are part of the "Eagle
+Nebula" (also called M16 -- the 16th object in Charles Messier's 18th
+century catalog of "fuzzy" objects that aren't comets), a nearby
+star-forming region 7,000 light-years away in the constellation
+Serpens.
+
+The pillars are in some ways akin to buttes in the desert, where basalt
+and other dense rock have protected a region from erosion, while the
+surrounding landscape has been worn away over millennia.  In this
+celestial case, it is especially dense clouds of molecular hydrogen gas
+(two atoms of hydrogen in each molecule) and dust that have survived
+longer than their surroundings in the face of a flood of ultraviolet
+light from hot, massive newborn stars (off the top edge of the
+picture).  This process is called "photoevaporation.  "This ultraviolet
+light is also responsible for illuminating the convoluted surfaces of
+the columns and the ghostly streamers of gas boiling away from their
+surfaces, producing the dramatic visual effects that highlight the
+three-dimensional nature of the clouds. The tallest pillar (left) is
+about a light-year long from base to tip.
+
+As the pillars themselves are slowly eroded away by the ultraviolet
+light, small globules of even denser gas buried within the pillars are
+uncovered.  These globules have been dubbed "EGGs."  EGGs is an acronym
+for "Evaporating Gaseous Globules," but it is also a word that
+describes what these objects are.  Forming inside at least some of the
+EGGs are embryonic stars -- stars that abruptly stop growing when the
+EGGs are uncovered and they are separated from the larger reservoir of
+gas from which they were drawing mass.  Eventually, the stars
+themselves emerge from the EGGs as the EGGs themselves succumb to
+photoevaporation.
+
+The picture was taken on April 1, 1995 with the Hubble Space Telescope
+Wide Field and Planetary Camera 2.  The color image is constructed from
+three separate images taken in the light of emission from different
+types of atoms.  Red shows emission from singly-ionized sulfur atoms.
+Green shows emission from hydrogen.  Blue shows light emitted by
+doubly- ionized oxygen atoms.
+
+Credit: Jeff Hester and Paul Scowen (Arizona State University), and
+NASA
+
+Image files in GIF and JPEG format and captions may be accessed on
+Internet via anonymous ftp from oposite.stsci.edu in /pubinfo:
+
+                                 GIF                 JPEG
+PRC95-44a    M16 3 Pillars     gif/M16Full.gif    jpeg/M16Full.jpg
+
+Higher resolution versions (300 dpi JPEG) of the release photographs
+will be available temporarily in /pubinfo/hrtemp: 95-44a.jpg,
+95-44b.jpg and 95-44c.jpg.  GIF and JPEG images, captions and press
+release text are available via World Wide Web at URL
+http://www.stsci.edu/pubinfo/PR95/44.html, or via links in
+http://www.stsci.edu/Latest.html and
+http://www.stsci.edu/pubinfo/Pictures.html.

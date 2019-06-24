@@ -1,0 +1,424 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>Alan Parsons Project</title>
+
+</head>
+
+<body bgcolor="#000000" text="#FFFFFF" link="#00FFFF" vlink="#FF0000" alink="#0000FF">
+
+<p align="center"><img src="app_img/app_banner.gif" alt="Alan Parsons Banner" align="top" width="509" height="27"><!--webbot bot="HTMLMarkup" startspan --><script language="JavaScript">
+
+
+
+
+
+<!--
+
+
+
+/*************************************************************
+
+ * fade script ver0.1 by Kouichirou@Eto.com 1996/02/20
+
+ * Copyright (c) 1996 Kouichirou Eto. All Rights Reserved.
+
+ * You can freely copy, use, modify this script,
+
+ * if the credit is given in the source.
+
+ * If you would like to get information for this script,
+
+ * please access <http://eto.com/JavaScript/>
+
+ */
+
+
+
+function makearray(n) {
+
+    this.length = n;
+
+    for(var i = 1; i <= n; i++)
+
+        this[i] = 0;
+
+    return this;
+
+}
+
+
+
+hexa = new makearray(16);
+
+for(var i = 0; i < 10; i++)
+
+    hexa[i] = i;
+
+hexa[10]="a"; hexa[11]="b"; hexa[12]="c";
+
+hexa[13]="d"; hexa[14]="e"; hexa[15]="f";
+
+function hex(i) {
+
+    if (i < 0)
+
+        return "00";
+
+    else if (i > 255)
+
+        return "ff";
+
+    else
+
+        return "" + hexa[Math.floor(i/16)] + hexa[i%16];
+
+}
+
+
+
+function setbgColor(r, g, b) {
+
+    var hr = hex(r); var hg = hex(g); var hb = hex(b);
+
+    document.bgColor = "#"+hr+hg+hb;
+
+}
+
+
+
+function fade(sr, sg, sb, er, eg, eb, step) {
+
+    for(var i = 0; i <= step; i++) {
+
+        setbgColor(
+
+        Math.floor(sr * ((step-i)/step) + er * (i/step)),
+
+        Math.floor(sg * ((step-i)/step) + eg * (i/step)),
+
+        Math.floor(sb * ((step-i)/step) + eb * (i/step)));
+
+    }
+
+}
+
+
+
+/* Usage:
+
+ *   fade(inr,ing,inb, outr,outg,outb, step);
+
+ * example.
+
+ *   fade(0,0,0, 255,255,255, 255);
+
+ * fade from black to white with very slow speed.
+
+ *   fade(255,0,0, 0,0,255, 50);
+
+ *   fade(0xff,0x00,0x00, 0x00,0x00,0xff, 50); // same as above
+
+ * fade from red to blue with fast speed.
+
+ * step 2 is very fast and step 255 is very slow.
+
+ */
+
+
+
+function fadein() {
+
+    fade(255,255,255, 0,0,0, 250);
+
+}
+
+
+
+/* do fadein */
+
+
+
+fadein();
+
+
+
+/***** end fade script *****/
+
+
+
+/************************************************************/
+
+
+
+// -->
+
+
+
+
+
+</script>
+
+
+
+<!--webbot bot="HTMLMarkup" endspan --></p>
+
+<p><font face="Arial">Alan Parsons first know work was with the
+Beatles on their &quot;Abbey Road&quot; album. Shortly
+thereafter, he began creating his own platinum selling albums
+with his group, &quot;The Alan Parsons Project&quot;. Ever since
+I heard the Alan Parsons Project sing the song <em><strong>&quot;Time&quot;</strong></em>
+from their <em><strong>&quot;Turn of a Friendly Card&quot;</strong></em>
+album in 1980, I was hooked. After producing and engineering many
+CD's, each one is unique, and most have a theme to them. Alan has
+always given the customer a great album cover, so I decided to
+include a picture of the album cover, a short description of the
+theme of the album, along with my favorite (and SuperFave) songs
+from the album. <strong>Note:</strong> All opinions on themes are
+my own, except for <em><strong>Pyramid</strong></em>, which was
+taken from the inside tray card.</font></p>
+
+<table border="0">
+    <tr>
+        <td><font color="#000000" face="Arial"><img src="images/Mystery.jpg" alt="Tales of Mystery" align="left" border="10" hspace="0" width="142" height="139"></font></td>
+        <td><font face="Arial"><em><strong>&quot;Tales of Mystery
+        and Imagination&quot;</strong></em>. Released in 1976,
+        this was the first Alan Parsons Project album. It is
+        fitting that my most favorite Alan Parsons song, <em>&quot;</em><em><strong>To
+        One In Paradise&quot;</strong></em>, is on this album.
+        Another favorite song on this album is <em>&quot;</em><em><strong>Doctor
+        Tarr And Professor Fether&quot;</strong></em><strong>.</strong>
+        The theme for this album was dedicated to the works of
+        Edgar Allan Poe. Alan decided to use the &quot;concept
+        album&quot; approach after working with Pink Floyd on
+        &quot;The Dark Side Of The Moon&quot;.</font></td>
+    </tr>
+    <tr>
+        <td><font color="#000000" face="Arial"><img src="images/irobot.jpg" alt="I Robot" align="left" border="10" hspace="0" width="138" height="138"></font></td>
+        <td><font face="Arial"><em><strong>&quot;I Robot&quot;</strong></em>.
+        1977. The theme for this album is the rise of the machine
+        and the decline of man. When man tried to create robot in
+        his own image, he was imitating what God did many years
+        before. This imitation theme is evident with the song
+        entitled <em><strong>&quot;Genesis Chapter 1 Verse
+        32&quot;</strong></em>. Genesis chapter one (also known
+        to me as the &quot;creation&quot; chapter in the Holy
+        Bible) only has 31 verses. Man tried to imitate Gods'
+        creation with something artificial (a verse 32) and
+        failed. <em><strong>&quot;Some Other Time&quot;</strong></em>
+        is a favorite from this album.</font></td>
+    </tr>
+    <tr>
+        <td><font color="#000000" face="Arial"><img src="images/pyramid.jpg" alt="Pyramid" align="left" border="10" hspace="0" width="138" height="138"></font></td>
+        <td><font face="Arial"><em><strong>&quot;Pyramid&quot;</strong></em>,
+        1978. This album seeks to amplify the echoes of the past
+        and explore the unsolved mysteries of the present.
+        Pyramid...the last remaining wonder of the ancient world.
+        Favorite songs include <em><strong>&quot;What Goes
+        Up&quot;</strong></em>, <em><strong>&quot;The Eagle will
+        Rise Again&quot;</strong></em>, <em><strong>&quot;Can't
+        Take It With You&quot;</strong></em>, and <em><strong>&quot;Pyromania&quot;</strong></em>.</font></td>
+    </tr>
+    <tr>
+        <td><font color="#000000" face="Arial"><img src="images/eve.jpg" alt="Eve" align="left" border="10" hspace="0" width="138" height="138"></font></td>
+        <td><font face="Arial"><em><strong>&quot;Eve&quot;</strong></em>,
+        1979. You can guess the theme for this album (Hint:
+        Women). Can't live with them, can't live without them.
+        This album, <em><strong>&quot;Try Anything Once&quot;,</strong></em>
+        and <em><strong>&quot;Freudiana&quot; </strong></em>were
+        the only albums which include songs where a woman sings
+        the lead vocals. SuperFave song <em><strong>&quot;Winding
+        Me Up&quot;</strong></em> and favorite song <em><strong>&quot;If
+        I Could Change Your Mind&quot;</strong></em> are included
+        on this album.</font></td>
+    </tr>
+    <tr>
+        <td><font color="#000000" face="Arial"><img src="images/friendcd.jpg" alt="Turn of a Friendly Card" align="left" border="10" hspace="0" width="138" height="138"></font></td>
+        <td><font face="Arial"><em><strong>&quot;Turn Of A
+        Friendly Card&quot;</strong></em>, 1980. Life can
+        sometimes be related to a game...a game where time and
+        chance are as important as luck and skill. Favorites
+        include <em><strong>&quot;Time&quot;</strong></em>, the
+        instrumental work <em><strong>&quot;The Gold Bug&quot;</strong></em>,
+        and the <em><strong>&quot;Turn Of A Friendly Card&quot;</strong></em>
+        medley, including <em><strong>&quot;The Ace Of
+        Swords&quot;</strong></em>.</font></td>
+    </tr>
+    <tr>
+        <td><font color="#000000" face="Arial"><img src="images/eyeinsky.jpg" alt="Eye In The Sky" align="left" border="10" hspace="0" width="138" height="138"></font></td>
+        <td><font face="Arial"><em><strong>&quot;Eye In The
+        Sky&quot;</strong></em>, 1982. Think Big Brother is
+        watching over you? Wondering what people are saying about
+        you in other circles? Paranoia setting in from hearing
+        whispers in the night? According to the general public,
+        this was the best selling Alan Parsons Project album
+        made. <em><strong>&quot;Eye In The Sky&quot;</strong></em>,
+        <em><strong>&quot;Silence And I&quot;</strong></em> and <em><strong>&quot;Psychobabble&quot;</strong></em>
+        are my favorites on this album.</font></td>
+    </tr>
+    <tr>
+        <td><font color="#000000" face="Arial"><img src="images/ammonia.jpg" alt="Ammonia Avenue" align="left" border="10" hspace="0" width="138" height="138"></font></td>
+        <td><font face="Arial"><em><strong>&quot;Ammonia
+        Avenue&quot;</strong></em>, 1983. Global warming,
+        careless pollution, and lack of concern for one another
+        must have prompted this album. This is <em>my</em>
+        favorite Alan Parsons album. Favorite songs include <em><strong>&quot;Prime
+        Time&quot;</strong></em>, <em><strong>&quot;Let Me Go
+        Home&quot;</strong></em>, <em><strong>&quot;One Good
+        Reason&quot;</strong></em>, <em><strong>&quot;Since The
+        Last Goodbye&quot;</strong></em>, <em><strong>&quot;Don't
+        Answer Me&quot;</strong></em>, <em><strong>&quot;Pipeline&quot;</strong></em>
+        and Superfave song <em><strong>&quot;Dancing On A
+        Highwire&quot;</strong></em>.</font></td>
+    </tr>
+    <tr>
+        <td><font color="#000000" face="Arial"><img src="images/vulture.jpg" alt="Vulture Culture" align="left" border="10" hspace="0" width="138" height="138"></font></td>
+        <td><font face="Arial"><em><strong>&quot;Vulture
+        Culture&quot;</strong></em>, 1984. In this dog-eat-dog
+        world, it's every man for himself! Selfish song titles
+        like <em><strong>&quot;Separate Lives&quot;</strong></em>,
+        <em><strong>&quot;Vulture Culture&quot;</strong></em> and
+        <em><strong>&quot;Let's Talk About Me&quot;</strong></em>
+        personify the greed and self-centered nature of mankind.
+        Favorites include <em><strong>&quot;Sooner or Later&quot;</strong></em>
+        and the instrumental work <em><strong>&quot;Hawkeye&quot;</strong></em>
+        (especially that saxophone!)</font></td>
+    </tr>
+    <tr>
+        <td><font color="#000000" face="Arial"><img src="images/keats.jpg" alt="Keats" align="left" border="10" hspace="0" width="138" height="138"></font></td>
+        <td><font face="Arial"><em><strong>&quot;Keats&quot;</strong></em>,
+        1984. Alan Parsons only produced this album. I thought I
+        would mention it here because Keats (the name of the
+        group -and- the album) was mostly made up of musicians
+        that had been in the Alan Parsons Project at one time or
+        another. Keats took it's name from a West London
+        restaurant that Alan frequented after recording sessions
+        in the studio. Smooth sounding <em><strong>&quot;Walking
+        On Ice&quot;</strong></em> is a favorite from this album.</font></td>
+    </tr>
+    <tr>
+        <td><font color="#000000" face="Arial"><img src="images/stereo.jpg" alt="Stereotomy" align="left" border="10" hspace="0" width="138" height="138"></font></td>
+        <td><font face="Arial"><em><strong>&quot;Stereotomy&quot;</strong></em>,
+        1985. In my understanding, this album could relate to
+        someone with a dual personality, sometimes light,
+        sometimes dark. Exploring the how and why of the swings
+        between the two personalities are what this album expands
+        on. Favorites include <em><strong>&quot;Beaujolais&quot;</strong></em>,
+        <em><strong>&quot;Limelight&quot;</strong></em>, and <em><strong>&quot;Light
+        Of The World&quot;</strong></em>.</font></td>
+    </tr>
+    <tr>
+        <td><font color="#000000" face="Arial"><img src="images/gaudi.jpg" alt="Gaudi" align="left" border="10" hspace="0" width="138" height="138"></font></td>
+        <td><font face="Arial"><em><strong>&quot;Gaudi&quot;</strong></em>,
+        1987. This album was inspired by the life and works of
+        Antonio Gaudi (1852-1926), whose Sagrada Familia
+        Cathedral in Barcelona, Spain, involves a construction
+        timetable which will run for hundreds of years. <em><strong>&quot;La
+        Sagrada Familia&quot;</strong></em>, <em><strong>&quot;Standing
+        On Higher Ground&quot;</strong></em>, and <em><strong>&quot;Money
+        Talks&quot;</strong></em> (how true) are favorites from
+        this album.</font></td>
+    </tr>
+    <tr>
+        <td><font color="#000000"><img src="images/Freud.jpg" alt="Freudiana" align="left" border="10" hspace="0" width="138" height="138"></font></td>
+        <td><font face="Arial">&quot;<em><strong>Freudiana</strong></em>&quot;,
+        1990. Songwriter Eric Woolfson and Alan collaborated on a
+        musical about the life of Sigmund Freud. The music
+        inspired a musical/stage production that opened in Vienna
+        in December, 1990. After this album, Eric left the
+        Project to concentrate on musicals (Gaudi was made into
+        one). Favorite songs include <em><strong>&quot;Freudiana&quot;,
+        &quot;Little Hans&quot;, &quot;Destiny&quot;</strong></em>,
+        and Superfave <em><strong>&quot;Funny You Should Say
+        That&quot;</strong></em>.</font></td>
+    </tr>
+    <tr>
+        <td><font color="#000000" face="Arial"><img src="images/tryany.jpg" alt="Try Anything Once" align="left" border="10" hspace="0" width="138" height="138"></font></td>
+        <td><font face="Arial"><em><strong>&quot;Try Anything
+        Once&quot;</strong></em>, 1993. The Project is no more.
+        Long time executive producer and songwriter Eric Woolfson
+        has departed, prompting Alan to change the name of the
+        group to simply &quot;Alan Parsons&quot;. This doesn't
+        mean the quality of music has diminished. After a few
+        years off, a different style emerges in favorites <em><strong>&quot;Breakaway&quot;</strong></em>,
+        <em><strong>&quot;Mr. Time&quot;</strong></em>, <em><strong>&quot;Jigue&quot;</strong></em>,
+        <em><strong>&quot;Siren Song&quot;</strong></em>, <em><strong>&quot;Back
+        Against The Wall&quot;</strong></em>, and SuperFave song <em><strong>&quot;Dreamscape&quot;</strong></em>.</font></td>
+    </tr>
+    <tr>
+        <td><font color="#000000" face="Arial"><img src="images/live.jpg" alt="Alan Parsons Live" align="left" border="10" hspace="0" width="138" height="138"></font></td>
+        <td><font face="Arial"><em><strong>&quot;Live&quot;</strong></em>,
+        1995. Yes, it is a live album...but with a twist. Twelve
+        songs are live versions of studio hits, but as a bonus,
+        three new studio tracks are included. The live songs are
+        worthy counterparts to their respective studio tracks,
+        but I enjoy the three new tracks at the end the most. <em><strong>&quot;When&quot;</strong></em>,
+        <em><strong>&quot;Take The Money And Run&quot;</strong></em>
+        (not the Steve Miller Band song), and <em><strong>&quot;You're
+        The Voice&quot;</strong></em> make up this power packed
+        trio of new tracks.</font></td>
+    </tr>
+    <tr>
+        <td><font color="#000000" face="Arial"><img src="images/onair.jpg" alt="On Air" align="left" border="10" hspace="0" width="138" height="138"></font></td>
+        <td><font face="Arial"><em><strong>&quot;On Air&quot;</strong></em>,
+        1996. The theme for this album was actually born out of
+        an accident. Guitar player Ian Bairnson's cousin was
+        flying his helicopter on a peace mission in Iraq and was
+        shot down by friendly fire. Ian wrote the song <em><strong>&quot;Brother
+        Up In Heaven&quot;</strong></em>, and Alan decided the
+        album theme would be about flight. Included in the United
+        States version of the album was a multimedia CD-ROM that
+        included video snippets with background music from the
+        songs from the album. Favorites include <em><strong>&quot;Can't
+        Look Down&quot;</strong></em>, <em><strong>&quot;Too
+        Close to the Sun&quot;, &quot;Fall Free&quot;</strong></em>,
+        and <em><strong>&quot;Blue Blue Sky&quot;</strong></em>.</font></td>
+    </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<p><font face="Arial">Three more compilation albums were released
+by the Alan Parsons Project. <em><strong>&quot;The Best Of The
+Alan Parsons Project&quot;</strong></em>, 1983. <em><strong>&quot;The
+Best Of The Alan Parsons Project, Volume Two&quot;</strong></em>,
+1987. <em><strong>&quot;The Instrumental Works&quot;</strong></em>,
+1988.</font></p>
+
+<p align="center"><font face="Arial">Want to learn more about the
+APP? These people know approximately 10,000 times more info about
+the APP than I do. Check them out for some outstanding
+information.<br>
+</font></p>
+<div align="center"><center>
+
+<table border="2">
+    <tr>
+        <td align="center"><a href="http://beta.ece.ucsb.edu/~wesc/app.html" target="_top"><font face="Arial">Wesley Chun</font></a><font face="Arial"> </font></td>
+        <td align="center"><a href="http://www.ed.ac.uk/~ajy/app/" target="_top"><font face="Arial">Alistair Young</font></a><font face="Arial">
+        </font></td>
+    </tr>
+    <tr>
+        <td align="center"><a href="http://www.interlog.com/~avenue/" target="_top"><font face="Arial">The Avenue</font></a></td>
+        <td align="center"><a href="http://www.knuten.liu.se/~andbl751/parsons/" target="_top"><font face="Arial">Anders Blom</font></a></td>
+    </tr>
+    <tr>
+        <td align="center"><a href="http://www.worldaccess.nl/~jam/app/" target="_top"><font face="Arial">Mathijs Homminga</font></a></td>
+        <td align="center"><a href="http://www.roadkill.com/APP/" target="_top"><font face="Arial">Andy Burnett</font></a></td>
+    </tr>
+    <tr>
+        <td align="center"><a href="http://www.geocities.com/SunsetStrip/Alley/3998/index.html" target="_top"><font size="3" face="Arial">Luca Berrafato</font></a></td>
+        <td align="center"><a href="http://www.woolfson.co.uk/" target="_top"><font face="Arial">Woolfson Co.</font></a></td>
+    </tr>
+    <tr>
+        <td><a href="http://www.jps.net/featherf/bluebluesky.html" target="_top"><font face="Arial">Feather Forestwalker</font></a></td>
+        <td>You could be here!</td>
+    </tr>
+</table>
+</center></div>
+</body>
+</html>

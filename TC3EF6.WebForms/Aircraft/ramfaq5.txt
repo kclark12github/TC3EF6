@@ -1,0 +1,711 @@
+             REC.AVIATION.MILITARY FREQUENTLY ASKED QUESTIONS
+
+Please send updates to Urban Fredriksson <griffon@canit.se>
+Last updated 2000-12-23
+
+The rec.aviation.military FAQ is posted to the usenet newsgroup 
+rec.aviation.military about once per month and is available via WWW at
+<http://www.canit.se/%7Egriffon/aviation/faq/
+            
+------------------------------
+
+Subject:  H.9.  British aircraft designations
+Updated 1998-04-25
+
+Unlike the US system, the proper name is the principal part of an
+aircraft's formal designation in British service.  The full designation
+consists of the name, a letter or set of letters indicating the role, and a
+mark number; in a few cases the mark number is followed by a letter
+indicating a modification.  The full designation is written as, for
+example, "Tornado GR.1A", or sometimes "Tornado GR Mk 1A" 
+and formally "Tornado Mark 1 Mod. A" (the Tornado GR.1 is the ground 
+attack/reconnaissance version of the Tornado; the GR.1A is a
+variant in which one of the two guns is replaced by reconnaissance gear).
+
+For export versions, the role letters are usually left out, and the mark
+numbers are restarted from a high number, usually 50 (for example, the
+Indian Navy's Sea Harriers are Mk 51).
+
+Before WW2, mark numbers alone were used, and were written in Roman
+numerals; during the war, the role letters were added, and conventional
+numerals were used for mark numbers above 20.  The Roman numerals were
+dropped altogether after the war; apart from that, the system has remained
+largely unchanged.
+
+Role letters (the current system):
+
+A   -   Attack                  (Indicates a tactical attack aircraft without
+                                 nuclear capability)
+AEW -   Airborne Early Warning
+B   -   Bomber                  (Heavy bomber. None in service)
+C   -   Cargo
+F   -   Fighter                 (Air to air)
+G   -   Ground Attack   
+K   -   Tanker
+R   -   Recce
+S   -   Strike                  (As `A', above, but implies nuclear capability)
+T   -   Trainer
+W   -   Weather Recce.          (An oddball, there's only one.)
+
+Prefix letters:
+
+M   -   Maritime
+N   -   Night
+P   -   Photographic
+
+Helicopters start with an H, then
+
+AR  -   Air Rescue
+AS  -   Anti Submarine (not obsolete, Sea Kings and Lynx are still HAS.x)
+C   -   Cargo
+T   -   Trainer
+MA  -   Maritime Attack (e.g. Lynx HMA Mark 8)
+M   -   Maritime (e.g. Merlin HM Mark 1)
+
+The Army Air Corps being different use `AH' with no postfix.
+
+
+------------------------------
+
+Subject:  H.10.  Canadian aircraft designations
+
+The Canadian designation system is based on a simplified version of the
+American system.  A designation consists of the letter "C" (for Canadian),
+a letter to indicate the aircraft's role, a dash, and a number, sometimes
+followed by a letter to indicate a modification; usually "A" for a modified
+version, or "D" for a dual-control trainer.  Sometimes the aircraft's
+original designation in its country of origin is used, with some
+modification; for example, the Lockheed C-130 Hercules, in Canadian
+service, is known as the CC-130, versions being CC-130E (C-130E) and
+CC-130H (C-130H) transports and CC-130NT navigational trainers.
+
+The numbers are assigned in a single sequence for all types in Canadian
+service, are always over 100, are not reused and when you list them they're
+sorted by number rather than alphabetically.
+This has led to a few aircraft having a real designation that differs from the 
+one they're commonly known by; for example, the F-5 and F/A-18 in Canadian 
+service are usually referred to as the CF-5 and CF-18, but the correct 
+designations are CF-116 and CF-188, respectively.
+
+Role letters:
+
+    C = Cargo transport
+    E = Electronics
+    F = Fighter
+    H = Helicopter
+    P = Maritime patrol
+    T = Trainer
+
+Several exist that aren't in current use:
+
+    SR = Search and Rescue as in CSR-123 Otter  and CSR-110 Albatross
+    O = Observation as in CO-119 L-19A/Ceesna L182
+    X = Experimental as in CX-131/CX-84 Dynavert
+
+There are several other official role desigantors that have never been used
+(like A, B, K, R, S, U, V).
+
+Types in Canadian service, designations and official
+popular names to the left:
+
+    CH-113 Labrador          = Boeing CH-46 Sea Knight
+    CH-113A Labrador         (Ex Voyageurs modified to SAR)
+    CT-114 Tutor             = Canadair CL-41 Tutor, no variants approved
+                               despite several detail modifications.
+    CC-115 Buffalo           = De Havilland Canada DHC-5 Buffalo
+    CF-116 CF-5A             = Northrop F-5A Freedom Fighter (retired)
+    CF-116D CF-5D            CF-5A and CF-5D are the official popular names
+    CH-118 Iroquois          = Bell UH-1 Iroquois (retired)
+    CH-124A Sea King         = Sikorsky SH-3 Sea King
+    CH-124B Sea King         modified as lead-in trainers for the 
+                             now cancelled EH101
+    CC-130E Hercules         = Lockheed C-130 Hercules
+    CC-130H Hercules         7 are unofficially CC-130H-73, 3 are CC-130H-84
+                             Ex Abu Dhabi, 5 tankers are unoffially only
+                             KC-130 by crews. Also invalid are CKC-130,
+                             KCC-130, CK-130H, CKC-130H(T)
+    CC-130NT                 Navigational trainers, no longer used in that role
+    CT-133 Silver Star       = Lockheed T-33 Shooting Star
+    CE-133 Silver Star       (ET-133/EW-133/TE-133 all un-official, as is CX-133)
+    CT-134 Musketeer         = Beech Musketeer (retired in early 1980's, except 
+                             one in 1992)
+    CT-134A Muskateer II     (retired in 1992)
+    CH-135 Twin Huey         = Bell 212 (retired in 1997, as of 1976 also CUH-1N 
+                             was in general use)
+    CH-136 Kiowa             = Bell OH-58 Kiowa (retired in 1996)
+    CC-137 Boeing 707        = Boeing 707 (retired in 1997, four will become E-8C
+                             J-STARS aircraft with the USAF)
+    CC-138 Twin Otter        = De Havilland Canada DHC-6 Twin Otter
+    CH-139 Jet Ranger        = Bell 206B-III Jet Ranger
+    CP-140 Aurora            = Lockheed P-3 Orion derivatives
+    CP-140A Arcturus         = Lockheed P-3 Orion derivatives
+    CC-142 Dash 8            = De Havilland Canada DHC-8 Dash 8
+    CT-142 Dash 8 Nav Trainer
+    CC-144A Challenger-600   = Canadair CL-601 Challenger
+    CE-144A Challenger-EST
+    CP-144A Challenger-CP    interim patrol aircraft, not terminated,
+                             but still officially on the books this way
+    CX-144A Challenger-      test a/c - deleted- now a gate-guard
+    CC-144B Challenger-601
+    CT-145 King Air          = Beech King Air 200 (retired, returned 
+                             to the leasing company)
+    CH-146 Griffon           = Bell 412CF (about to enter service)
+    CH-148 Petrel            = EH101 (Sea King replacement, cancelled)
+    CH-149 Chimo             = EH101 (Labrador replacement, cancelled)
+    CH-149 Cormorant         = EH101
+    CC-150 Polaris           = Airbus A310
+    CT-156 Hawk
+    CT-156 Harvard II        = PC-9 Mk II
+    CF-188 CF-18A            = McDonnell Douglas F/A-18 Hornet
+    CF-188B CF-18B           Two seat Hornets. CF-18A and CF-18B are
+                             the official "popular" names.
+
+"The Aircraft of the Canadian Armed Forces: A Checklist of Current Aircraft and
+Disposals" was published in 1995 in short paperback form by
+SIRIUS Productions <sirius@wwdc.com>, and work is underway (May 1997) on an
+expanded and revised edition. 
+The authors, Jeff Rankin-Lowe and Andrew Cline, have done a lot of detailed
+research on CAF serials and designations.
+
+------------------------------
+
+Subject:  H.11.  Chinese aircraft designations
+
+Chinese aircraft use a fairly simple system consisting of a letter or
+letters to indicate the role, a dash, and a number, sometimes followed by
+additional letters or numbers to indicate subtypes.  The role letters are
+often replaced by their English equivalents for export versions (for
+example, the export version of the Q-5 (Qiang = Attack) is the A-5).
+
+The numeric sequences always start with 5.  Oddly enough for one of the
+last bastions of Communism, this is the result of superstition; 4 is
+considered an unlucky number in China (because the Chinese words for "four"
+and "death" are very similar).  The designation "J-2", often quoted for the
+licence-built MiG-15, is mythical; the Chinese aircraft have always been
+known simply as MiG-15, even after the Chinese and Russian governments
+parted ways.
+
+Role letters:
+
+    CJ (export PT) = Chujiao (basic trainer)
+    H  (export B)  = Hong (bomber)
+    J  (export F)  = Jian (fighter)
+    JJ (export FT) = Jianjiao (fighter trainer)
+    Q  (export A)  = Qiang (attack)
+    SH (export PS) = Shuihong (maritime bomber)
+    Y              = Yun (transport)
+    Z              = Zhi (vertical, i.e.  helicopter)
+
+Many Russian, and more recently Western, aircraft have been manufactured in
+China and given Chinese designations.  These include:
+
+    CJ-5 = Yakovlev Yak-18 "Max"
+    H-5  = Ilyushin Il-28 "Beagle"
+    H-6  = Tupolev Tu-16 "Badger"
+    J-5  = Mikoyan MiG-17 "Fresco"
+    J-6  = Mikoyan MiG-19 "Farmer"
+    J-7  = Mikoyan MiG-21 "Fishbed"
+    JJ-7 = Mikoyan MiG-21U "Mongol" (but see below)
+    Y-5  = Antonov An-2 "Colt"
+    Y-7  = Antonov An-24/26 "Coke/Curl"
+    Y-8  = Antonov An-12 "Cub"
+    Z-5  = Mil Mi-4 "Hare"
+    Z-6  = Mil Mi-8 "Hip"
+    Z-8  = Aérospatiale AS.321 Super Frelon
+    Z-9  = Aérospatiale AS.365 Dauphin 2
+
+Training versions of the J-5 and J-6 were built (JJ-5 and JJ-6); these had
+no Russian counterparts (there was no MiG-17U or MiG-19U).  Equating the
+JJ-7 to the MiG-21U in the list above is slightly misleading, since the
+trainer version was developed independently, not based on the Russian
+trainer.
+
+Indigenous Chinese fighter designs have gone up to at least J-12.  The J-8
+has entered service (see B.13).  The J-9 was cancelled about 1978, with no
+examples built; the J-7III and J-8II were developed partly as replacements
+for it.  The J-10 is a current project, started in the late 1980s, and
+expected to enter service before the end of this decade.  The J-11
+designation has not been used.  The J-12 was built (one or two prototypes
+only) in Nanchang during the 1970s (the number seems to have been used out
+of sequence for some reason), in competition with the J-7 and J-8; it
+resembled a scaled-up MiG-15/17, and was cancelled because of its poor
+weapon system.
+
+It has recently been reported that China and Israel are collaborating on a
+new fighter based on Israel's abandoned Lavi project (J-11?).
+
+Two Chinese aircraft have been given NATO codenames:  J-8 "Finback" and Q-5
+"Fantan".
+
+------------------------------
+
+Subject:  H.12.  German aircraft designations (WW2)
+
+German aircraft were identified by two letters denoting the manufacturing
+company, a number denoting the aircraft type (separated from the letters by
+a space), and various modifiers for subtypes.
+
+Manufacturer codes:
+
+    Arado          = Ar
+    Bücker         = Bü
+    Bachem         = Ba
+    Blohm und Voss = Bv, Ha
+    Dornier        = Do
+    Fieseler       = Fi
+    Flettner       = Fl
+    Focke-Achgelis = Fa
+    Focke-Wulf     = Fw, Ta
+    Gotha          = Go
+    Heinkel        = He
+    Henschel       = Hs
+    Horten         = Ho
+    Junkers        = Ju
+    Messerschmitt  = Bf, Me
+
+"Bf" for Messerschmitt came from Bayerische Flugzeugwerke, the company's
+name before Willy Messerschmitt took over.  "Ha" for Blohm und Voss came
+from Hamburger Flugzeugbau, the name of the aircraft division of the Blohm
+und Voss shipbuilding company.  "Ta" for Focke-Wulf was used in honour of
+designer Kurt Tank.
+
+Type numbers were assigned by the RLM (air ministry); a single sequence was
+used for all manufacturers.  Related types were often given numbers
+differing by 100; for example, the Messerschmitt Me 210 was designed as a
+replacement for the Bf 110, and was developed into the Me 310 (abandoned
+before flight) and Me 410.
+
+Prototype aircraft had a "V" followed by a number identifying individual
+aircraft, separated from the main designation by a space (e.g.  Me 262 V1).
+Major variants were denoted by a letter immediately following the type
+number (e.g.  Me 262A), minor variants by a number separated from the major
+variant letter by a dash (e.g.  Me 262A-1).  Pre-production aircraft had a
+zero in this position (e.g.  Me 262A-0).  Further variations on a subtype
+could be denoted by a lower case letter attached to the variant number
+(e.g.  Me 262A-1a).  Modified aircraft were indicated by "/R" or "/U" and a
+number (e.g.  Me 262A-1a/U5), or by "/Trop" (which I assume indicated a
+tropical climate adaptation).
+
+------------------------------
+
+Subject:  H.13.  Japanese aircraft designations and codenames (WW2)
+
+Japanese aircraft designations are a highly confusing subject, since four
+different systems were in use simultaneously in Japan, in addition to the
+codenames used by the Allies.  The Japanese Army and Navy each used two
+systems to identify the same aircraft, so a type used by both services
+(there were a few) could have up to five different designations -- Japanese
+Army Kitai number, Army type number, Navy designation code, Navy type
+number, and Allied codename!
+
+Just to confuse matters a bit further, a few types were known best by
+nicknames that had no official status.  The Mitsubishi A6M fighter, also
+known as the Carrier-Borne Fighter Type 0, had the official Allied codename
+of "Zeke"; but it went down in history under the unofficial nickname used
+by both sides:  "Zero".
+
+The Japanese Army Air Force identified aircraft by "Kitai" (airframe)
+numbers, which simply consisted of "Ki", a dash, and a number.  Originally
+the numbers were a simple numeric sequence; later, some randomisation was
+added, as a security measure.  Gliders received "Ku" ("Guraida") numbers
+instead.  Subtypes or variants were indicated by Roman numeral suffixes, or
+by various Japanese abbreviations (a common one was "Kai" (for "Kaizo"),
+indicating a major modification).
+
+In addition to Kitai numbers, most Army aircraft also received a second
+designation in a parallel system based on role and the year of entry into
+service.  Originally this was the last two digits of the year; 100 was used
+for the Japanese year 2600 (1940), then the numbers were restarted from 1.
+
+Imperial Japanese Navy aircraft received a designation code very similar to
+those used by the US Navy.  This consisted of a letter to indicate the
+aircraft's function, a sequential number to indicate a specific aircraft
+type (unlike the USN system, the number 1 was left in), and a letter to
+indicate the manufacturing company.  This was followed by a dash and a
+number to indicate a subtype, plus an optional letter or letters for
+further variations.
+
+Function letters:
+
+    A = Carrier-borne fighter
+    B = Carrier-borne torpedo bomber
+    C = Carrier-borne reconnaissance
+    D = Carrier-borne dive bomber
+    E = Reconnaissance seaplane
+    F = Observation seaplane
+    G = Land-based bomber
+    H = Flying-boat
+    J = Land-based fighter
+    K = Trainer
+    L = Transport
+    M = Special-purpose seaplane
+    N = Fighter seaplane
+    P = Bomber
+    Q = Patrol
+    R = Land-based reconnaissance
+    S = Night fighter
+
+Some manufacturer letters:
+
+    A = Aichi
+    D = Showa
+    K = Kawanishi
+    M = Mitsubishi
+    N = Nakajima
+    P = Nihon
+    V = Seversky
+    W = Kyushu, Watanabe
+    Y = Yokosuka
+
+The IJN also used a parallel system based on role description and year
+number, similar to (but independent of) the Army's, except that the year
+2600 (1940) became 0 instead of 100.  This system was abandoned in 1943,
+when it was decided that revealing the year of an aircraft's entry into
+service might give useful information to the enemy.  Aircraft were then
+given proper names instead.
+
+Because the correct designations of Japanese aircraft were often not known
+(and, as you've probably gathered by now, difficult to keep straight
+anyway), the Allies assigned codenames to them. The basic rules for these,
+not always followed, were:
+
+    Bombers, dive bombers, reconnaissance aircraft, seaplanes, torpedo
+        bombers -- Girls' names
+    Fighters, reconnaissance seaplanes -- Boys' names
+    Gliders -- Names of birds
+    Trainers -- Names of trees
+    Transport aircraft -- Girls' names beginning with "T"
+
+The following list gives various designations for some of the more
+important Japanese aircraft of WW2:
+
+  Aichi D3A                 = Navy Type 99 Carrier-Borne Fighter    = "Val"
+  Kawanishi H8K             = Navy Type 2 Flying-Boat               = "Emily"
+  Kawanishi N1K1/2 Shinden                                          = "George"
+  Kawasaki Ki-45 Toryu      = Navy Type 2 Heavy Fighter             = "Nick"
+  Kawasaki Ki-61 Hien       = Navy Type 3 Fighter                   = "Tony"
+  Kawasaki Ki-100           = Navy Type 5 Fighter
+  Kyofu N1K                                                         = "Rex"
+  Mitsubishi A5M            = Navy Type 96 Carrier-Borne Fighter    = "Claude"
+  Mitsubishi A6M            = Navy Type 0 Carrier-Borne Fighter     = "Zeke"
+  Mitsubishi F1M            = Navy Type 0 Observation Seaplane      = "Pete"
+  Mitsubishi G4M            = Navy Type 1 Attack Bomber             = "Betty"
+  Mitsubishi J2M Raiden                                             = "Jack"
+  Mitsubishi Ki-15 Karigane = C5M                                   = "Babs"
+  Mitsubishi Ki-21          = Army Type 97 Heavy Bomber             = "Sally"
+  Mitsubishi Ki-30          = Army Type 97 Light Bomber             = "Ann"
+  Mitsubishi Ki-46 Shitei   = Army Type 100 Reconnaissance Aircraft = "Dinah"
+  Mitsubishi Ki-67 Hiryu    = Army Type 4 Heavy Bomber              = "Peggy"
+  Nakajima B5N              = Navy Type 97 Carrier-Borne Bomber     = "Kate"
+  Nakajima B6N Tenzan                                               = "Jill"
+  Nakajima J1N Gekko                                                = "Irving"
+  Nakajima Ki-27            = Army Type 97 Fighter                  = "Nate"
+  Nakajima Ki-43 Hayabusa   = Army Type 1 Fighter                   = "Oscar"
+  Nakajima Ki-44 Shoki      = Army Type 2 Fighter                   = "Tojo"
+  Nakajima Ki-49 Donryu     = Army Type 100 Heavy Bomber            = "Helen"
+  Nakajima Ki-84 Hayate     = Army Type 4 Fighter                   = "Frank"
+  Yokosuka D4Y Suisei                                               = "Judy"
+  Yokosuka P1Y Ginga                                                = "Frances"
+
+------------------------------
+
+Subject:  H.14.  Swedish aircraft designations
+Updated 1999 Dec 24
+
+The aircraft designations used by the Swedish armed forces consist of a set
+of letters to indicate the role, and a number to indicate an aircraft type,
+with a space between them.  A letter may be added after the number to
+indicate subtypes.
+
+The numbers are assigned in a single sequence for all types of aircraft.
+(Before about 1940, there were different number series depending on role.)
+The same number is always used for the same basic aircraft type, but the
+prefix may be changed to indicate different roles.
+
+Role codes (these may be combined, e.g. "JA" for fighter/attack,
+the secondary role being added to the left of the primary, if 
+the roles can be said to be primary or secondary):
+
+    A   = Attack
+    B   = Bomb
+    Fpl = Flygplan (aeroplane; used for multirole light aircraft)
+    Hkp = Helikopter
+    J   = Jakt (fighter)
+    S   = Spaning (reconnaissance)
+    SF  = Spaning foto (photographic reconnaissance)
+    SH  = Spaning havsövervakning (maritime reconnaissance)
+    Sk  = Skol (trainer)
+    T   = Torped (torpedo bomber) (obsolete)
+    Tp  = Transport
+
+The following types are currently in Swedish service:
+
+    Hkp 3                 = Agusta/Bell AB-204 Iroquois
+    Hkp 4                 = Boeing/Kawasaki KV-107 Sea Knight
+    Hkp 5B                = Schweizer 300
+    Hkp 6                 = Agusta/Bell AB-206 Jetranger
+    Hkp 9                 = MBB BO 105
+    Hkp 10                = Eurocopter AS.332 Super Puma
+    Hkp 11                = Augusta AB-412
+    JA/AJS/SK 37          = Saab Viggen
+    JAS 39                = Saab Gripen
+    Tp 54                 = Piper PA-31 Navajo
+    Sk 60                 = Saab 105
+    Fpl/Sk 61             = BAe Bulldog
+    Tp 84                 = Lockheed C-130 Hercules
+    Tp 86                 = Rockwell Sabreliner
+    Tp 88                 = Fairchild Metro
+    SH 89                 = CASA C-212 Aviocar
+    Tp 100, S 100         = Saab 340
+    Tp 101                = Beech Super King Air
+    Tp 102, S 102         = Gulfstream IV
+    Tp 103                = Cessna Citation II
+
+See also: <http://www.canit.se/%7Egriffon/aviation/content.html>
+
+Subject: H.15 Brazilian aircraft designations
+
+Air force:
+A-1                AMX
+A-1B               AMX-T
+C-91               HS.748
+C-95 Bandeirante   EMB.110
+C-95A              EMB.110K1
+C-95B              EMB.110P1K
+C-95C              EMB.110P1A
+EC-95              EMB.110A
+SC-95 Banderiusca  EMB.110P1K
+VC-96              Boeing 737-200
+VC-97 Brasilia     EMB.120RT
+C-98 Caravan       Cessna 208
+C-115 Buffalo      DHC-5
+C-130E/H Hercules  Lockheed C-130
+KC-130H
+SC-130E                       SAR/Transport
+KC-137             Boeing 707
+F-5B/E/F           Northrop F-5
+F-103D             Mirage IIIDBR
+F-103E             Mirage IIIEBR
+UH-1H Huey         Bell UH-1H
+CH-34 Puma         AS.332M
+UH-50 Esquilo      HB 350 (licence built AS.350 Equreuil)
+CH/VH-55 Esquilo   HB 355
+L-42 Regente       Neiva L-42
+P-16E Tracker      Grumman S-2E
+P-16H Turbo Tracker Grumman S-2 Turbo
+P-95 Bandeirulha   EMB.111
+P-95A              EMB.111A
+P-95B              EMB.111B
+R-35A Learjet      Learjet 35A
+R-95 Bandeirante   EMB.110A
+T-25A/C Universal  Neiva T-25
+AT/RT-26 Xavante   EMB.326GB
+A/T-27 Tucano      EMB.312
+A-29/AT-29 Super Tucano EMB.312H
+U-7 Seneca         EMB.810
+U-19 Ipanema       EMB.210R
+VU-9 Xingu         EMB.121
+VU-35 Learjet      Learjet 35A
+U-42 Regente       Neiva U-42
+EU/VU/XU-93        HS.125
+
+Navy:
+SAH-11             Lynx Mk 21 (upgraded to AH-11)
+AH-11              Super Lynx Mk 21A
+IH-6B              Bell 206B
+SH-3A/B            AS-61/SH-3D/H Sea King
+UH-12              AS.350B Esquilo
+UH-13              AS.355F Esquilo
+UH-14              AS.332M Super Puma (all named that, but some are Cougars)
+
+------------------------------
+
+Subject:  J.1.  Reference books
+
+This is not intended to be a general list of reference books on military
+aviation; it's simply a list of most of the books I found useful in
+compiling this FAQ list.  I've quoted ISBN numbers where I could find them.
+I assume Jane's Planes has a new ISBN each year; the one quoted here is
+from the 1990-91 edition, the latest available to me.
+
+Roy Braybrook, S Skrynnikov & L Yakutin (1993):  _Russian Warriors:
+Sukhois, MiGs and Tupolevs_ (Osprey Aerospace, UK; ISBN 1-85532-293-5)
+
+Piotr Butowski (1992):  _Military Aircraft of Eastern Europe:  (1) Fighters
+and Interceptors_ (Concord Publications, Hong Kong; ISBN 962-361-028-9)
+
+Piotr Butowski (1992):  _Military Aircraft of Eastern Europe:  (2) Bombers
+and Attack Aircraft_ (Concord Publications, Hong Kong; ISBN 962-361-035-1)
+
+David Donald & Robert F Dorr (1990):  _Fighters of the United States Air
+Force_ (Military Press, USA; ISBN 0-517-66994-3)
+
+Lou Drendel (1984):  _C-130 Hercules in Action_ (Squadron/Signal
+Publications, USA; ISBN 0-89747-111-3)
+
+Marcus Fülber (1993):  _Red Stars Over Europe_ (Concord Publications, Hong
+Kong; ISBN 962-361-709-7)
+
+Tony Gibbons and David Miller (1992):  _Modern Warships_ (Salamander Books,
+UK; ISBN0-86101-673-4)
+
+Yefim Gordon & Bill Sweetman (1992):  _Soviet X-Planes_ (Motorbooks
+International, USA; ISBN 0-87938-498-0)
+
+Bill Gunston (1976):  _The Encyclopaedia of the World's Combat Aircraft_
+(Salamander Books, UK)
+
+Bill Gunston (1981):  _Military Helicopters_ (Salamander Books, UK; ISBN
+0-86101-110-4)
+
+Bill Gunston (1983):  _Modern Airborne Missiles_ (Lansdowne Press,
+Australia; ISBN 0-7018-1705-4)
+
+Bill Gunston (1987):  _Modern Fighters and Attack Aircraft_ (Salamander
+Books, UK; ISBN 0-86101-320-4)
+
+Bill Gunston (1987):  _The Illustrated Encyclopaedia of Aircraft Armament_
+(Salamander Books, UK; ISBN 0-86101-314-X)
+
+Bill Gunston (1988):  _Combat Arms:  Modern Fighters_ (Salamander Books,
+UK; ISBN 0-86101-413-8)
+
+Bill Gunston (1989):  _Combat Arms:  Modern Attack Aircraft_ (Salamander
+Books, UK; ISBN 0-86101-451-0)
+
+Bill Gunston & Mike Spick (1983):  _Modern Air Combat_ (Salamander Books,
+UK)
+
+Bill Gunston & Mike Spick (1986):  _Modern Fighting Helicopters_ (Tiger
+Books, UK; ISBN 1-85501-164-6)
+
+John Jordan (1992):  _Modern US Navy_ (Salamander Books, UK; ISBN
+0-8317-5061-8)
+
+Mark Lambert, ed (annual):  _Jane's All the World's Aircraft_ (Jane's
+Publishing, UK; ISBN 0-7106-0908-6)
+
+Chris Marshall, ed (1988):  _The Defenders_ (Oriole Publishing, UK; ISBN
+1-870318-10-2)
+
+R A Mason & John W R Taylor (1986):  _Aircraft, Strategy and operations of
+the Soviet Air Force_ (Jane's Publishing, UK; ISBN 0-7106-0373-8)
+
+Doug Richardson (1989):  _Stealth Warplanes_ (Salamander Books, UK)
+
+Mike Spick (1987):  _Modern Fighter Combat_ (Salamander Books, UK; ISBN
+0-86101-319-0)
+
+Mike Spick & Tim Ripley (1992):  _Modern Attack Aircraft_ (Smithmark
+Publishers, USA; ISBN 0-8317-5054-5)
+
+Mike Spick & Barry Wheeler (1992):  _Modern Aircraft Markings_ (Salamander
+Books, UK; ISBN 0-86101-695-5)
+
+Mike Spick & Barry Wheeler (1992):  _Modern American Fighters and Attack
+Aircraft_ (Salamander Books, UK; ISBN 0-86101-696-3)
+
+Bill Sweetman (1989):  _Stealth Bomber_ (Airlife Publishing, UK; ISBN
+1-85310-097-8)
+
+Bill Sweetman (1993):  _Aurora_ (Motorbooks International, USA; ISBN
+0-87938-780-7)
+
+Michael J H Taylor (1983):  _Military Prototypes of the 1950s_ (Arms and
+Armour Press; UK; ISBN 0-85368-579-7)
+
+Michael J H Taylor (1987):  _Encyclopaedia of Modern Military Aircraft_
+(Bison Books, UK; ISBN 0-86124-349-8)
+
+Michael J H Taylor (1991):  _Jane's American Fighting Aircraft of the 20th
+Century_ (Studio Editions, UK; ISBN 1-85170-767-0)
+
+Masami Tokoi (1990):  _Soviet Military Aircraft in Monino_ (Dai Nippon
+Kaiga, Japan; ISBN 4-499-20561-1)
+
+Steven J Zaloga (1991):  _Modern Soviet Warplanes:  Fighters and
+Interceptors_ (Concord Publications, Hong Kong; ISBN 962-361-014-9)
+
+Steven J Zaloga (1991):  _Modern Soviet Warplanes:  Strike Aircraft and
+Attack Helicopters_ (Concord Publications, Hong Kong; ISBN 962-361-015-7)
+
+Steven J Zaloga (1992):  _Russian Falcons_ (Concord Publications, Hong
+Kong; ISBN 962-361-707-0)
+
+------------------------------
+
+Subject:  J.2.  Magazines
+
+As with the list of reference books, these are the magazines whose articles
+I found useful in compiling these answers.
+
+_Air Forces Monthly_ (Key Publishing, UK; monthly)
+
+_Air International_ (Key Publishing, UK; monthly)
+
+_Aviation Week and Space Technology_ (McGraw Hill, USA; weekly)
+
+_Flight International_ (Reed Business Publishing, UK; weekly)
+
+------------------------------
+
+Subject:  J.3.  Acknowledgements
+
+Thanks to the following people for their help:
+
+    Dan {danr@cup.portal.com}
+    Raymundio {raymond@io.ame.arizona.edu}
+    Kevin Au {kau@haas.berkeley.edu}
+    Guy Beaver {beaver@hops.larc.nasa.gov}
+    Al Bowers {ak954@yfn.ysu.edu}
+    Martin Briscoe {martin.briscoe@almac.co.uk}
+    Carlton Brown {browc@ils.unc.edu}
+    Dwight Brown {stainles@ghostwheel.bga.com}
+    Wei-Bin Chang {wei-bin@cae.wisc.edu}
+    Dave Cherkus {cherkus@unimaster.com}
+    Rodney Clark {rclark@vibuscy.ccdn.otc.com.au}
+    Geoff A Cohen {gacohen@seas.gwu.edu}
+    Jim Davis {jimedavis@aol.com}
+    Albert Dobyns {albert.dobyns@mwbbs.com}
+    Dave Elliott {elliott@gsoc0007.rm.op.dlr.de}
+    Bernd Felsche {bernie@metapro.metapro.dialix.oz.au}
+    Peter Fenelon {pete@minster.york.ac.uk}
+    Read Fleming {rtf@cadre.com}
+    Robert M Franklin {gt91rmf@brunel.ac.uk}
+    Urban Fredriksson {griffon@kuai.se}
+    George Gale {ggale@vax1.umkc.edu}
+    Emmanuel Gustin {gustin@uia.ac.be}
+    Lee Hauser {76264.1727@compuserve.com}
+    Scott Hemsley {shemsley@malthus.acs.ryerson.ca}
+    Richard Hunt {rhunt@cix.compulink.co.uk}
+    John B Iodice {jiodice@telesciences.com}
+    Cal Jewell {jewell@data-io.com}
+    Larry & Kim Jewell {jewell@mace.cc.purdue.edu}
+    Rheza Jina {rheza@emb.frmug.fr.net}
+    Paul Kennedy {paulk@brt.com}
+    Krzysztof Krzysztofowicz {kkrzyszt@pg.gda.pl}
+    Lanny Lancaster {pp000372@interramp.com}
+    Robin John Lee {amraam@uclink.berkeley.edu}
+    Ray Loy {loyr@cs.rpi.edu}
+    Steven Malikoff {steven@telerate.com.au}
+    Duane P Mantick {wb9omc@constellation.ecn.purdue.edu}
+    Chris Maxfield {chris@saucer.cc.umr.edu}
+    Paul McGinnis {trader@cup.portal.com}
+    Jack McKillop {jem3@donuts0.bellcore.com}
+    Jeff Mitchell {jmitch@mail.vt.edu}
+    Eugene N Miya {eugene@nas.nasa.gov}
+    Chris Neary {cmn1@pge.com}
+    Vince Norris {vpn1@psuvm.psu.edu}
+    Christopher Ridlon {airwolf@u.washington.edu}
+    Jaap Romers {jaap.romers@cs.ruu.nl}
+    Geoff Russell {g.russell@uws.edu.au}
+    Simon D Shpilfoygel {cdc@cs.ucla.edu}
+    Steven Vincent {steven@unipalm.co.uk}
+    Mark W {shooter@sage.cc.purdue.edu}
+    Rustam Yusupov {prince@fund.omsk.su}
+    Stefan Zamel {zam@ft1.ipt.rwth-aachen.de}
+
+...and some others who have asked not to be named.
+
+
+

@@ -1,0 +1,878 @@
+             REC.AVIATION.MILITARY FREQUENTLY ASKED QUESTIONS (part 2 of 5)
+
+Please send updates to Urban Fredriksson <griffon@canit.se>
+
+The rec.aviation.military FAQ is posted to the usenet newsgroup 
+rec.aviation.military about once per month and is available via WWW at
+<http://www.canit.se/%7Egriffon/aviation/faq/>
+
+------------------------------
+
+Subject:  B.15.  Yakovlev Yak-41/141 "Freestyle"
+
+Design of the Yak-41 (or possibly Yak-141; see below) began in 1975; the
+first prototype flew in March 1987, followed by a second in April 1989.
+Tests were conducted on the aircraft carrier _Admiral Gorshkov_.  In April
+1991, one of the prototypes set several records for VTOL aircraft; it was
+displayed at the Paris Air Show shortly afterwards.  One prototype was lost
+in a crash (attributed to pilot error) on the carrier in November 1991,
+after which development was suspended (due to lack of funds rather than any
+problems with the aircraft); the surviving aircraft was mothballed.
+
+Yakovlev have recently announced their intention to restart development of
+the Yak-41, apparently as a result of renewed interest from the Russian
+Ministry of Defence (a similar revival of the twin-turboprop Yak-44 AEW
+aircraft is also being considered).
+
+A more advanced version, the Yak-41M (Yak-141M?), has also been designed,
+with the emphasis now on Air Force rather than Navy service.  This version
+has an extensively modified airframe, with a strong emphasis on stealth
+(there is a distinct resemblance to the F-22), a much more powerful engine,
+and more fuel and payload.
+
+The "Freestyle" has been referred to as both Yak-41 and Yak-141; it appears
+that one designation refers to the standard fighter and one to the single
+prototype modified for record attempts, but there seems to be some
+uncertainty as to which is which.
+
+Vital statistics (Yak-41/141?):  length 18.36 m, span 10.11 m, empty weight
+11650 kg, max weight 19500 kg, max speed 1800 km/h (Mach 1.7), range 2100
+km; power plant:  one 152.00 kN Soyuz R-97V-30 augmented turbofan, two
+RD-41 lift jets; armament:  30mm cannon, 5 hardpoints, max external load
+2600 kg.
+
+------------------------------
+
+Subject:  B.16.  FLA - Future Large Aircraft
+updated 1996-04-26
+
+Airbus Industrie's proposal for a Hercules class replacement. Supposedly
+offering more capability, especially larger cargo hold than the C-130J, 
+but no protoype built yet (the one at airshows is a steel tubing and 
+fabric mock up). In fact, as of 1996 not even the type of engines, turboprop
+or turbofan is decided upon, nor exact size and performance.
+HMG has said that they will buy these for the RAF, but the project now 
+looks in doubt since (i) the RAF needs to replace Hercules now; and 
+(ii) the French can't afford them.
+
+------------------------------
+Subject:  C.1.  Why is the "stealth fighter" called F-117 instead of F-19?
+updated 2000-12-17
+
+Nobody who really knows has explained it.
+
+It's been suggested, and sounds plausible (but there's no real evidence), 
+that it was called F-19 to start with, but the number was changed as a 
+security measure after the open press started using that designation in 
+the early 1980s (the aircraft first flew in 1981, but wasn't revealed to 
+the public until 1988). Why they picked F-117 as the new number is a mystery.
+
+The USAF Museum lists "Lockheed F-19 CSIRS" among the
+fighters, with a note "see F-117".
+
+The mythical "F-19" may have been part of a "leak identification" project;
+it's common practice in many "black" projects to create several false
+stories and track down leaks by watching to see which one gets out.
+The descriptions of the "F-19" also were very misleading regarding how
+to shape a stealth aircraft, with lots of round curves, which wasn't
+practical then.
+
+The designation F-19 has been "used" for something else, as
+there is a NASA document titled "XF-19 EW suite"
+(Document ID: 19770060541 A (77A43393)), published on 1977 Jul 01),
+which mentions "the projected XF-19 U.S. STOL fighter-bomber" and
+that "The XF-19 is designed for forward area tactical interception of
+hostile aircraft and missles, or for tactical close air support, with
+capability of operating from unimproved/minimal/damaged runways, or small
+ships."
+However, the document is only about desirable features of the ECM system
+of a possible future STOL fighter-bomber and "XF-19" is just a number
+the author uses for the hypothetical aircraft as it was the next "free"
+number then.
+
+There's also the separate question of why it was given an F-series
+(fighter) designation at all. Some think it should have gotten 
+an A- or B- designation, as it's got no air-to-air capability.
+But F- is correct for pure ground attack fighters too.
+
+The F-117 has been popularly known as "Nighthawk" for some time; the Air
+Force made the name official on 24 June 1994.
+
+
+The three main theories (in no specific order) are:
+
+* No reason whatsoever: The Pentagon just picked a random number.
+
+* The aircraft was using the call sign "117" (possibly for reasons 
+connected with the following theory, or possibly just an arbitrarily 
+assigned number) on some of its early test flights, and the number 
+just happened to stick (presumably for lack of any other designation); 
+When Lockheed got around to printing pilot's manuals for the aircraft, 
+they were labelled "F-117", and from then on it became official.
+
+* F-117 follows the designations F-112 to F-116, in the old USAF
+designation scheme, which were applied to some other aircraft 
+types -- but if so it's unclear which ones.
+
+Some believe F-112 to F-116 were used for foreign types such
+as MiG-21 and Su-17 being flown in secret, and as F-117 was 
+too, it got a number in that series.
+Biographies on the USAF's official web site www.af.mil lists
+YF-110 and YF-113 among aircraft types flown for pilots
+who have served with 4477th Test and Evaluation Squadron.
+YF-113G seems to have been the Flogger G MiG-23 variant,
+it's not clear if any other YF-113s also were of the MiG-23/27
+family or not.
+
+Another explanation is that it's just a continuation of the
+old scheme, as applied to later aircraft, and never redesignated
+F-19 (as F-111 never was), sort of like this:
+
+F-4     F-110      Fictional designations between " "
+        F-111
+F-14   "F-112"
+F-15   "F-113"
+F-16   "F-114"
+F-17   "F-115"     This doesn't take into account F-5 and YF-12,
+F-18   "F-116"     and had the common scheme not been adopted
+        F-117      the USN would have kept its old system,
+                   possibly leaving the "F-19" spot for F-117:
+F-1     FJ
+F-2     F2H
+F-3     F3H
+F-4     F4H (USN), F-110 (USAF)
+F-111   F-111 (USAF), "F3Y" (USN)
+F-5     "F-112" (USAF) and "F3T" (USN)
+F-6     F4D
+F-7     F2Y
+F-8     F8U
+F-9     F9F
+F-10    F3D
+F-11    F11F
+F-12    "F-113"
+F-13    not assigned
+F-14    "F13F" ("F12F" was never built)
+F-15    "F-114"
+F-16    "F-115"
+F-17    "F-116"
+F-18    maybe "F5H" (McDonnell Douglas) or "F4T" (Northrop)
+F-19    not assigned
+F-20    "F-112G", or maybe "F-117"? 
+F-21    "F1I"?
+F-22    "F-118"
+F-23    "F-119"
+
+------------------------------
+
+Subject:  C.2.  Does the USAF have a hypersonic spyplane called "Aurora"?
+
+Maybe.  Here's the evidence.
+
+In 1985, a censor's error let an item labelled "Aurora", with no further
+explanation, appear in that year's Pentagon budget request, with a
+reference to "production funding" for 1987.  It was located next to the
+operating budgets for the SR-71 and U-2.  The Pentagon refused to comment
+on the item, and it has never been mentioned since.
+
+In 1986, the US government sealed off large areas of land around the top
+secret Groom Lake base in Nevada.  Many new buildings have been built at
+Groom Lake during the 1980s, and intense activity continues.  The
+government is currently (mid 1994) in the process of taking over more large
+areas of land around the base, in order to make it impossible to observe
+the base from publicly accessible land.  The extensive security measures
+imply that some very important and very secret activity is going on there.
+Officially, the USAF won't even admit that the base exists.
+
+In February 1988, the _New York Times_ reported that the USAF was working
+on a stealthy reconnaissance aircraft capable of Mach 6.  The story was
+attributed to "Pentagon sources".
+
+In August 1989, Chris Gibson, an oil exploration engineer and former member
+of the Royal Observer Corps, was working on an oil rig in the North Sea
+when he saw an unusual formation of aircraft pass overhead.  It consisted
+of a KC-135 tanker, two F-111s, and a fourth aircraft of a type that Gibson
+(an expert on aircraft recognition) had never seen before.  Seen from
+below, it appeared to be a perfect triangle, slightly larger than the
+escorting F-111s, with a leading edge sweep angle of about 75 degrees.  It
+was completely black, with no visible details (unlike the F-111s), and
+appeared to be taking on fuel from the KC-135.
+
+In early 1990 the USAF retired its fleet of SR-71 reconnaissance aircraft;
+the official reason given was that satellites could now perform all
+strategic reconnaissance missions required by the Pentagon.  Many observers
+consider this explanation to be suspicious, for several reasons.  First,
+satellites exist in limited numbers and fixed, predictable orbits; surely
+there will always be a requirement for high-speed reconnaissance missions
+at short notice, which could only be performed by an aircraft like the
+SR-71.  Second, the cost of running the SR-71 fleet was only about 7 per
+cent of what the Pentagon spends on satellites; it would still be a good
+investment even if only as an emergency backup.  Third, the USAF never
+raised the slightest objection to the plan to replace manned aircraft with
+unmanned satellites, which is highly unusual behaviour for an organisation
+composed almost entirely of pilots.
+
+At about the same time, _Aviation Week_ carried reports from witnesses who
+had heard an incredibly loud aircraft taking off from Edwards Air Force
+Base in California late at night.  Some of them referred to a pulsing sound
+with a period of about one second.
+
+On several occasions from June 1991 to June 1992, sonic booms were heard
+over southern California.  They were not produced by any officially
+acknowledged military flight (which are always careful to remain subsonic
+over urban areas).  The booms were powerful enough to show up on the
+seismographs operated by the US Geological Service, and the times of
+arrival of the sound at various points allowed fairly accurate calculation
+of the course and speed of the aircraft responsible; the USGS had already
+demonstrated this by tracking incoming space shuttles.  The aircraft were
+headed northeast, over Los Angeles and the Mojave Desert, towards either
+the Nellis Air Force Base in Nevada or the nearby Groom Lake base.  The
+speeds involved ranged from Mach 3 to Mach 4.
+
+In February 1992, _The Scotsman_ reported that an RAF air traffic
+controller, in November 1991, had seen a radar blip emerge from the base at
+Machrihanish, Scotland, and quickly accelerate to Mach 3.  When he called
+Machrihanish to ask what had happened, he was told to forget it.
+
+In May 1992, a photographer snapped some strange contrails over Amarillo,
+Texas; the trails appeared to have been produced by a high-speed aircraft,
+and resembled "doughnuts on a rope".  A few days later, similar trails were
+reported over Machrihanish.
+
+All this appears to add up to a hypersonic aircraft, with a cruising speed
+around Mach 6, being operated by the USAF from Groom Lake, Nevada, Edwards
+AFB, California, and Machrihanish, Scotland, since about 1988
+(Machrihanish, by the way, is due to be closed in 1995).  The aircraft
+described by Chris Gibson matches several design studies of hypersonic
+aircraft in the 1970s and 80s, which came up with a triangular planform
+with a sweep angle of 75 degrees.  The engines appear to be rocket based
+combined cycle (RBCC) engines, an advanced hybrid of turbojet, ramjet, and
+rocket.  Unclassified studies from the US, Japan, and Russia have
+investigated RBCC engines for hypersonic propulsion; such engines would be
+extremely loud on take-off, would produce a pulsing sound with a frequency
+on the order of one second, would leave contrails resembling "doughnuts on
+a rope", and should theoretically have a maximum speed not far above Mach
+6.  The most likely fuel for an RBCC engine would be methane; given the
+assumptions of methane-fuelled RBCC engines, Mach 6 cruising speed, and
+intercontinental range, the resulting aircraft would indeed be about the
+size of an F-111.
+
+Does this aircraft exist?  We don't know for certain, but the
+circumstantial evidence is certainly persuasive.
+
+Incidentally, the aircraft (if it exists) is almost certainly not called
+Aurora.  Even if the mystery item in the 1985 budget did refer to this
+project, the name would probably have been changed after the security leak.
+But Aurora is the only name anyone has, so we continue to use it as a
+convenient label.
+
+Recently (mid 1994) there are moves afoot in the US Senate to reactivate
+three SR-71 aircraft (possibly in connection with the Korean situation).
+It was reported (from what sources is unclear) that the Blackbird successor
+programme had collapsed "after consuming several hundred million dollars".
+This has been interpreted by some to suggest that the "Aurora" was a
+failure.
+
+Ben Rich, who replaced Kelly Johnson as the head of Lockheed's "Skunk
+Works" and was responsible for the F-117) recently wrote a book
+    Skunk Works             
+    Ben Rich and Leo Janos  
+    Little, Brown and Co.   
+    1994                    
+in which he stated that "Aurora" was the codename for Lockheed's entry
+in the ATB contest, lost to Northrop's B-2 (see section B.11).  I'm
+told that the book is careful to make no mention of any SR-71
+successor, either to support or refute the idea.
+
+The best we can say at the moment is that the mystery remains open...
+
+[Most of this information comes from Bill Sweetman's book _Aurora_]
+
+------------------------------
+
+Subject:  C.3.  What's a TR-3?
+
+A report in _Aviation Week and Space Technology_ in mid 1991 described a
+"triangular flying wing" reconnaissance aircraft, developed by Northrop
+(now Northrop Grumman) from 1982, designated TR-3A and nicknamed "Black
+Manta".  According to the report, the aircraft had a length of about 13
+metres, wingspan of about 19 metres, and a range of 5600 kilometres; it had
+been deployed for trials to Alaska, Okinawa, Panama, and the UK, and a few
+had been employed in Desert Storm in the reconnaissance role.  The aircraft
+was apparently developed from a Northrop technology demonstrator known as
+THAP (Tactical High Altitude Penetrator), which first flew in 1981 and was
+similar in design, but slightly smaller.  After this report, however,
+nothing more was heard of the TR-3 for two years.
+
+In 1993, Steve Douglass, an amateur "stealth watcher" who keeps an eye on
+the USAF's "black" programmes for a hobby, took a videotape of an aircraft
+landing at White Sands Missile Range.  Enhancement of the image revealed a
+formerly unknown aircraft, almost certainly the TR-3.  Apart from having a
+curved trailing edge, it resembled a scaled-down B-2 (or a Horten IX; see
+section E.1).  It appears to be a single-seat, twin-engine, approximately
+triangular flying wing, which fits the description given in the earlier
+report.  You can find more details, including an artist's impression based
+on the video images, in the February 1994 issue of _Wired_.
+
+Of the various "black" aircraft supposed to be flown by the USAF (see also
+section C.2), more solid evidence exists for the TR-3 than any other, and
+its existence seems virtually certain.  Although it's difficult to judge
+the exact size of the aircraft from Douglass's image, the dimensions quoted
+in the original report are plausible.
+
+------------------------------
+
+Subject:  C.4.  Why wasn't the B-1 or B-2 used in Desert Storm?
+
+The B-1s weren't used for several reasons.  First, their primary mission is
+(or was at the time) strategic nuclear strike; Pentagon policy was to keep
+them in the United States as part of the strategic triad.  Second, at the
+time (January 1991) the B-1s had not yet been fully cleared for tactical
+operations with conventional weapons.  Third, there was no need for them --
+the aircraft already available, notably B-52s and F-117s, were perfectly
+capable of the required missions, and sending B-1s over wouldn't have added
+enough capability to be worth the extra maintenance involved.  Fourth, in
+late 1990 most of the B-1 fleet was grounded anyway, due to engine
+problems.
+
+No B-2s were in service at the time; only a single prototype was flying.
+
+------------------------------
+
+Subject:  C.5.  Is fighter X better than fighter Y?
+
+This is the kind of question that gets discussed all the time, but doesn't
+really have an answer.
+
+First, best for what?  Every fighter is designed with a particular set of
+requirements in mind.  "Fighter" is a fairly general term that covers a
+multitude of missions.  A Tornado F.3 or a MiG-31 is an excellent
+long-range interceptor, but you wouldn't want to send one of them up
+against an F-16 or an Su-27 in a dogfight.
+
+Second, the aircraft itself isn't the only factor involved, or even the
+most important one.  Put two aircraft of similar (or even somewhat
+different) capabilities up against each other, and by far the most
+important factor is the relative skills of the two pilots.  It's widely
+believed that superior pilot training was the main reason why American F-86
+Sabres consistently gained air superiority over technically superior
+Russian MiG-15s in the Korean War.
+
+Third, even apparently identical fighters can differ enormously in their
+electronics fit; and in modern fighters, the electronics is at least as
+important (not to mention expensive) as the airframe.  Export versions of
+fighters are normally much less capable in the electronic sphere than the
+equivalent models for the home air force, even when the aircraft have the
+same designation; does anyone expect the F-16Cs exported to, say, Egypt to
+be anywhere near the capability of the F-16Cs in USAF service?  Older
+aircraft can be upgraded to modern electronic standards at a fraction of
+the cost of new fighters, an option increasingly popular in these days of
+tightened defence budgets (for example, the RNZAF recently upgraded its
+Skyhawk fleet with a radar and avionics suite equivalent to that of the
+F-16A).
+
+Most of the modern generation of fighters are fairly similar in
+performance.  Leaving out specialised interceptors such as the Tornado and
+MiG-31 mentioned above, if almost any two modern fighters came up against
+each other in a dogfight, pilot skill would certainly be the main deciding
+factor.  We can (and certainly will) argue endlessly about the relative
+merits of, say, F-16 vs Sea Harrier, or F-22 vs Su-35 (both the subject of
+recent discussion on this newsgroup; Harriers versus conventional fighters
+is a particularly hardy perennial), and there are real differences there;
+but such technical details are not the most important thing in combat.
+
+------------------------------
+
+Subject:  C.6.  Why was the YF-22 chosen over the YF-23?
+
+When the Lockheed YF-22 and Northrop YF-23 were unveiled in 1990, it was
+generally believed that the two companies had made different trade-offs
+among the various design requirements.  The YF-23 appeared to be optimised
+for stealth, with its trapezoidal wings, butterfly tail, and generally
+futuristic appearance (the distinct resemblance to the fictional "Firefox"
+attracted a lot of comments).  The YF-22, on the other hand, had a more
+conventional appearance; although it was obviously designed with stealth in
+mind, there was a definite resemblance to the F-15 it was intended to
+replace, and the impression was of an aircraft designed for manoeuvrability
+first and stealth second.  The YF-22 had thrust-vectoring jet nozzles,
+while those of the YF-23 were designed to hide the engines' infrared
+signature from below.
+
+In April 1991, the YF-22 was selected for production.  According to the
+USAF, neither aircraft showed any clear advantage in either manoeuvrability
+or stealth.  The reasons given for the choice were that the Lockheed
+aircraft was better designed for maintainability, had more potential for
+future development, and was slightly cheaper.
+
+An unconfirmed report has it that one factor was the fact that the YF-23
+had its internal AAMs "stacked" in its bays, while the YF-22's missiles
+each had a bay to themselves; this meant that, on the YF-23, a malfunction
+in one launcher might prevent the launch of another missile in the same
+bay. In YF-23's favour can be said that it was built with production
+tooling for the composite airframe, whereas the YF-22 was from the 
+beginning different from the planned F-22.
+
+There remains a popular opinion that the reasons given were bogus, and that
+a preference for manoeuvrability over stealth was the real reason for the
+choice.  However, there is no obvious reason why the USAF should want to
+lie about its reasons, and it seems likely that the external appearance of
+the two aircraft wasn't as good a guide to their capabilities as many
+people thought.
+
+[From Mike Spick & Barry Wheeler, _Modern American Fighters and Attack
+Aircraft_, and magazine reports]
+
+------------------------------
+
+Subject:  C.7.  Did someone buy Grumman?
+
+Yes.  Northrop took it over in May 1994, and is now known as Northrop
+Grumman.
+
+------------------------------
+
+Subject:  C.8.  Why do recent articles refer to the "Lockheed F-16"?
+
+General Dynamics sold its military aircraft division to Lockheed in
+December 1992.  Although readers of this newsgroup probably associate GD
+with aircraft like the F-16 and F-111, the company has always been
+primarily a shipbuilder, and has now decided to concentrate exclusively on
+this area.
+
+Lockheed, in turn, is about to merge with Martin Marietta to form Lockheed
+Martin.
+
+------------------------------
+
+Subject:  C.9.  Whatever happened to the F/A-16?
+
+At one time the USAF had a plan to replace its A-10s with F-16s fitted with
+a version of the Avenger cannon.  This was tested during Desert Storm, when
+F-16As of the 174th Tactical Fighter Wing were fitted with GPU-5 pods on
+their centreline pylons, and given the new designation F/A-16A.  The GPU-5
+contains the GAU-13 cannon (a four-barrelled version of the seven-barrelled
+GAU-8 Avenger 30mm cannon fitted to the A-10) and 353 rounds of ammunition.
+If the tests were successful, there were plans for a fleet of F/A-16Cs with
+the same armament.
+
+The tests were a disaster.  Precision aiming was impossible for several
+reasons:  the pylon mount isn't as steady as the A-10's rigid mounting; the
+F-16 flies much faster than an A-10, giving the pilots too little time
+approaching the target; the tremendous recoil from the gun shook the plane
+around badly; and some essential CCIP (continuously computed impact point)
+software was unavailable.  They ended up using it as an area weapon,
+spraying multiple targets with ammunition, producing an effect rather like
+a cluster bomb.  It took only a couple of days of this before they gave up,
+unbolted the gun pods, and went back to dropping real cluster bombs.
+
+The F/A-16C plan was quietly forgotten.  The USAF still has plans to
+replace the A-10 with F-16s, but they no longer involve 30mm gun pods (or,
+apparently, a designation with an "A" in it).
+
+[Thanks to Kevin Au for posting most of this information]
+
+------------------------------
+
+Subject:  C.10.  Why do some aircraft have gold-tinted canopies?
+
+Gold-tinted canopies have been noticed on the EA-6B and the F-16C/D.  On
+the EA-6B, the coating is a shield against electromagnetic radiation from
+the Prowler's powerful jamming pods.  On the F-16C/D, officially the
+purpose of this treatment is classified, but discussion on the newsgroup
+has brought general agreement (based on unclassified sources and hints
+dropped by pilots) that the gold coating reduces the aircraft's radar
+signature, by reducing reflections off the complex interior shape of the
+cockpit.  In both cases the coating is a very thin layer of actual gold
+metal, not a gold-tinted paint.
+
+Other aircraft, such as the F-15E and F/A-18C/D, have a distinct greenish
+tinge to their canopies.  This is a different coating (on the inside of the
+canopy rather than the outside) that reduces internal reflections to help
+visibility.  Several newsgroup readers report having similar coatings on
+their glasses, so it's not exactly a secret.
+
+------------------------------
+
+Subject:  C.11.  Why do USAF aircraft have tailhooks?
+
+To help stop the aircraft in the event of brake failure, or some similar
+accident leading to a runway overrun.  Just past the end of many military
+runways, you'll find an arrester cable strung across the field.  The cable
+(unlike those on aircraft carriers) isn't attached to anything firm;
+instead, each end is linked to a long chain, which just drags on the
+ground.  The idea is to slow the aircraft down in a reasonable distance;
+the tailhooks on Air Force fighters are smaller and weaker than the
+superficially similar hooks on Navy planes.
+
+The hook is also used during a hot jet-cal (at least it is/was on F-4's), 
+in which the Exhaust Gas Temperature instrument has been repaired/replaced.
+The aircraft is taken to a remote corner of the base, hooked up, and fired 
+up to verify that the instrument is working correctly. This includes 
+going to full military power.
+
+The inevitable next question, "Does this mean Air Force planes could land
+on a carrier in an emergency?", has been discussed at length in this
+newsgroup.  It has been conclusively established that, no, an Air Force
+fighter could never land on a carrier because, first, its landing gear is
+likely to break in the much heavier touchdown required for carrier landings
+(sink-rate figures quoted in the newsgroup give an F-15's main gear roughly
+a fifty-fifty chance of taking a carrier landing without breaking); second,
+even if it could get on the deck in one piece, the weaker AF tailhook would
+break when it caught the Navy arrester cable; and third, even if the
+aircraft was physically capable of it, Air Force pilots aren't trained in
+the highly specialised and difficult art of carrier landings.
+
+It has been pointed out that, if the USAF thought there was even the
+slightest chance of ever being able to save one of its planes by landing it
+on a carrier, it would have been tested on the mock carrier deck at
+Patuxent River; the fact that this has never been tried is pretty solid
+evidence that the Air Force engineers (who would presumably know) are
+certain it can't be done.
+
+The F-16Ns used by the US Navy as adversaries in training have the standard
+Air Force tailhooks and undercarriage, and are definitely not carrier
+capable.
+
+The RAF pilots who learned to operate from carriers in a few weeks on the
+way to the Falklands are a different matter entirely; they were flying
+Harriers, and of course most of the above is irrelevant to VTOL aircraft.
+Some training was still required, of course, but the requirements are very
+different, both for the aircraft and the pilots.  (As one Harrier pilot put
+it:  "It's much easier to stop and then land, than to land and then try to
+stop.")
+
+A few land-based aircraft have been flown from carriers with minimal
+modification, notably the Lockheed C-130 Hercules and U-2.  Both of these
+were fairly special cases involving aircraft designed for very low speeds
+(and, in the case of the Hercules, rough landings) from the start.
+
+On 30 October 1963, a USMC KC-130F made several carrier landings and
+take-offs on the flight deck of USS _Forrestal_, in a series of tests
+intended to determine whether it would make a good COD (carrier on-board
+delivery) aircraft.  The only modification was an anti-skid braking system.
+The aircraft made several landings and take-offs, with no use of arrester
+gear or catapults, and performed well (the pilot, Lieutenant James H
+Flatley III, was awarded the DFC for his part in the tests).  However, it
+turned out that the Hercules would have been unable to fit in a carrier's
+hangar deck, so the smaller Grumman C-2 Greyhound was developed instead.
+
+Modifications to the U-2 involved the addition of an arrester hook and a
+strengthened landing gear (the U-2 already had folding wings).  In 1964 two
+modified U-2As, designated U-2G, were flown from USS _Ranger_; the tests
+were successful, and several modified aircraft were apparently flown from
+carriers by the CIA during the 1960s (the service version may have been
+designated U-2J).  In 1969, a similarly modified U-2R was flown from USS
+_America_, but this does not seem to have led to any service use.
+
+Land-based aircraft have been successfully modified to be carrier-based;
+the modifications involved, when the aircraft is a fast jet, are extensive.
+It isn't just a matter of adding a tailhook and new landing gear; most of
+the airframe needs to be redesigned.  The best known example in the West is
+the BAe/MD T-45 Goshawk, the US Navy's new trainer, based on BAe's Hawk.
+The Russians have had some success in adapting several fighters and attack
+aircraft for carrier service.  Carrier tests were made by modified MiG-29
+and Su-27 fighters, and by trainer versions of the Su-25; the naval MiG-29K
+was cancelled, but the Su-33 (based on the Su-27K) and Su-25UTG have
+entered service.  A report of an early MiG-29K being torn in half on its
+first attempt at a tailhook arrest gives a hint of the difficulties
+involved.
+
+------------------------------
+
+Subject:  C.12.  What's the composition of an aircraft carrier's air wing?
+Updated 1996-04-26
+
+Most of the questions along this line refer to the US Navy's carriers, so
+I'll discuss them first, then cover other countries.
+
+* United States:  The US Navy's force level plans call for 11 active
+aircraft carriers plus one training/reserve carrier; at any given time two
+of the carriers are in refit.  The training/reserve carrier is scheduled
+to operate as a regular active carrier at least through 1997, and it may
+be "promoted" to full-time active service, bringing the force to 12 ships.
+As this is written (April 1996) there is a 13th carrier in service.  This
+ship has been replaced in the active fleet and is due to decommission in a
+few months.  (Note: all displacements listed are estimates of the ship's
+current displacement, which may differ considerably from the original
+displacement.) 
+
+The oldest carrier in service is _Independence_ (CV 62), the surviving
+member of the 81,500 ton Forrestal class.  This ship, commissioned in
+1959, is the oldest US Navy vessel in commission, except the relic
+_Constitution_.  _Ranger_ (CV 61) of the same class was decommissioned and
+laid up in reserve at Bremerton, Washington in 1993.  _Forrestal_ and
+_Saratoga_ were decommissioned in 1992 and 1993 respectively, they will be
+sold for scrapping in the near future.  _Forrestal_ had briefly served as
+a training carrier before being decommissioned.  _Independence_ is
+homeported in Japan, the replacing the older _Midway_ as the forward-based
+carrier.  She will be decommissioned in 1998 and _Constellation_ will take
+her place in Japan.  All of these ships, except _Ranger_, were extensively
+modernized under SLEP (Service Life Extension Program).
+
+Next are the three 82,000 ton Kitty Hawk carriers: _Kitty Hawk_ (CV 63),
+_Constellation_ (CV 64), and _America_(CV 66), commissioned in 1961 (first
+two) and 1965 (_America_).  _John F Kennedy_ (CV 67), commissioned in
+1968, is quite similar, but it considered to be a separate class.
+_Kennedy_ nominally became the training/reserve ship in 1995, but she is
+operating as a regular carrier.  _America_ will be decommissioned on 9
+August 1996 and laid up in reserve.  _Kitty Hawk_ is scheduled to serve
+until 2002, _Constellation_ to 2008, and _Kennedy_ to 2011.  All ships of
+this group, except _America_, have been extensively modernized under the
+SLEP and COH (Comprehensive Overhaul) programs. 
+
+The first nuclear powered carrier was the 93,000 ton  _Enterprise_
+(CVN 65), commissioned in 1961.  She was modernized during 1979-1981 
+and was reconstructed and refueled during 1990-1995 under the RCOH
+(Refueling/Complex Overhaul) program.  She will serve through 2015. 
+
+The Navy's newest class of carriers is the the 96,000 ton Nimitz class,
+the first of which was commissioned in 1975.  The class consists so far of
+_Nimitz_ (CVN 68), _Dwight D Eisenhower_ (CVN 69), _Carl Vinson_ (CVN 70),
+_Theodore Roosevelt_ (CVN 71), _Abraham Lincoln_ (CVN 72),_George
+Washington_ (CVN 73), and _John C. Stennis_ (CVN 74).  _Stennis_ has
+replaced _America_ in the active fleet.  Additional ships will be _United
+States_ (CVN 75), to be completed in 1998, replacing _Independence_,
+_Ronald Reagan_ (CVN 76), to be completed in 2002, and CVN 77 (unnamed). 
+CVN 77 will be the last ship of the class.  _United States_ was named
+_Harry S Truman_ until February 1995.  Ships of this class vary
+considerably in details and displacement, reflecting the 20+ year span of
+their construction.  Each vessel will receive a single major overhaul, a
+RCOH, during it's planned 50 year service life. 
+
+All of the World War Two era carriers of the _Essex_ and _Midway_ classes
+have left service.  The last was _Midway_ (CV 41), decommissioned in 1992. 
+She is laid up in reserve at Bremerton, Washington, but will be discarded
+in the near future.  The _Essex_ class carriers previously laid up in
+reserve have been discarded.
+
+The US Navy currently operates 10 active carrier air wings (CVW) and one
+reserve carrier air wings (CVWR).  The CVWs are similar in structure and
+are interchangable between ships.  The "standard" CVW for the mid-to-late
+1990's consists of the following:
+
+ 1 Fighter Squardon (VF) with 14 to 16 F-14 Tomcats
+ 3 Strike Fighter Squadrons (VFA/VMFA) each with 10 to 12 F/A-18 Hornets
+ 1 Tactical Electronic Warfare Squadron (VAQ/VMAQ) with 4 EA-6B Prowlers
+ 1 Airborne Early Warning Squadron (VAW) with 5 E-2C Hawkeyes
+ 1 Air Antisubmarine Squadron (VS) with 6 S-3B Vikings
+ 1 Helicopter Antisubmarine Squadron (HS) with 6 SH-60F and 2 HH-60H Seahawks 
+ 1 Electronic Reconnaissance Squadron Detachment (VQ Det.) with 2 ES-3As
+ Total: 69 to 77 aircraft (usually around 75)
+
+Most of the F-14s in service are F-14As; there are 2 F-14B squadrons and 2
+F-14D squadrons.  Almost all of the F/A-18s in service are F/A-18Cs, only
+a few F/A-18As remain with the CVWs.  There are some deviations from the
+"standard" scheme, due to the phasing-out of some aircraft types and
+ongoing reconfiguration of the CVWs.  Some CVWs have an additional VF
+(F-14s), while others have an Attack Squadron (VA, with A-6Es).  CVWs with
+an additional VF/VA have only 2 VFA/VMFA. The remaining A-6E squadrons
+will be phased out of the fleet by 1998.  All CVWs will, in theory, reach
+the "standard" configuration by 1998. 
+
+The single reserve wing (CVWR) has 1 VF (F-14A), 2 VFA (F/A-18A), 
+1 VAQ (EA-6B), 1 VAW (E-2C), 1 VFC (F/A-18A) and 1 HS (SH-60F/HH-60H). 
+
+Plans call for introducing the improved F/A-18E/F Hornet into service
+starting late in the century, replacing F/A-18A and C models, and
+eventually F-14As. The Joint Strike Fighter (JSF) will enter service in
+the next century.
+
+In addition to its giant carriers, the US Navy also operates a number of
+smaller helicopter and STOVL [Short Take Off, Vertical Landing] carriers;
+the aircraft aboard these are operated by the US Marine Corps. 
+
+The oldest belong to the 18,400 ton _Iwo Jima_ class: _Guam_ (LPH 9) and
+_New Orleans_ (LPH 11), commissioned in 1965 and 1968 respectively.  They
+operate about 25 helicopters, a mixture of CH-53 Sea Stallions, CH-46 Sea
+Knights, AH-1 Sea Cobras and UH-1 Hueys. 
+
+The five ships of the 39,300 ton _Tarawa_ class were built from 1976 to
+1980: _Tarawa_ (LHA 1), _Saipan_ (LHA 2), _Belleau Wood_ (LHA 3), _Nassau_
+(LHA 4), and _Peleliu (LHA 5).  They operate about 30 helicopters of the
+same types carried by the LPHs plus 6 AV-8B Harriers. 
+
+The newest ships are the 40,520 ton _Wasp_ class, commissioned from 1988
+on: _Wasp_ (LHD 1), _Essex_ (LHD 2), _Kearsarge_ (LHD 3) and _Boxer_ (LHD
+4).  _Bataan_ (LHD 5) will commission in 1997, _Bonhomme Richard_ (LHD 6) 
+in 1998, and LHD 7 a year or two later.  They generally carry the same air
+group as the LHAs, but can carry an alternate group of 20 AV-8B Harriers
+and 6 SH-60B/f Seahawks. 
+
+* Argentina:  The Argentine Navy's single carrier, the 20000 tonne
+_Veinticinco de Mayo_ (25th of May) was originally a British carrier of
+World War II vintage, being laid down in 1942 as HMS _Venerable_; it also
+saw service with the Netherlands (as _Karel Doorman_) before being bought
+by Argentina in 1968.  The ship played no part in the Falklands War of
+1982, being withdrawn to port after the sinking of the cruiser _General
+Belgrano_.  She was decommissioned for overhaul in 1986, but funds ran
+out.  She is currently laid up without any machinery; there is virtually
+no chance of her being returned to service.
+
+* Brazil:  Brazil's single carrier, _Minas Gerais_ (also originally
+British, starting life as HMS _Vengeance_, a sister ship to Argentina's
+carrier), is in service as an antisubmarine carrier.  She had been laid up
+in 1987 due to catapult problems, later returned to service as a
+helicopter carrier, and reportedly is back in full service now.  She
+probably operates 6 S-2 Trackers, 4-6 SH-3 Sea Kings, and utility
+helicopters. 
+
+* France:  The French Navy currently operates two 32,700 ton carriers,
+_Clemenceau_ and _Foch_, commissioned in the early 1960s.  They carry 16 to
+20 Super Etendards in the strike role, about 7 F-8E(FN) Crusader fighters,
+four Etendard IVP reconnaissance aircraft, six Alize ASW aircraft, and a
+handful of AS.365F Dauphin helicopters for plane guard and SAR duties;
+these are often augmented by a few Lynx ASW helicopters.  _Foch_ may
+be modernized to operate the new Rafale multirole fighter, _Clemenceau_
+is scheduled to be replaced in 1999.
+
+The new 36,000 ton nuclear-powered carrier _Charles De Gaulle_ is
+scheduled to enter service in 1999, replacing _Clemenceau_.  The air wing
+will be similar to those of the existing carriers, probably consisting of
+16 to 20 Super Etendards, about 10 Rafale M fighters, two E-2C Hawkeye AEW
+aircraft, possibly a few Alizes, and the same complement of helicopters.
+Construction of a second new ship now seems unlikely.
+
+* India:  India's first carrier, _Vikrant_, has been decommissioned after
+a decade of machinery problems and continual refits.  The 29,000 ton
+_Viraat_ (formerly HMS _Hermes_), laid down in 1944, commissioned by the
+British in 1959 and sold to India in 1986, remains in service.  She has an
+air wing of 12 Sea Harriers and 9 Sea King helicopters. 
+
+Persistent reports of India buying, leasing or building a new carrier
+have not produced a result.
+
+* Italy:  The Italian Navy operates a single carrier, the 13,240 ton
+_Giuseppe Garibaldi_, launched in 1983 and commissioned in 1985.  She has
+an air group of 16 aircraft, a mix of Harriers and Sea Kings.  Plans to
+acquire an additional ship are unlikely to be realized in the near future. 
+
+* Russia: Russia's only operable carrier is the 67,000 ton _Kuznetsov_,
+formerly named _Tblisi_, _Leonid Brezhnev_ and _Riga_.  She operates about
+40-50 aircraft, a mix of Su-27 derivatives and Ka-27 variants.  She was
+commissioned in 1991 and made her initial deployment in 1995.  She is
+assigned to the Northern Fleet.  
+
+The VSTOL/Helicopter cruiser _Goroshkov_ is in the Northern Fleet in
+reserve/caretaker status.  The helicopter cruiser _Moskva_ is laid up in
+reserve in the Black Sea. 
+
+The rest of Russia's carriers are being scrapped.  See Section C.13 for
+more details on the disposition of these ships.
+
+* Spain:  Spain's only current aircraft carrier, the 16,200 ton _Principe
+de Asturias_, was commissioned in 1988.  Her air wing is made up of
+6 to 8 Harriers and 12 to 14 Sea King and/or Seahawk helicopters.
+
+* Thailand: Thailand is having an 11,300 ton "Multirole Aviation Ship"
+built in Spain.  The design is essentially the same as Spain's
+_Principe De Asturias_.   The ship will carry 10 to 18 aircraft,
+including Harriers.  It is scheduled to be commissioned in 1997.
+
+* United Kingdom:  The Royal Navy's three 20,600 ton Invincible class
+carriers (_Invincible_, _Illustrious_, and _Ark Royal_) were originally
+designated "through-deck cruisers", to get around political attempts to
+prevent the RN from operating carriers.  At any time, two of the carriers
+are in service while the third undergoes refit.  The two active air wings
+normally each consist of 8 Sea Harriers FA.2, 8 Sea King ASW helicopters, 
+and 3 Sea King AEW variants,
+
+A 20,000 ton amphibious assualt ship, _HMS Ocean_, which was launced
+at the end of 1995, will enter service in 1998.  She will carry 
+18 helicopters. 
+
+The RN is currently considering the replacements for the Invincible class.
+Three main options are: Major Service Life Extension Project on the current
+boats. It's cheap, but the RN wants more. (ii) New STOVL carriers, 25ktons
+(ish). (iii) CTOL carriers, 30-40kton.
+
+
+
+------------------------------
+
+Subject:  C.13.  What's happened to the former USSR's aircraft carriers?
+Updated 1996-04-26
+
+The 14,590 ton helicopter cruisers _Moskva_ and _Leningrad_, commissioned
+in the late 1960's, are out of service.  _Leningrad_ was stricken in 1991
+and is being scrapped.  _Moskva_ has been essential inoperable since 1983
+and is officially in reserve status.  She is being held in the Black Sea
+Fleet pending the final disposition of those ships between Russia and
+Ukraine.
+
+The three 43,000 ton _Kiev_ class aviation cruisers are out of service. 
+_Kiev_, commissioned in 1975, was stricken in 1994 and will be scrapped in
+the near future.  _Minsk_, commissioned in 1978 and _Novorossiysk_,
+commissioned in 1982, were reduced to reserve in 1992.  They were towed to
+South Korea for scrapping in 1996. 
+
+_Goroshkov_ (ex _Baku_), a 45,000 ton _Kiev_ variant, has been inoperable
+since 1992.  A planned sale/lease to India fell through.  She is in the
+Northern Fleet, in reserve/caretaker status. 
+
+The 67,000 ton _Kuznetsov_, the only conventional aircraft carrier
+ever operated by the Soviet Navy, remains in service with the Russian
+Navy's Northern Fleet.  See Section C.12 for details.  Her sistership
+_Varyag_ (ex _Riga_) was launched in 1990, but construction work stopped
+in 1992.  Plans to complete the ship for Russia, Ukraine, India or China
+were not realized.  A UK Scrapyard has bought the Varyag in 1996 for 
+scrapping, with an agreement that the boat will definitely be scrapped 
+(and not bought up by the RN etc).
+
+
+The 75,000 ton nuclear powered _Ulyanovsk_ was never completed; she
+was broken up on the building ways.
+
+
+------------------------------
+
+Subject:  C.14.  What's an Su-35?
+
+Formerly known as the Su-27M, the Sukhoi Su-35 is an advanced derivative of
+the Su-27 "Flanker".  The first Su-27M prototype was displayed at the 1992
+Farnborough Air Show.  The Su-35 is expected to enter service in 1995.
+
+Changes from the Su-27 include a new radar, requiring a somewhat larger
+nose; foreplanes, as on the naval Su-33; more powerful engines (also
+originally developed for the Su-33); an enlarged and improved infrared
+search and track unit in front of the cockpit; an infrared missile-warning
+scanner on the fuselage spine; numerous internal electronic improvements;
+larger tail fins (required by aerodynamic changes imposed by the enlarged
+nose); and a large "spine" between the engines containing a rearward-facing
+air-to-air radar, allowing the use of rear-firing semi-active radar guided
+missiles.  Not present on the prototype, but expected to be on the
+production version, are two-dimensional thrust-vectoring engine nozzles (as
+on the F-15SMTD demonstrator and YF-22).
+
+The interesting concept of rearward-firing missiles has apparently been
+tested on Su-27s, using modified R-73 missiles mounted on rotating pylons
+that can fire missiles in either direction.  The production version
+apparently has a "nose cone" over the rocket engine (jettisoned on launch),
+and modified fins to prevent instability problems while briefly flying
+backwards after launch.  The launch rails are fitted with gas cartridges to
+boost the missile backwards, so its own engine doesn't have to overcome the
+aircraft's full forward speed.  It isn't clear whether the missiles will be
+mounted on fixed rearward facing rails, or rotating pylons similar to those
+used during development.  How well any of this will work in practice
+remains to be seen.
+
+Besides being a better fighter, the Su-35 also has greatly improved ground
+attack capability compared to the original Su-27, which was more
+specialised for the air-to-air role.
+
+Other Su-27 derivatives include the tandem two-seat Su-30 in interceptor
+(Su-30, formerly Su-27PU, intended to supplement the more capable but more
+expensive MiG-31) and fighter-bomber (Su-30M, equivalent to the F-15E, and
+export Su-30MK) versions; Su-33 (formerly Su-27K) carrier-borne multirole
+fighter; and Su-34 (formerly Su-27IB/KU) side-by-side two-seat strike
+aircraft (intended to replace the MiG-27, Su-17, and Su-24 in the
+interdiction/strike role, probably entering service in 1996).  The Su-30MK
+has been offered for export to India and China.  The Su-34 shares the
+Su-35's tail radar and rear-firing AAMs.
+
+Vital statistics (Su-35):  length 21.96 m, span 14.70 m, empty weight 18400
+kg, normal TO weight 25700 kg, max speed 2440 km/h (Mach 2.30), ferry range
+3500 km; power plant:  two 137.30 kN Lyulka AL-31MF augmented turbofans;
+armament:  one GSh-30 30mm cannon, 14 hardpoints, max external load 8200
+kg.
+
+[My main source here is Steven Zaloga's _Russian Falcons_; thanks also to
+Rustam Yusupov for posting additional details]

@@ -1,0 +1,237 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>Military Random Sounds</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<hr>
+<div align="center"><center>
+
+<table border="0">
+    <tr>
+        <td align="right"><img
+        src="../Images/Animated/speaker.gif" width="80"
+        height="80"></td>
+        <td><script language="JavaScript"><!--
+// Script to generate proper tags for MIDI playing, preferably with Crescendo.
+// Note: spaces inside quotes *are* significant and should not be deleted.
+// modified beta 6 version -- See http://www.liveupdate.com/playmidi.html.
+
+function PlayMIDI(SongURL) // Copyright (C) 1996 LiveUpdate division of LABTECH 
+                           // Permission for use granted to all music lovers on the net 
+{
+  var WriteLegend = "yes"         // Change to "no" if you don't want legend.
+  var PlayIfNoCrescendo = "yes"   // Change to "yes" to try to play if Crescendo is not present.
+  var NotCrescendo = "You don't have Crescendo, the <B>only</B><BR>" +
+        "streaming MIDI player for the web.<BR>" +
+        "<B><A HREF='http://www.liveupdate.com/dl.html'>Download Crescendo now</A> -- it's free!</B>"
+  var CrescendoIsPresent = "no"
+  var CrescendoIndex = 0
+  var CrescendoVersion = ""
+  var Legend = ""
+  var DocString = ""
+
+  document.open();
+  if (navigator.appName == "Netscape") // Find out if the browser is Navigator.
+  { 
+    // Find major version number.
+
+    var NSMajorVersion = navigator.appVersion.charAt(0)   
+    if (NSMajorVersion > "2") 
+    { 
+      // Is major version greater than 2?
+      // This is version 3 of Netscape (or greater).
+      // See if Crescendo is present.
+
+      for (var i = 0; i < navigator.plugins.length; i++) 
+      {
+        if (navigator.plugins[i].name.substring(0,20) == "LiveUpdate Crescendo") 
+        {
+          CrescendoIsPresent = "yes"
+          CrescendoIndex = i
+          CrescendoVersion = 
+            navigator.plugins[i].name.substring(21,navigator.plugins[i].name.length)
+          break
+        }
+      }
+      if (CrescendoIsPresent == "yes") 
+      {
+        if (navigator.plugins[CrescendoIndex][0].type == "music/crescendo") 
+        {
+          // This is version 2.3 of Crescendo or greater.
+          DocString = '<EMBED TYPE="music/crescendo" '
+          DocString = DocString + 'SONG="' + SongURL + '" '
+          Legend = "This is Crescendo " + CrescendoVersion + 
+                   " running on Netscape Navigator " + NSMajorVersion
+          if (CrescendoVersion.length > 5)
+             Legend = Legend + " with auto-detach."
+        } 
+        else 
+        {
+          // This is a pre-2.3 version of Crescendo.
+          DocString = '<EMBED SRC="' + SongURL + '" '
+          Legend = "This is a pre-2.3 version of Crescendo -" + 
+                   " running on Netscape " + NSMajorVersion + ".<BR>" +
+                   "<B><A HREF='http://www.liveupdate.com/dl.html'>Upgrade Crescendo now</A> -- it's free!</B>"
+        }
+      } 
+      else 
+      {
+        if (PlayIfNoCrescendo == "yes") 
+        {
+          // This is some other plug-in besides Crescendo, so use MIME type to load the first
+          // MIDI plug-in that matches the file's MIME type or, if the file MIME type is 
+          // not matched by any plug-in, Mplayer.exe will be OLE-embedded on Windows.
+          DocString = '<EMBED SRC="' + SongURL + '" '
+        }
+        Legend = NotCrescendo
+      }
+    } 
+    else 
+    {
+      // This is version 2 of Netscape, so use MIME type to load the first
+      // MIDI plug-in that matches the file's MIME type or, if the file MIME type is 
+      // not matched by any plug-in, Mplayer.exe will be OLE-embedded on Windows.
+
+      DocString = DocString + 'SRC="' + SongURL + '" '
+      // Legend = "This could be any MIDI plug-in, or the Windows Media Player."
+      Legend = NotCrescendo
+    }
+    if (DocString.substring(0,6) == "<EMBED") 
+    {
+      DocString = DocString + 'PLUGINSPAGE="http://www.liveupdate.com/dl.html" ' 
+      DocString = DocString + 'HEIGHT=55 WIDTH=200 '   // Use HEIGHT=2 WIDTH=0 for invisible.
+
+      // Optional Crescendo parmeters -- See http://www.liveupdate.com//cpauth.html for docs.
+      // DocString = DocString + 'AUTOSTART="false" ' // Uncomment this for no autostart.
+      // DocString = DocString + 'DELAY=5 '           // Uncomment this for start delay (5 s).
+      // DocString = DocString + 'BGCOLOR="#000000" ' // Uncomment this for black color.
+
+      DocString = DocString + 'DETACH="true" '     // Uncomment this for auto-detach.
+      DocString = DocString + '>'
+    }
+  } 
+  else 
+  {   // Find out if the browser is Microsoft Internet Explorer 3.0 or greater.
+    if (navigator.appName == "Microsoft Internet Explorer") 
+    {
+      // Load the ActiveX version of Crescendo or Crescendo PLUS if it's installed.
+
+      DocString = '<OBJECT ID=Crescendo '
+      DocString = DocString + 'CLASSID="clsid:0FC6BF2B-E16A-11CF-AB2E-0080AD08A326" '
+      DocString = DocString + 'CODEBASE="http://activex.liveupdate.com/controls/cres.cab#Version=2,3,0,35" '
+      DocString = DocString + 'HEIGHT=55 '
+      DocString = DocString + 'WIDTH=200>'
+      DocString = DocString + '<PARAM NAME="Song" VALUE="' + SongURL + '">'
+
+      // Optional parmeters -- See http://www.liveupdate.com//cpauth.html for docs.
+      // DocString = DocString + '<PARAM NAME="AUTOSTART" VALUE="false">'
+      // DocString = DocString + '<PARAM NAME="DELAY" VALUE="5">'
+      // DocString = DocString + '<PARAM NAME="BGCOLOR" VALUE="#000000">'
+      DocString = DocString + '<PARAM NAME="DETACH" VALUE="true">'
+
+      // If the ActiveX Crescendo is not installed, this EMBED tag will cause MSIE
+      // to load any Netscape plug-in that is associated with *.MID files.
+      // The browser will only "see" this EMDED tag if the ActiveX Crescendo is not 
+      // registered.  This is for versions of MSIE that don't see <OBJECT> but do see <EMBED>.
+
+      DocString = DocString + '<EMBED SRC="' + SongURL + '" '
+      DocString = DocString + 'PLUGINSPAGE="http://www.liveupdate.com/dl.html" '
+      DocString = DocString + 'HEIGHT=55 WIDTH=200 volume=75 controls=console loop=true AUTOSTART=TRUE>'
+      DocString = DocString + '</OBJECT>'  // Close the OBJECT tag.
+      Legend = "This is Crescendo - running on Microsoft Internet Explorer with auto-detach."
+    } 
+    else 
+    {
+      // The browser may be Netscape 1.x, or MSIE 2.0, or some other browser.  For MSIE 2.0,
+
+      DocString = DocString + '<BGSOUND SRC="' + SongURL + '">' + '<BR>'
+    }
+  }
+
+  Legend = '<center><font face="Arial" SIZE=-1>' + Legend + '</font></center><p>'
+  if (WriteLegend == "yes") 
+    document.write(Legend)
+  document.write('<center><font face="Arial" SIZE=-1>Now playing <B>"' + SongURL + '"  </B><br>')
+  DocString = DocString + "\n"
+  document.write(DocString)
+  document.write('<br> To get another random MIDI just reload the page </center></FONT>')
+  document.close()
+}
+
+// Hide script from the putanginamos' browser
+
+var nummidi = 24
+day = new Date()
+z = day.getTime()
+y = (z - (parseInt(z/1000,10) * 1000))/10
+x = parseInt(y/100*nummidi,10) + 1
+
+if (x == (1))
+   midi=("../Sounds/MIDI/aweigh.mid")
+if (x == (2))
+   midi=("../Sounds/MIDI/bmlvl1.mid")
+if (x == (3))
+   midi=("../Sounds/MIDI/bond.mid")
+if (x == (4))
+   midi=("../Sounds/MIDI/brntfrag.mid")
+if (x == (5))
+   midi=("../Sounds/MIDI/doom.mid")
+if (x == (6))
+   midi=("../Sounds/MIDI/Doom95.mid")
+if (x == (7))
+   midi=("../Sounds/MIDI/duke3d.mid")
+if (x == (8))
+   midi=("../Sounds/MIDI/finaldm.mid")
+if (x == (9))
+   midi=("../Sounds/MIDI/gatedoom.mid")
+if (x == (10))
+   midi=("../Sounds/MIDI/hexen.mid")
+if (x == (11))
+   midi=("../Sounds/MIDI/led1.mid")
+if (x == (12))
+   midi=("../Sounds/MIDI/Mission1.mid")
+if (x == (13))
+   midi=("../Sounds/MIDI/rocky.mid")
+if (x == (14))
+   midi=("../Sounds/MIDI/teamtnt.mid")
+if (x == (15))
+   midi=("../Sounds/MIDI/tnt_tc.mid")
+if (x == (16))
+   midi=("../Sounds/MIDI/tntblood.mid")
+if (x == (17))
+   midi=("../Sounds/MIDI/tnt-futr.mid")
+if (x == (18))
+   midi=("../Sounds/MIDI/tntfutr2.mid")
+if (x == (19))
+   midi=("../Sounds/MIDI/tntshort.mid")
+if (x == (20))
+   midi=("../Sounds/MIDI/ultima2.mid")
+if (x == (21))
+   midi=("../Sounds/MIDI/usa.mid")
+if (x == (22))
+   midi=("../Sounds/MIDI/mission.mid")
+if (x == (23))
+   midi=("../Sounds/Loops/menuloop.wav")
+if (x == (24))
+   midi=("../Sounds/Loops/fireloop.wav")
+
+//PlayMIDI(midi)
+document.write('<center><font face="Arial" SIZE=-1>Now playing <B>"' + midi + '"  </B><br>')
+document.write('<EMBED SRC= ' + midi + ' WIDTH=200 HEIGHT=60 volume=75 controls=console loop=true AUTOSTART=TRUE> <br>')
+document.write('To get another random MIDI just reload the page </center></FONT>')
+
+// --></script></td>
+        <td><img src="../Images/Animated/speaker.gif" width="80"
+        height="80"></td>
+    </tr>
+</table>
+</center></div>
+</body>
+</html>
