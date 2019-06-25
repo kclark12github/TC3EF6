@@ -78,44 +78,45 @@
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Database&nbsp;<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="~/Books">Books</a></li>
-                                <li><a href="~/Collectables">Collectables</a></li>
+                                <li><a runat="server" href="~/TestBed.aspx">LinqTest</a></li>
+                                <li><a runat="server" href="~/Books/BooksList.aspx">Books</a></li>
+                                <li><a runat="server" href="Collectables">Collectables</a></li>
                                 <li class="dropdown-submenu">
                                     <a class="test" tabindex="-1" href="#">Hobby&nbsp;<span class="caret"></span></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="~/Kits">Kits</a></li>
-                                        <li><a href="~/Decals">Decals</a></li>
-                                        <li><a href="~/DetailSets">Detail&nbsp;Sets</a></li>
+                                        <li><a runat="server" href="~/Kits">Kits</a></li>
+                                        <li><a runat="server" href="~/Decals">Decals</a></li>
+                                        <li><a runat="server" href="~/DetailSets">Detail&nbsp;Sets</a></li>
                                         <li class="divider"></li>
-                                        <li><a href="~/Tools">Tools</a></li>
-                                        <li><a href="~/VideoResearch">Video&nbsp;Research</a></li>
+                                        <li><a runat="server" href="~/Tools">Tools</a></li>
+                                        <li><a runat="server" href="~/VideoResearch">Video&nbsp;Research</a></li>
                                         <li class="divider"></li>
-                                        <li><a href="~/Rockets">Rockets</a></li>
-                                        <li><a href="~/Trains">Trains</a></li>
+                                        <li><a runat="server" href="~/Rockets">Rockets</a></li>
+                                        <li><a runat="server" href="~/Trains">Trains</a></li>
                                         <li class="divider"></li>
-                                        <li><a href="~/Companies">Companies</a></li>
+                                        <li><a runat="server" href="~/Companies">Companies</a></li>
                                         <li class="divider"></li>
-                                        <li><a href="~/Designations">Aircraft&nbsp;Designations</a></li>
-                                        <li><a href="~/BlueAngels">Blue&nbsp;Angels&nbsp;History</a></li>
+                                        <li><a runat="server" href="~/Designations">Aircraft&nbsp;Designations</a></li>
+                                        <li><a runat="server" href="~/BlueAngels">Blue&nbsp;Angels&nbsp;History</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="~/Images">Images</a></li>
-                                <li><a href="~/Music">Music</a></li>
-                                <li><a href="~/Software">Software</a></li>
+                                <li><a runat="server" href="~/Images">Images</a></li>
+                                <li><a runat="server" href="~/Music">Music</a></li>
+                                <li><a runat="server" href="~/Software">Software</a></li>
                                 <li class="dropdown-submenu">
                                     <a class="test" tabindex="-1" href="#">U.S.&nbsp;Navy&nbsp;<span class="caret"></span></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="~/Classifications">Classifications</a></li>
-                                        <li><a href="~/Classes">Classes</a></li>
-                                        <li><a href="~/Ships">Ships</a></li>
+                                        <li><a runat="server" href="~/Classifications">Classifications</a></li>
+                                        <li><a runat="server" href="~/Classes">Classes</a></li>
+                                        <li><a runat="server" href="~/Ships">Ships</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown-submenu">
                                     <a class="test" tabindex="-1" href="#">Video&nbsp;Library&nbsp;<span class="caret"></span></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="~/Movies">Movies</a></li>
-                                        <li><a href="~/Specials">Specials</a></li>
-                                        <li><a href="~/Episodes">TV&nbsp;Episodes</a></li>
+                                        <li><a runat="server" href="~/Movies">Movies</a></li>
+                                        <li><a runat="server" href="~/Specials">Specials</a></li>
+                                        <li><a runat="server" href="~/Episodes">TV&nbsp;Episodes</a></li>
                                     </ul>
                                 </li>
                             </ul>

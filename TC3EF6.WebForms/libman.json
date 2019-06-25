@@ -1,0 +1,14 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "pdfmake@0.1.57",
+      "destination": "Scripts/pdfmake/"
+    },
+    {
+      "library": "jszip@3.2.0",
+      "destination": "Scripts/jszip/"
+    }
+  ]
+}

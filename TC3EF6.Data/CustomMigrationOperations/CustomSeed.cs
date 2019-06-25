@@ -1358,7 +1358,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                                     When [WishList]=1 Then [WishListLocation].[ID]
                                     Else [UnknownLocation].[ID]
                                 End
-                            Else [UnknownLocation].[ID]
+                            Else [Locations].[ID]
                         End As [LocationID]
                     FROM [GGGSCP1].[TreasureChest].[dbo].[Books] [Books]
                         LEFT OUTER JOIN [dbo].[Locations] [Locations] On [Books].[Location]=[Locations].[OName]
@@ -1485,7 +1485,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                                     When [WishList]=1 Then [WishListLocation].[ID]
                                     Else [UnknownLocation].[ID]
                                 End
-                            Else [UnknownLocation].[ID]
+                            Else [Locations].[ID]
                         End As [LocationID]
                     FROM [GGGSCP1].[TreasureChest].[dbo].[Collectables] [Collectables]
                         LEFT OUTER JOIN [dbo].[Locations] [Locations] On [Collectables].[Location]=[Locations].[OName]
@@ -1674,7 +1674,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                                     When [WishList]=1 Then [WishListLocation].[ID]
                                     Else [UnknownLocation].[ID]
                                 End
-                            Else [UnknownLocation].[ID]
+                            Else [Locations].[ID]
                         End As [LocationID]
                     FROM [GGGSCP1].[TreasureChest].[dbo].[Decals] [Decals]
                         LEFT OUTER JOIN [dbo].[Locations] [Locations] On [Decals].[Location]=[Locations].[OName]
@@ -1829,7 +1829,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                                     When [WishList]=1 Then [WishListLocation].[ID]
                                     Else [UnknownLocation].[ID]
                                 End
-                            Else [UnknownLocation].[ID]
+                            Else [Locations].[ID]
                         End As [LocationID]
                     FROM [GGGSCP1].[TreasureChest].[dbo].[Detail Sets] [Detail Sets]
                         LEFT OUTER JOIN [dbo].[Locations] [Locations] On [Detail Sets].[Location]=[Locations].[OName]
@@ -1984,7 +1984,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                                     When [WishList]=1 Then [WishListLocation].[ID]
                                     Else [UnknownLocation].[ID]
                                 End
-                            Else [UnknownLocation].[ID]
+                            Else [Locations].[ID]
                         End As [LocationID]
                     FROM [GGGSCP1].[TreasureChest].[dbo].[Episodes] [Episodes]
                         LEFT OUTER JOIN [dbo].[Locations] [Locations] On [Episodes].[Location]=[Locations].[OName]
@@ -2112,7 +2112,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                                     When [WishList]=1 Then [WishListLocation].[ID]
                                     Else [UnknownLocation].[ID]
                                 End
-                            Else [UnknownLocation].[ID]
+                            Else [Locations].[ID]
                         End As [LocationID]
                     FROM [GGGSCP1].[TreasureChest].[dbo].[Finishing Products] [Finishing Products]
                         LEFT OUTER JOIN [dbo].[Locations] [Locations] On [Finishing Products].[Location]=[Locations].[OName]
@@ -2319,7 +2319,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                                     When [WishList]=1 Then [WishListLocation].[ID]
                                     Else [UnknownLocation].[ID]
                                 End
-                            Else [UnknownLocation].[ID]
+                            Else [Locations].[ID]
                         End As [LocationID]
                     FROM [GGGSCP1].[TreasureChest].[dbo].[Kits] [Kits]
                         LEFT OUTER JOIN [dbo].[Locations] [Locations] On [Kits].[Location]=[Locations].[OName]
@@ -2453,7 +2453,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                                     When [WishList]=1 Then [WishListLocation].[ID]
                                     Else [UnknownLocation].[ID]
                                 End
-                            Else [UnknownLocation].[ID]
+                            Else [Locations].[ID]
                         End As [LocationID],'Movies'
                     FROM [GGGSCP1].[TreasureChest].[dbo].[Movies] [Movies]
                         LEFT OUTER JOIN [dbo].[Locations] [Locations] On [Movies].[Location]=[Locations].[OName]
@@ -2597,7 +2597,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                                     When [WishList]=1 Then [WishListLocation].[ID]
                                     Else [UnknownLocation].[ID]
                                 End
-                            Else [UnknownLocation].[ID]
+                            Else [Locations].[ID]
                         End As [LocationID]
                     FROM [GGGSCP1].[TreasureChest].[dbo].[Music] [Music]
                         LEFT OUTER JOIN [dbo].[Locations] [Locations] On [Music].[Location]=[Locations].[OName]
@@ -2786,7 +2786,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                                     When [WishList]=1 Then [WishListLocation].[ID]
                                     Else [UnknownLocation].[ID]
                                 End
-                            Else [UnknownLocation].[ID]
+                            Else [Locations].[ID]
                         End As [LocationID]
                     FROM [GGGSCP1].[TreasureChest].[dbo].[Rockets] [Rockets]
                         LEFT OUTER JOIN [dbo].[Locations] [Locations] On [Rockets].[Location]=[Locations].[OName]
@@ -3135,7 +3135,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                                     When [WishList]=1 Then [WishListLocation].[ID]
                                     Else [UnknownLocation].[ID]
                                 End
-                            Else [UnknownLocation].[ID]
+                            Else [Locations].[ID]
                         End As [LocationID]
                     FROM [GGGSCP1].[TreasureChest].[dbo].[Software] [Software]
                         LEFT OUTER JOIN [dbo].[Locations] [Locations] On [Software].[Location]=[Locations].[OName]
@@ -3264,7 +3264,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                                     When [WishList]=1 Then [WishListLocation].[ID]
                                     Else [UnknownLocation].[ID]
                                 End
-                            Else [UnknownLocation].[ID]
+                            Else [Locations].[ID]
                         End As [LocationID],'Specials'
                     FROM [GGGSCP1].[TreasureChest].[dbo].[Specials] [Specials]
                         LEFT OUTER JOIN [dbo].[Locations] [Locations] On [Specials].[Location]=[Locations].[OName]
@@ -3390,7 +3390,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                                     When [WishList]=1 Then [WishListLocation].[ID]
                                     Else [UnknownLocation].[ID]
                                 End
-                            Else [UnknownLocation].[ID]
+                            Else [Locations].[ID]
                         End As [LocationID]
                     FROM [GGGSCP1].[TreasureChest].[dbo].[Tools] [Tools]
                         LEFT OUTER JOIN [dbo].[Locations] [Locations] On [Tools].[Location]=[Locations].[OName]
@@ -3508,7 +3508,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                                     When [WishList]=1 Then [WishListLocation].[ID]
                                     Else [UnknownLocation].[ID]
                                 End
-                            Else [UnknownLocation].[ID]
+                            Else [Locations].[ID]
                         End As [LocationID]
                     FROM [GGGSCP1].[TreasureChest].[dbo].[Trains] [Trains]
                         LEFT OUTER JOIN [dbo].[Locations] [Locations] On [Trains].[Location]=[Locations].[OName]
@@ -3628,7 +3628,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                                     When [WishList]=1 Then [WishListLocation].[ID]
                                     Else [UnknownLocation].[ID]
                                 End
-                            Else [UnknownLocation].[ID]
+                            Else [Locations].[ID]
                         End As [LocationID],'Video Research'
                     FROM [GGGSCP1].[TreasureChest].[dbo].[Video Research] [Video Research]
                         LEFT OUTER JOIN [dbo].[Locations] [Locations] On [Video Research].[Location]=[Locations].[OName]

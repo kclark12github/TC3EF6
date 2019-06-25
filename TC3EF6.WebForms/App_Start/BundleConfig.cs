@@ -12,6 +12,7 @@ namespace TC3EF6.WebForms
         // For more information on Bundling, visit https://go.microsoft.com/fwlink/?LinkID=303951
         public static void RegisterBundles(BundleCollection bundles)
         {
+            #region Standard WebForms Bundles
             bundles.Add(new ScriptBundle("~/bundles/WebFormsJs").Include(
                             "~/Scripts/WebForms/WebForms.js",
                             "~/Scripts/WebForms/WebUIValidation.js",
@@ -33,6 +34,42 @@ namespace TC3EF6.WebForms
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                             "~/Scripts/modernizr-*"));
+            #endregion
+            #region Stolen from the TC3EFC2.WebMVC project to support DataTables...
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+                      "~/Scripts/bootstrap.js"));
+            bundles.Add(new ScriptBundle("~/bundles/popper").Include(
+                      "~/Scripts/umd/popper.js",
+                      "~/Scripts/umd/popper-utils.js"));
+
+            bundles.Add(new StyleBundle("~/Content/css").Include(
+                      "~/Content/bootstrap.css",                //Bootstrap v4 dropped support for glyphicons, so we're using fontawesome below...
+                      //"~/Content/fontawesome/css/all.css",    //Using fontawesome from the bundle isn't working, so we're using explicit style tags...
+                      "~/Content/site.css"
+                      ));
+            //https://www.codeproject.com/Articles/1114208/Beginners-Guide-for-Creating-GridView-in-ASP-NET-M
+            //Install Jquery.DataTables using NuGet
+            //npm install pdfmake
+            //npm install jszip
+            bundles.Add(new ScriptBundle("~/bundles/datatables").Include(
+                        "~/Scripts/DataTables/jquery.dataTables.js",
+                        "~/Scripts/DataTables/dataTables.bootstrap4.js",
+                        "~/Scripts/DataTables/dataTables.buttons.js",
+                        "~/Scripts/DataTables/buttons.bootstrap4.js",
+                        "~/Scripts/jszip/dist/jszip.js",            //Used for Exporting as Zip
+                        "~/Scripts/pdfmake/pdfmake.js",             //Used for Exporting as PDF
+                        "~/Scripts/pdfmake/vfs_fonts.js",           //Used for Exporting as PDF
+                        "~/Scripts/DataTables/buttons.colVis.js",
+                        "~/Scripts/DataTables/buttons.html5.js",
+                        "~/Scripts/DataTables/buttons.print.js",
+                        "~/Scripts/DataTables/plug-ins/dataRender/datetime.js"
+                        ));
+            bundles.Add(new StyleBundle("~/Content/datatables").Include(
+                      //"~/Content/DataTables/css/jquery.dataTables.css",
+                      "~/Content/DataTables/css/buttons.bootstrap4.css",
+                      "~/Content/DataTables/css/dataTables.bootstrap4.css"
+                      ));
+            #endregion
         }
     }
 }
