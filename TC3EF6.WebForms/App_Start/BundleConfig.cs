@@ -62,7 +62,10 @@ namespace TC3EF6.WebForms
                         "~/Scripts/DataTables/buttons.colVis.js",
                         "~/Scripts/DataTables/buttons.html5.js",
                         "~/Scripts/DataTables/buttons.print.js",
-                        "~/Scripts/DataTables/plug-ins/dataRender/datetime.js"
+                        //"render.moment" was supposed to format dates, but didn't work with MS date formats, so we're using in-line JS code instead.
+                        //"~/Scripts/DataTables/plug-ins/dataRender/datetime.js",   
+                        "~/Scripts/DataTables/dataTables.responsive.js",
+                        "~/Scripts/DataTables/dataTables.colReorder.js"
                         ));
             bundles.Add(new StyleBundle("~/Content/datatables").Include(
                       //"~/Content/DataTables/css/jquery.dataTables.css",

@@ -33,7 +33,9 @@
         </div>
     </div>
     <div class="card-body">
-        <table id="books-data-table" class="table table-responsive-xl table-dark table-striped table-bordered table-hover compact order-column"></table>
+        <table id="books-data-table" 
+            class="table table-responsive-xl table-striped table-bordered table-hover compact order-column"
+            style="max-width:none;overflow-x:visible,scroll;background-color:white;color:navy;"></table>
     </div>
 </div>
     <asp:PlaceHolder runat="server">
@@ -52,22 +54,6 @@
                 dt: null,
                 init: function () {
                     dt = $('#books-data-table').DataTable({
-                        "fixedHeader": { "footer": true },
-                        "buttons": ['copy', 'excel', 'pdf', 'colvis'],
-                        //"dom": 'Blfiprtip',
-                        //"dom": '<"top"Blfir>pt<"bottom"ip><"clear">',                        
-                        //"searching": true,
-                        //"dom": "<'row'<'col-sm-12'tr>>" +
-                        //    "<'row'<'col-sm-4'l><'col-sm-8'p>>",
-                        "dom": "<'row'<'col'l><'col'i><'col'p>>" +
-                            "<'row'<'col'r><'col-sm-12'f>>" +
-                            "<'row'<'col't>>" +
-                            "<'row'<'col'B><'col'i><'col'p>>",
-                        //"select": true,
-                        "scrollY": "50vh",
-                        "serverSide": true,
-                        "processing": true,
-                        //"pagingType": "full_numbers",
                         "ajax": {
                             "url": "BooksList.aspx/GetData",
                             "contentType": "application/json",
@@ -100,6 +86,8 @@
                                 return return_data.data;
                             }
                         },
+                        "buttons": ['copy', 'excel', 'pdf', 'colvis'],
+                        "colReorder": true,
                         "columnDefs": [
                             { defaultContent: "<i>Null</i>", "targets": "_all" },
                             { visible: false, "targets": [0] }, { visible: true, "targets": "_all" },
@@ -134,11 +122,25 @@
                             { "title": "Purchased", "data": "DatePurchased" },
                        //     { "title": "Miscellaneous",     "data": "Misc" }
                        ],
-                        "displayStart": 0, "pageLength": 25,
+                        "displayStart": 0, "pageLength": 10,
+                        //"dom": 'Blfiprtip',
+                        //"dom": '<"top"Blfir>pt<"bottom"ip><"clear">',                        
+                        //"searching": true,
+                        //"dom": "<'row'<'col-sm-12'tr>>" +
+                        //    "<'row'<'col-sm-4'l><'col-sm-8'p>>",
+                        "dom": "<'row'<'col'l><'col'i><'col'p>>" +
+                            "<'row'<'col'r><'col-sm-12'f>>" +
+                            "<'row'<'col't>>" +
+                            "<'row'<'col'B><'col'i><'col'p>>",
+                        //"fixedHeader": { "footer": true },
                         "lengthMenu": [[10, 25, 50, 100, 1000, -1], [10, 25, 50, 100, 1000, "All"]],
-                        "select": {
-                            style: 'single'
-                        }
+                        //"pagingType": "full_numbers",
+                        "processing": true,
+                        "responsive": true,
+                        //"scrollY": "50vH",
+                        "scroller": true,
+                        "select": { style: 'single' },
+                        "serverSide": true,
                     });
                 },
                 refresh: function () {
@@ -154,15 +156,21 @@
             //bookListVM.adjustButtonPadding();   //Override padding style on pagination buttons
 
             var table = $('#books-data-table').DataTable();
-            $('#books-data-table tbody').on('click', 'tr', function () {
+            //$('#books-data-table tbody').on('click', 'tr', function () {
+            //    var data = table.row(this).data();
+            //    console.log(`You clicked on ID #${data['ID']}; AlphaSort "${data['AlphaSort']}"`);
+            //    if ($(this).hasClass('selected')) {
+            //        $(this).removeClass('selected');
+            //    } else {
+            //        table.$('tr.selected').removeClass('selected');
+            //        $(this).addClass('selected');
+            //    }
+            //});
+            var table = $('#books-data-table').DataTable();
+            $('#books-data-table tbody').on('dblclick', 'tr', function () {
                 var data = table.row(this).data();
-                console.log(`You clicked on ID #${data['ID']}; AlphaSort "${data['AlphaSort']}"`);
-                if ($(this).hasClass('selected')) {
-                    $(this).removeClass('selected');
-                } else {
-                    table.$('tr.selected').removeClass('selected');
-                    $(this).addClass('selected');
-                }
+                //alert(`You clicked on ID #${data['ID']}; AlphaSort "${data['AlphaSort']}"`);
+                location.href = `<%= DetailURL %>?ID=${data['ID']}`;
             });
         });
     </script>

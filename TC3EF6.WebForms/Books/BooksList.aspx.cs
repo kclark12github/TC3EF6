@@ -16,6 +16,7 @@ namespace TC3EF6.WebForms.Books
 {
     public partial class BooksList : BasePage
     {
+        public const string DetailURL = "/Books/BooksDetail.aspx";
         protected void Page_Load(object sender, EventArgs e)
         {
 

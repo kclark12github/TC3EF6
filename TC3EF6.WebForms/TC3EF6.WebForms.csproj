@@ -2393,6 +2393,12 @@
     <Content Include="Aircraft\ramfaq4.txt" />
     <Content Include="Aircraft\ramfaq5.txt" />
     <Content Include="Aircraft\rec_aviation_military_FAQ.htm" />
+    <Content Include="Books\avarAuthors.inc.asp" />
+    <Content Include="Books\avarlocations.inc.asp" />
+    <Content Include="Books\avarSubjects.inc.asp" />
+    <Content Include="Books\BooksAction.asp" />
+    <Content Include="Books\BooksForm.asp" />
+    <Content Include="Books\BooksList.asp" />
     <Content Include="Books\BooksList.aspx" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.min.css" />
