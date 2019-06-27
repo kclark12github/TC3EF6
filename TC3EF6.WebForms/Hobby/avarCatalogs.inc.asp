@@ -4,8 +4,15 @@ If IsEmpty(Application(strDFName & "_Lookup_Catalogs")) Or strPagingMove = "Requ
     Set Hobby = Server.CreateObject("ADODB.Connection")
     Hobby.ConnectionTimeout = Session(strDBName & "_ConnectionTimeout")
     Hobby.CommandTimeout = Session(strDBName & "_CommandTimeout")
-    Hobby.Open Session("KFC").ConnectionString, Session("KFC_RuntimeUserName"), Session("KFC_RuntimePassword")
-	Set rsCatalogs = Hobby.Execute("SELECT ShortName FROM Companies WHERE Code <>'' AND ProductType Like 'Mail%' ORDER BY Code")
+    Hobby.Open Application("KFC.ConnectionString"), Session("KFC.RuntimeUserName"), Session("KFC.RuntimePassword")
+	Set rsCatalogs = Hobby.Execute("Select Distinct ProductCatalog From Kits Where ProductCatalog Is Not Null Union " & _
+        "Select Distinct ProductCatalog From Decals Where ProductCatalog Is Not Null Union " & _
+        "Select Distinct ProductCatalog From DetailSets Where ProductCatalog Is Not Null Union " & _
+        "Select Distinct ProductCatalog From FinishingProducts Where ProductCatalog Is Not Null Union " & _
+        "Select Distinct ProductCatalog From Rockets Where ProductCatalog Is Not Null Union " & _
+        "Select Distinct ProductCatalog From Tools Where ProductCatalog Is Not Null Union " & _
+        "Select Distinct ProductCatalog From Trains Where ProductCatalog Is Not Null " & _
+        "Order By ProductCatalog;")
 	avarCatalogs = Null
 	On Error Resume Next
 	avarCatalogs = rsCatalogs.GetRows()

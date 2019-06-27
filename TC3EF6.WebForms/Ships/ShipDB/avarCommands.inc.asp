@@ -4,7 +4,7 @@ If IsEmpty(Application(strDFName & "_Lookup_Commands")) Or strPagingMove = "Requ
     Set USNavyUSNavyShips = Server.CreateObject("ADODB.Connection")
     USNavyShips.ConnectionTimeout = Session("USNavyShips_ConnectionTimeout")
     USNavyShips.CommandTimeout = Session("USNavyShips_CommandTimeout")
-    USNavyShips.Open Session("KFC").ConnectionString, Session("KFC_RuntimeUserName"), Session("KFC_RuntimePassword")
+    USNavyShips.Open Session("KFC.ConnectionString"), Session("KFC.RuntimeUserName"), Session("KFC.RuntimePassword")
 	Set rsCommands = USNavyShips.Execute("SELECT ID, Name FROM Command ORDER BY Name")
 	avarCommands = Null
 	On Error Resume Next

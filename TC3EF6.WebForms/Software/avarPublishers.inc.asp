@@ -4,7 +4,7 @@ If IsEmpty(Application(strDFName & "_Lookup_Publishers")) Or strPagingMove = "Re
 	Set Software = Server.CreateObject("ADODB.Connection")
 	Software.ConnectionTimeout = Session("Software_ConnectionTimeout")
 	Software.CommandTimeout = Session("Software_CommandTimeout")
-	Software.Open Session("KFC").ConnectionString, Session("KFC_RuntimeUserName"), Session("KFC_RuntimePassword")
+	Software.Open Session("KFC.ConnectionString"), Session("KFC.RuntimeUserName"), Session("KFC.RuntimePassword")
 	Set rsPublishers = Software.Execute("SELECT DISTINCT Publisher FROM Software ORDER BY Publisher")
 	avarPublishers = Null
 	On Error Resume Next

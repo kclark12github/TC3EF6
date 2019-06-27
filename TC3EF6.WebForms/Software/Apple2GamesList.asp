@@ -4,10 +4,10 @@ Dim strPagingMove
 Dim strDFName
 strDBName = "Software"
 strDFName = "rsApple2Games"
-strTableName = "Apple2"
+strTableName = "Apple2Games"
 strBasePageName = "Apple2Games"
 strPageTitle = "Software Library; Apple ][ Games"
-SQLstatement = "SELECT * FROM [Software] WHERE (Platform like 'Apple%' or Platform='CP/M') and Type='Games' order by Title, Version"
+SQLstatement = "Select * From [Software] Where (Platform Like 'Apple%' Or Platform='CP/M') And [Type] Like 'Game%' Order By Title, Version;"
 strHomeGIF = ""
 strFooterURL = ""
 strFooterTitle = ""

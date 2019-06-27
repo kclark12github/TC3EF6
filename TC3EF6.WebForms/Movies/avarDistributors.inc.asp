@@ -4,7 +4,7 @@ If IsEmpty(Application(strDFName & "_Lookup_Distributors")) Or strPagingMove = "
     Set VideoTapes = Server.CreateObject("ADODB.Connection")
     VideoTapes.ConnectionTimeout = Session(strDBName & "_ConnectionTimeout")
     VideoTapes.CommandTimeout = Session(strDBName & "_CommandTimeout")
-    VideoTapes.Open Session("KFC").ConnectionString, Session("KFC_RuntimeUserName"), Session("KFC_RuntimePassword")
+    VideoTapes.Open Session("KFC.ConnectionString"), Session("KFC.RuntimeUserName"), Session("KFC.RuntimePassword")
 	Set rsDistributors = VideoTapes.Execute("SELECT Distinct Distributor FROM [Movies] ORDER BY Distributor")
 	avarDistributors = Null
 	On Error Resume Next

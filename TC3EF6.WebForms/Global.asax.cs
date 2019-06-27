@@ -1,5 +1,7 @@
-﻿using System;
+﻿using ADODB;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity.Migrations;
 using System.Diagnostics;
 using System.Linq;
@@ -40,6 +42,82 @@ namespace TC3EF6.WebForms
             // Code that runs on application startup
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            #region Classic ASP Stuff
+            Application.Lock();
+            //Application["KFC.ConnectionString"] = "Provider=MSDASQL.1;Persist Security Info=False;User ID=Admin;Data Source=C:\My Documents\Home Inventory\Database\Ken's Stuff.mdb; "
+            Application["KFC.ConnectionString"] = ConfigurationManager.ConnectionStrings["adoTC3EF6"].ConnectionString;
+            Application["KFC.RuntimeUserName"] = "";
+            Application["KFC.RuntimePassword"] = "";
+            Application["KFC.ConnectionTimeout"] = 120;
+            Application["KFC.CommandTimeout"] = 120;
+            Application["ActiveSessions"] = 0;
+            Application["AdminPage"] = @"/Admin/Admin.asp";
+            Application["ApplicationLogFilename"] = Server.MapPath(@"/Logs") + @"\Application.log";
+            Application["DownloadPage"] = "/Admin/Download.asp";
+            Application["ErrorLogFilename"] = Server.MapPath(@"/Logs") + @"\Error.log";
+            Application["fDebugMode"] = true;
+            Application["fTraceMode"] = true;
+            Application["MaxTextDisplay"] = 56;
+            Application["MinRowsForBottomButtons"] = 10;
+            Application["RowsToDisplay"] = 50;
+            Application["strFooterGIFdim"] = "width=60 height=59";
+            Application["strFooterURL"] = "/";
+            Application["strFooterTitle"] = "Back to Ken's Home Page";
+            Application["strHomeGIF"] = "/Images/Buttons/home.gif";
+            Application["Theme"] = "Blueside";
+            Application["TraceLogFilename"] = Server.MapPath(@"/Logs") + @"\Trace.log";
+            Application["VisitorCountFileName"] = Server.MapPath(@"/VisitCount.txt");
+            Application["WelcomeCountFileName"] = Server.MapPath(@"/_private/Welcome.asp.cnt");
+
+            //Set oPermChecker = Server.CreateObject("MSWC.PermissionChecker")
+            //If oPermChecker.HasAccess(Application["VisitorCountFileName")) Then
+            //    WshShell.LogEvent 4, "Application_OnStart: Opening " & Application["VisitorCountFileName")
+            //    Set LogFile = FileSystem.OpenTextFile(Application["VisitorCountFileName"), ForReading, False)
+            //    If Err.Number <> 0 Then
+            //        WshShell.LogEvent 4, Err.Description
+            //        Err.Clear
+            //    End If
+            //    WshShell.LogEvent 4, "Application_OnStart: Setting Application[""Visitors"") to value in open file"
+            //    Application["Visitors") = LogFile.ReadLine
+            //    WshShell.LogEvent 4, "Application_OnStart: Closing " & Application["VisitorCountFileName")
+            //    LogFile.Close
+            //    Set LogFile = Nothing
+            //End If
+
+            //If Application["fDebugMode") or Application["fTraceMode") Then
+            //    WshShell.LogEvent 4, "Application_OnStart: Opening " & Application["TraceLogFileName")
+            //    Set LogFile = FileSystem.OpenTextFile(Application["TraceLogFilename"), ForAppending, True)
+            //    LogFile.WriteLine(String(132, "="))
+            //    LogFile.WriteLine(now & ": DEBUG: Application_OnStart: Read " & Application["VisitorCountFileName") & " and retrieved the visit count: " & """" & Application["Visitors") & """")
+            //    LogFile.Close
+            //    Set LogFile = Nothing
+            //End If
+
+            //WshShell.LogEvent 4, "Application_OnStart: Opening " & Application["ApplicationLogFileName")
+            //Set LogFile = FileSystem.OpenTextFile(Application["ApplicationLogFilename"), ForAppending, True)
+            //LogFile.WriteLine("================================================================================================================")
+            //LogFile.WriteLine(now & ": Application_OnStart: Application Started; Visit Count: " & Application["Visitors") & "...")
+            //LogFile.Close
+            //Set LogFile = Nothing
+
+            //WshShell.LogEvent 4, "Application_OnStart: Opening " & Application["WelcomeCountFileName")
+            //Set LogFile = FileSystem.OpenTextFile(Application["WelcomeCountFilename"), ForWriting, True)
+            //LogFile.WriteLine("FPCountFile " & String(11 - Len(Application["Visitors")), "0") & Application["Visitors"))
+            //LogFile.Close
+            //Set LogFile = Nothing
+
+            //If Application["fDebugMode") or Application["fTraceMode") Then
+            //    Set LogFile = FileSystem.OpenTextFile(Application["TraceLogFilename"), ForAppending, TRUE)
+            //    LogFile.WriteLine(now & ": DEBUG: Application_OnStart: Updated " & Application["WelcomeCountFileName") & " with """ & "FPCountFile " & String(11 - Len(Application["Visitors")), "0") & Application["Visitors") & """")
+            //    LogFile.Close
+            //    Set LogFile = Nothing
+            //End If
+
+            //Set FileSystem = Nothing
+            //Set oPermChecker = Nothing
+            Application.UnLock();
+            #endregion
         }
         //protected void Application_OnStart()
         //{
@@ -90,9 +168,222 @@ namespace TC3EF6.WebForms
                     }
                     appState.HitCount += 1;
                     context.SaveChanges();
-                    Application["HitCount"] = appState.HitCount;
+                    Application["Visitors"] = appState.HitCount;
                 }
             }
+            #region Classic ASP Stuff
+            // *********************************************************************************************************
+            // Update Counter...
+            Application.Lock();
+            Session["ID"] = Session.SessionID;
+            string TraceLog = (string)Application["TraceLogFilename"];
+            //TraceLog = Server.MapPath("/Logs") + "\Trace.log"
+            Session.Timeout = 60;
+            //Application["Visitors"] = Application["Visitors"] + 1;
+            Session["VisitorNumber"] = Application["Visitors"];
+
+            LogMessage($"Session_Start: Beginning session for Visitor #{Session["VisitorNumber"]} (ID: {Session["ID"]}) - Active Sessions: {Application["ActiveSessions"]}...");
+            ADODB.Connection adoConn = new ADODB.Connection();
+
+            adoConn.ConnectionString = (string)Application["KFC.ConnectionString"];
+            adoConn.ConnectionTimeout = (int)Application["KFC.ConnectionTimeout"];
+            adoConn.CommandTimeout = (int)Application["KFC.CommandTimeout"];
+            Session["KFC"] = adoConn;
+            Session["KFC.Connection"] = Session["KFC"];  //... for backward compatibility...
+
+            LogMessage($@"Session[""KFC""].Open ""{adoConn.ConnectionString}"", """", """"");
+            adoConn.Open(adoConn.ConnectionString, "", "");
+
+            bool fDebugLogin = true;
+            Application.UnLock();
+
+            // *********************************************************************************************************
+            // Validate Visitor against KFC.Visitors Table...
+            Session["StartTime"] = DateTime.Now;
+            Session["DateLastVisit"] = Session["StartTime"];
+            Session["Owner"] = false;
+            Session["FirstName"] = "";
+            Session["ButtonColor"] = "Gold";
+            Session["LakeGIF"] = 1;
+            Session["TargetPage"] = Request.ServerVariables["URL"];
+            Session["RowsToDisplay"] = Application["RowsToDisplay"];
+            Session["MinRowsForBottomButtons"] = Application["MinRowsForBottomButtons"];
+            Session["MaxTextDisplay"] = Application["MaxTextDisplay"];
+
+            object bc = null;  // Server.CreateObject("MSWC.BrowserType");
+            if (bc == null) {    // || bc.Browser = "Unknown") {
+                //Default to Internet Explorer 5.5...
+                Session["Browser"] = "IE";
+                Session["Version"] = "5.5";
+                Session["MajorVersion"] = 5;
+                Session["MinorVersion"] = 5;
+                Session["Frames"] = true;
+                Session["Tables"] = true;
+                Session["Cookies"] = true;
+                Session["BackgroundSounds"] = true;
+                Session["VBScript"] = true;
+                Session["ActiveXControls"] = true;
+                Session["JavaScript"] = true;
+                Session["JavaApplets"] = true;
+                //Session["Win16"] = false;
+                Session["Beta"] = false;
+                //Session["AK"] = false;
+                //Session["SK"] = false;
+                //Session["AOL"] = false;
+                Session["Crawler"] = false;
+                Session["CDF"] = true;
+                LogMessage($@"Warning: MSWC.BrowserType: ""Unknown""; Assuming Internet Explorer Version {Session["Version"]} for Visitor #{Session["VisitorNumber"]} (ID: {Session["ID"]}]...");
+            }
+            else { 
+                //if ((bool)Application["fDebugMode"] || (bool)Application["fTraceMode"]) {
+                //    LogMessage($@"DEBUG: Session_Start: \tBrowserType Properties:");
+                //    LogMessage($@"DEBUG: Session_Start: \tBrowser:\t{bc.Browser}");
+                //    LogMessage($@"DEBUG: Session_Start: \tVersion:\t{bc.Version}");
+                //    LogMessage($@"DEBUG: Session_Start: \tMajorVer:\t{bc.MajorVer}");
+                //    LogMessage($@"DEBUG: Session_Start: \tMinorVer:\t{bc.MinorVer}");
+                //    LogMessage($@"DEBUG: Session_Start: \tFrames:\t{bc.Frames}");
+                //    LogMessage($@"DEBUG: Session_Start: \tTables:\t{bc.Tables}");
+                //    LogMessage($@"DEBUG: Session_Start: \tCookies:\t{bc.Cookies}");
+                //    LogMessage($@"DEBUG: Session_Start: \tBackgroundSounds:\t{bc.BackgroundSounds}");
+                //    LogMessage($@"DEBUG: Session_Start: \tVBScript:\t{bc.VBScript}");
+                //    LogMessage($@"DEBUG: Session_Start: \tActiveXControls:\t{bc.ActiveXControls}");
+                //    LogMessage($@"DEBUG: Session_Start: \tJavaScript:\t{bc.JavaScript}");
+                //    LogMessage($@"DEBUG: Session_Start: \tJavaApplets:\t{bc.JavaApplets}");
+                //    //LogMessage($@"DEBUG: Session_Start: \tWin16:\t{bc.Win16}");
+                //    LogMessage($@"DEBUG: Session_Start: \tBeta:\t{bc.Beta}");
+                //    //LogMessage($@"DEBUG: Session_Start: \tAK:\t{bc.AK}");
+                //    //LogMessage($@"DEBUG: Session_Start: \tSK:\t{bc.SK}");
+                //    //LogMessage($@"DEBUG: Session_Start: \tAOL:\t{bc.AOL}");
+                //    LogMessage($@"DEBUG: Session_Start: \tCrawler:\t{bc.Crawler}");
+                //    LogMessage($@"DEBUG: Session_Start: \tCDF:\t{bc.CDF}");
+                //}
+                //Session["Browser"] = bc.Browser;
+                //Session["Version"] = bc.Version;
+                //Session["MajorVersion"] = bc.MajorVer;
+                //Session["MinorVersion"] = bc.MinorVer;
+                //Session["Frames"] = bc.Frames.ToString();
+                //Session["Tables"] = bc.Tables.ToString();
+                //Session["Cookies"] = bc.Cookies.ToString();
+                //Session["BackgroundSounds"] = bc.BackgroundSounds.ToString();
+                //Session["VBScript"] = bc.VBScript.ToString();
+                //Session["ActiveXControls"] = bc.ActiveXControls.ToString();
+                //Session["JavaScript"] = bc.JavaScript.ToString();
+                //Session["JavaApplets"] = bc.JavaApplets.ToString();
+                ////Session["Win16"] = bc.Win16.ToString();
+                //Session["Beta"] = bc.Beta.ToString();
+                ////Session["AK"] = bc.AK.ToString();
+                ////Session["SK"] = bc.SK.ToString();
+                ////Session["AOL"] = bc.AOL.ToString();
+                //Session["Crawler"] = bc.Crawler.ToString();
+                //Session["CDF"] = bc.CDF.ToString();
+            }
+            Session["ScreenResolution"] = Request.ServerVariables["HTTP_UA_PIXELS"];
+            if ((bool)Application["fDebugMode"] || (bool)Application["fTraceMode"]) LogMessage($@"DEBUG: Session_Start: Requested page ""{Session["TargetPage"]}""...");
+            Session["VisitorOnFile"] = false;
+
+            HttpCookie cookie = Request.Cookies["E-Mail"];
+
+            //TODO: Remove after testing...
+            if (cookie == null)
+            {
+                cookie = new HttpCookie("E-Mail");
+                cookie.Value = "kfc12@comcast.net";
+                cookie.Expires = DateTime.Now.AddDays(90);
+                Response.Cookies.Add(cookie);
+            }
+
+            if (cookie != null) {
+                Session["E-Mail"] = cookie.Value;
+                LogMessage($@"DEBUG: Session_Start: Retrieved Cookie: ""{Session["E-Mail"]}""");
+                Session["VisitorOnFile"] = true;
+                if (fDebugLogin) LogMessage($@"DEBUG: Session_Start: Retrieved Cookie: ""{Session["E-Mail"]}""");
+                // Record, retrieve information
+                if (fDebugLogin) LogMessage($@"DEBUG: Session_Start: Opening Record Set...");
+
+                ADODB.Command cmdTemp = new ADODB.Command();
+                ADODB.Recordset rsVisitor = new ADODB.Recordset();
+                cmdTemp.CommandText = $"Select * From [Visitors] Where ([E-Mail] Like '{Session["E-Mail"]}')";
+                cmdTemp.CommandType = CommandTypeEnum.adCmdText;
+                cmdTemp.ActiveConnection = adoConn;
+                bool fEmptyRecordSet = true;
+                try {
+                    //rsVisitor.Open(cmdTemp, null, CursorTypeEnum.adOpenKeyset, LockTypeEnum.adLockOptimistic);
+                    rsVisitor.Open($"Select * From [Visitors] Where ([Email] Like '{Session["E-Mail"]}')", adoConn, CursorTypeEnum.adOpenKeyset, LockTypeEnum.adLockOptimistic);
+                    fEmptyRecordSet = (rsVisitor.BOF && rsVisitor.EOF);
+                }
+                catch(Exception ex)
+                {
+                    LogMessage($@"DEBUG: Session_Start: RecordSet Open ({cmdTemp.CommandText}) failed:  {ex.Message}; SQL: {rsVisitor.Source}  (global.asax)");
+                };
+
+                if (!fEmptyRecordSet) {
+                    Session["VisitorID"] = rsVisitor.Fields["ID"].Value;
+                    Session["E-Mail"] = rsVisitor.Fields["Email"].Value;
+                    switch (Session["E-Mail"]) {
+                        case "kclark@sss.sungard.com":
+                        case "kclark12@earthlink.net":
+                        case "kfc12@comcast.net":
+                        case "ken.clark12g@gmail.com":
+                            Session["Owner"] = true;
+                            break;
+                        default:
+                            Session["Owner"] = false;
+                            break;
+                    }
+                    Session["FirstName"] = rsVisitor.Fields["FirstName"].Value;
+                    Session["LastName"] = rsVisitor.Fields["LastName"].Value;
+                    Session["Address"] = rsVisitor.Fields["Address"].Value;
+                    Session["Phone"] = rsVisitor.Fields["Phone"].Value;
+                    Session["Visits"] = rsVisitor.Fields["Visits"].Value;
+                    Session["Music"] = rsVisitor.Fields["Music"].Value;
+                    Session["AutoStart"] = rsVisitor.Fields["AutoStart"].Value;
+                    Session["Detached"] = rsVisitor.Fields["Detached"].Value;
+                    Session["DoLake"] = rsVisitor.Fields["DoLake"].Value;
+                    Session["ButtonColor"] = rsVisitor.Fields["ButtonColor"].Value;
+                    Session["LakeGIF"] = rsVisitor.Fields["lakeGIF"].Value;
+
+                    LogMessage($@"Identified visitor #{Session["VisitorNumber"]} as ""{Session["E-Mail"]}""...");
+
+                    if (fDebugLogin) {
+                        LogMessage($@"DEBUG: Session_Start: VisitorID=""{Session["VisitorID"]}""");
+                        LogMessage($@"DEBUG: Session_Start: E-Mail=""{Session["E-Mail"]}""");
+                        LogMessage($@"DEBUG: Session_Start: FirstName=""{Session["FirstName"]}""");
+                        LogMessage($@"DEBUG: Session_Start: LastName=""{Session["LastName"]}""");
+                        LogMessage($@"DEBUG: Session_Start: Address=""{Session["Address"]}""");
+                        LogMessage($@"DEBUG: Session_Start: Phone=""{Session["Phone"]}""");
+                        LogMessage($@"DEBUG: Session_Start: DateLastVisit=""{Session["DateLastVisit"]}""");
+                        LogMessage($@"DEBUG: Session_Start: Visits=""{Session["Visits"]}""");
+                        LogMessage($@"DEBUG: Session_Start: Music=""{Session["Music"]}""");
+                        LogMessage($@"DEBUG: Session_Start: AutoStart=""{Session["AutoStart"]}""");
+                        LogMessage($@"DEBUG: Session_Start: Detached=""{Session["Detached"]}""");
+                        LogMessage($@"DEBUG: Session_Start: DoLake=""{Session["DoLake"]}""");
+                        LogMessage($@"DEBUG: Session_Start: ButtonColor=""{Session["ButtonColor"]}""");
+                        LogMessage($@"DEBUG: Session_Start: LakeGIF=""{Session["LakeGIF"]}""");
+                    }
+                    // Refresh Cookie
+                    cookie.Value = (string)Session["E-Mail"];
+                    cookie.Expires = DateTime.Now.AddDays(90);
+                    Response.Cookies.Set(cookie);
+
+                    //Don't want to really do this until the user logs in (taken care of elsewhere)
+                    // -- Remember this is being done here for the Classic ASP code --
+                    //rsVisitor.Fields["DateLastVisit"].Value = (DateTime)Session["DateLastVisit"];
+                    //rsVisitor.Fields["Visits"].Value = (int)Session["Visits"] + 1;
+                    //try {
+                    //    rsVisitor.Update();
+                    //}
+                    //catch (Exception ex)
+                    //{
+                    //    LogMessage($@"DEBUG: Session_Start: RecordSet Update ({cmdTemp.CommandText}) failed;  {ex.Message}; SQL: {rsVisitor.Source}  (global.asax)");
+                    //};
+                }
+                // Cleanup...
+                if (fDebugLogin) LogMessage($@"DEBUG: Session_Start: Closing rsVisitor...");
+                rsVisitor.Close();
+                if (fDebugLogin) LogMessage($@"DEBUG: Session_Start: Closed Record Set rsVisitor;");
+            }
+            LogMessage($@"Session_Start: Completed process for visitor #{Session["VisitorNumber"]} (ID: {Session["ID"]}) - {(DateTime.Now - (DateTime)Session["StartTime"]).TotalSeconds:#,##0} Seconds elapsed...");
+            #endregion
         }
         //protected void Session_OnStart()
         //{

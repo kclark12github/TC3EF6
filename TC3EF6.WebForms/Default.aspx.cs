@@ -19,7 +19,7 @@ namespace TC3EF6.WebForms
         {
             //TODO: Find a way to make counter look like the webbot used to...
             //var HitCountBot = "webbot i-image=4 bot=HitCounter i-digits=0 preview=&lt;strong&gt;Hit Counter&lt;/strong&gt; u-custom i-resetvalue=0 startspan --" + "><img SRC=\"_vti_bin/fpcount.exe/?Page=Welcome.asp|Image=4\" ALT=\"Hit Counter\"><!--" + "webbot bot=HitCounter endspan i-checksum=7723"
-            HitCount = (int)Application["HitCount"];
+            HitCount = (int)Application["Visitors"];
             Greeting = "Welcome!<br>";
             if (!string.IsNullOrEmpty(((SiteMaster)Page.Master).User))
             {

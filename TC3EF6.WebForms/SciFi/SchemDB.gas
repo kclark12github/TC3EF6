@@ -1,0 +1,31 @@
+[Data]
+Output=I:\SchemDB.dir\
+RunCmd=%b %dcontents.htm
+RunAfter=1
+ConnectTimout=30
+Retries=2
+InlineImages=1
+FtpLinks=1
+UseFilter=1
+AutoConstrain=1
+FileFlags=2
+UnixNames=0
+[Limits]
+ByteLimit=0
+Bytes=0
+DocLimit=0
+Docs=0
+TimeLimit=0
+Hours=0
+Minutes=0
+LevelLimit=0
+Levels=2
+[Filter]
+0=IIPwww.shipschematics.net
+[Last Grab]
+Year=2000
+Month=5
+Day=26
+Hour=19
+Minute=33
+Second=34

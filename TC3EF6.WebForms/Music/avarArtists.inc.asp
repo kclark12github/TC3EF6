@@ -4,7 +4,7 @@ If IsEmpty(Application(strDFName & "_Lookup_Artists")) Or strPagingMove = "Reque
     Set Music = Server.CreateObject("ADODB.Connection")
     Music.ConnectionTimeout = Session(strDBName & "_ConnectionTimeout")
     Music.CommandTimeout = Session(strDBName & "_CommandTimeout")
-    Music.Open Session("KFC").ConnectionString, Session("KFC_RuntimeUserName"), Session("KFC_RuntimePassword")
+    Music.Open Session("KFC.ConnectionString"), Session("KFC.RuntimeUserName"), Session("KFC.RuntimePassword")
 	Set rsArtists = Music.Execute("SELECT Distinct Artist FROM Music ORDER BY Artist")
 	avarArtists = Null
 	On Error Resume Next

@@ -4,7 +4,7 @@ If IsEmpty(Application(strDFName & "_Lookup_HomePorts")) Or strPagingMove = "Req
     Set USNavyUSNavyShips = Server.CreateObject("ADODB.Connection")
     USNavyShips.ConnectionTimeout = Session("USNavyShips_ConnectionTimeout")
     USNavyShips.CommandTimeout = Session("USNavyShips_CommandTimeout")
-    USNavyShips.Open Session("KFC").ConnectionString, Session("KFC_RuntimeUserName"), Session("KFC_RuntimePassword")
+    USNavyShips.Open Session("KFC.ConnectionString"), Session("KFC.RuntimeUserName"), Session("KFC.RuntimePassword")
 	Set rsHomePorts = USNavyShips.Execute("SELECT ID, CityName FROM HomePort ORDER BY CityName")
 	avarHomePorts = Null
 	On Error Resume Next

@@ -4,7 +4,7 @@ Dim avarTypes
     Set Music = Server.CreateObject("ADODB.Connection")
     Music.ConnectionTimeout = Session(strDBName & "_ConnectionTimeout")
     Music.CommandTimeout = Session(strDBName & "_CommandTimeout")
-    Music.Open Session("KFC").ConnectionString, Session("KFC_RuntimeUserName"), Session("KFC_RuntimePassword")
+    Music.Open Session("KFC.ConnectionString"), Session("KFC.RuntimeUserName"), Session("KFC.RuntimePassword")
 	Set rsTypes = Music.Execute("SELECT Distinct Type FROM Music ORDER BY Type")
 	avarTypes = Null
 	On Error Resume Next

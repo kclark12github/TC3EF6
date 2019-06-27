@@ -4,7 +4,7 @@ If IsEmpty(Application(strDFName & "_Lookup_Seriess")) Or strPagingMove = "Reque
     Set VideoTapes = Server.CreateObject("ADODB.Connection")
     VideoTapes.ConnectionTimeout = Session(strDBName & "_ConnectionTimeout")
     VideoTapes.CommandTimeout = Session(strDBName & "_CommandTimeout")
-    VideoTapes.Open Session("KFC").ConnectionString, Session("KFC_RuntimeUserName"), Session("KFC_RuntimePassword")
+    VideoTapes.Open Session("KFC.ConnectionString"), Session("KFC.RuntimeUserName"), Session("KFC.RuntimePassword")
 	Set rsSeriess = VideoTapes.Execute("SELECT Distinct Series FROM [Episodes] ORDER BY Series")
 	avarSeriess = Null
 	On Error Resume Next

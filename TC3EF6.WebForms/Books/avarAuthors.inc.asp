@@ -4,7 +4,7 @@ If IsEmpty(Application(strDFName & "_Lookup_Authors")) Or strPagingMove = "Reque
 	Set Books = Server.CreateObject("ADODB.Connection")
 	Books.ConnectionTimeout = Session(strDBName & "_ConnectionTimeout")
 	Books.CommandTimeout = Session(strDBName & "_CommandTimeout")
-    Books.Open Session("KFC").ConnectionString, Session("KFC_RuntimeUserName"), Session("KFC_RuntimePassword")
+    Books.Open Application("KFC.ConnectionString"), Session("KFC.RuntimeUserName"), Session("KFC.RuntimePassword")
 	Set rsAuthors = Books.Execute("SELECT DISTINCT Author FROM [Books] ORDER BY author")
 	avarAuthors = Null
 	On Error Resume Next

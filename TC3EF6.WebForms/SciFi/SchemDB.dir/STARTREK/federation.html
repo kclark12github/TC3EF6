@@ -1,0 +1,133 @@
+<HTML>
+<HEAD>
+<TITLE>Star Trek Database - U.F.P. and Starfleet</TITLE>
+</HEAD>
+<BODY BACKGROUND = "images\background.gif" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#663366" ALINK="#FF0000" VLINK="#333366">
+
+<MAP NAME="classes">
+      <AREA SHAPE="RECT" COORDS="0,32,211,53" HREF="cgi-bin\federation.cgi.html" ALT="Carriers" onMouseOver="self.status='Carriers'; return true">
+      <AREA SHAPE="RECT" COORDS="0,54,211,90" HREF="cgi-bin\federation.cgi2.html" ALT="Corvettes" onMouseOver="self.status='Corvettes'; return true">
+      <AREA SHAPE="RECT" COORDS="0,91,211,112" HREF="cgi-bin\federation.cgi3.html" ALT="Cruisers" onMouseOver="self.status='Cruisers'; return true">
+      <AREA SHAPE="RECT" COORDS="0,113,211,151" HREF="cgi-bin\federation.cgi4.html" ALT="Destroyers" onMouseOver="self.status='Destroyers'; return true">
+      <AREA SHAPE="RECT" COORDS="0,152,211,173" HREF="cgi-bin\federation.cgi5.html" ALT="Frigates" onMouseOver="self.status='Frigates'; return true">
+      <AREA SHAPE="RECT" COORDS="0,174,211,221" HREF="cgi-bin\federation.cgi6.html" ALT="Scouts" onMouseOver="self.status='Scouts'; return true">
+
+      <AREA SHAPE="RECT" COORDS="212,32,419,53" HREF="cgi-bin\federation.cgi7.html" ALT="Battleships" onMouseOver="self.status='Battleships'; return true">
+      <AREA SHAPE="RECT" COORDS="212,54,419,90" HREF="cgi-bin\federation.cgi8.html" ALT="Dreadnaughts" onMouseOver="self.status='Dreadnaughts'; return true">
+      <AREA SHAPE="RECT" COORDS="212,91,419,112" HREF="cgi-bin\federation.cgi9.html" ALT="Perimeter Action Vessels" onMouseOver="self.status='Perimeter Action Vessels'; return true">
+
+      <AREA SHAPE="RECT" COORDS="212,152,419,173" HREF="cgi-bin\federation.cgi10.html" ALT="Research/Survey Vessels" onMouseOver="self.status='Research/Survey Vessels'; return true">
+      <AREA SHAPE="RECT" COORDS="212,174,419,221" HREF="cgi-bin\federation.cgi11.html" ALT="Galaxy Exploration Vessels" onMouseOver="self.status='Galaxy Exploration Vessels'; return true">
+
+      <AREA SHAPE="RECT" COORDS="0,237,211,258" HREF="cgi-bin\federation.cgi12.html" ALT="Hospital Ships" onMouseOver="self.status='Hospital Ships'; return true">
+      <AREA SHAPE="RECT" COORDS="0,259,211,293" HREF="cgi-bin\federation.cgi13.html" ALT="Support Vessels" onMouseOver="self.status='Support Vessels'; return true">
+      <AREA SHAPE="RECT" COORDS="0,294,211,319" HREF="cgi-bin\federation.cgi14.html" ALT="Docks/Stations" onMouseOver="self.status='Docks/Stations'; return true">
+      <AREA SHAPE="RECT" COORDS="212,237,419,258" HREF="cgi-bin\federation.cgi15.html" ALT="Transports" onMouseOver="self.status='Transports'; return true">
+      <AREA SHAPE="RECT" COORDS="212,259,419,293" HREF="cgi-bin\federation.cgi16.html" ALT="Miscellaneous" onMouseOver="self.status='Miscellaneous'; return true">
+      <AREA SHAPE="RECT" COORDS="212,294,419,319" HREF="cgi-bin\federation.cgi17.html" ALT="Small Craft" onMouseOver="self.status='Small Craft'; return true">
+</MAP>
+
+<MAP NAME="groups">
+      <AREA SHAPE="RECT" COORDS="0,26,419,56" HREF="cgi-bin\federation.cgi18.html" ALT="Show All Vessels" onMouseOver="self.status='Show All Vessels'; return true">
+      <AREA SHAPE="RECT" COORDS="0,57,419,85" HREF="cgi-bin\federation.cgi19.html" ALT="Show 'Star Trek: First Contact' and 'DS9' Vessels" onMouseOver="self.status='Show Star Trek: First Contact and DS9 Vessels'; return true">
+      <AREA SHAPE="RECT" COORDS="0,86,419,113" HREF="cgi-bin\federation.cgi20.html" ALT="Show Only Official Designs" onMouseOver="self.status='Show Only Official Designs'; return true">
+      <AREA SHAPE="RECT" COORDS="0,114,419,168" HREF="cgi-bin\federation.cgi21.html" ALT="N'Redomm Starships" onMouseOver="self.status='N-Redomm Starships'; return true">
+</MAP>
+
+<MAP NAME="timeline">
+      <AREA SHAPE="RECT" COORDS="0,0,74,89" HREF="cgi-bin\federation.cgi22.html" ALT="Pre-TOS Era Ships" onMouseOver="self.status='Pre-TOS Era Ships'; return true">
+      <AREA SHAPE="RECT" COORDS="75,0,184,89" HREF="cgi-bin\federation.cgi23.html" ALT="TOS Era Ships" onMouseOver="self.status='TOS Era Ships'; return true">
+      <AREA SHAPE="RECT" COORDS="185,0,304,89" HREF="cgi-bin\federation.cgi24.html" ALT="Movie Era Ships" onMouseOver="self.status='Movie Era Ships'; return true">
+      <AREA SHAPE="RECT" COORDS="305,0,379,89" HREF="cgi-bin\federation.cgi25.html" ALT="TNG Era Ships" onMouseOver="self.status='TNG Era Ships'; return true">
+</MAP>
+
+<CENTER>
+<IMG SRC="images\federation_logo.gif">
+<H1>U.F.P. and Starfleet</H1>
+<P><HR><P>
+<TABLE BORDER=0 CELLPADDING=0 CELLSPACING=0>
+<TR>
+<TD ALIGN=CENTER><IMG SRC="images\classes.gif" BORDER=0 WIDTH=420 HEIGHT=350 USEMAP="#classes"></TD>
+</TR>
+<TR>
+<TD ALIGN=CENTER><IMG SRC="images\groups.gif" BORDER=0 WIDTH=420 HEIGHT=190 USEMAP="#groups"></TD>
+</TR>
+</TABLE>
+<IMG SRC="images\timeline.gif" BORDER=0 WIDTH=380 HEIGHT=90 USEMAP="#timeline">
+<P><HR WIDTH=30%><P>
+<B>Enter the name or part of a name of a ship to search for:</B><BR>
+<FORM METHOD=POST ACTION="cgi-bin/federation.cgi?Search">
+<INPUT TYPE="TEXT" NAME="theName" SIZE=30>
+<INPUT TYPE="SUBMIT" VALUE="Search">
+</FORM>
+<P>
+Problems finding what you want? <A HREF="faq.html#search">Check the F.A.Q.</A> for tips.
+<P><HR><P>
+</CENTER>
+<P>
+<H3 ALIGN=CENTER>Any questions or comments <I>NOT</I> covered in the <A HREF="faq.html">FAQ</A>?</H3>
+<H1 ALIGN=CENTER><A HREF="mailto:jstevens@patriot.net">Mail Me</A></H1>
+<P><HR><P>
+<H4 ALIGN=CENTER>
+Superclasses - Fleet Workhorses<BR>
+| <A HREF="cgi-bin\federation.cgi.html">Carriers</A> |
+<A HREF="cgi-bin\federation.cgi2.html">Corvettes</A> |
+<A HREF="cgi-bin\federation.cgi3.html">Cruisers</A> |
+<A HREF="cgi-bin\federation.cgi4.html">Destroyers</A> |
+<A HREF="cgi-bin\federation.cgi5.html">Frigates</A> |
+<A HREF="cgi-bin\federation.cgi6.html">Scouts</A> |<BR>
+<BR>
+Superclasses - Ships of War<BR>
+| <A HREF="cgi-bin\federation.cgi7.html">Battleships</A> |
+<A HREF="cgi-bin\federation.cgi8.html">Dreadnaughts</A> |
+<A HREF="cgi-bin\federation.cgi9.html">Perimeter Action Vessels</A> |<BR>
+<BR>
+Superclasses - Exploration Vessels<BR>
+| <A HREF="cgi-bin\federation.cgi10.html">Research/Survey Vessels</A> |
+<A HREF="cgi-bin\federation.cgi11.html">Galaxy Exploration Vessels</A> |<BR>
+<BR>
+Superclasses - Support, Supply, and Miscellany<BR>
+| <A HREF="cgi-bin\federation.cgi12.html">Hospital Ships</A> |
+<A HREF="cgi-bin\federation.cgi13.html">Support Vessels</A> |
+<A HREF="cgi-bin\federation.cgi15.html">Transports</A> |<BR>
+| <A HREF="cgi-bin\federation.cgi16.html">Miscellaneous</A> |
+<A HREF="cgi-bin\federation.cgi14.html">Docks/Stations</A> |
+<A HREF="cgi-bin\federation.cgi17.html">Small Craft</A> |<BR>
+<BR>
+Starship Groupings<BR>
+| <A HREF="cgi-bin\federation.cgi18.html">Show All Vessels</A> |
+<A HREF="cgi-bin\federation.cgi19.html">Show "First Contact" & "DS9" Vessels</A> |<BR>
+| <A HREF="cgi-bin\federation.cgi20.html">Show Official Designs</A> |
+<A HREF="cgi-bin\federation.cgi21.html">Show N'Redomm Starships</A> |<BR>
+<BR>
+Timeline Groupings<BR>
+| <A HREF="cgi-bin\federation.cgi22.html">Pre-TOS Era Ships</A> |
+<A HREF="cgi-bin\federation.cgi23.html">TOS Era Ships</A> |<BR>
+| <A HREF="cgi-bin\federation.cgi24.html">Movie Era Ships</A> |
+<A HREF="cgi-bin\federation.cgi25.html">TNG Era Ships</A> |<BR>
+<BR>
+<A HREF="cgi-bin\bibliography.cgi.html">General Star Trek
+Bibliography</A><BR>
+<A HREF="faq.html">Read the Star Trek F.A.Q.</A><BR>
+<A HREF="chronology.html">Star Trek Chronology</A><BR>
+<A HREF="links.html">Associated Star Trek Links</A><BR>
+<A HREF="webrings.html">Star Trek WebRings</A>
+</H4>
+<H4 ALIGN=CENTER>
+| U.F.P. & Starfleet |
+<A HREF="klingon.html">Klingon Empire</A> |
+<A HREF="romulan.html">Romulan Star Empire</A> |<BR>
+| <A HREF="cgi-bin\others.cgi.html">Other Races</A> |
+</H4>
+<H4 ALIGN=CENTER>
+| <A HREF="index2.html">Star Trek</A> |
+<A HREF="..\bsg\index.html">Battlestar Galactica</A> |<BR>
+| <A HREF="..\b5\index.html">Babylon Five</A> |
+<A HREF="..\yamato\index.html">Space Cruiser Yamato</A> |<BR>
+</H4>
+<H2 ALIGN=CENTER>
+<A HREF="index2.html">Back to the Star Trek Schematics Homepage</A><BR>
+<A HREF="..\index.html">Back to the Main Schematics Homepage</A><BR>
+</H2>
+</BODY>
+</HTML>

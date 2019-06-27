@@ -2,14 +2,14 @@
 <%
 strDBName = "Software"
 strDFName = "rsPCGames"
-strTableName = "PC"
+strTableName = "PCGames"
 strBasePageName = "PCGames"
 strPageTitle = "Software Library; PC Games"
-SQLstatement = "SELECT * FROM [Software] WHERE (Platform like 'Win%' or Platform like 'MS-DOS') and Type='Games' order by Title, Version"
+SQLstatement = "Select * From [Software] Where (Platform Like 'Win%' Or Platform Like 'MS-DOS') And [Type] Like 'Game%' Order By Title, Version;"
 strHomeGIF = ""
 strFooterURL = ""
 strFooterTitle = ""
-Theme = "Greenside"
+Theme = "Blueside"
 blnShowUserName = True
 fDebugMode = False
 fForceReadRecordSet = False

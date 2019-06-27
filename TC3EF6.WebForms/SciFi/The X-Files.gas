@@ -1,0 +1,36 @@
+[Data]
+Output=F:\The X-Files.dir\
+RunCmd=%b %dcontents.htm
+RunAfter=1
+ConnectTimout=30
+Retries=2
+InlineImages=1
+FtpLinks=1
+UseFilter=1
+AutoConstrain=1
+FileFlags=2
+UnixNames=1
+
+[Filter]
+0=IIPWWW.THEX-FILES.COM
+1=EIP.AU
+2=EIP.MOV
+
+[Limits]
+ByteLimit=0
+Bytes=0
+DocLimit=0
+Docs=0
+TimeLimit=0
+Hours=0
+Minutes=0
+LevelLimit=0
+Levels=2
+
+[Last Grab]
+Year=1997
+Month=6
+Day=1
+Hour=20
+Minute=1
+Second=32

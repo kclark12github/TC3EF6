@@ -1,0 +1,114 @@
+  BODY { 
+		margin-left: 50px;
+		font: 9pt/11pt "Arial";
+		color: black;
+		text-align: left;
+		}
+
+  P { 
+		margin-left: 0px;
+		font: 9pt/11pt "Arial";
+		color: black;
+		background: transparent;
+		}
+
+  H1 {
+  		margin-left: 0px;
+		font: 18pt/18pt "Arial";
+		color: black;
+		font-weight: bold;
+		background: transparent;
+		}
+
+  H2 {
+  		margin-left: 0px;
+		font: 14pt/14pt "Arial";
+		color: black;
+		font-weight: bold;
+		background: transparent;
+		}
+
+  H3 {
+  		margin-left: 0px;
+		font: 12pt/12pt "Arial";
+		color: black;
+		font-weight: bold;
+		background: transparent;
+		}
+
+  H4 {
+  		margin-left: 0px;
+		font: 9pt/10pt "Arial";
+		color: black;
+		font-weight: bold;
+		background: transparent;
+		}
+
+  H5 {
+  		margin-left: 0px;
+		font: 8pt/10pt "Arial";
+		color: black;
+		font-weight: bold;
+		background: transparent;
+		}
+
+		
+  TH {
+		font: 18pt "Arial";
+		color: white;
+		font-weight: bold;
+		}
+
+  TD {	
+    	font: 10pt/24pt "Arial";
+		color: Black;
+		}
+
+  LI { 
+		display: list-item; 
+		font: 12pt/12pt "Times New Roman";
+		margin-left: 0px; 
+		}		
+
+DL { 
+		display: list-item; 
+		font: 9pt/10pt "Times New Roman";
+		}		
+
+  DT {
+		text-align: left;
+		margin-left: 0px;
+		font: 9pt/10pt "Arial";
+		font-weight: bold;
+		color: black
+		background: transparent;
+		}
+
+  DD {
+		margin-left: 0px;
+		font: 9pt/10pt "Arial";
+		text-align: left;
+		color: black;
+		}
+ 
+
+  B, STRONG { 
+		font-weight: bold
+		} 
+  I, CITE, EM, VAR, ADDRESS, BLOCKQUOTE { 
+		font-style: italic 
+		}
+  PRE, TT, CODE, KBD, SAMP { 
+		font-family: monospace 
+		}
+
+  A:LINK {
+		color: red; 
+		text-decoration: none
+		}
+
+  A:VISITED {
+		color: chocolate;
+		text-decoration: none;
+		}
+

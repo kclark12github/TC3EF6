@@ -4,7 +4,7 @@ If IsEmpty(Application(strDFName & "_Lookup_Classifications")) Or strPagingMove 
     Set USNavyUSNavyShips = Server.CreateObject("ADODB.Connection")
     USNavyShips.ConnectionTimeout = Session("USNavyShips_ConnectionTimeout")
     USNavyShips.CommandTimeout = Session("USNavyShips_CommandTimeout")
-    USNavyShips.Open Session("KFC").ConnectionString, Session("KFC_RuntimeUserName"), Session("KFC_RuntimePassword")
+    USNavyShips.Open Session("KFC.ConnectionString"), Session("KFC.RuntimeUserName"), Session("KFC.RuntimePassword")
 	Set rsClassifications = USNavyShips.Execute("SELECT ID, Type & " - " & Description FROM Classification ORDER BY Type")
 	avarClassifications = Null
 	On Error Resume Next

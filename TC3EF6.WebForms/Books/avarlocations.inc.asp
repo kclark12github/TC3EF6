@@ -4,7 +4,7 @@ If IsEmpty(Application(strDFName & "_Lookup_Locations")) Or strPagingMove = "Req
 	Set Books = Server.CreateObject("ADODB.Connection")
 	Books.ConnectionTimeout = Session(strDBName & "_ConnectionTimeout")
 	Books.CommandTimeout = Session(strDBName & "_CommandTimeout")
-    Books.Open Session("KFC").ConnectionString, Session("KFC_RuntimeUserName"), Session("KFC_RuntimePassword")
+    Books.Open Session("KFC.ConnectionString"), Session("KFC.RuntimeUserName"), Session("KFC.RuntimePassword")
 	Set rsLocations = Books.Execute("SELECT DISTINCT Location FROM [Books] ORDER BY Location")
 	avarLocations = Null
 	On Error Resume Next

@@ -62,6 +62,7 @@
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Ken's Content&nbsp;<span class="caret"></span></a>
                             <ul class="dropdown-menu">
+	                            <li><a runat="server" href="~/Default.asp">Classic ASP Site</a></li>
 	                            <li><a runat="server" href="~/WebTools.htm">Web Tools/Links...</a></li>
 	                            <li><a runat="server" href="~/SoftwareIDX.asp">Software Development Tools/Links...</a></li>
 	                            <li><a runat="server" href="~/Software/Microsoft.asp">Microsoft</a></li>
@@ -80,6 +81,7 @@
                             <ul class="dropdown-menu">
                                 <li><a runat="server" href="~/TestBed.aspx">LinqTest</a></li>
                                 <li><a runat="server" href="~/Books/BooksList.aspx">Books</a></li>
+                                <li><a runat="server" href="~/Books/BooksList.asp">Books (Classic)</a></li>
                                 <li><a runat="server" href="Collectables">Collectables</a></li>
                                 <li class="dropdown-submenu">
                                     <a class="test" tabindex="-1" href="#">Hobby&nbsp;<span class="caret"></span></a>

@@ -1,0 +1,95 @@
+  BODY { 
+		margin-left: 30px;
+		margin-right: 30px;
+		font: 10pt/13pt "Arial";
+		text-align: center;
+		color: Black;
+		background: transparent;
+		}
+
+  P { 
+		color: Black;
+		text-indent: 0in; 
+		font: 10pt/13pt "Arial";
+		background: transparent;
+		}
+		
+  H1 {
+		font: 28pt/20pt "Courier New";
+		color: CornflowerBlue;
+		font-weight: bold;	
+		background: transparent ;
+
+		}
+
+  H2 {
+		font: 18pt/18pt "Courier New";
+		color: CornFlowerBlue;
+		font-weight: bold
+		background: transparent ;
+		}
+
+  H3 {
+		font: 14pt/14pt "Courier New";
+		color: CornFlowerBlue;
+		font-weight: bold
+		background: transparent ;
+		}
+
+  H4 {
+		font: 10pt/10pt "Arial";
+		color: CornFlowerBlue;
+		font-weight: bold;
+		background: transparent ;
+		}
+
+  H5 {
+		font: 8pt/9pt "Arial";
+		color: Black;
+		background: transparent;
+		}
+
+  LI { 
+		display: list-item; 
+		margin-left: 100px ;
+		font: 10pt/13pt "Arial";
+		}		
+
+DL { 
+		display: list-item;
+		}		
+
+  DT {
+		text-align: center;
+		font: 12pt/13pt "Arial";
+		font-weight: bold;
+		color: CornFlowerBlue;
+		}
+
+  DD {
+		text-align: center;
+		font: 10pt/13pt "Arial";
+		color: Black;
+		}
+
+
+
+  B, STRONG { 
+		font-weight: bold
+		} 
+  I, CITE, EM, VAR, ADDRESS, BLOCKQUOTE { 
+		font-style: italic 
+		}
+  PRE, TT, CODE, KBD, SAMP { 
+		font-family: monospace 
+		}
+
+ A:link {
+		color: Blue; 
+		text-decoration: none
+		}
+
+A:visited { 
+		color: BlueViolet; 
+		text-decoration: none
+		}   

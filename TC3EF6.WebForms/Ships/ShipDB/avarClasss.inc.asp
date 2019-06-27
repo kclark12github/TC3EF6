@@ -4,7 +4,7 @@ If IsEmpty(Application(strDFName & "_Lookup_Classs")) Or strPagingMove = "Requer
     Set USNavyShips = Server.CreateObject("ADODB.Connection")
     USNavyShips.ConnectionTimeout = Session("USNavyShips_ConnectionTimeout")
     USNavyShips.CommandTimeout = Session("USNavyShips_CommandTimeout")
-    USNavyShips.Open Session("KFC").ConnectionString, Session("KFC_RuntimeUserName"), Session("KFC_RuntimePassword")
+    USNavyShips.Open Session("KFC.ConnectionString"), Session("KFC.RuntimeUserName"), Session("KFC.RuntimePassword")
 	Set rsClasss = USNavyShips.Execute("SELECT ID, cName FROM ClassView")
 	avarClasss = Null
 	On Error Resume Next

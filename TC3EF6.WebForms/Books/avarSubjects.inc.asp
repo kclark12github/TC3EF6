@@ -4,7 +4,7 @@ If IsEmpty(Application(strDFName & "_Lookup_Subjects")) Or strPagingMove = "Requ
 	Set Books = Server.CreateObject("ADODB.Connection")
 	Books.ConnectionTimeout = Session(strDBName & "_ConnectionTimeout")
 	Books.CommandTimeout = Session(strDBName & "_CommandTimeout")
-    Books.Open Session("KFC").ConnectionString, Session("KFC_RuntimeUserName"), Session("KFC_RuntimePassword")
+    Books.Open Session("KFC.ConnectionString"), Session("KFC.RuntimeUserName"), Session("KFC.RuntimePassword")
 	Set rsSubjects = Books.Execute("SELECT DISTINCT Subject FROM [Books] ORDER BY Subject")
 	avarSubjects = Null
 	On Error Resume Next
