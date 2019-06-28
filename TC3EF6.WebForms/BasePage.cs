@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -101,12 +102,21 @@ namespace TC3EF6.WebForms
                 context.LogMessage(Milestone, Message);
             }
         }
-        public virtual DateTime PageLastModified
+        private DateTime? PageLastModified
         {
             get
             {
-                return new System.IO.FileInfo(Server.MapPath($"{Request.Url.AbsolutePath}.aspx")).LastWriteTime;
+                string path = Server.MapPath(Request.Url.AbsolutePath);
+                if (!File.Exists(path)) path = $"{path}.aspx";
+                if (!File.Exists(path)) return null;
+                return new System.IO.FileInfo(path).LastWriteTime;
             }
+        }
+        protected virtual string GetPageLastModified()
+        {
+            DateTime? plm = this.PageLastModified;
+            if (plm == null) return $"Cannot determine Last Modified Date for {Server.MapPath(Request.Url.AbsolutePath)}";
+            return $"{plm:dddd MMMM d, yyyy @ hh:mm tt}";
         }
         #region DataFunctions (ASP)
         //-------------------------------------------------------------------------------

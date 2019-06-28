@@ -28,26 +28,27 @@
         </table>
         <hr>
         <div style="padding: 10px;background-color: #FFFFFF;color:#000000;font-family:Arial">
-            <p>Thanks for stopping by... You can find everything you need here to create
-            great web sites! On the left here you'll find links to all the
-            areas of my site. So relax, browse around, listen to some tunes,
-            have a little wine, a little cheese...</p>
+            <p>Thanks for stopping by... You can find everything you need here to create great web sites! On the left here 
+            you'll find links to all the areas of my site. So relax, browse around, listen to some tunes, have a little wine, 
+            a little cheese...</p>
 
             <p>Feel free to
-            steal whatever you please... that's how folks learn... To look
-            behind the scenes, simply <i>right-mouse-click</i> on the page
-            you'd like to see, and select <b><u>V</u>iew
-            Source</b> from the pop-up menu... that should pull up the
-            ASCII HTML representing the page in your NotePad... or click on
-            the lake image above to see how that is done... it's really not
-            that hard...</p>
+            steal whatever you please... that's how folks learn... To look behind the scenes, simply <i>right-mouse-click</i> on 
+            the page you'd like to see, and select <b><u>V</u>iew Source</b> from the pop-up menu... that should pull up the
+            ASCII HTML representing the page in your NotePad... or click on the lake image above to see how that is done... it's 
+            really not that hard...</p>
 
             <p>Have Fun, and stop back often...!</p>
 <% 
     if (Session["Visitor"] == null)
         Response.Write(@"<p>P.S. Register, and you can customize this site for your browsing pleasure...</p>");
     else
-        Response.Write(@"<p><a href=""~/Admin/"" style=""padding: 4px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-color: #000000; border-width: thin; color: #000000; background-color: #F0F0F0"">Preferences</a></p>");
+    {
+        //Response.Write(@"<p><a href="""" style=""padding: 4px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-color: #000000; border-width: thin; color: #000000; background-color: #F0F0F0"">Preferences</a></p>");
+        Response.Write(@"<button type=""button"" class=""btn btn-secondary btn-sm"" data-toggle=""modal"" onclick=""top.location.href='/Admin/Admin.aspx'"" id=""preferences-button"">");
+        Response.Write(@"    <span class=""fas fa-plus-square mr-1""></span><span>Preferences</span>");
+        Response.Write(@"</button>");
+    }
 %>
         </div>
     </div>

@@ -174,6 +174,5 @@
             });
         });
     </script>
-
 </asp:Content>
-<!-- #include virtual="/Includes/Footer.inc.aspx" -->
+<!-- #include virtual="/Includes/BasicFooter.inc.aspx" -->

@@ -9,9 +9,10 @@ If Application("fDebugMode") or Application("fTraceMode") Then
 	Set LogFile = Nothing
 End If
 
-Set LogFile = Session("FileSystem").OpenTextFile(Application("WelcomeCountFilename"), ForWriting, TRUE)
-LogFile.WriteLine("FPCountFile " & String(11 - Len(Application("Visitors")), "0") & Application("Visitors") - 1)
-LogFile.Close
+'Supported the now defunct FPHitCount webbot
+'Set LogFile = Session("FileSystem").OpenTextFile(Application("WelcomeCountFilename"), ForWriting, TRUE)
+'LogFile.WriteLine("FPCountFile " & String(11 - Len(Application("Visitors")), "0") & Application("Visitors") - 1)
+'LogFile.Close
 
 Set LogFile = Session("FileSystem").OpenTextFile(Application("VisitorCountFilename"), ForWriting, TRUE)
 LogFile.WriteLine(Application("Visitors"))
@@ -36,7 +37,6 @@ Application.UnLock
 <script language="VBSCRIPT">
 <!--
 Sub GoToAdmin()
-	Alert("Navigating to Admin page...")
 	top.location.href = "<%=Application("AdminPage")%>"
 End Sub
     -->
@@ -72,20 +72,20 @@ else
 }
 %> </i></font></h1>
 						<p align="center"><font color="#FFFFFF" face="Arial"><strong>You are Visitor<br>
-						</strong></font> <%= "<!--" + HitCountBot + "-->"%>  </p>
+						 <%= String(Application("Visitors")).replace(/(.)(?=(\d{3})+$)/g, '$1,') %> </strong></font> </p>
 <%
 	if (Owner)
 	{
 		if (Application("ActiveSessions") == 1)
 		{
 %>
-						<font size="1" color="#FFFFFF"><b><i><%= Session("FirstName")%>, this is the only session connected to your site...</font>
+						<font size="2" color="#FFFFFF" face="Arial"><b><i><%= Session("FirstName")%>, this is the only session connected to your site...</font>
 <%
 		}
 		else
 		{
 %>
-						<font size="1" color="#FFFFFF"><b><i><%= Session("FirstName")%>, there are <%=Application("ActiveSessions")%> sessions connected to your site...</font>
+						<font size="2" color="#FFFFFF" face="Arial"><b><i><%= Session("FirstName")%>, there are <%=Application("ActiveSessions")%> sessions connected to your site...</font>
 <%
 		}
 	}

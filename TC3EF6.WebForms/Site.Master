@@ -55,12 +55,13 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a runat="server" href="~/" class="navbar-brand"><%: Application["AppName"] %></a>
+                    <a runat="server" href="~/Default.aspx" class="navbar-brand"><%: Application["AppName"] %></a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Ken's Content&nbsp;<span class="caret"></span></a>
+                            <a runat="server" href="~/Default.asp">Classic ASP Site</a>
+<%--                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Ken's Content&nbsp;<span class="caret"></span></a>
                             <ul class="dropdown-menu">
 	                            <li><a runat="server" href="~/Default.asp">Classic ASP Site</a></li>
 	                            <li><a runat="server" href="~/WebTools.htm">Web Tools/Links...</a></li>
@@ -75,7 +76,7 @@
                                 <li><a runat="server" href="~/NASA/Welcome.htm">NASA Index</a></li>
                                 <li><a runat="server" href="~/Ships/Ships.aspx">Ship Image Archive</a></li>
                                 <li><a runat="server" href="~/SciFi/">SciFi Image Archive</a></li>
-                            </ul>
+                            </ul>--%>
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Database&nbsp;<span class="caret"></span></a>
                             <ul class="dropdown-menu">
@@ -151,7 +152,7 @@
         <footer style="margin-left:10px">
             <asp:ContentPlaceHolder ID="FooterContent" runat="server">
             </asp:ContentPlaceHolder>
-            <p>&copy; <%: DateTime.Now.Year %> - <%: Application["AppName"] %></p>
+<%--            <p>&copy; <%: DateTime.Now.Year %> - <%: Application["AppName"] %></p>--%>
         </footer>
     </form>
     <script>

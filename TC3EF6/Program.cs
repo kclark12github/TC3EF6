@@ -31,7 +31,7 @@ namespace TC3EF6
             //TestFind();
             //TestFindWithImages();
             //TestDynamicGet();
-            TestAppState();
+            //TestAppState();
 
             if (Debugger.IsAttached)
             {

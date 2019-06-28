@@ -38,6 +38,8 @@
             <asp:Label runat="server" AssociatedControlID="Phone" CssClass="col-md-2 control-label">Phone</asp:Label>
             <div class="col-md-10">
                 <asp:TextBox runat="server" ID="Phone" CssClass="form-control" TextMode="Phone" />
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="Phone"
+                    CssClass="text-danger" ErrorMessage="The phone field is required." />
             </div>
         </div>
         <div class="form-group">

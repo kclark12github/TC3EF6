@@ -6,16 +6,37 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
+using SendGrid;
+using System.Configuration;
+using System.Diagnostics;
+using System.Net;
 using TC3EF6.WebForms.Models;
+using SendGrid.Helpers.Mail;
 
 namespace TC3EF6.WebForms
 {
     public class EmailService : IIdentityMessageService
     {
-        public Task SendAsync(IdentityMessage message)
+        public async Task SendAsync(IdentityMessage message)
         {
             // Plug in your email service here to send an email.
-            return Task.FromResult(0);
+            //return Task.FromResult(0);
+            await configSendGridasync(message);
+        }
+        // Use NuGet to install SendGrid (Basic C# client lib) 
+        private async Task configSendGridasync(IdentityMessage message)
+        {
+            //SendGrid.TC3EF6.WebForms.APIKey:
+            //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
+            var apiKey = Environment.GetEnvironmentVariable("SendGrid.TC3EF6.WebForms.APIKey");
+            var client = new SendGridClient(apiKey);
+            var from = new EmailAddress("kfc12@comcast.net", "TC3EF6.WebForms WebMaster");
+            var subject = message.Subject;
+            var to = new EmailAddress(message.Destination, "TC3EF6.WebForms Registration Confirmation");
+            var plainTextContent = message.Body;
+            var htmlContent = message.Body;
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
+            var response = await client.SendEmailAsync(msg);
         }
     }
 
@@ -27,7 +48,6 @@ namespace TC3EF6.WebForms
             return Task.FromResult(0);
         }
     }
-
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
     public class ApplicationUserManager : UserManager<ApplicationUser>
     {
@@ -87,7 +107,8 @@ namespace TC3EF6.WebForms
     public class ApplicationSignInManager : SignInManager<ApplicationUser, string>
     {
         public ApplicationSignInManager(ApplicationUserManager userManager, IAuthenticationManager authenticationManager) :
-            base(userManager, authenticationManager) { }
+            base(userManager, authenticationManager)
+        { }
 
         public override Task<ClaimsIdentity> CreateUserIdentityAsync(ApplicationUser user)
         {

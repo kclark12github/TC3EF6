@@ -1,6 +1,6 @@
 ﻿<asp:Content ID="PageFooter" ContentPlaceHolderID="FooterContent" runat="server">
     <div style="font-family: Arial; color: #000000; background-color: #FFFFFF">
-        <p><i>If you experience any problems with this page, please contact: <b>WebMaster:&nbsp;<a href="mailto:<%= Application["WebMasterEmail"] %>"><%= Application["WebMaster"] %></a></b></i>
+        <p><i>If you experience any problems with this page, please contact: <a href="mailto:<%= Application["WebMasterEmail"] %>"><b>WebMaster</b></a></i>
         </p>
         <div style="text-align: center;">
             <table border="0" style="width:100%">
@@ -15,6 +15,7 @@
                 </tr>
             </table>
         </div>
-        <p style="text-align: center;padding: 10px;"><i>-- Page Last modified <b><%= PageLastModified.ToString("dddd MMMM d, yyyy @ hh:mm tt")%></b> --</i></p>
+        <p style="text-align: center;padding: 10px;"><i>-- Page Last modified <b><%=GetPageLastModified()%></b> --</i></p>
     </div>
+    <p>&copy; <%: DateTime.Now.Year %> - <%: Application["AppName"] %></p>
 </asp:Content>

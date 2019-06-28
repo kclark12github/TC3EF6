@@ -26,7 +26,7 @@ namespace TC3EF6.WebForms
                 if (((SiteMaster)Page.Master).Owner)
                     Greeting = "Welcome Back!<br>Boss Dude...<br>";
                 else
-                    Greeting = $"Welcome Back!<br>{User}<br>";
+                    Greeting = $"Welcome Back!<br>{((SiteMaster)Page.Master).FirstName}<br>";
             }
 
             ExpectingMessage = "We've been expecting you...";

@@ -7,7 +7,7 @@
 <TITLE>Options/Preferences Confirmation Page</TITLE>
 </head>
 <basefont face="Verdana, Arial, Helvetica">
-<body bgcolor="#FFFFFF">
+<body BACKGROUND="/Images/Backgrounds/white2.jpg" bgcolor="#FFFFFF">
 <script language="VBSCRIPT">
 <!--
 Sub GoHome()
@@ -23,7 +23,7 @@ your preferences have been posted, Thanks again...!</i></font></p>
 
 <form action="" method="POST" name="Confirm">
 	<p align="center"><font size="3">
-	<input type="button" name="B1" value="&nbsp;&nbsp;&nbsp;OK&nbsp;&nbsp;&nbsp" onclick="GoHome()"></font></p>
+	<input type="button" name="B1" value="&nbsp;&nbsp;&nbsp;OK&nbsp;&nbsp;&nbsp" onclick="top.location.href='/'"></font></p>
 </form>
 </BODY>
 </HTML>

@@ -183,10 +183,18 @@ Function DoLakeGIF()
 			End If
 	End Select
 	If Session("DoLake") Then
-		Response.Write("<applet codebase=""Java/"" code=""Lake"" width=" & GIFwidth & " height=" & GIFlength & ">")
+        '06/27/19: <applet> is no longer supported in HTML5 and most browsers...
+		'Response.Write("<applet codebase=""/Java"" code=""/Java/Lake.class"" width=" & GIFwidth & " height=" & GIFlength & ">")
+		'Response.Write("	<param name=""image"" value=""" & GIFfile & """>")
+		'Response.Write("	<p>Must use a Java-enabled Browser to display this image.</p>")
+		'Response.Write("</applet> ")
+		Response.Write("<object type=""application/x-java-applet"" width=" & GIFwidth & " height=" & GIFlength & ">")
 		Response.Write("	<param name=""image"" value=""" & GIFfile & """>")
-		Response.Write("	<p>Must use a Java-enabled Browser to display this image.</p>")
-		Response.Write("</applet> ")
+		Response.Write("	<param name=""code"" value=""Lake"">")
+		Response.Write("	<param name=""archive"" value=""Java/Lake.jar"">")
+		Response.Write("    <img src=""" & GIFfile & """ width=" & GIFwidth & " height=" & GIFlength & " border=0>")
+		Response.Write("	<p>Must use a Java-enabled Browser to display the Lake applet.</p>")
+		Response.Write("</object> ")
 	Else
 		Response.Write("<img src=""" & GIFfile & """ width=" & GIFwidth & " height=" & GIFlength & " border=0>")
 	End If

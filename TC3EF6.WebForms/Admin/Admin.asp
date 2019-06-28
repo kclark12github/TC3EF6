@@ -9,12 +9,15 @@ On Error Resume Next
 ValidateUser = False
 fEmptyRecordSet = False
 
+if fDebugMode then Response.Write "DEBUG: Debugging...<br>"
+if fDebugMode then Response.Write "DEBUG: Request.QueryString(""FromForm""): " & Request.QueryString("FromForm") & "<br>"
+
 if (Not IsEmpty(Request.QueryString("FromForm"))) then
 	Session("E-Mail") = Request.Form("EMail")
 			
 	Set cmdTemp = Server.CreateObject("ADODB.Command")
 	Set rsVisitor = Server.CreateObject("ADODB.Recordset")
-	cmdTemp.CommandText = "SELECT * FROM [Visitors] where ([E-Mail] like '" & Session("E-Mail") & "')"
+	cmdTemp.CommandText = "Select * From [Visitors] Where (Email Like '" & Session("E-Mail") & "')"
 	cmdTemp.CommandType = adCmdText
 	Set cmdTemp.ActiveConnection = Session("KFC")
 	rsVisitor.Open cmdTemp, , adOpenKeyset, adLockOptimistic
@@ -35,7 +38,7 @@ if (Not IsEmpty(Request.QueryString("FromForm"))) then
 	If rsVisitor.BOF And rsVisitor.EOF Then fEmptyRecordset = True
 
   	If Not fEmptyRecordSet Then
-		rsVisitor.Fields("E-Mail") = Request.Form("EMail")
+		rsVisitor.Fields("Email") = Request.Form("EMail")
 		Session("E-Mail") = Request.Form("EMail")
 		Select case Session("E-Mail")
 		   Case "kclark@sss.sungard.com", "kclark12@earthlink.net", "kfc12@comcast.net"
@@ -132,7 +135,7 @@ if (Not IsEmpty(Request.QueryString("FromForm"))) then
 		rsVisitor.AddNew
 		if fDebugMode then Response.Write "DEBUG: AddNew Record Set rsVisitor;  Error: " & Err.Number & " " & Err.Description & " " & Err.Source & "<br>"
 
-		rsVisitor.Fields("E-Mail") = Request.Form("EMail")
+		rsVisitor.Fields("Email") = Request.Form("EMail")
 		rsVisitor.Fields("FirstName") = Request.Form("FirstName")
      	rsVisitor.Fields("LastName") = Request.Form("LastName")
 		'	   rsVisitor.Fields("Address") = Request.Form("Address")
@@ -184,7 +187,7 @@ if (Not IsEmpty(Request.QueryString("FromForm"))) then
 			if fDebugMode then Response.Write "DEBUG: Opened Record Set rsVisitor;  Error: " & Err.Number & " " & Err.Description & " " & Err.Source & "; SQL: " & rsVisitor.Source & "<br>"
 
 		  	Session("VisitorID") = rsVisitor("ID")
-			Session("E-Mail") = rsVisitor("E-Mail")
+			Session("E-Mail") = rsVisitor("Email")
 			Select case Session("E-Mail")
 			   Case "kclark@sss.sungard.com", "kclark12@earthlink.net"
 			      Session("Owner") = True
@@ -218,7 +221,7 @@ if (Not IsEmpty(Request.QueryString("FromForm"))) then
 	KFC.Close
 	Set KFC = Nothing
 
-	Response.Redirect "/Admin/Confirm.asp"
+	if Not fDebugMode then Response.Redirect "/Admin/Confirm.asp"
 End If
 On Error Goto 0
 
@@ -234,7 +237,36 @@ if fDebugMode then Response.Write "DEBUG: Creating HTML...<br>"
 	<title>Ken's WebSite Registration</title>
 </head>
 <basefont face="Verdana, Arial, Helvetica">
-<body bgcolor="#FFFFFF">
+<body BACKGROUND="/Images/Backgrounds/white2.jpg" bgcolor="#FFFFFF">
+    <!-- Defining JavaScript version of VBScript below so the form will work properly... -->
+<script>
+function validateInput() {
+    alert("Validating Input!");
+  //var x = document.forms["Register"]["FirstName"].value;
+  if (document.forms["Register"]["FirstName"].value == "") {
+    alert("Please enter your First Name!");
+    return false;
+  }
+  if (document.forms["Register"]["LastName"].value == "") {
+    alert("Please enter your Last Name!");
+    return false;
+  }
+  if (document.forms["Register"]["EMail"].value == "") {
+    alert("Please enter your E-Mail Address!");
+    return false;
+  }
+    if (document.forms["Register"]["Music"].value <> "on") {
+	    if (document..forms["Register"]["AutoStart"].value = "on") {
+		    alert("AutoStart only applies to playing MIDI files, please check the Play Music box!");
+		    return false;
+	    }
+	    if (document..forms["Register"]["Detached"].value = "on") {
+		    alert("Play Detached only applies to playing MIDI files, please check the Play Music box!");
+		    return false;
+	    }
+    }
+    return true;
+}</script>
 <script language="VBSCRIPT">
 <!--
 Sub ValidateInput()
@@ -304,7 +336,7 @@ size=-1 face="Verdana, Arial, Helvetica">...</font></p>
             face="Verdana, Arial, Helvetica"> First Name:</font></td>
             <td valign="top"><font
             face="Verdana, Arial, Helvetica"><input type="text"
-            size="40" name="FirstName" value="<%=Session("FirstName")%>" tabindex="1"> </font></td>
+            size="40" name="FirstName" value="<%=Session("FirstName")%>" required tabindex="1"> </font></td>
 		</tr>
         <tr>
             <td align="right" valign="top"><font color="#FF0000"
@@ -312,7 +344,7 @@ size=-1 face="Verdana, Arial, Helvetica">...</font></p>
             face="Verdana, Arial, Helvetica"> Last Name:</font></td>
             <td valign="top"><font
             face="Verdana, Arial, Helvetica"><input type="text"
-            size="40" name="LastName" value="<%=Session("LastName")%>" tabindex="2"> </font></td>
+            size="40" name="LastName" value="<%=Session("LastName")%>" tabindex="2" required> </font></td>
         </tr>
         <tr>
             <td align="right" valign="top"><font color="#FF0000"
@@ -320,15 +352,15 @@ size=-1 face="Verdana, Arial, Helvetica">...</font></p>
             face="Verdana, Arial, Helvetica"> E-Mail Address:</font></td>
             <td valign="top"><font
             face="Verdana, Arial, Helvetica"><input type="text"
-            size="40" name="EMail" value="<%=Session("E-Mail")%>" tabindex="3"></font></td>
+            size="40" name="EMail" value="<%=Session("E-Mail")%>" tabindex="3" required></font></td>
         </tr>
 	</table>
 	<hr>
 	<p align="left"><b>Site Admin:</b></p>
 	<ul align=left>
-		<li><font face="Verdana, Arial, Helvetica"><a href="/Admin/LinksList.asp" target="_top"><b>Index Hyperlink DataBase...</b></a></font></li>
-		<li><font face="Verdana, Arial, Helvetica"><a href="/Admin/VisitorList.asp" target="_top"><b>Visitor DataBase...</b></a></font></li>
-		<li><font face="Verdana, Arial, Helvetica"><a href="/Admin/UserAccessInfoList.asp" target="_top"><b>User Access Information...</b></a></font></li>
+		<li><font face="Verdana, Arial, Helvetica"><a href="/Admin/LinksList.asp" target="Body"><b>Index Hyperlink DataBase...</b></a></font></li>
+		<li><font face="Verdana, Arial, Helvetica"><a href="/Admin/VisitorList.asp" target="Body"><b>Visitor DataBase...</b></a></font></li>
+		<li><font face="Verdana, Arial, Helvetica"><a href="/Admin/UserAccessInfoList.asp" target="Body"><b>User Access Information...</b></a></font></li>
 	</ul>
 	<hr>
 	<p align="left"><b>MIDI Files:</b></p>
@@ -564,9 +596,11 @@ size=-1 face="Verdana, Arial, Helvetica">...</font></p>
             </center></div></td>
 		</tr>
 	</table>
-	</center></div><p align="center"><font size="3"><input
-    type="button" name="B1" value="Submit"
-    onclick="ValidateInput()"></font></p>
+	</center></div>
+    <p align="center"><font size="3">
+<!--        <input type="button" name="B1" value="Submit" onclick="ValidateInput()"">-->
+        <input type="submit" name="B1" value="Submit" onsubmit="return ValidateInput()"> <!-- JavaScript -->
+    </font></p>
 </form>
 
 <hr>

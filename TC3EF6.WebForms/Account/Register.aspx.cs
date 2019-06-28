@@ -23,8 +23,9 @@ namespace TC3EF6.WebForms.Account
                     Visitor visitor = context.Visitors.Where(v => v.Email == Email.Text).SingleOrDefault();
                     if (visitor == null)
                     {
+                        //Assume this is the first visit...
                         visitor = new Visitor { Email = Email.Text, FirstName = FirstName.Text, LastName = LastName.Text,
-                            Phone = Phone.Text, Visits = 0, DateLastVisit = DateTime.MinValue };
+                            Phone = Phone.Text, Visits = 1, DateLastVisit = DateTime.Now };
                         context.Visitors.Add(visitor);
                     }
                     else
@@ -47,13 +48,20 @@ namespace TC3EF6.WebForms.Account
             if (result.Succeeded)
             {
                 // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                //string code = manager.GenerateEmailConfirmationToken(user.Id);
-                //string callbackUrl = IdentityHelper.GetUserConfirmationRedirectUrl(code, user.Id, Request);
-                //manager.SendEmail(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>.");
+                string code = manager.GenerateEmailConfirmationToken(user.Id);
+                string callbackUrl = IdentityHelper.GetUserConfirmationRedirectUrl(code, user.Id, Request);
+                manager.SendEmail(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>.");
 
-                AddRegisteredVisitor();
-                signInManager.SignIn( user, isPersistent: false, rememberBrowser: false);
-                IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
+                if (user.EmailConfirmed)
+                {
+                    AddRegisteredVisitor();
+                    signInManager.SignIn( user, isPersistent: false, rememberBrowser: false);
+                    IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
+                }
+                else
+                {
+                    ErrorMessage.Text = "An email has been sent to your account. Please view the email and confirm your account to complete the registration process.";
+                }
             }
             else 
             {
