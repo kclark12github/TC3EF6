@@ -26,8 +26,6 @@ namespace TC3EF6.WebForms
         // Use NuGet to install SendGrid (Basic C# client lib) 
         private async Task configSendGridasync(IdentityMessage message)
         {
-            //SendGrid.TC3EF6.WebForms.APIKey:
-            //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
             var apiKey = Environment.GetEnvironmentVariable("SendGrid.TC3EF6.WebForms.APIKey");
             var client = new SendGridClient(apiKey);
             var from = new EmailAddress("kfc12@comcast.net", "TC3EF6.WebForms WebMaster");
