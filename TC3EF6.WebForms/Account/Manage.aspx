@@ -12,67 +12,92 @@
     </div>
 
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12" style="padding-bottom:50px;">
             <div class="form-horizontal">
                 <h4>Change your account settings</h4>
                 <hr />
                 <dl class="dl-horizontal">
-                    <dt>Password:</dt>
+                    <dt>Identification:</dt>
                     <dd>
-                        <asp:HyperLink NavigateUrl="/Account/ManagePassword" Text="[Change]" Visible="false" ID="ChangePassword" runat="server" />
-                        <asp:HyperLink NavigateUrl="/Account/ManagePassword" Text="[Create]" Visible="false" ID="CreatePassword" runat="server" />
-                    </dd>
-                    <dt>External Logins:</dt>
-                    <dd><%: LoginsCount %>
-                        <asp:HyperLink NavigateUrl="/Account/ManageLogins" Text="[Manage]" runat="server" />
+                        <asp:Label runat="server" AssociatedControlID="txtEmail" CssClass="col-md-2 control-label">Email</asp:Label>
+                        <asp:TextBox runat="server" ID="txtEmail" CssClass="form-control" TextMode="Email" ReadOnly="true" />
 
-                    </dd>
-                    <%--
-                        Phone Numbers can used as a second factor of verification in a two-factor authentication system.
-                        See <a href="https://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
-                        for details on setting up this ASP.NET application to support two-factor authentication using SMS.
-                        Uncomment the following blocks after you have set up two-factor authentication
-                    --%>
-                    <%--
-                    <dt>Phone Number:</dt>
-                    <% if (HasPhoneNumber)
-                       { %>
-                    <dd>
-                        <asp:HyperLink NavigateUrl="/Account/AddPhoneNumber" runat="server" Text="[Add]" />
-                    </dd>
-                    <% }
-                       else
-                       { %>
-                    <dd>
-                        <asp:Label Text="" ID="PhoneNumber" runat="server" />
-                        <asp:HyperLink NavigateUrl="/Account/AddPhoneNumber" runat="server" Text="[Change]" /> &nbsp;|&nbsp;
-                        <asp:LinkButton Text="[Remove]" OnClick="RemovePhone_Click" runat="server" />
-                    </dd>
-                    <% } %>
-                    --%>
+                        <asp:Label runat="server" AssociatedControlID="txtFirstName" CssClass="col-md-2 control-label">First Name</asp:Label>
+                        <asp:TextBox runat="server" ID="txtFirstName" CssClass="form-control" TextMode="SingleLine" ReadOnly="true" />
 
-                    <dt>Two-Factor Authentication:</dt>
-                    <dd>
-                        <p>
-                            There are no two-factor authentication providers configured. See <a href="https://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
-                            for details on setting up this ASP.NET application to support two-factor authentication.
-                        </p>
-                        <% if (TwoFactorEnabled)
-                          { %> 
-                        <%--
-                        Enabled
-                        <asp:LinkButton Text="[Disable]" runat="server" CommandArgument="false" OnClick="TwoFactorDisable_Click" />
-                        --%>
-                        <% }
-                          else
-                          { %> 
-                        <%--
-                        Disabled
-                        <asp:LinkButton Text="[Enable]" CommandArgument="true" OnClick="TwoFactorEnable_Click" runat="server" />
-                        --%>
-                        <% } %>
+                        <asp:Label runat="server" AssociatedControlID="txtLastName" CssClass="col-md-2 control-label">Last Name</asp:Label>
+                        <asp:TextBox runat="server" ID="txtLastName" CssClass="form-control" TextMode="SingleLine" ReadOnly="true" />
+
+                        <asp:Label runat="server" AssociatedControlID="txtPhone" CssClass="col-md-2 control-label">Phone</asp:Label>
+                        <asp:TextBox runat="server" ID="txtPhone" CssClass="form-control" TextMode="Phone" ReadOnly="true" />
                     </dd>
                 </dl>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>Password:</dt>
+                    <dd>
+                        <asp:HyperLink NavigateUrl="/Account/ManagePassword" Text="[Change]" Visible="false" ID="hlChangePassword" runat="server" />
+                        <asp:HyperLink NavigateUrl="/Account/ManagePassword" Text="[Create]" Visible="false" ID="hlCreatePassword" runat="server" />
+                    </dd>
+                    <dt>External/Social Media Logins:</dt>
+                    <dd><%: LoginsCount %>
+                        <asp:HyperLink NavigateUrl="/Account/ManageLogins" Text="[Manage]" runat="server" />
+                    </dd>
+                </dl>
+                <hr />
+                <h4>MIDI Files (not supported)</h4>
+                <script type="text/javascript">
+                    //TODO: Abandoning this effort as I cannot consistently determine Checked and Enabled values of asp:CheckBox controls via jQuery
+                    //window.onload = function () {alert('Window loaded');};
+                    //$(document).ready(function () {alert('DOM loaded');});
+<%--                    $(document).ready(function () {
+                        $("#MainContent_chkMusic").change(function () {
+                            //If Playing Music is not desired AutoStart and Detached have no meaning...
+                            var chkMusic = $('#MainContent_chkMusic');
+                            var chkAutoStart = $('#MainContent_chkAutoStart');
+                            var chkDetached = $('#MainContent_chkDetached');
+                            alert('chkMusic.change: ' + chkMusic.checked);
+                            if (chkMusic.checked == false)
+                            {
+                                alert('chkMusic.click: Unchecking...');
+                                chkAutoStart.checked = false; 
+                                chkDetached.checked = false; 
+                            }
+                            alert('chkMusic.click: Enable/Disabling...');
+                            chkAutoStart.disabled = !chkMusic.checked;
+                            chkDetached.disabled = !chkMusic.checked;
+                        });
+                    });
+--%>
+                </script>
+                <div style="padding-left:25px">
+                    <asp:CheckBox runat="server" ID="chkMusic" Text="Play MIDI Files" ToolTip="Use Crescendo to play various MIDI audio throughout the app" /><br />
+                    <div style="padding-left:25px">
+                        <asp:CheckBox runat="server" ID="chkAutoStart" Text="AutoStart" ToolTip="Automatically start Crescendo when pages load" /><br />
+                        <asp:CheckBox runat="server" ID="chkDetached" Text="Detached" ToolTip="Crescendo MIDI player should run detached (as opposed to embedded in the page)" /><br />
+                    </div>
+                </div>
+                <hr />
+<%--<% if (Owner) { %>--%>
+                <h4>Administration</h4>
+                <div style="padding-left:25px">
+                    <asp:HyperLink NavigateUrl="~/Admin/VisitorList.asp" Text="Visitors..." ID="hlVisitors" runat="server" ToolTip="Manage Visitor Data" />
+                </div>
+                <hr />
+<%--<%    }%>--%>
+                <h4>Welcome Page Image</h4>
+                <div style="width:100%;text-align:center;">
+                    <asp:CheckBox runat="server" ID="chkDoLakeGIF" Text="Lake Applet" ToolTip="Apply Lake animation to welcome image selected below (under construction)" /><br />
+                </div>
+	            <div style="justify-content:center;width:100%">
+                    <asp:RadioButtonList ID="rblImages" runat="server" RepeatDirection="Horizontal" RepeatColumns="4" RepeatLayout="Table">
+                    </asp:RadioButtonList>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div style="width:100%;text-align:center;">
+                <asp:Button runat="server" OnClick="SaveChanges_Click" Text="Save Changes" CssClass="btn btn-default" />
             </div>
         </div>
     </div>

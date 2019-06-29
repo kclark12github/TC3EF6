@@ -1,43 +1,52 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Admin.aspx.cs" Inherits="TC3EF6.WebForms.Admin.Admin" %>
+﻿<%@ Page Title="Preferences" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Admin.aspx.cs" Inherits="TC3EF6.WebForms.Admin.Admin" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div style="font-family:Arial;background-image:url(/Images/Backgrounds/white2.jpg);color:black;">
-        <p style="font-weight:bold;font-size:x-large;">Preferences</p>
-        <hr/>
         <%--<p style="font-style:italic;"><%= Greeting %></p> --%>
-        <p style="font-size:smaller; color: #FF0000;">To keep your preferences from being confused with those of other folks,
-        please be sure to complete the fields marked with *...</p>
+<%--        <p style="font-size:smaller; color: #FF0000;">To keep your preferences from being confused with those of other folks,
+        please be sure to complete the fields marked with *...</p>--%>
+
+
+
+
+
+
         <form action="<%=Application["AdminPage"]%>?FromForm=true" method="POST" name="Register">
+	        <div style="text-align:left;padding-left:25px;padding-right:25px">
+                <p style="font-weight:bold;font-style:italic;font-size:xx-large;">Preferences</p>
+            </div>
 	        <div style="text-align:center;padding-left:50px;padding-right:50px">
-	            <hr/>
-	            <p style="text-align:left;font-size:medium;"><b>Identification:</b></p>
-	            <table border="0" style="vertical-align:middle;">
-		            <tr>
-			            <td style="text-align:right;vertical-align:middle;">First Name:</td>
-                        <td style="text-align:center;vertical-align:middle;">
-                            <input type="text" size="40" name="FirstName" value="<%=Session["FirstName"] %>" required tabindex="1"> 
-                        </td>
-		            </tr>
-                    <tr>
-                        <td style="text-align:right;vertical-align:middle;">Last Name:</td>
-                        <td style="text-align:center;vertical-align:middle;">
-                            <input type="text" size="40" name="LastName" value="<%=Session["LastName"]%>" tabindex="2" required> 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align:right;vertical-align:middle;">E-Mail Address:</td>
-                        <td style="text-align:center;vertical-align:middle;">
-                            <input type="text" size="40" name="EMail" value="<%=Session["E-Mail"]%>" tabindex="3" required>
-                        </td>
-                    </tr>
-	            </table>
-	            <hr/>
+                <div id="Identification">
+	                <hr style="color:black"/>
+	                <p style="text-align:left;font-size:medium;"><b>Identification:</b></p>
+	                <table border="0" style="vertical-align:middle;padding-right:10px;">
+		                <tr>
+			                <td style="text-align:right;">First Name:</td>
+                            <td style="text-align:center;">
+                                <input type="text" size="40" name="FirstName" value="<%=Session["FirstName"] %>" required tabindex="1"> 
+                            </td>
+		                </tr>
+                        <tr>
+                            <td style="text-align:right;">Last Name:</td>
+                            <td style="text-align:center;">
+                                <input type="text" size="40" name="LastName" value="<%=Session["LastName"]%>" tabindex="2" required> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:right;">E-Mail Address:</td>
+                            <td style="text-align:center;">
+                                <input type="text" size="40" name="EMail" value="<%=Session["E-Mail"]%>" tabindex="3" required>
+                            </td>
+                        </tr>
+	                </table>
+                </div>
+	            <hr style="color:black"/>
 	            <p style="text-align:left;font-size:medium;"><b>Site Admin:</b></p>
 	            <ul style="text-align:left;">
 		            <li><a href="/Admin/LinksList.asp" target="Body"><b>Index Hyperlink DataBase...</b></a></li>
 		            <li><a href="/Admin/VisitorList.asp" target="Body"><b>Visitor DataBase...</b></a></li>
 		            <li><a href="/Admin/UserAccessInfoList.asp" target="Body"><b>User Access Information...</b></a></li>
 	            </ul>
-	            <hr/>
+	            <hr style="color:black"/>
 	            <p style="text-align:left;font-size:medium;"><b>MIDI Files:</b></p>
 	            <table border="0">
 		            <tr>
@@ -53,16 +62,13 @@
                         <td style="text-align:center;vertical-align:top;"><input type="checkbox" name="Detached" <% if ((bool)Session["Detached"]) { %> checked <% } %> tabindex="5"></td>
                     </tr>
 	            </table>
-	            <hr>
-	            <p style="text-align:left;font-size:medium;"><b>Welcome Page Preferences:</b></p>
+	            <hr style="color:black"/>
+	            <p style="text-align:left;font-size:medium;"><b>Welcome Image:</b></p>
 	            <div style="justify-content:center;width:100%">
 	                <table border="0" style="text-align:center;width:100%">
 		                <tr>
 			                <td style="text-align:center;vertical-align:middle;" colspan="8">Lake Applet: <input type="checkbox" name="DoLake" <% if ((bool)Session["DoLake"]) { %>checked<% }%>></td>
 		                </tr>
-                        <tr>
-                            <td style="text-align:left;vertical-align:top;" colspan="8">Welcome Image:</td>
-                        </tr>
                         <tr>
                             <td style="text-align:center;vertical-align:top;" colspan=2>
                                 <table border="0" style="width:100%;">
@@ -113,21 +119,15 @@
                 %>
 				                    </tr>
                                     <tr>
-                                        <td style="text-align:center;" colspan="4"><img src="/Images/Backgrounds/Tiger.gif" width=153 height=100></td>
-                                        <td style="text-align:center;" colspan="4"><img src="/Images/Backgrounds/Iceberg.gif" width=219 height=100></td>
+                                        <td style="text-align:center;" colspan="3"><img src="/Images/Backgrounds/Tiger.gif" width=153 height=100></td>
+                                        <td style="text-align:center;" colspan="2"><img src="/Images/Backgrounds/carney80.gif" width=196 height=100></td>
+                                        <td style="text-align:center;" colspan="3"><img src="/Images/Backgrounds/Iceberg.gif" width=219 height=100></td>
 				                    </tr>
 				                    <tr>
                 <%
-                    Response.Write($@"<td style=""text-align:center;"" colspan=""4""><input type=""radio"" {(lakeGIF == 17 ? "checked" : string.Empty)} name=""LakeGIF"" value=""17""></td>");
-                    Response.Write($@"<td style=""text-align:center;"" colspan=""4""><input type=""radio"" {(lakeGIF == 18 ? "checked" : string.Empty)} name=""LakeGIF"" value=""18""></td>");
-                %>
-				                    </tr>
-                                    <tr>
-                                        <td style="text-align:center;" colspan="8"><img src="/Images/Backgrounds/carney80.gif" width=196 height=100></td>
-				                    </tr>
-				                    <tr>
-                <%
-                    Response.Write($@"<td style=""text-align:center;"" colspan=""8""><input type=""radio"" {(lakeGIF == 19 ? "checked" : string.Empty)} name=""LakeGIF"" value=""19""></td>");
+                    Response.Write($@"<td style=""text-align:center;"" colspan=""3""><input type=""radio"" {(lakeGIF == 17 ? "checked" : string.Empty)} name=""LakeGIF"" value=""17""></td>");
+                    Response.Write($@"<td style=""text-align:center;"" colspan=""2""><input type=""radio"" {(lakeGIF == 19 ? "checked" : string.Empty)} name=""LakeGIF"" value=""19""></td>");
+                    Response.Write($@"<td style=""text-align:center;"" colspan=""3""><input type=""radio"" {(lakeGIF == 18 ? "checked" : string.Empty)} name=""LakeGIF"" value=""18""></td>");
                 %>
 				                    </tr>
 				                    <tr>
@@ -151,4 +151,3 @@
         <hr/>
     </div>
 </asp:Content>
-<!-- #include virtual="/Includes/BasicFooter.inc.aspx" -->

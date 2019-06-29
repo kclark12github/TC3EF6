@@ -16,8 +16,7 @@ namespace TC3EF6.WebForms.Account
         protected void Page_Load(object sender, EventArgs e)
         {
             RegisterHyperLink.NavigateUrl = "Register";
-            // Enable this once you have account confirmation enabled for password reset functionality
-            //ForgotPasswordHyperLink.NavigateUrl = "Forgot";
+            ForgotPasswordHyperLink.NavigateUrl = "Forgot";
             OpenAuthLogin.ReturnUrl = Request.QueryString["ReturnUrl"];
             var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
             if (!String.IsNullOrEmpty(returnUrl))
@@ -34,7 +33,7 @@ namespace TC3EF6.WebForms.Account
                 var signinManager = Context.GetOwinContext().GetUserManager<ApplicationSignInManager>();
 
                 // Require the user to have a confirmed email before they can log on.
-                var user = manager.FindByName(Email.Text);
+                var user = manager.FindByName(txtEmail.Text);
                 if (user != null)
                 {
                     if (!user.EmailConfirmed)
@@ -46,19 +45,20 @@ namespace TC3EF6.WebForms.Account
                     {
                         // This doen't count login failures towards account lockout
                         // To enable password failures to trigger lockout, change to shouldLockout: true
-                        var result = signinManager.PasswordSignIn(Email.Text, Password.Text, RememberMe.Checked, shouldLockout: false);
+                        var result = signinManager.PasswordSignIn(txtEmail.Text, txtPassword.Text, chkRememberMe.Checked, shouldLockout: false);
                         switch (result)
                         {
                             case SignInStatus.Success:
                                 IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
                                 break;
                             case SignInStatus.LockedOut:
+                                Session["Visitor"] = null;
                                 Response.Redirect("/Account/Lockout");
                                 break;
                             case SignInStatus.RequiresVerification:
                                 Response.Redirect(String.Format("/Account/TwoFactorAuthenticationSignIn?ReturnUrl={0}&RememberMe={1}", 
                                                                 Request.QueryString["ReturnUrl"],
-                                                                RememberMe.Checked),
+                                                                chkRememberMe.Checked),
                                                   true);
                                 break;
                             case SignInStatus.Failure:

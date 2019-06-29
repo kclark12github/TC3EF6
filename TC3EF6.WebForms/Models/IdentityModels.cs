@@ -30,7 +30,7 @@ namespace TC3EF6.WebForms.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("TC3EF6Context", throwIfV1Schema: false)
         {
         }
 

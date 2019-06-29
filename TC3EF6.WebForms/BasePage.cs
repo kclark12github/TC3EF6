@@ -6,11 +6,77 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using TC3EF6.Data;
+using TC3EF6.Domain.Classes;
 
 namespace TC3EF6.WebForms
 {
+    public class ImageData
+    {
+        public string Path { get; set; }
+        public int Height { get; set; }
+        public int Width { get; set; }
+    }
     public class BasePage : Page
     {
+        protected List<ImageData> Images { get; private set; }
+        public bool Owner { get => !string.IsNullOrEmpty(Context.User.Identity.Name) && (Context.User.Identity.Name == (string)Application["Owner"]); }
+        protected Visitor Visitor { get => (Visitor)Session["Visitor"]; }
+        protected BasePage() : base()
+        {
+            Images = new List<ImageData>();
+            Images.Add(new ImageData { Path = "", Width = 0, Height = 0 });  // "Surprise Me!"
+            Images.Add(new ImageData { Path = "/SciFi/Fantasy Art/Michael%20Whelan/Reduced%20Fileteth.gif", Width = 180, Height = 220 });
+            Images.Add(new ImageData { Path = "/SciFi/Fantasy%20Art/DragonSlayer50.gif", Width = 148, Height = 200 });
+            Images.Add(new ImageData { Path = "/Aircraft/Bomber%20Aircraft/B-1%20Lancer/B-1B%20Painting2.gif", Width = 200, Height = 200 });
+            Images.Add(new ImageData { Path = "/SciFi/Fantasy%20Art/Boris%20Vallejo/The%20Ice%20Schooner50.gif", Width = 150, Height = 200 });
+            Images.Add(new ImageData { Path = "/SciFi/Fantasy%20Art/Boris%20Vallejo/Wolves50.gif", Width = 150, Height = 198 });
+            Images.Add(new ImageData { Path = "/SciFi/Fantasy%20Art/Darrell%20Sweet/Quest.gif", Width = 152, Height = 200 });
+            Images.Add(new ImageData { Path = "/SciFi/Fantasy%20Art/Frank%20Frazetta/The%20Silver%20Warrior75.gif", Width = 124, Height = 200 });
+            Images.Add(new ImageData { Path = "/SciFi/Fantasy%20Art/avatar.gif", Width = 194, Height = 200 });
+            Images.Add(new ImageData { Path = "/SciFi/Fantasy%20Art/gloam.gif", Width = 146, Height = 200 });
+            Images.Add(new ImageData { Path = "/SciFi/Fantasy%20Art/robots.gif", Width = 126, Height = 200 });
+            Images.Add(new ImageData { Path = "/SciFi/Fantasy%20Art/elricsin.gif", Width = 108, Height = 200 });
+            Images.Add(new ImageData { Path = "/SciFi/Fantasy%20Art/storm.gif", Width = 146, Height = 200 });
+            Images.Add(new ImageData { Path = "/SciFi/Fantasy%20Art/king.gif", Width = 140, Height = 200 });
+            Images.Add(new ImageData { Path = "/SciFi/Fantasy%20Art/dragban.gif", Width = 122, Height = 200 });
+            Images.Add(new ImageData { Path = "/SciFi/Fantasy%20Art/draglord.gif", Width = 122, Height = 200 });
+            Images.Add(new ImageData { Path = "/SciFi/Fantasy%20Art/royal.gif", Width = 154, Height = 200 });
+            Images.Add(new ImageData { Path = "/Images/Backgrounds/Tiger.gif", Width = 153, Height = 100 });
+            Images.Add(new ImageData { Path = "/Images/Backgrounds/Iceberg.gif", Width = 219, Height = 100 });
+            Images.Add(new ImageData { Path = "/Images/Backgrounds/carney80.gif", Width = 196, Height = 100 });
+        }
+        protected void LogMessage(string Message)
+        {
+            using (var context = new TCContext())
+            {
+                context.LogMessage((string)Application["AppName"], Message);
+            }
+        }
+        protected static void LogMessage(string Milestone, string Message)
+        {
+            using (var context = new TCContext())
+            {
+                context.LogMessage(Milestone, Message);
+            }
+        }
+        //private DateTime? PageLastModified
+        //{
+        //    get
+        //    {
+        //        string path = Server.MapPath(Request.Url.AbsolutePath);
+        //        if (!File.Exists(path)) path = $"{path}.aspx";
+        //        if (!File.Exists(path)) return null;
+        //        return new System.IO.FileInfo(path).LastWriteTime;
+        //    }
+        //}
+        //protected virtual string GetPageLastModified()
+        //{
+        //    DateTime? plm = this.PageLastModified;
+        //    if (plm == null) return $"Cannot determine Last Modified Date for {Server.MapPath(Request.Url.AbsolutePath)}";
+        //    return $"{plm:dddd MMMM d, yyyy @ hh:mm tt}";
+        //}
+        #region DataFunctions (ASP)
+        public bool DebugMode { get; set; }
         #region Constants
         //---- Text Stream Object Enum Values ----
         public const int ForReading = 1; //Open a file for reading only. No writing to this file can take place.
@@ -87,38 +153,6 @@ namespace TC3EF6.WebForms
         //---- Other Values ----
         public const int dfMaxSize = 100;
         #endregion
-        public bool DebugMode { get; set; }
-        protected void LogMessage(string Message)
-        {
-            using (var context = new TCContext())
-            {
-                context.LogMessage((string)Application["AppName"], Message);
-            }
-        }
-        protected static void LogMessage(string Milestone, string Message)
-        {
-            using (var context = new TCContext())
-            {
-                context.LogMessage(Milestone, Message);
-            }
-        }
-        private DateTime? PageLastModified
-        {
-            get
-            {
-                string path = Server.MapPath(Request.Url.AbsolutePath);
-                if (!File.Exists(path)) path = $"{path}.aspx";
-                if (!File.Exists(path)) return null;
-                return new System.IO.FileInfo(path).LastWriteTime;
-            }
-        }
-        protected virtual string GetPageLastModified()
-        {
-            DateTime? plm = this.PageLastModified;
-            if (plm == null) return $"Cannot determine Last Modified Date for {Server.MapPath(Request.Url.AbsolutePath)}";
-            return $"{plm:dddd MMMM d, yyyy @ hh:mm tt}";
-        }
-        #region DataFunctions (ASP)
         //-------------------------------------------------------------------------------
         // Purpose:  Substitutes Empty for Null and trims leading/trailing spaces
         // Inputs:   varTemp	- the target value

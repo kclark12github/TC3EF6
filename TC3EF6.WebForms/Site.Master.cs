@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Security.Principal;
@@ -21,10 +22,40 @@ namespace TC3EF6.WebForms
         static readonly object _object = new object();
 
         public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public bool Owner { get; set; }
-        public string User { get; set; }
+        //public string LastName { get; set; }
+        //public bool Owner { get; set; }
+        private DateTime? PageLastModified
+        {
+            get
+            {
+                string path = Server.MapPath(Request.Url.AbsolutePath);
+                if (!File.Exists(path)) path = $"{path}.aspx";
+                if (!File.Exists(path)) return null;
+                return new System.IO.FileInfo(path).LastWriteTime;
+            }
+        }
+        //public string User { get; set; }
 
+        protected void LogMessage(string Message)
+        {
+            using (var context = new TCContext())
+            {
+                context.LogMessage((string)Application["AppName"], Message);
+            }
+        }
+        protected static void LogMessage(string Milestone, string Message)
+        {
+            using (var context = new TCContext())
+            {
+                context.LogMessage(Milestone, Message);
+            }
+        }
+        protected virtual string GetPageLastModified()
+        {
+            DateTime? plm = this.PageLastModified;
+            if (plm == null) return $"Cannot determine Last Modified Date for {Server.MapPath(Request.Url.AbsolutePath)}";
+            return $"{plm:dddd MMMM d, yyyy @ hh:mm tt}";
+        }
         private Visitor GetVisitor(string Email)
         {
             lock (_object)
@@ -46,6 +77,7 @@ namespace TC3EF6.WebForms
         private void InitUserStuff()
         {
             Visitor visitor = (Visitor)Session["Visitor"];
+            FirstName = string.Empty;
             if (visitor == null)
             {
                 //Note that we're depending on the logic that adds a Visitor record when the user registers...
@@ -55,17 +87,17 @@ namespace TC3EF6.WebForms
                 }
                 else
                 {
-                    FirstName = string.Empty;
-                    LastName = string.Empty;
-                    Owner = false;
-                    User = string.Empty;
+                    //LastName = string.Empty;
+                    //Owner = false;
+                    //User = string.Empty;
                     return;
                 }
             }
             FirstName = visitor.FirstName;
-            LastName = visitor.LastName;
-            User = visitor.Email;
-            Owner = (User == (string)Application["Owner"]);
+            //LastName = visitor.LastName;
+            //Owner = (User == (string)Application["Owner"]);
+            //User = visitor.Email;
+            Session["Visitor"] = visitor;
         }
         protected void Page_Init(object sender, EventArgs e)
         {

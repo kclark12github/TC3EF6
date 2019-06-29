@@ -2,21 +2,39 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div style="padding: 10px;">
-        <table border="0" style="background-color: #000000; width: 100%">
+        <table border="0" style="background-color:black; width: 100%">
 	        <tr>
 		        <td style="height: 570px">
-			        <table border="0" style="background-color: #000000; width: 100%">
+			        <table border="0" style="background-color:black; width: 100%">
 				        <tr>
-					        <td style="text-align: center; color: #FFFFFF; width: 50%"> 
+					        <td style="text-align: center; color:white; width: 50%"> 
                                 <h1 style="text-align: center"><i><%= Greeting %></i></h1>
 						        <p style="text-align: center"><b>You are Visitor<br></b><%= HitCount.ToString("#,##0") %>  </p>
 						        <p style="text-align: center"><b><i><%= SessionMessage %></i></b></p>
 					        </td>
 					        <td rowspan="2" style="text-align: center"> 
-        <%
-        //DoLakeGIF();
-        %>
-                                <asp:Image ID="WelcomeImage" runat="server" ImageUrl="/SciFi/Fantasy%20Art/Michael%20Whelan/Reduced%20Fileteth.gif" />
+                                <% 
+                                    if (Visitor.DoLake) {
+                                        //06/27/19: <applet> is no longer supported in HTML5 and most browsers...
+                                        //Response.Write($@"<applet codebase=""/Java"" code=""/Java/Lake.class"" width={GIFWidth} height={GIFHeight}>");
+                                        //Response.Write($@"	<param name=""image"" value=""{GIFPath}"">");
+                                        //Response.Write($@"	<p>Must use a Java-enabled Browser to display this image.</p>");
+                                        //Response.Write($@"</applet> ");
+
+                                        Response.Write($@"<object type=""application/x-java-applet"" width={GIFWidth} height={GIFHeight}>");
+                                        Response.Write($@"	<param name=""image"" value=""{GIFPath}"">");
+                                        Response.Write($@"	<param name=""code"" value=""Lake"">");
+                                        Response.Write($@"	<param name=""archive"" value=""Java/Lake.jar"">");
+                                        //Response.Write($@"    <img src=""{GIFPath}"" width={GIFWidth} height={GIFHeight} border=0>");
+                                        Response.Write($@"    <img src=""{GIFPath}"" border=0>");
+                                        Response.Write($@"	<p>Must use a Java-enabled Browser to display the Lake applet.</p>");
+                                        Response.Write($@"</object> ");
+                                    } else {
+                                        //Response.Write($@"<img src=""{GIFPath}"" width={GIFWidth} height={GIFHeight} border=0>");
+                                        Response.Write($@"<img src=""{GIFPath}"" border=0>");
+                                    }
+                                    %>
+<%--                                <asp:Image ID="WelcomeImage" runat="server" ImageUrl="/SciFi/Fantasy%20Art/Michael%20Whelan/Reduced%20Fileteth.gif" />--%>
 					        </td>
 				        </tr>
 				        <tr>
@@ -27,7 +45,7 @@
 	        </tr>
         </table>
         <hr>
-        <div style="padding: 10px;background-color: #FFFFFF;color:#000000;font-family:Arial">
+        <div style="padding: 10px;background-color:white;color:black;font-family:Arial">
             <p>Thanks for stopping by... You can find everything you need here to create great web sites! On the left here 
             you'll find links to all the areas of my site. So relax, browse around, listen to some tunes, have a little wine, 
             a little cheese...</p>
@@ -53,4 +71,3 @@
         </div>
     </div>
 </asp:Content>
-<!-- #include virtual="/Includes/Footer.inc.aspx" -->

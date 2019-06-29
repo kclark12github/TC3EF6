@@ -20,19 +20,19 @@ namespace TC3EF6.WebForms.Account
             {
                 using (var context = new TCContext())
                 {   
-                    Visitor visitor = context.Visitors.Where(v => v.Email == Email.Text).SingleOrDefault();
+                    Visitor visitor = context.Visitors.Where(v => v.Email == txtEmail.Text).SingleOrDefault();
                     if (visitor == null)
                     {
                         //Assume this is the first visit...
-                        visitor = new Visitor { Email = Email.Text, FirstName = FirstName.Text, LastName = LastName.Text,
-                            Phone = Phone.Text, Visits = 1, DateLastVisit = DateTime.Now };
+                        visitor = new Visitor { Email = txtEmail.Text, FirstName = txtFirstName.Text, LastName = txtLastName.Text,
+                            Phone = txtPhone.Text, Visits = 1, DateLastVisit = DateTime.Now };
                         context.Visitors.Add(visitor);
                     }
                     else
                     {
-                        visitor.FirstName = FirstName.Text;
-                        visitor.LastName = LastName.Text;
-                        visitor.Phone = Phone.Text;
+                        visitor.FirstName = txtFirstName.Text;
+                        visitor.LastName = txtLastName.Text;
+                        visitor.Phone = txtPhone.Text;
                     }
                     context.SaveChanges();
                     Session["Visitor"] = visitor;
@@ -43,8 +43,8 @@ namespace TC3EF6.WebForms.Account
         {
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
             var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
-            var user = new ApplicationUser() { UserName = Email.Text, Email = Email.Text };
-            IdentityResult result = manager.Create(user, Password.Text);
+            var user = new ApplicationUser() { UserName = txtEmail.Text, Email = txtEmail.Text };
+            IdentityResult result = manager.Create(user, txtPassword.Text);
             if (result.Succeeded)
             {
                 // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771

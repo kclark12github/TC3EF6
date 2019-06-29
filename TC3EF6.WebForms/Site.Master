@@ -12,6 +12,7 @@
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
     <webopt:bundlereference runat="server" path="~/Content/css" />
+    <script src="/Scripts/jquery-3.3.1.min.js"></script>  
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <!-- Menu Support -->
     <style>
@@ -25,7 +26,7 @@
         }
     </style>
 </head>
-<body style="background-color:#000000;color:#FFFFFF;font-family:Verdana;font-size:medium">
+<body style="background-color:black;color:white;font-family:Verdana;font-size:medium">
     <form runat="server">
         <asp:ScriptManager runat="server">
             <Scripts>
@@ -137,7 +138,7 @@
                         <LoggedInTemplate>
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: FirstName  %>!</a></li>
-                                <li><asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="<span class='glyphicon glyphicon-log-out'></span> Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut"/></li>
+                                <li><asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="<span class='glyphicon glyphicon-log-out'></span> Log off" LogoutPageUrl="~/Default.aspx" OnLoggingOut="Unnamed_LoggingOut"/></li>
                             </ul>
                         </LoggedInTemplate>
                     </asp:LoginView>
@@ -152,7 +153,20 @@
         <footer style="margin-left:10px">
             <asp:ContentPlaceHolder ID="FooterContent" runat="server">
             </asp:ContentPlaceHolder>
-<%--            <p>&copy; <%: DateTime.Now.Year %> - <%: Application["AppName"] %></p>--%>
+            <div style="font-family: Arial; color:white; background-color:black">
+                <p><i>If you experience any problems with this page, please contact: <a href="mailto:<%= Application["WebMasterEmail"] %>"><b>WebMaster</b></a></i></p>
+                <div style="text-align: center;padding: 10px;">
+                    <table border="0" style="width:100%">
+                        <tr>
+                            <td style="text-align:left;width:50%">
+                                &copy; <%: DateTime.Now.Year %> - <%: Application["AppName"] %>
+                            </td>
+                            <td style="text-align:right;width:50%;"><i>Page Last modified <b><%=GetPageLastModified()%></b></i>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
         </footer>
     </form>
     <script>

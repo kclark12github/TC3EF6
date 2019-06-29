@@ -1,5 +1,5 @@
 ﻿<asp:Content ID="BasicPageFooter" ContentPlaceHolderID="FooterContent" runat="server">
-    <div style="font-family: Arial; color: #FFFFFF; background-color: #000000">
+    <div style="font-family: Arial; color:white; background-color:black">
         <p><i>If you experience any problems with this page, please contact: <a href="mailto:<%= Application["WebMasterEmail"] %>"><b>WebMaster</b></a></i></p>
         <div style="text-align: center;padding: 10px;">
             <table border="0" style="width:100%">
