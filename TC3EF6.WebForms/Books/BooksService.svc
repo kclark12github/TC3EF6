@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="TC3EF6.WebForms.Books.BooksService" CodeBehind="BooksService.svc.cs" %>

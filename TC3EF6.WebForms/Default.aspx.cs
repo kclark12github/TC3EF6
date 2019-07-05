@@ -10,6 +10,7 @@ namespace TC3EF6.WebForms
 {
     public partial class Default : BasePage
     {
+        const int defaultWelcomeImage = 1;      //Michael Whelan's Filed Teeth image...
         public string Greeting { get; set; }
         public int HitCount { get; set; }
         public string SessionMessage { get; set; }
@@ -20,6 +21,7 @@ namespace TC3EF6.WebForms
 
         private int DetermineImageIndex()
         {
+            if (Visitor == null) return defaultWelcomeImage;
             int iImage = (int)Visitor.LakeGIF;
             if (iImage == 0) { 
                 Random random = new Random();
@@ -36,7 +38,7 @@ namespace TC3EF6.WebForms
             if (!string.IsNullOrEmpty(Context.User.Identity.Name))
             {
                 if (Owner)
-                    Greeting = "Welcome Back<br>Boss Dude...";
+                    Greeting = "Welcome Back<br>Boss Dude...!";
                 else
                     Greeting = $"Welcome Back<br>{Visitor.FirstName}!";
             }

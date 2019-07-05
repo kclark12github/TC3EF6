@@ -49,7 +49,9 @@ namespace TC3EF6.WebForms.Account
                         switch (result)
                         {
                             case SignInStatus.Success:
-                                IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
+                                var returnUrl = Request.QueryString["ReturnUrl"];
+                                if (String.IsNullOrEmpty(returnUrl)) returnUrl = "/Default.aspx";
+                                IdentityHelper.RedirectToReturnUrl(returnUrl, Response);
                                 break;
                             case SignInStatus.LockedOut:
                                 Session["Visitor"] = null;

@@ -1,6 +1,8 @@
 ﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Web;
+using System.Web.UI;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
@@ -33,3 +35,23 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+//[assembly: PreApplicationStartMethod(typeof(MyAssembly.Initializer), "Initialize")]
+//namespace MyAssembly
+//{
+//    public static class Initializer
+//    {
+//        public static void Initialize()
+//        {
+//            const string jQueryVersion = "3.4.1";
+//            ScriptManager.ScriptResourceMapping.AddDefinition("jquery", new ScriptResourceDefinition
+//            {
+//                Path = $"~/Scripts/jquery-{jQueryVersion}.min.js",
+//                DebugPath = $"~/Scripts/jquery-{jQueryVersion}.js",
+//                CdnPath = $@"http://ajax.aspnetcdn.com/ajax/jQuery/jquery-{jQueryVersion}.min.js",
+//                CdnDebugPath = $@"http://ajax.aspnetcdn.com/ajax/jQuery/jquery-{jQueryVersion}.js",
+//                CdnSupportsSecureConnection = true,
+//                LoadSuccessExpression = "window.jQuery"
+//            });
+//        }
+//    }
+//}

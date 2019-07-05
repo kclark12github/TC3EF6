@@ -1,37 +1,40 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="TC3EF6.WebForms.SiteMaster" %>
-
 <!DOCTYPE html>
-
 <html lang="en">
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%: Page.Title %> - <%: Application["AppName"] %></title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <% Response.Write("\n"); %>
 
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
+        <%: Scripts.Render("~/bundles/jquery") %>
+        <%: Scripts.Render("~/bundles/bootstrap") %>
+        <%: Styles.Render("~/Content/css") %>
     </asp:PlaceHolder>
-    <webopt:bundlereference runat="server" path="~/Content/css" />
-    <script src="/Scripts/jquery-3.3.1.min.js"></script>  
-    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <!-- Menu Support -->
-    <style>
-        .dropdown-submenu {
-            position: relative;
-        }
-        .dropdown-submenu .dropdown-menu {
-            top: 0;
-            left: 100%;
-            margin-top: -1px;
-        }
-    </style>
+    <%--TODO: Move into a script bundle... --%>
+    <script type="text/javascript">
+        function isMSDate(s) {
+            var pattern = /Date\(([^)]+)\)/;
+            return pattern.test(s);
+        };
+        function parseMSDate(s) {
+            if (s === null) return "Null";
+            var pattern = /Date\(([^)]+)\)/;
+            var results = pattern.exec(s);
+            var dt = new Date(parseFloat(results[1]));
+            return (dt.getMonth() + 1) + "/" + dt.getDate() + "/" + dt.getFullYear();
+        };
+    </script>
 </head>
 <body style="background-color:black;color:white;font-family:Verdana;font-size:medium">
     <form runat="server">
-        <asp:ScriptManager runat="server">
+<%--        <asp:ScriptManager runat="server">
             <Scripts>
-                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
-                <%--Framework Scripts--%>
+                <!--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 -->
+                <!--Framework Scripts-->
                 <asp:ScriptReference Name="MsAjaxBundle" />
                 <asp:ScriptReference Name="jquery" />
                 <asp:ScriptReference Name="bootstrap" />
@@ -44,114 +47,136 @@
                 <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
                 <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
                 <asp:ScriptReference Name="WebFormsBundle" />
-                <%--Site Scripts--%>
-            </Scripts>
-        </asp:ScriptManager>
-        <nav class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a runat="server" href="~/Default.aspx" class="navbar-brand"><%: Application["AppName"] %></a>
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="dropdown">
-                            <a runat="server" href="~/Default.asp">Classic ASP Site</a>
-<%--                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Ken's Content&nbsp;<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-	                            <li><a runat="server" href="~/Default.asp">Classic ASP Site</a></li>
-	                            <li><a runat="server" href="~/WebTools.htm">Web Tools/Links...</a></li>
-	                            <li><a runat="server" href="~/SoftwareIDX.asp">Software Development Tools/Links...</a></li>
-	                            <li><a runat="server" href="~/Software/Microsoft.asp">Microsoft</a></li>
-                                <li class="divider"></li>
-                                <li><a runat="server" href="~/Aircraft/Aircraft.aspx">Aircraft Image Archive</a></li>
-                                <li><a runat="server" href="~/Games/GameLinks.aspx">Game Links</a></li>
-                                <li><a runat="server" href="~/Hobby/Hobby.aspx">Hobby Links</a></li>
-                                <li><a runat="server" href="~/Military/">Military Web Sites</a></li>
-	                            <li><a runat="server" href="~/Music/Music.aspx">Music Links</a></li>
-                                <li><a runat="server" href="~/NASA/Welcome.htm">NASA Index</a></li>
-                                <li><a runat="server" href="~/Ships/Ships.aspx">Ship Image Archive</a></li>
-                                <li><a runat="server" href="~/SciFi/">SciFi Image Archive</a></li>
-                            </ul>--%>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Database&nbsp;<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a runat="server" href="~/TestBed.aspx">LinqTest</a></li>
-                                <li><a runat="server" href="~/Books/BooksList.aspx">Books</a></li>
-                                <li><a runat="server" href="~/Books/BooksList.asp">Books (Classic)</a></li>
-                                <li><a runat="server" href="Collectables">Collectables</a></li>
-                                <li class="dropdown-submenu">
-                                    <a class="test" tabindex="-1" href="#">Hobby&nbsp;<span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a runat="server" href="~/Kits">Kits</a></li>
-                                        <li><a runat="server" href="~/Decals">Decals</a></li>
-                                        <li><a runat="server" href="~/DetailSets">Detail&nbsp;Sets</a></li>
-                                        <li class="divider"></li>
-                                        <li><a runat="server" href="~/Tools">Tools</a></li>
-                                        <li><a runat="server" href="~/VideoResearch">Video&nbsp;Research</a></li>
-                                        <li class="divider"></li>
-                                        <li><a runat="server" href="~/Rockets">Rockets</a></li>
-                                        <li><a runat="server" href="~/Trains">Trains</a></li>
-                                        <li class="divider"></li>
-                                        <li><a runat="server" href="~/Companies">Companies</a></li>
-                                        <li class="divider"></li>
-                                        <li><a runat="server" href="~/Designations">Aircraft&nbsp;Designations</a></li>
-                                        <li><a runat="server" href="~/BlueAngels">Blue&nbsp;Angels&nbsp;History</a></li>
-                                    </ul>
-                                </li>
-                                <li><a runat="server" href="~/Images">Images</a></li>
-                                <li><a runat="server" href="~/Music">Music</a></li>
-                                <li><a runat="server" href="~/Software">Software</a></li>
-                                <li class="dropdown-submenu">
-                                    <a class="test" tabindex="-1" href="#">U.S.&nbsp;Navy&nbsp;<span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a runat="server" href="~/Classifications">Classifications</a></li>
-                                        <li><a runat="server" href="~/Classes">Classes</a></li>
-                                        <li><a runat="server" href="~/Ships">Ships</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown-submenu">
-                                    <a class="test" tabindex="-1" href="#">Video&nbsp;Library&nbsp;<span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a runat="server" href="~/Movies">Movies</a></li>
-                                        <li><a runat="server" href="~/Specials">Specials</a></li>
-                                        <li><a runat="server" href="~/Episodes">TV&nbsp;Episodes</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        <li><a runat="server" href="~/Reports">Reports</a></li>
-                        <li><a runat="server" href="~/About">About</a></li>
-                        <li><a runat="server" href="~/Contact">Contact</a></li>
-                    </ul>
-                    <asp:LoginView runat="server" ViewStateMode="Disabled">
-                        <AnonymousTemplate>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" href="~/Account/Register"><span class="glyphicon glyphicon-user"></span> Register</a></li>
-                                <li><a runat="server" href="~/Account/Login"><span class="glyphicon glyphicon-log-out"></span> Log in</a></li>
-                            </ul>
-                        </AnonymousTemplate>
-                        <LoggedInTemplate>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: FirstName  %>!</a></li>
-                                <li><asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="<span class='glyphicon glyphicon-log-out'></span> Log off" LogoutPageUrl="~/Default.aspx" OnLoggingOut="Unnamed_LoggingOut"/></li>
-                            </ul>
-                        </LoggedInTemplate>
-                    </asp:LoginView>
-                </div>
+                <!--Site Scripts-->
+                </Scripts>
+        </asp:ScriptManager>--%>
+        <%-- Note that the Bootstrap web site example for this kind of Navbar does not use <li> tags for individual menu items 
+            but <div> tags instead. I'm using <li> tags to support the JavaScript/jQuery code that implements the desired 
+            behavior of the submenus. --%>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <a runat="server" class="navbar-brand" href="~/Default.aspx"><%: Application["AppName"] %></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"><a class="nav-link" runat="server" href="~/Default.asp" target="_blank">Classic (ASP)</a></li>
+<%--
+                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle active" href="#" id="ASPMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ken's ASP Content</a>
+                        <ul class="dropdown-menu text-light bg-dark" aria-labelledby="ASPMenu">
+	                        <li><a class="dropdown-item text-light bg-dark" runat="server" href="~/Default.asp">Classic ASP Site</a></li>
+	                        <li><a class="dropdown-item text-light bg-dark" runat="server" href="~/WebTools.htm">Web Tools/Links...</a></li>
+	                        <li><a class="dropdown-item text-light bg-dark" runat="server" href="~/SoftwareIDX.asp">Software Development Tools/Links...</a></li>
+	                        <li><a class="dropdown-item text-light bg-dark" runat="server" href="~/Software/Microsoft.asp">Microsoft</a></li>
+                            <li class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-light bg-dark" runat="server" href="~/Aircraft/Aircraft.aspx">Aircraft Image Archive</a></li>
+                            <li><a class="dropdown-item text-light bg-dark" runat="server" href="~/Games/GameLinks.aspx">Game Links</a></li>
+                            <li><a class="dropdown-item text-light bg-dark" runat="server" href="~/Hobby/Hobby.aspx">Hobby Links</a></li>
+                            <li><a class="dropdown-item text-light bg-dark" runat="server" href="~/Military/">Military Web Sites</a></li>
+	                        <li><a class="dropdown-item text-light bg-dark" runat="server" href="~/Music/Music.aspx">Music Links</a></li>
+                            <li><a class="dropdown-item text-light bg-dark" runat="server" href="~/NASA/Welcome.htm">NASA Index</a></li>
+                            <li><a class="dropdown-item text-light bg-dark" runat="server" href="~/Ships/Ships.aspx">Ship Image Archive</a></li>
+                            <li><a class="dropdown-item text-light bg-dark" runat="server" href="~/SciFi/">SciFi Image Archive</a></li>
+                        </ul>
+                    </li>
+--%>
+                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle active" href="#" id="DatabaseMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Database <span class="sr-only">(current)</span></a>
+                        <ul class="dropdown-menu text-light bg-dark" aria-labelledby="DatabaseMenu">
+<%--                            <li><a class="dropdown-item text-light bg-dark" runat="server" href="~/TestBed.aspx">TestBed</a></li>--%>
+<%--                            <li class="dropdown-divider"></li>--%>
+                            <li><a class="dropdown-item text-light bg-dark" runat="server" href="~/Books/BooksList.asp">Books (Classic)</a></li>
+                            <li><a class="dropdown-item text-light bg-dark" runat="server" href="~/Books/BooksListAjax.aspx">Books (Ajax)</a></li>
+                            <li><a class="dropdown-item text-light bg-dark" runat="server" href="~/Books/BooksListWCF.aspx">Books (WCF)</a></li>
+                            <li><a class="dropdown-item text-light bg-dark" runat="server" href="~/Books/BooksList.aspx">Books (DataTables)</a></li>
+<%--                            <li><a class="dropdown-item text-light bg-dark" runat="server" href="~/Books/ThemedBooksList.aspx">Themed Books</a></li>--%>
+                            <li class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-light bg-dark" runat="server" href="Collectables">Collectables</a></li>
+                            <li class="dropdown-submenu"><a class="dropdown-item text-light bg-dark dropdown-toggle" href="#" id="HobbyMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Hobby</a>
+                                <ul class="dropdown-menu text-light bg-dark" aria-labelledby="HobbyMenu">
+                                    <li><a class="dropdown-item text-light bg-dark" runat="server" href="~/Kits">Kits</a></li>
+                                    <li><a class="dropdown-item text-light bg-dark" runat="server" href="~/Decals">Decals</a></li>
+                                    <li><a class="dropdown-item text-light bg-dark" runat="server" href="~/DetailSets">Detail&nbsp;Sets</a></li>
+                                    <li class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item text-light bg-dark" runat="server" href="~/Tools">Tools</a></li>
+                                    <li><a class="dropdown-item text-light bg-dark" runat="server" href="~/VideoResearch">Video&nbsp;Research</a></li>
+                                    <li class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item text-light bg-dark" runat="server" href="~/Rockets">Rockets</a></li>
+                                    <li><a class="dropdown-item text-light bg-dark" runat="server" href="~/Trains">Trains</a></li>
+                                    <li class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item text-light bg-dark" runat="server" href="~/Companies">Companies</a></li>
+                                    <li class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item text-light bg-dark" runat="server" href="~/Designations">Aircraft&nbsp;Designations</a></li>
+                                    <li><a class="dropdown-item text-light bg-dark" runat="server" href="~/BlueAngels">Blue&nbsp;Angels&nbsp;History</a></li>
+                                </ul>
+                            <li><a class="dropdown-item text-light bg-dark" runat="server" href="~/Images">Images</a></li>
+                            <li><a class="dropdown-item text-light bg-dark" runat="server" href="~/Music">Music</a></li>
+                            <li><a class="dropdown-item text-light bg-dark" runat="server" href="~/Software">Software</a></li>
+                            <li class="dropdown-submenu"><a class="dropdown-item text-light bg-dark dropdown-toggle" href="#" id="USNavyMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">U.S.&nbsp;Navy</a>
+                                <ul class="dropdown-menu text-light bg-dark">
+                                    <li><a class="dropdown-item text-light bg-dark" runat="server" href="~/Classifications">Classifications</a></li>
+                                    <li><a class="dropdown-item text-light bg-dark" runat="server" href="~/Classes">Classes</a></li>
+                                    <li><a class="dropdown-item text-light bg-dark" runat="server" href="~/Ships">Ships</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu"><a class="dropdown-item text-light bg-dark dropdown-toggle" href="#" id="VideoLibraryMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Video&nbsp;Library</a>
+                                <ul class="dropdown-menu text-light bg-dark">
+                                    <li><a class="dropdown-item text-light bg-dark" runat="server" href="~/Movies">Movies</a></li>
+                                    <li><a class="dropdown-item text-light bg-dark" runat="server" href="~/Specials">Specials</a></li>
+                                    <li><a class="dropdown-item text-light bg-dark" runat="server" href="~/Episodes">TV&nbsp;Episodes</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link disabled" runat="server" tabindex="-1" aria-disabled="true" href="~/Reports">Reports</a></li>
+                    <li class="nav-item"><a class="nav-link" runat="server" href="~/About">About</a></li>
+                    <li class="nav-item"><a class="nav-link" runat="server" href="~/Contact">Contact</a></li>
+                </ul>
+                <asp:LoginView runat="server" ViewStateMode="Disabled">
+                    <AnonymousTemplate>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="nav-item"><a class="nav-link" runat="server" href="~/Account/Register"><i class="fas fa-user"></i> Register</a></li><%-- glyphicon glyphicon-user --%>
+                            <li class="nav-item"><a class="nav-link" runat="server" href="~/Account/Login"><i class="fas fa-sign-in-alt"></i> Log in</a></li><%-- glyphicon glyphicon-log-in --%>
+                        </ul>
+                    </AnonymousTemplate>
+                    <LoggedInTemplate>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="nav-item"><a class="nav-link" runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: FirstName  %>!</a></li>
+                            <li class="nav-item"><asp:LoginStatus runat="server" LogoutAction="Redirect" CssClass="nav-link" LogoutText="<i class='fas fa-sign-out-alt'></i> Log off" LogoutPageUrl="~/Default.aspx" OnLoggingOut="Unnamed_LoggingOut"/></li><%-- glyphicon glyphicon-log-out --%>
+                        </ul>
+                    </LoggedInTemplate>
+                </asp:LoginView>
             </div>
         </nav>
+        <hr />
+        <script>
+            //Submenu Support...
+            $(document).ready(function () {
+                $('.dropdown-submenu a.test').on("click", function (e) {
+                    $(this).next('ul').toggle();
+                    e.stopPropagation();
+                    e.preventDefault();
+                });
+                $('.dropdown-menu a.dropdown-toggle').on('click', function (e) {
+                    if (!$(this).next().hasClass('show')) {
+                        $(this).parents('.dropdown-menu').first().find('.show').removeClass('show');
+                    }
+                    var $subMenu = $(this).next('.dropdown-menu');
+                    $subMenu.toggleClass('show');
+
+                    $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function (e) {
+                        $('.dropdown-submenu .show').removeClass('show');
+                    });
+                    return false;
+                });
+            });
+        </script>
         <div class="container body-content" id="main">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            <asp:ContentPlaceHolder id="MainContent" runat="server">
             </asp:ContentPlaceHolder>
         </div>
         <hr />
         <footer style="margin-left:10px">
-            <asp:ContentPlaceHolder ID="FooterContent" runat="server">
+            <asp:ContentPlaceHolder id="FooterContent" runat="server">
             </asp:ContentPlaceHolder>
             <div style="font-family: Arial; color:white; background-color:black">
                 <p><i>If you experience any problems with this page, please contact: <a href="mailto:<%= Application["WebMasterEmail"] %>"><b>WebMaster</b></a></i></p>
@@ -169,14 +194,5 @@
             </div>
         </footer>
     </form>
-    <script>
-        $(document).ready(function () {
-            $('.dropdown-submenu a.test').on("click", function (e) {
-                $(this).next('ul').toggle();
-                e.stopPropagation();
-                e.preventDefault();
-            });
-        });
-    </script>
 </body>
 </html>

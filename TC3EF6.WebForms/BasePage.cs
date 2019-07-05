@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Script.Services;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using TC3EF6.Data;
@@ -20,7 +22,8 @@ namespace TC3EF6.WebForms
     {
         protected List<ImageData> Images { get; private set; }
         public bool Owner { get => !string.IsNullOrEmpty(Context.User.Identity.Name) && (Context.User.Identity.Name == (string)Application["Owner"]); }
-        protected Visitor Visitor { get => (Visitor)Session["Visitor"]; }
+        public static string PathInfo { get => (string)HttpContext.Current.Request.ServerVariables["PATH_INFO"]; }
+        public Visitor Visitor { get => (Visitor)Session["Visitor"]; }
         protected BasePage() : base()
         {
             Images = new List<ImageData>();
@@ -45,7 +48,7 @@ namespace TC3EF6.WebForms
             Images.Add(new ImageData { Path = "/Images/Backgrounds/Iceberg.gif", Width = 219, Height = 100 });
             Images.Add(new ImageData { Path = "/Images/Backgrounds/carney80.gif", Width = 196, Height = 100 });
         }
-        protected void LogMessage(string Message)
+        public void LogMessage(string Message)
         {
             using (var context = new TCContext())
             {

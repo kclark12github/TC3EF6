@@ -30,10 +30,28 @@ namespace TC3EF6.WebForms
                     "~/Scripts/WebForms/MsAjax/MicrosoftAjaxTimer.js",
                     "~/Scripts/WebForms/MsAjax/MicrosoftAjaxWebForms.js"));
 
+            #endregion
+
             // Use the Development version of Modernizr to develop with and learn from. Then, when you’re
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                             "~/Scripts/modernizr-*"));
+
+            #region Stolen from the TC3EFC2.WebMVC project to support Ajax...
+            //bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
+            //             "~/Scripts/jquery-{version}.js"
+            //             //,"~/Scripts/jquery-ui-{version}.js"
+            //             //,"~/Scripts/jquery.unobtrusive*"
+            //             //,"~/Scripts/jquery.validate*"
+            //             //,"~/Scripts/otf.js"
+            //             ));
+            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
+                        "~/Scripts/jquery-{version}.js"));
+            //bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
+            //            "~/Scripts/jquery-ui-{version}.js"));
+            //bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
+            //            "~/Scripts/jquery.unobtrusive*",
+            //            "~/Scripts/jquery.validate*"));
             #endregion
             #region Stolen from the TC3EFC2.WebMVC project to support DataTables...
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
@@ -43,8 +61,9 @@ namespace TC3EF6.WebForms
                       "~/Scripts/umd/popper-utils.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",                //Bootstrap v4 dropped support for glyphicons, so we're using fontawesome below...
-                      //"~/Content/fontawesome/css/all.css",    //Using fontawesome from the bundle isn't working, so we're using explicit style tags...
+                      "~/Content/bootstrap.css",                    //Bootstrap v4 dropped support for glyphicons, so we're using fontawesome below...
+                                                                    //"~/Content/fontawesome/css/all.css",    //Using fontawesome from the bundle isn't working, so we're using explicit style tags...
+                      "~/Content/fontawesome-5.9.0/css/all.css",    //Manually Downloaded from https://fontawesome.com/download and unzipped into this location...
                       "~/Content/site.css"
                       ));
             //https://www.codeproject.com/Articles/1114208/Beginners-Guide-for-Creating-GridView-in-ASP-NET-M

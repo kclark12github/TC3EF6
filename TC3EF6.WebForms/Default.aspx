@@ -14,7 +14,7 @@
 					        </td>
 					        <td rowspan="2" style="text-align: center"> 
                                 <% 
-                                    if (Visitor.DoLake) {
+                                    if (Visitor != null && Visitor.DoLake) {
                                         //06/27/19: <applet> is no longer supported in HTML5 and most browsers...
                                         //Response.Write($@"<applet codebase=""/Java"" code=""/Java/Lake.class"" width={GIFWidth} height={GIFHeight}>");
                                         //Response.Write($@"	<param name=""image"" value=""{GIFPath}"">");
@@ -27,7 +27,7 @@
                                         Response.Write($@"	<param name=""archive"" value=""Java/Lake.jar"">");
                                         //Response.Write($@"    <img src=""{GIFPath}"" width={GIFWidth} height={GIFHeight} border=0>");
                                         Response.Write($@"    <img src=""{GIFPath}"" border=0>");
-                                        Response.Write($@"	<p>Must use a Java-enabled Browser to display the Lake applet.</p>");
+                                        Response.Write($@"	<p style=""font-size:small"">Must use a Java-enabled Browser to display the Lake applet.</p>");
                                         Response.Write($@"</object> ");
                                     } else {
                                         //Response.Write($@"<img src=""{GIFPath}"" width={GIFWidth} height={GIFHeight} border=0>");

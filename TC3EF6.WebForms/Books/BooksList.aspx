@@ -1,5 +1,14 @@
-﻿<%@ Page Title="Books List" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="BooksList.aspx.cs" Inherits="TC3EF6.WebForms.Books.BooksList" %>
+﻿<%@ Page Title="Books List (DataTables)" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="BooksList.aspx.cs" Inherits="TC3EF6.WebForms.Books.BooksList" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+<%
+    //bool DebugMode = false;
+    string Theme = "Brownside";
+    //string DFName = "rsBooks";
+    //string SQLstatement = "Select [Books].*,[Locations].[OName] As [Location] From [Books] Inner Join [Locations] On [Books].[LocationID]=[Locations].[ID] Order By [AlphaSort];";
+    string TableStyle = "style='width:100%; border-collapse: collapse; border-spacing: 0px;font-family:Arial;'";
+    string TableHeaderStyle = $@"style='background-image:url(/Images/{Theme}/Navigation/Nav1.jpg);text-align:left;font-size:xx-large;font-style:italic;color:white;height:56px;white-space:nowrap;padding-left:10px;'";
+    //string TableDetailStyle = "style='max-width:none;overflow-x:visible,scroll;background-color:white;color:brown;'";   // $@"background-image:url(/Images/{Theme}/Background/BACK2.jpg);";
+%>
 <style>
     /* Using jquery.dataTables.css with bootstrap4 screws up the padding on pagination 
        links, however not including it removes the selected row behavior. The following
@@ -16,38 +25,38 @@
         background-color: #000080;
     }
 </style>
-<div class="card" id="list-panel">
-    <div class="card-header">
-        <div class="row align-items-center" style="padding: 25px">
-            <div class="col">
-                <h1 class="card-title list-panel-title"><%= Page.Title %></h1>
+    <table id="BaseTable" border="0" <%=TableStyle%> title="<%=Page.Title%>">
+        <tr><th <%=TableHeaderStyle%>><%=Page.Title%></th></tr>
+        <tr><td>
+            <div class="card bg-dark" id="list-panel">
+                <div class="card-header">
+                    <div class="row align-items-center" style="padding-left:25px;padding-right:25px">
+<%--                        <div class="col">
+                            <h1 class="card-title list-panel-title"><%= Page.Title %></h1>
+                        </div>--%>
+                        <div class="col-auto">
+                            <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#newModal" id="new-button">
+                                <span class="fas fa-plus-square mr-1"></span><span>New</span>
+                            </button>
+                            <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#filterModal" id="filter-button">
+                                <span class="fas fa-filter mx-2"></span><span>Filter</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table id="books-data-table" 
+                        class="table table-responsive-xl table-striped table-bordered table-hover compact order-column"
+                        style="max-width:none;overflow-x:visible,scroll;background-color:white;color:navy;"></table>
+                </div>
             </div>
-            <div class="col-auto">
-                <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#newModal" id="new-button">
-                    <span class="fas fa-plus-square mr-1"></span><span>New</span>
-                </button>
-                <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#filterModal" id="filter-button">
-                    <span class="fas fa-filter mx-2"></span><span>Filter</span>
-                </button>
-            </div>
-        </div>
-    </div>
-    <div class="card-body">
-        <table id="books-data-table" 
-            class="table table-responsive-xl table-striped table-bordered table-hover compact order-column"
-            style="max-width:none;overflow-x:visible,scroll;background-color:white;color:navy;"></table>
-    </div>
-</div>
+        </td></tr>
+    </table>
     <asp:PlaceHolder runat="server">
         <%: Styles.Render("~/Content/datatables") %>
         <%: Scripts.Render("~/bundles/datatables") %>
     </asp:PlaceHolder>
     <script type="text/javascript">
-        function parseMSDate(s) {
-            var dregex = /\/Date\((\d*)\)\//;
-            alert(dregex.test(s) ? new Date(parseInt(dregex.exec(s)[1])) : s);
-            return dregex.test(s) ? new Date(parseInt(dregex.exec(s)[1])) : s;
-        }
         var bookListVM;
         $(function () {
             bookListVM = {

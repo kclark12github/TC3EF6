@@ -1,13 +1,282 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TestBed.aspx.cs" Inherits="TC3EF6.WebForms.TestBed" %>
-
+﻿<%@ Page Title="Library - Books" Language="C#" AutoEventWireup="true" CodeBehind="TestBed.aspx.cs" Inherits="TC3EF6.WebForms.TestBed" %>
+<%
+    //bool DebugMode = false;
+    string Theme = "Brownside";
+    //string DFName = "rsBooks";
+    //string SQLstatement = "Select [Books].*,[Locations].[OName] As [Location] From [Books] Inner Join [Locations] On [Books].[LocationID]=[Locations].[ID] Order By [AlphaSort];";
+    string TableStyle = "style='width:100%; border-collapse: collapse; border-spacing: 0px;font-family:Arial;'";
+    string TableHeaderStyle = $@"style='background-image:url(/Images/{Theme}/Navigation/Nav1.jpg);text-align:left;font-size:xx-large;font-style:italic;color:white;height:56px;white-space:nowrap;padding-left:10px;'";
+    string TableDetailStyle = "style='max-width:none;overflow-x:visible,scroll;background-color:white;color:brown;'";   // $@"background-image:url(/Images/{Theme}/Background/BACK2.jpg);";
+%>
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <link rel="search" href="/Stylesheets/<%=Theme%>/Style2.css"/>
+    <link href="/Content/bootstrap.css" rel="stylesheet"/>
+    <link href="/Content/site.css" rel="stylesheet"/>
+<%
+    var UseNewJQ = 1;
+    if (UseNewJQ==1)
+    {
+%>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<%--    <script type="text/javascript">
+        $(window).load(function () {
+            alert("$.GET...");
+            $.get('<%=Request.ServerVariables["PATH_INFO"]%>/GetData', function (json, status) {
+                    table = $('#Records');
+                    header = $("<tr class='table_header'></tr>");
+                    $.each(Object.keys(json.d.Data[0]), function (iHdr, vHdr) {
+                        header.append($('<th>' + vHdr + '</th>'));
+                    })
+                    table.append(header); 
+                  
+                    $.each(json.d.Data, function (iRow, vRow) {
+                        row = $('<tr></tr>');
+                        $.each(vRow, function (iCell, vCell) {
+                            var alignment = "left";
+                            switch (typeof vCell) {
+                                case "number":
+                                    alignment = "right";
+                                    break;
+                                case "string":
+                                    if (vCell.length > 6 && vCell.substr(0, 6) == "/Date(") {
+                                        alignment = "right";
+                                        vCell = parseMSDate(vCell);
+                                        break;
+                                    }
+                                default:
+                                    break;
+                            }
+                            row.append($('<td style="text-align:'+ alignment + ';">' + vCell + ' (' + typeof(vCell) + ')</td>'));
+                        })
+                        table.append(row);
+                    })
+                });
+        });
+    </script>--%>
+<%
+    } else {
+%>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<%--    <script type="text/javascript">
+        $(window).load(function () {
+            alert("$.AJAX...");
+            $.ajax({
+                "url": '<%=Request.ServerVariables["PATH_INFO"]%>/GetData',
+                "type": 'GET',
+                "contentType": "application/json",
+                "type": "GET",
+                "dataType": "JSON",
+                "data": function (data) { return data },
+                "dataSrc": function (json) {
+                    json.draw = json.d.Draw;
+                    json.recordsTotal = json.d.RecordsTotal;
+                    json.recordsFiltered = json.d.RecordsFiltered;
+                    json.data = json.d.Data;
+                    var return_data = json;
+                    return return_data.data;
+                },
+                "success": function (json) {
+                    table = $('#Records');
+                    //table = $("<table id=" + table_id + "></table>");
+                    header = $("<tr class='table_header'></tr>");
+                    $.each(Object.keys(json.d.Data[0]), function (iHdr, vHdr) {
+                        header.append($('<th>' + vHdr + '</th>'));
+                    })
+                    table.append(header);
+
+                    $.each(json.d.Data, function (iRow, vRow) {
+                        row = $('<tr></tr>');
+                        $.each(vRow, function (iCell, vCell) {
+                            var alignment = "left";
+                            switch (typeof vCell) {
+                                case "number":
+                                    alignment = "right";
+                                    break;
+                                case "string":
+                                    if (vCell.length > 6 && vCell.substr(0, 6) == "/Date(") {
+                                        alignment = "right";
+                                        vCell = parseMSDate(vCell);
+                                        break;
+                                    }
+                                default:
+                                    break;
+                            }
+                            row.append($('<td style="text-align:' + alignment + ';">' + vCell + ' (' + typeof (vCell) + ')</td>'));
+                        })
+                        table.append(row);
+                    })
+                }
+            });
+        });
+    </script>--%>
+<%
+    }
+%>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var UseNewJQ = <%=UseNewJQ%>;
+        //alert("Load");
+        if (UseNewJQ == 1) {
+            //alert("$.GET...");
+            $.ajax({
+                "url": '<%=Request.ServerVariables["PATH_INFO"]%>/GetData?start=0&pageSize=10',
+                "type": 'GET',
+                "contentType": "application/json",
+                "dataType": "JSON",
+                "data": function (data) { return data },
+                //"dataSrc": function (json) {
+                //    json.draw = json.d.Draw;
+                //    json.recordsTotal = json.d.RecordsTotal;
+                //    json.recordsFiltered = json.d.RecordsFiltered;
+                //    json.data = json.d.Data;
+                //    var return_data = json;
+                //    return return_data.data;
+                //},
+                "success": function (json) {
+                    table = $('#Records');
+                    //table = $("<table id=" + table_id + "></table>");
+                    header = $("<tr class='table_header' style='background-color:silver;'></tr>");
+                    $.each(Object.keys(json.d.Data[0]), function (iHdr, vHdr) {
+                        header.append($('<th>' + vHdr + '</th>'));
+                    })
+                    table.append(header);
+
+                    $.each(json.d.Data, function (iRow, vRow) {
+                        row = $('<tr></tr>');
+                        $.each(vRow, function (iCell, vCell) {
+                            var alignment = "left";
+                            switch (typeof vCell) {
+                                case "number":
+                                    alignment = "right";
+                                    break;
+                                case "string":
+                                    if (vCell.length > 6 && vCell.substr(0, 6) == "/Date(") {
+                                        alignment = "right";
+                                        var dt = new Date(parseMSDate(vCell));
+                                        vCell = (dt.getMonth() + 1) + "/" + dt.getDate() + "/" + dt.getFullYear();
+                                        break;
+                                    }
+                                default:
+                                    break;
+                            }
+                            //row.append($('<td style="text-align:' + alignment + ';">' + vCell + ' (' + typeof (vCell) + ')</td>'));
+                            row.append($('<td style="text-align:' + alignment + ';white-space:nowrap;">' + vCell + '</td>'));
+                        })
+                        table.append(row);
+                    })
+                }
+            });
+<%--            $.get("<%=Request.ServerVariables["PATH_INFO"]%>/GetData", function (json, status) {
+                table = $("#Records");
+                header = $("<tr class='table_header'></tr>");
+                $.each(Object.keys(json.d.Data[0]), function (iHdr, vHdr) {
+                    header.append($('<th>' + vHdr + '</th>'));
+                })
+                table.append(header);
+
+                $.each(json.d.Data, function (iRow, vRow) {
+                    row = $('<tr></tr>');
+                    $.each(vRow, function (iCell, vCell) {
+                        var alignment = "left";
+                        switch (typeof vCell) {
+                            case "number":
+                                alignment = "right";
+                                break;
+                            case "string":
+                                if (vCell.length > 6 && vCell.substr(0, 6) == "/Date(") {
+                                    alignment = "right";
+                                    vCell = parseMSDate(vCell);
+                                    break;
+                                }
+                            default:
+                                break;
+                        }
+                        row.append($('<td style="text-align:' + alignment + ';">' + vCell + ' (' + typeof (vCell) + ')</td>'));
+                    })
+                    table.append(row);
+                })
+            });--%>
+        } else {
+            //alert("$.AJAX...");
+            $.ajax({
+                "url": '<%=Request.ServerVariables["PATH_INFO"]%>/GetData',
+                "type": 'GET',
+                "contentType": "application/json",
+                "dataType": "JSON",
+                "data": function (data) { return data },
+                "dataSrc": function (json) {
+                    json.draw = json.d.Draw;
+                    json.recordsTotal = json.d.RecordsTotal;
+                    json.recordsFiltered = json.d.RecordsFiltered;
+                    json.data = json.d.Data;
+                    var return_data = json;
+                    return return_data.data;
+                },
+                "success": function (json) {
+                    table = $('#Records');
+                    //table = $("<table id=" + table_id + "></table>");
+                    header = $("<tr class='table_header'></tr>");
+                    $.each(Object.keys(json.d.Data[0]), function (iHdr, vHdr) {
+                        header.append($('<th>' + vHdr + '</th>'));
+                    })
+                    table.append(header);
+
+                    $.each(json.d.Data, function (iRow, vRow) {
+                        row = $('<tr></tr>');
+                        $.each(vRow, function (iCell, vCell) {
+                            var alignment = "left";
+                            switch (typeof vCell) {
+                                case "number":
+                                    alignment = "right";
+                                    break;
+                                case "string":
+                                    if (vCell.length > 6 && vCell.substr(0, 6) == "/Date(") {
+                                        alignment = "right";
+                                        vCell = parseMSDate(vCell);
+                                        break;
+                                    }
+                                default:
+                                    break;
+                            }
+                            row.append($('<td style="text-align:' + alignment + ';">' + vCell + ' (' + typeof (vCell) + ')</td>'));
+                        })
+                        table.append(row);
+                    })
+                }
+            });
+        }
+        function isMSDate(s) {
+            var dregex = /\/Date\((\d*)\)\//;
+            return dregex.test(s);
+        };
+        function parseMSDate(s) {
+            var dregex = /\/Date\((\d*)\)\//;
+            //alert(dregex.test(s) ? new Date(parseInt(dregex.exec(s)[1])) : s);
+            return dregex.test(s) ? new Date(parseInt(dregex.exec(s)[1])) : s;
+        };
+    });
+</script>
+
+
 </head>
 <body>
-    <form id="form1" runat="server">
+<table id="BaseTable" border="0" <%=TableStyle%> title="<%=Page.Title%>">
+    <tr><th <%=TableHeaderStyle%>><%=Page.Title%></th></tr>
+    <tr><td>
+    <div class="card-body">
+        <table id="Records" 
+            class="table table-responsive-xl table-striped table-bordered table-hover compact order-column"
+            <%=TableDetailStyle%>
+            border="0" >
+        </table>
+    </div>
+    </td></tr>
+</table>
+    <hr />
+<%--    <form id="form1" runat="server">
         <div>
             <asp:LinqDataSource ID="LinqDataSource1" runat="server" ContextTypeName="TC3EF6.Data.TCContext" EntityTypeName="" OrderBy="AlphaSort, DateCreated" TableName="Books" Where="DatePurchased &gt; @DatePurchased">
                 <WhereParameters>
@@ -52,6 +321,6 @@
                 <SortedDescendingHeaderStyle BackColor="#4870BE" />
             </asp:GridView>
         </div>
-    </form>
+    </form>--%>
 </body>
 </html>

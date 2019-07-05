@@ -1,14 +1,40 @@
 ﻿/* Move down content because we have a fixed navbar that is 50px tall */
+
 body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
 
-/* Wrapping element */
-/* Set some basic padding to keep content from hitting the edges */
-.body-content {
+/* Set padding to keep content from hitting the edges */
+/*.body-content {
     padding-left: 15px;
     padding-right: 15px;
+}*/
+
+th.data-list {
+    text-align: left;
+    font-size: xx-large;
+    font-style: italic;
+    height: 56px;
+    white-space: nowrap;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100%;
+}
+table.data-list {
+    color: white;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0px;
+    font-family: Arial;
+    max-width: none;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+table.data-list-detail {
+    max-width: none;
+    overflow-x: visible,scroll;
+    background-color: white;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -35,4 +61,22 @@ input[type="select"] {
     .body-content {
         padding: 0;
     }
+}
+
+/* Menu Support */
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu a::after {
+    transform: rotate(-90deg);
+    position: absolute;
+    right: 6px;
+    top: .8em;
+}
+
+.dropdown-submenu .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -1px;
 }

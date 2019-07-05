@@ -9,6 +9,20 @@
     padding-right: 15px;
 }
 
+.data-list-table {
+    color:yellow;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0px;
+    font-family: Arial;
+    /*max-width: none !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;*/
+    max-width: none;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
