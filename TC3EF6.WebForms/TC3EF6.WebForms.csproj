@@ -4284,6 +4284,7 @@
     <Content Include="Java\LakeSample2.htm" />
     <Content Include="Java\UpgradeLog.htm" />
     <Content Include="Jokes\HowShitHappens.htm" />
+    <Content Include="Lake.jar" />
     <Content Include="SciFi\1701A01.JPG" />
     <Content Include="SciFi\adrift.jpg" />
     <Content Include="SciFi\BattlestarGalactica\1.GIF" />
@@ -8367,9 +8368,15 @@
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <Content Include="libman.json" />
+    <Content Include="Software\PS2GamesActio.asp" />
+    <Content Include="Software\PS2GamesForm.asp" />
+    <Content Include="Software\PS2GamesList.asp" />
     <Content Include="Software\SoftwareAction.asp" />
     <Content Include="Software\SoftwareForm.asp" />
     <Content Include="Software\SoftwareList.asp" />
+    <Content Include="Software\XBOXGamesAction.asp" />
+    <Content Include="Software\XBOXGamesForm.asp" />
+    <Content Include="Software\XBOXGamesList.asp" />
     <Content Include="StyleSheets\Blueside\STYLE1.CSS" />
     <Content Include="StyleSheets\Blueside\STYLE2.CSS" />
     <Content Include="StyleSheets\Brownside\Style1.css" />
@@ -13117,6 +13124,7 @@
     </Compile>
     <Compile Include="Models\Books\DataTables.cs" />
     <Compile Include="Models\Books\FilterViewModel.cs" />
+    <Compile Include="Services\BooksService.cs" />
     <Compile Include="Ships\Ships.aspx.cs">
       <DependentUpon>Ships.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -1,19 +1,18 @@
 <%@ LANGUAGE="VBScript" %>
 <%
-Dim strPagingMove
-Dim strDFName
 strDBName = "Software"
-strDFName = "rsApple2Games"
-strTableName = "Apple2Games"
-strBasePageName = "Apple2Games"
-strPageTitle = "Software Library; Apple ][ Games"
-SQLstatement = "Select Software.*,Locations.Name As Location From Software Inner Join Locations On Locations.ID=Software.LocationID Where (Platform Like 'Apple%' Or Platform='CP/M') And [Type] Like 'Game%' Order By Title, Version;"
+strDFName = "rsPS2Games"
+strTableName = "PS2Games"
+strBasePageName = "PS2Games"
+strPageTitle = "Software Library; PS2 Games"
+SQLstatement = "Select Software.*,Locations.Name As Location From Software Inner Join Locations On Locations.ID=Software.LocationID Where (Platform='Sony Playstation 2') And [Type] Like 'Game%' Order By Title, Version;"
 strHomeGIF = ""
 strFooterURL = ""
 strFooterTitle = ""
-Theme = "Redside"
+Theme = "Blueside"
 blnShowUserName = True
 fDebugMode = False
+fForceReadRecordSet = False
 %>
 
 <!-- #include virtual="/Includes/ListTemplateTop.inc.asp"-->
@@ -38,9 +37,7 @@ fDebugMode = False
 		Response.Write "<TD BGCOLOR=White ALIGN=Left NOWRAP><FONT SIZE=-1><A HREF=" & QuotedString(strBasePageName & "Action.asp?Bookmark=" & tCurRec & "&DataAction=Find") & ">" & Session(strDFName & "_Recordset")("Title") & "</FONT></a></TD>"
 		Response.Write "<TD BGCOLOR=White ALIGN=Left NOWRAP><FONT SIZE=-1><A HREF=" & QuotedString(strBasePageName & "Action.asp?Bookmark=" & tCurRec & "&DataAction=Find") & ">" & Session(strDFName & "_Recordset")("Publisher") & "</FONT></a></TD>"
 		Response.Write "<TD BGCOLOR=White ALIGN=Left NOWRAP><FONT SIZE=-1><A HREF=" & QuotedString(strBasePageName & "Action.asp?Bookmark=" & tCurRec & "&DataAction=Find") & ">" & Session(strDFName & "_Recordset")("Platform") & "</FONT></a></TD>"
-        Version = ""
-        If Session(strDFName & "_Recordset")("Version")="*COPY*" Then Version = " (Copy)"
-		Response.Write "<TD BGCOLOR=White ALIGN=Left NOWRAP><FONT SIZE=-1><A HREF=" & QuotedString(strBasePageName & "Action.asp?Bookmark=" & tCurRec & "&DataAction=Find") & ">" & Session(strDFName & "_Recordset")("MediaFormat") & Version & "</FONT></a></TD>"
+		Response.Write "<TD BGCOLOR=White ALIGN=Left NOWRAP><FONT SIZE=-1><A HREF=" & QuotedString(strBasePageName & "Action.asp?Bookmark=" & tCurRec & "&DataAction=Find") & ">" & Session(strDFName & "_Recordset")("MediaFormat") & "</FONT></a></TD>"
 		Response.Write "<TD BGCOLOR=White ALIGN=Left NOWRAP><FONT SIZE=-1><A HREF=" & QuotedString(strBasePageName & "Action.asp?Bookmark=" & tCurRec & "&DataAction=Find") & ">" & Session(strDFName & "_Recordset")("Location") & "</FONT></a></TD>"
 %>
 <!-- #include virtual="/Includes/ListTemplateBottom.inc.asp"-->

@@ -159,10 +159,15 @@ If Not Session("ActiveXControls") Then
         <a href="/Books/BooksList.asp" target="Body">Library (Books)</a><br />
         <a href="/Software/SoftwareList.asp" target="Body">Software Library</a><br />
         <div style="padding-left:15px">
-            <a href="/Software/Apple2List.asp" target="Body">Software - Apple ][</a><br />
-            <a href="/Software/PCList.asp" target="Body">Software - PC</a><br />
-            <a href="/Software/Apple2GamesList.asp" target="Body">Games - Apple ][</a><br />
-            <a href="/Software/PCGamesList.asp" target="Body">Games - PC</a><br />
+            <a href="/Software/Apple2List.asp" target="Body">Apple ][</a><br />
+            <a href="/Software/PCList.asp" target="Body">Windows/DOS</a><br />
+            <a href="/Software/GamesList.asp" target="Body">Games</a><br />
+            <div style="padding-left:20px">
+                <a href="/Software/Apple2GamesList.asp" target="Body">Apple ][</a><br />
+                <a href="/Software/PCGamesList.asp" target="Body">Windows/DOS</a><br />
+                <a href="/Software/XBOXGamesList.asp" target="Body">XBOX</a><br />
+                <a href="/Software/PS2GamesList.asp" target="Body">PS2</a><br />
+            </div>
         </div>
         <p>Hobby...</p>
         <a href="/Hobby/KitsList.asp" target="Body">Kits</a><br />
