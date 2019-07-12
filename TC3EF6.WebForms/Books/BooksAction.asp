@@ -1,15 +1,14 @@
 <%@ LANGUAGE="VBScript" %>
 <%
-Dim strDFName
+Dim strRSName
 Dim strErrorAdditionalInfo
-strDBName = "KFC"
-strDFName = "rsBooks"
+strRSName = "rsBooks"
 strTableName = "Books"
 strBasePageName = "Books"
 strPageTitle = "Library; Books"
-SQLstatement = "Select [Books].*,[Locations].[OName] As [Location] From [Books] Inner Join [Locations] On [Books].[LocationID]=[Locations].[ID] Order By [AlphaSort];"
+SQLstatement = "Select Books.*,Locations.Name As Location From Books Inner Join Locations On Books.LocationID=Locations.ID Order By AlphaSort;"
 strProtectedFields = """Cataloged"",""Inventoried"""
-strLookupFields = """Author"",""Subject"",""Location"""
+strLookupFields = """Author"",""Subject"",""MediaFormat"",""Location"""
 strHomeGIF = ""
 strFooterURL = ""
 strFooterTitle = ""
@@ -17,12 +16,13 @@ strFormMode = "FeedBack"
 Theme = "Brownside"
 blnShowUserName = False
 TmpNumber = 0
-fDebugMode = True
+fDebugMode = False
 %>
 
 <!-- #include virtual="/Includes/DataFunctions.inc.asp"-->
 <!-- #include virtual="/Books/avarAuthors.inc.asp"-->
 <!-- #include virtual="/Books/avarSubjects.inc.asp"-->
+<!-- #include virtual="/Books/avarMediaFormat.inc.asp"-->
 <!-- #include virtual="/Books/avarLocations.inc.asp"-->
 <!-- #include virtual="/Includes/ActionTemplateTop.inc.asp"-->
 <!-- #include virtual="/Includes/ActionList.inc.asp"-->
@@ -38,22 +38,22 @@ fDebugMode = True
 %>
 <!-- #include virtual="/Includes/ActionTimeOutHandler.inc.asp"-->
 <%
-		If Not IsEmpty(Session(strDFName & "_Recordset")) Then
-			Session(strDFName & "_Recordset").AddNew
+		If Not IsEmpty(Session(strRSName & "_Recordset")) Then
+			Session(strRSName & "_Recordset").AddNew
 			
-			For each x In Session(strDFName & "_Recordset").Fields
+			For each x In Session(strRSName & "_Recordset").Fields
 				If CanUpdateField(x.Name) Then
 					If InStr(strIgnoreFields, QuotedString(x.Name)) = 0 Then
-						'	Response.Write "Session(" & strDFName & "_Recordset" & "_" & x.Name & ") is " & Session(strDFName & "_Recordset" & "_" & x.Name) & "<br>" & CHR(13)
-						If Session(strDFName & "_Recordset" & "_" & x.Name) <> "" Then
-							Session(strDFName & "_Recordset")(x.Name) = Session(strDFName & "_Recordset" & "_" & x.Name)
-							Session(strDFName & "_Recordset" & "_" & x.Name) = ""
+						'	Response.Write "Session(" & strRSName & "_Recordset" & "_" & x.Name & ") is " & Session(strRSName & "_Recordset" & "_" & x.Name) & "<br>" & CHR(13)
+						If Session(strRSName & "_Recordset" & "_" & x.Name) <> "" Then
+							Session(strRSName & "_Recordset")(x.Name) = Session(strRSName & "_Recordset" & "_" & x.Name)
+							Session(strRSName & "_Recordset" & "_" & x.Name) = ""
 						Else
 							Select Case x.Name
 								Case "Cataloged"
-									Session(strDFName & "_Recordset")(x.Name) = -1
+									Session(strRSName & "_Recordset")(x.Name) = -1
 								Case "Inventoried"
-									Session(strDFName & "_Recordset")(x.Name) = Now()
+									Session(strRSName & "_Recordset")(x.Name) = Now()
 								Case Else
 									If Not InsertField(x.Name) Then Exit For
 							End Select
@@ -61,21 +61,21 @@ fDebugMode = True
 					End If
 				End If
 			Next
-			Session(strDFName & "_Recordset").Update
+			Session(strRSName & "_Recordset").Update
 			
 			If Err.Number <> 0 Then
 				TmpNumber = Err.Number
 				TmpSource = Err.Source
 				TmpDescription = Err.Description
-				If Session(strDFName & "_Recordset").EditMode Then Session(strDFName & "_Recordset").CancelUpdate		' Cancel the update before handling the error
-				ErrorHandler TmpNumber, TmpSource, TmpDescription, Session(strDFName & "_Recordset").Source, strFooterURL, strFooterTitle
+				If Session(strRSName & "_Recordset").EditMode Then Session(strRSName & "_Recordset").CancelUpdate		' Cancel the update before handling the error
+				ErrorHandler TmpNumber, TmpSource, TmpDescription, Session(strRSName & "_Recordset").Source, strFooterURL, strFooterTitle
 			Else
-				If IsEmpty(Session(strDFName & "_AbsolutePage")) Or Session(strDFName & "_AbsolutePage") = 0 Then
-					Session(strDFName & "_AbsolutePage") = 1
+				If IsEmpty(Session(strRSName & "_AbsolutePage")) Or Session(strRSName & "_AbsolutePage") = 0 Then
+					Session(strRSName & "_AbsolutePage") = 1
 				End If
 				' Requery static cursor so inserted record is visible
-				If Session(strDFName & "_Recordset").CursorType = adOpenStatic Then Session(strDFName & "_Recordset").Requery
-				Session(strDFName & "_Status") = "Record has been inserted"
+				If Session(strRSName & "_Recordset").CursorType = adOpenStatic Then Session(strRSName & "_Recordset").Requery
+				Session(strRSName & "_Status") = "Record has been inserted"
 			End If
 		End If
 %>

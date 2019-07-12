@@ -9,10 +9,10 @@
 		<TD BGCOLOR=#FFFFCC>
 			<FONT SIZE=-1>&nbsp;&nbsp;
 <% 
-'			If IsEmpty(Session(strDFName & "_Filter")) Or Session(strDFName & "_Filter")="" Then
+'			If IsEmpty(Session(strRSName & "_Filter")) Or Session(strRSName & "_Filter")="" Then
 '				Response.Write "Current Filter: None<BR>"
 '			Else
-'				Response.Write "Current Filter: " & Session(strDFName & "_FilterDisplay") & "<BR>"
+'				Response.Write "Current Filter: " & Session(strRSName & "_FilterDisplay") & "<BR>"
 '			End If 
 %>
 <%
@@ -26,7 +26,7 @@ fFirstPass = True
 fNeedRecordset = False
 fNoRecordset = False
 tBarAlignment = "Center"
-tHeaderName = strDFName
+tHeaderName = strRSName
 tPageSize = Session("RowsToDisplay")
 tPagingMove = ""
 tRangeType = "Table"
@@ -37,115 +37,115 @@ intNewPos = 0
 fSupportsBookmarks = True
 fMoveAbsolute = False
 
-If Not IsEmpty(Request(strDFName & "_PagingMove")) Then
-    tPagingMove = Trim(Request(strDFName & "_PagingMove"))
+If Not IsEmpty(Request(strRSName & "_PagingMove")) Then
+    tPagingMove = Trim(Request(strRSName & "_PagingMove"))
 End If
 
-If IsEmpty(Session(strDFName & "_Recordset")) Then
+If IsEmpty(Session(strRSName & "_Recordset")) Then
     fNeedRecordset = True
 Else
-    If Session(strDFName & "_Recordset") Is Nothing Then
+    If Session(strRSName & "_Recordset") Is Nothing Then
         fNeedRecordset = True
     End If
 End If
 If Not fNeedRecordset and fForceReadRecordset Then fNeedRecordset = True
-
+fNeedRecordset = True
 If fNeedRecordset Then
     Set cmdTemp = Server.CreateObject("ADODB.Command")
-    Set Session(strDFName & "_Recordset") = Server.CreateObject("ADODB.Recordset")
+    Set Session(strRSName & "_Recordset") = Server.CreateObject("ADODB.Recordset")
     cmdTemp.CommandText = SQLstatement
     If fDebugMode Then Response.Write "DEBUG: SQL Statement: """ & cmdTemp.CommandText & """...<br>" & CHR(13)
 	cmdTemp.CommandType = 1
-    Set cmdTemp.ActiveConnection = Session("KFC")
-    Session(strDFName & "_Recordset").Open cmdTemp, , 1, 3
+    Set cmdTemp.ActiveConnection = Session("adoConn")
+    Session(strRSName & "_Recordset").Open cmdTemp, , 1, 3
 End If
 On Error Resume Next
-If Session(strDFName & "_Recordset").BOF And Session(strDFName & "_Recordset").EOF Then fEmptyRecordset = True
+If Session(strRSName & "_Recordset").BOF And Session(strRSName & "_Recordset").EOF Then fEmptyRecordset = True
 On Error Goto 0
 If Err Then fEmptyRecordset = True
-Session(strDFName & "_Recordset").PageSize = tPageSize
-fSupportsBookmarks = Session(strDFName & "_Recordset").Supports(8192)
+Session(strRSName & "_Recordset").PageSize = tPageSize
+fSupportsBookmarks = Session(strRSName & "_Recordset").Supports(8192)
 
-If Not IsEmpty(Session(strDFName & "_Filter")) And Not fEmptyRecordset Then
+If Not IsEmpty(Session(strRSName & "_Filter")) And Not fEmptyRecordset Then
     On Error Resume Next
-    Session(strDFName & "_Recordset").Filter = Session(strDFName & "_Filter")
+    Session(strRSName & "_Recordset").Filter = Session(strRSName & "_Filter")
     If Err Then 
-        Session(strDFName & "_Filter") = ""
-        Session(strDFName & "_Recordset").Filter = ""
-        Session(strDFName & "_FilterDisplay") = ""
+        Session(strRSName & "_Filter") = ""
+        Session(strRSName & "_Recordset").Filter = ""
+        Session(strRSName & "_FilterDisplay") = ""
 		Response.Write "Current Filter: <FONT COLOR=Red>Error encountered attempting filter - filter ignored</FONT><BR>"
     Else
-		Response.Write "Current Filter: " & Session(strDFName & "_FilterDisplay") & "<BR>"
+		Response.Write "Current Filter: " & Session(strRSName & "_FilterDisplay") & "<BR>"
     End If
-    If Session(strDFName & "_Recordset").BOF And Session(strDFName & "_Recordset").EOF Then fEmptyRecordset = True
+    If Session(strRSName & "_Recordset").BOF And Session(strRSName & "_Recordset").EOF Then fEmptyRecordset = True
     On Error Goto 0
 Else
 	Response.Write "Current Filter: None<BR>"
 End If
 
-If IsEmpty(Session(strDFName & "_PageSize")) Then Session(strDFName & "_PageSize") = tPageSize
-If IsEmpty(Session(strDFName & "_AbsolutePage")) Then Session(strDFName & "_AbsolutePage") = 1
+If IsEmpty(Session(strRSName & "_PageSize")) Then Session(strRSName & "_PageSize") = tPageSize
+If IsEmpty(Session(strRSName & "_AbsolutePage")) Then Session(strRSName & "_AbsolutePage") = 1
 
-If Session(strDFName & "_PageSize") <> tPageSize Then
-    tCurRec = ((Session(strDFName & "_AbsolutePage") - 1) * Session(strDFName & "_PageSize")) + 1
+If Session(strRSName & "_PageSize") <> tPageSize Then
+    tCurRec = ((Session(strRSName & "_AbsolutePage") - 1) * Session(strRSName & "_PageSize")) + 1
     tNewPage = Int(tCurRec / tPageSize)
     If tCurRec Mod tPageSize <> 0 Then
         tNewPage = tNewPage + 1
     End If
     If tNewPage = 0 Then tNewPage = 1
-    Session(strDFName & "_PageSize") = tPageSize
-    Session(strDFName & "_AbsolutePage") = tNewPage
+    Session(strRSName & "_PageSize") = tPageSize
+    Session(strRSName & "_AbsolutePage") = tNewPage
 End If
 
 If fEmptyRecordset Then
     fHideNavBar = True
     fHideRule = True
 Else
-    tPrevAbsolutePage = Session(strDFName & "_AbsolutePage")
+    tPrevAbsolutePage = Session(strRSName & "_AbsolutePage")
     Select Case tPagingMove
         Case ""
             fMoveAbsolute = True
         Case "Requery"
-            Session(strDFName & "_Recordset").Requery
+            Session(strRSName & "_Recordset").Requery
             fMoveAbsolute = True
         Case "<<"
-            Session(strDFName & "_AbsolutePage") = 1
+            Session(strRSName & "_AbsolutePage") = 1
         Case "<"
-            If Session(strDFName & "_AbsolutePage") > 1 Then
-                Session(strDFName & "_AbsolutePage") = Session(strDFName & "_AbsolutePage") - 1
+            If Session(strRSName & "_AbsolutePage") > 1 Then
+                Session(strRSName & "_AbsolutePage") = Session(strRSName & "_AbsolutePage") - 1
             End If
         Case ">"
-            If Not Session(strDFName & "_Recordset").EOF Then
-                Session(strDFName & "_AbsolutePage") = Session(strDFName & "_AbsolutePage") + 1
+            If Not Session(strRSName & "_Recordset").EOF Then
+                Session(strRSName & "_AbsolutePage") = Session(strRSName & "_AbsolutePage") + 1
             End If
         Case ">>"
             If fSupportsBookmarks Then
-                Session(strDFName & "_AbsolutePage") = Session(strDFName & "_Recordset").PageCount
+                Session(strRSName & "_AbsolutePage") = Session(strRSName & "_Recordset").PageCount
             End If
     End Select
     Do
 		On Error Resume Next
-        If fSupportsBookmarks and IsEmpty(Session(strDFName & "_Filter")) Then
-            Session(strDFName & "_Recordset").AbsolutePage = Session(strDFName & "_AbsolutePage")
+        If fSupportsBookmarks and IsEmpty(Session(strRSName & "_Filter")) Then
+            Session(strRSName & "_Recordset").AbsolutePage = Session(strRSName & "_AbsolutePage")
         Else
-            If fNeedRecordset Or fMoveAbsolute Or Session(strDFName & "_Recordset").EOF Or Not fSupportsMovePrevious Then
-                Session(strDFName & "_Recordset").MoveFirst
-                '	Session(strDFName & "_Recordset").Move (Session(strDFName & "_AbsolutePage") - 1) * tPageSize
-           		For i = 1 to ((Session(strDFName & "_AbsolutePage") - 1) * tPageSize)
-					Session(strDFName & "_Recordset").MoveNext
+            If fNeedRecordset Or fMoveAbsolute Or Session(strRSName & "_Recordset").EOF Or Not fSupportsMovePrevious Then
+                Session(strRSName & "_Recordset").MoveFirst
+                '	Session(strRSName & "_Recordset").Move (Session(strRSName & "_AbsolutePage") - 1) * tPageSize
+           		For i = 1 to ((Session(strRSName & "_AbsolutePage") - 1) * tPageSize)
+					Session(strRSName & "_Recordset").MoveNext
 				Next
             Else
                 intCurPos = ((tPrevAbsolutePage - 1) * tPageSize) + tPageSize
-                intNewPos = ((Session(strDFName & "_AbsolutePage") - 1) * tPageSize) + 1
-                '	Session(strDFName & "_Recordset").Move intNewPos - intCurPos
+                intNewPos = ((Session(strRSName & "_AbsolutePage") - 1) * tPageSize) + 1
+                '	Session(strRSName & "_Recordset").Move intNewPos - intCurPos
            		For i = 1 to (intNewPos - intCurPos)
-					Session(strDFName & "_Recordset").MoveNext
+					Session(strRSName & "_Recordset").MoveNext
 				Next
             End If
-            If Session(strDFName & "_Recordset").BOF Then Session(strDFName & "_Recordset").MoveNext
+            If Session(strRSName & "_Recordset").BOF Then Session(strRSName & "_Recordset").MoveNext
         End If
-        If Not Session(strDFName & "_Recordset").EOF Then Exit Do
-        Session(strDFName & "_AbsolutePage") = Session(strDFName & "_AbsolutePage") - 1
+        If Not Session(strRSName & "_Recordset").EOF Then Exit Do
+        Session(strRSName & "_AbsolutePage") = Session(strRSName & "_AbsolutePage") - 1
     Loop
 End If
 %>

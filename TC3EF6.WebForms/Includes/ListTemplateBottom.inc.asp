@@ -12,9 +12,9 @@ If tRangeType = "Table" Then Response.Write "</TABLE>"
 </table>
 </td></tr></table>
 <%
-If Not Session(strDFName & "_Recordset") is Nothing Then
-	If Session(strDFName & "_Recordset").State <> 0 Then	'adStateClosed
-		If Session(strDFName & "_Recordset").RecordCount > Session("MinRowsForBottomButtons") Then 
+If Not Session(strRSName & "_Recordset") is Nothing Then
+	If Session(strRSName & "_Recordset").State <> 0 Then	'adStateClosed
+		If Session(strRSName & "_Recordset").RecordCount > Session("MinRowsForBottomButtons") Then 
 			fNoListButton = True
 %>
 <!-- #include virtual="/Includes/BottomNavBar.inc.asp"-->

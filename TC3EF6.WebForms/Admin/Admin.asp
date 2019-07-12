@@ -19,7 +19,7 @@ if (Not IsEmpty(Request.QueryString("FromForm"))) then
 	Set rsVisitor = Server.CreateObject("ADODB.Recordset")
 	cmdTemp.CommandText = "Select * From [Visitors] Where (Email Like '" & Session("E-Mail") & "')"
 	cmdTemp.CommandType = adCmdText
-	Set cmdTemp.ActiveConnection = Session("KFC")
+	Set cmdTemp.ActiveConnection = Session("adoConn")
 	rsVisitor.Open cmdTemp, , adOpenKeyset, adLockOptimistic
 	if fDebugMode then Response.Write "DEBUG: Opened Record Set rsVisitor;  Error: " & Err.Number & " " & Err.Description & " " & Err.Source & "; SQL: " & rsVisitor.Source & "<br>"
 
@@ -130,7 +130,7 @@ if (Not IsEmpty(Request.QueryString("FromForm"))) then
 			
 		' Add the Form's information into the Visitor table...
 
-		rsVisitor.Open "Visitors", KFC, adOpenKeyset, adLockBatchOptimistic
+		rsVisitor.Open "Visitors", Session("adoConn"), adOpenKeyset, adLockBatchOptimistic
 		if fDebugMode then Response.Write "DEBUG: Open Record Set rsVisitor;  Error: " & Err.Number & " " & Err.Description & " " & Err.Source & "<br>"
 		rsVisitor.AddNew
 		if fDebugMode then Response.Write "DEBUG: AddNew Record Set rsVisitor;  Error: " & Err.Number & " " & Err.Description & " " & Err.Source & "<br>"
@@ -218,8 +218,6 @@ if (Not IsEmpty(Request.QueryString("FromForm"))) then
 
    ' Cleanup...
 	Set rsVisitor = Nothing
-	KFC.Close
-	Set KFC = Nothing
 
 	if Not fDebugMode then Response.Redirect "/Admin/Confirm.asp"
 End If

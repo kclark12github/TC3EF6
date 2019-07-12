@@ -2,13 +2,12 @@
 <%
 Dim strPagingMove	
 Dim strFormMode
-Dim strDFName
-strDBName = "KFC"
-strDFName = "rsTimeLifeMusic"
-strTableName = "Music"
+Dim strRSName
+strRSName = "rsTimeLifeMusic"
+strTableName = "Albums"
 strBasePageName = "TimeLifeMusic"
 strPageTitle = "Music Library; TimeLife"
-SQLstatement = "SELECT * FROM [Music] WHERE Artist like 'Various Artists (Time Life Series)' order by Alphasort"
+SQLstatement = "SELECT * FROM [Albums] WHERE Artist like 'Various Artists (Time Life Series)' order by Alphasort"
 strLookupFields = """Artist"",""Type"""
 strHomeGIF = ""
 strFooterURL = ""
@@ -23,6 +22,7 @@ fDebugMode = False
 <!---------------------------- Lookups Section -------------------------------->
 
 <!-- #include virtual="/Music/avarArtists.inc.asp"-->
+<!-- #include virtual="/Music/avarMediaFormat.inc.asp"-->
 <!-- #include virtual="/Music/avarTypes.inc.asp"-->
 
 <!---------------------------- Heading Section -------------------------------->

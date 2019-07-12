@@ -3,7 +3,7 @@
 		On Error Resume Next
 		
 		' Make sure we exit and re-process the form if session has timed out
-		If IsEmpty(Session(strDFName & "_Recordset")) Then
+		If IsEmpty(Session(strRSName & "_Recordset")) Then
 			If ListFileExists Then
 				Response.Redirect strBasePageName & "List.asp"
 			Else
@@ -13,10 +13,10 @@
 		
 		strWhere = ""
 		strWhereDisplay = ""
-		For each x In Session(strDFName & "_Recordset").Fields
+		For each x In Session(strRSName & "_Recordset").Fields
 			If InStr(strLookupFields, QuotedString(x.Name)) > 0 Then
                 WriteTraceLog(now & ": DEBUG: ActionApply: x.Name: """ & x.Name & "s""")
-				FilterField x.Name, Application(strDFName & "_Lookup_" & x.Name & "s")
+				FilterField x.Name, Application(strRSName & "_Lookup_" & x.Name & "s")
 			Else
 				FilterField x.Name, Null
 			End If
@@ -25,12 +25,12 @@
         
 		' Filter the recordset
 		If strWhere <> "" Then
-			Session(strDFName & "_Filter") = strWhere
-			Session(strDFName & "_FilterDisplay") = strWhereDisplay
-			Session(strDFName & "_AbsolutePage") = 1
+			Session(strRSName & "_Filter") = strWhere
+			Session(strRSName & "_FilterDisplay") = strWhereDisplay
+			Session(strRSName & "_AbsolutePage") = 1
 		Else
-			Session(strDFName & "_Filter") = ""
-			Session(strDFName & "_FilterDisplay") = ""
+			Session(strRSName & "_Filter") = ""
+			Session(strRSName & "_FilterDisplay") = ""
 		End If
 
 		' Jump back to the form

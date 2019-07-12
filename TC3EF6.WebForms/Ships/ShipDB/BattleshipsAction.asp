@@ -1,10 +1,9 @@
 <%@ LANGUAGE="VBScript" %>
 <%
-Dim strDFName
+Dim strRSName
 Dim strErrorAdditionalInfo
-strDBName = "USNavyShips"
-strDFName = "rsBattleships"
-strTableName = "Battleships"
+strRSName = "rsBattleships"
+strTableName = "Ships"
 strBasePageName = "Battleships"
 strPageTitle = "U.S. Navy Battleships"
 SQLstatement = "SELECT * FROM Ships WHERE (HullNumber Like 'BB%') ORDER BY Classification, Number"

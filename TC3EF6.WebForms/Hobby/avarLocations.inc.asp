@@ -1,18 +1,14 @@
 <% 
 Dim avarLocations
-If IsEmpty(Application(strDFName & "_Lookup_Locations")) Or strPagingMove = "Requery" Then
-    Set Hobby = Server.CreateObject("ADODB.Connection")
-    Hobby.ConnectionTimeout = Session(strDBName & "_ConnectionTimeout")
-    Hobby.CommandTimeout = Session(strDBName & "_CommandTimeout")
-    Hobby.Open Application("KFC.ConnectionString"), Session("KFC.RuntimeUserName"), Session("KFC.RuntimePassword")
-	Set rsLocations = Hobby.Execute("Select Distinct Name From Locations Order By Name;")
+If IsEmpty(Application(strRSName & "_Lookup_Locations")) Or strPagingMove = "Requery" Then
 	avarLocations = Null
-	On Error Resume Next
-	avarLocations = rsLocations.GetRows()
+	Set adoRS = Session("adoConn").Execute("Select Distinct Name From Locations Order By Name;")
+	'On Error Resume Next
+	avarLocations = adoRS.GetRows()
 	Application.Lock
-	Application(strDFName & "_Lookup_Locations") = avarLocations
+	Application(strRSName & "_Lookup_Locations") = avarLocations
 	Application.Unlock
 Else
-	avarLocations = Application(strDFName & "_Lookup_Locations")
+	avarLocations = Application(strRSName & "_Lookup_Locations")
 End If
 %>

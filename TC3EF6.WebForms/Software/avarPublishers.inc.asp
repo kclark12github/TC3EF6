@@ -1,19 +1,17 @@
 <% 
 Dim avarPublishers
-If IsEmpty(Application(strDFName & "_Lookup_Publishers")) Or strPagingMove = "Requery" Then
-	Set Software = Server.CreateObject("ADODB.Connection")
-	Software.ConnectionTimeout = Session("Software_ConnectionTimeout")
-	Software.CommandTimeout = Session("Software_CommandTimeout")
-	Software.Open Session("KFC.ConnectionString"), Session("KFC.RuntimeUserName"), Session("KFC.RuntimePassword")
-	Set rsPublishers = Software.Execute("SELECT DISTINCT Publisher FROM Software ORDER BY Publisher")
+If IsEmpty(Application(strRSName & "_Lookup_Publishers")) Or strPagingMove = "Requery" Then
 	avarPublishers = Null
-	On Error Resume Next
-	avarPublishers = rsPublishers.GetRows()
-	if fDebugMode Then Response.Write "DEBUG: rsPublishers consists of " & rsPublishers.RecordCount & " rows...<br>" & CHR(13)
-	Application.Lock
-	Application(strDFName & "_Lookup_Publishers") = avarPublishers
+	If fDebugMode Then Response.Write "DEBUG: Creating new avarPublishers...<br>" & CHR(13)
+	Set adoRS = Session("adoConn").Execute("SELECT DISTINCT Publisher FROM [" & strTableName & "] ORDER BY Publisher")
+	'On Error Resume Next
+	avarPublishers = adoRS.GetRows()
+	If fDebugMode Then Response.Write "DEBUG: avarPublishers contains " & UBound(avarPublishers,2) & " rows...<br>" & CHR(13)
+    Application.Lock
+	Application(strRSName & "_Lookup_Publishers") = avarPublishers
 	Application.Unlock
 Else
-	avarPublishers = Application(strDFName & "_Lookup_Publishers")
+	If fDebugMode Then Response.Write "DEBUG: avarPublishers already exists and consists of " & UBound(Application(strRSName & "_Lookup_Publishers"),2) & " rows...<br>" & CHR(13)
+	avarPublishers = Application(strRSName & "_Lookup_Publishers")
 End If
 %>

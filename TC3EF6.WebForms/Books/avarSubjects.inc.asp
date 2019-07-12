@@ -1,19 +1,17 @@
 <% 
 Dim avarSubjects
-If IsEmpty(Application(strDFName & "_Lookup_Subjects")) Or strPagingMove = "Requery" Then
-	Set Books = Server.CreateObject("ADODB.Connection")
-	Books.ConnectionTimeout = Session(strDBName & "_ConnectionTimeout")
-	Books.CommandTimeout = Session(strDBName & "_CommandTimeout")
-    Books.Open Session("KFC.ConnectionString"), Session("KFC.RuntimeUserName"), Session("KFC.RuntimePassword")
-	Set rsSubjects = Books.Execute("SELECT DISTINCT Subject FROM [Books] ORDER BY Subject")
+If IsEmpty(Application(strRSName & "_Lookup_Subjects")) Or strPagingMove = "Requery" Then
 	avarSubjects = Null
-	On Error Resume Next
-	avarSubjects = rsSubjects.GetRows()
-	if fDebugMode Then Response.Write "DEBUG: rsSubjects consists of " & rsSubjects.RecordCount & " rows...<br>" & CHR(13)
+	If fDebugMode Then Response.Write "DEBUG: Creating new avarSubjects...<br>" & CHR(13)
+	Set adoRS = Session("adoConn").Execute("SELECT DISTINCT Subject FROM [" & strTableName & "] ORDER BY Subject")
+	'On Error Resume Next
+	avarSubjects = adoRS.GetRows()
+	If fDebugMode Then Response.Write "DEBUG: avarSubjects contains " & UBound(avarSubjects,2) & " rows...<br>" & CHR(13)
 	Application.Lock
-	Application(strDFName & "_Lookup_Subjects") = avarSubjects
+	Application(strRSName & "_Lookup_Subjects") = avarSubjects
 	Application.Unlock
 Else
-	avarSubjects = Application(strDFName & "_Lookup_Subjects")
+	If fDebugMode Then Response.Write "DEBUG: avarSubjects already exists and consists of " & UBound(Application(strRSName & "_Lookup_Subjects"),2) & " rows...<br>" & CHR(13)
+	avarSubjects = Application(strRSName & "_Lookup_Subjects")
 End If
 %>

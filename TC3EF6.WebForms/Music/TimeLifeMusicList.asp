@@ -1,13 +1,12 @@
 <%@ LANGUAGE="VBScript" %>
 <%
 Dim strPagingMove
-Dim strDFName
-strDBName = "KFC"
-strDFName = "rsTimeLifeMusic"
-strTableName = "Music"
+Dim strRSName
+strRSName = "rsTimeLifeMusic"
+strTableName = "Albums"
 strBasePageName = "TimeLifeMusic"
 strPageTitle = "Music Library; TimeLife"
-SQLstatement = "SELECT * FROM [Music] WHERE Artist like 'Various Artists (Time Life Series)' order by Alphasort"
+SQLstatement = "SELECT * FROM [Albums] WHERE Artist like 'Various Artists (Time Life Series)' order by Alphasort"
 strHomeGIF = ""
 strFooterURL = ""
 strFooterTitle = ""
@@ -23,6 +22,7 @@ fDebugMode = False
 <!---------------------------- Lookups Section ------------------------------->
 
 <!-- #include virtual="/Music/avarArtists.inc.asp"-->
+<!-- #include virtual="/Music/avarMediaFormat.inc.asp"-->
 <!-- #include virtual="/Music/avarTypes.inc.asp"-->
 
 <!---------------------------- Heading Section ------------------------------->
@@ -35,10 +35,10 @@ fDebugMode = False
 <!-- #include virtual="/Includes/ListTemplateBody2.inc.asp"-->
 <%
 		'	ShowListField "ID", Null, False
-		Response.Write "<TD BGCOLOR=White ALIGN=Left NOWRAP><FONT SIZE=-1><A HREF=" & QuotedString(strBasePageName & "Action.asp?Bookmark=" & tCurRec & "&DataAction=Find") & ">" & Session(strDFName & "_Recordset")("Series") & "</FONT></a></TD>"
-		Response.Write "<TD BGCOLOR=White ALIGN=Left NOWRAP><FONT SIZE=-1><A HREF=" & QuotedString(strBasePageName & "Action.asp?Bookmark=" & tCurRec & "&DataAction=Find") & ">" & Session(strDFName & "_Recordset")("Artist") & "</FONT></a></TD>"		
+		Response.Write "<TD BGCOLOR=White ALIGN=Left NOWRAP><FONT SIZE=-1><A HREF=" & QuotedString(strBasePageName & "Action.asp?Bookmark=" & tCurRec & "&DataAction=Find") & ">" & Session(strRSName & "_Recordset")("Series") & "</FONT></a></TD>"
+		Response.Write "<TD BGCOLOR=White ALIGN=Left NOWRAP><FONT SIZE=-1><A HREF=" & QuotedString(strBasePageName & "Action.asp?Bookmark=" & tCurRec & "&DataAction=Find") & ">" & Session(strRSName & "_Recordset")("Artist") & "</FONT></a></TD>"		
 		'ShowListField "Artist", avarArtists, False
-		Response.Write "<TD BGCOLOR=White ALIGN=Left NOWRAP><FONT SIZE=-1><A HREF=" & QuotedString(strBasePageName & "Action.asp?Bookmark=" & tCurRec & "&DataAction=Find") & ">" & Session(strDFName & "_Recordset")("Title") & "</FONT></a></TD>"
+		Response.Write "<TD BGCOLOR=White ALIGN=Left NOWRAP><FONT SIZE=-1><A HREF=" & QuotedString(strBasePageName & "Action.asp?Bookmark=" & tCurRec & "&DataAction=Find") & ">" & Session(strRSName & "_Recordset")("Title") & "</FONT></a></TD>"
 		ShowListField "Year", Null, False
 %>
 <!-- #include virtual="/Includes/ListTemplateBottom.inc.asp"-->

@@ -1,8 +1,8 @@
 <%
 strFormMode = "Edit"	' Initalize the default
 If Not IsEmpty(Request("FormMode")) Then strFormMode = Request("FormMode")
-If Not IsEmpty(Request(strDFName & "_PagingMove")) Then
-	strPagingMove = Trim(Request(strDFName & "_PagingMove"))
+If Not IsEmpty(Request(strRSName & "_PagingMove")) Then
+	strPagingMove = Trim(Request(strRSName & "_PagingMove"))
 End If
 %>
 

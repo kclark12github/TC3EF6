@@ -1,13 +1,12 @@
 <%@ LANGUAGE="vbscript" %>
 <%
-strDBName = "Software"
-strDFName = "rsPS2Games"
-strTableName = "PS2Games"
+strRSName = "rsPS2Games"
+strTableName = "Software"
 strBasePageName = "PS2Games"
 strPageTitle = "Software Library; PS2 Games"
 SQLstatement = "Select * From [Software] Where (Platform='Sony Playstation 2') And [Type] Like 'Game%' Order By Title, Version;"
 strProtectedFields = """Cataloged"",""DateInventoried"""
-strLookupFields = """Platform"",""Publisher"",""Type"""
+strLookupFields = """MediaFormat"",""Location"",""Platform"",""Publisher"",""Type"""
 strHomeGIF = ""
 strFooterURL = ""
 strFooterTitle = ""
@@ -20,6 +19,8 @@ fDebugMode = False
 
 <!---------------------------- Lookups Section -------------------------------->
 
+<!-- #include virtual="/Software/avarLocations.inc.asp"-->
+<!-- #include virtual="/Software/avarMediaFormat.inc.asp"-->
 <!-- #include virtual="/Software/avarPlatforms.inc.asp"-->
 <!-- #include virtual="/Software/avarPublishers.inc.asp"-->
 <!-- #include virtual="/Software/avarTypes.inc.asp"-->

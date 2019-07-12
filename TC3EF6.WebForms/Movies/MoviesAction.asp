@@ -1,13 +1,12 @@
 <%@ LANGUAGE="VBScript" %>
 <%
-Dim strDFName
+Dim strRSName
 Dim strErrorAdditionalInfo
-strDBName = "KFC"
-strDFName = "rsMovies"
-strTableName = "Movies"
+strRSName = "rsMovies"
+strTableName = "Videos"
 strBasePageName = "Movies"
 strPageTitle = "Video Library; Movies"
-SQLstatement = "SELECT * FROM [Movies] order by Sort"
+SQLstatement = "SELECT * FROM [Videos] order by Sort"
 strLookupFields = """Distributor"",""Subject"""
 strHomeGIF = ""
 strFooterURL = ""
@@ -21,5 +20,6 @@ fDebugMode = False
 
 <!-- #include virtual="/Includes/DataFunctions.inc.asp"-->
 <!-- #include virtual="/Movies/avarDistributors.inc.asp"-->
+<!-- #include virtual="/Movies/avarMediaFormat.inc.asp"-->
 <!-- #include virtual="/Movies/avarSubjects.inc.asp"-->
 <!-- #include virtual="/Includes/ActionTemplateCode.inc.asp"-->

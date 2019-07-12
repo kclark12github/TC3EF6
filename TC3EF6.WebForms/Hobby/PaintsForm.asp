@@ -2,10 +2,9 @@
 <%
 Dim strPagingMove	
 Dim strFormMode
-Dim strDFName
-strDBName = "KFC"
-strDFName = "rsPaints"
-strTableName = "Paints"
+Dim strRSName
+strRSName = "rsPaints"
+strTableName = "FinishingProducts"
 strBasePageName = "Paints"
 strPageTitle = "Finishing Supplies"
 SQLstatement = "SELECT * FROM [Paints & Brushes] order by Type, Manufacturer, Name"

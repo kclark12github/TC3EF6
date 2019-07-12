@@ -5,11 +5,11 @@ Do
     If fEmptyRecordset Then Exit Do
     If tRecordsProcessed = tPageSize Then Exit Do
     If Not fFirstPass Then
-        Session(strDFName & "_Recordset").MoveNext
+        Session(strRSName & "_Recordset").MoveNext
     Else
         fFirstPass = False
     End If
-    If Session(strDFName & "_Recordset").EOF Then Exit Do
+    If Session(strRSName & "_Recordset").EOF Then Exit Do
     tRecordsProcessed = tRecordsProcessed + 1
 %>
 
@@ -17,7 +17,7 @@ Do
 		<TD BGCOLOR=White><FONT SIZE=-1>
 <%
 		If tPageSize > 0 Then
-			tCurRec = ((Session(strDFName & "_AbsolutePage") - 1) * tPageSize) + tRecordsProcessed
+			tCurRec = ((Session(strRSName & "_AbsolutePage") - 1) * tPageSize) + tRecordsProcessed
 		Else
 			tRecordsProcessed = tRecordsProcessed + 1
 			tCurRec = tRecordsProcessed

@@ -41,7 +41,7 @@ if Not Session("VisitorOnFile") Then
 		Set rsVisitor = Server.CreateObject("ADODB.Recordset")
 		cmdTemp.CommandText = "SELECT ""ID"", ""E-Mail"",""FirstName"",""LastName"",""Address"",""Phone"",""Visits"",""DateLastVisit"" FROM ""Visitors"" where (""E-Mail"" like '" & Session("E-Mail") & "')"
 		cmdTemp.CommandType = adCmdText
-		Set cmdTemp.ActiveConnection = Session("KFC")
+		Set cmdTemp.ActiveConnection = Session("adoConn")
 		rsVisitor.Open cmdTemp, , adOpenKeyset, adLockOptimistic
 		if fDebugMode then Response.Write "DEBUG: Opened Record Set rsVisitor;  Error: " & Err.Number & " " & Err.Description & " " & Err.Source & "; SQL: " & rsVisitor.Source & "<br>"
 
@@ -109,7 +109,7 @@ if Not Session("VisitorOnFile") Then
 			
 			' Add the Form's information into the Visitor table...
 
-			rsVisitor.Open "Visitors", KFC, adOpenKeyset, adLockBatchOptimistic
+			rsVisitor.Open "Visitors", Session("adoConn"), adOpenKeyset, adLockBatchOptimistic
 			if fDebugMode then Response.Write "DEBUG: Open Record Set rsVisitor;  Error: " & Err.Number & " " & Err.Description & " " & Err.Source & "<br>"
 			rsVisitor.AddNew
 			if fDebugMode then Response.Write "DEBUG: AddNew Record Set rsVisitor;  Error: " & Err.Number & " " & Err.Description & " " & Err.Source & "<br>"
@@ -163,8 +163,6 @@ if Not Session("VisitorOnFile") Then
 
 		' Cleanup...
 		Set rsVisitor = Nothing
-		KFC.Close
-		Set KFC = Nothing
 	End If
 	On Error Goto 0
 End If
@@ -180,7 +178,7 @@ if Not Session("VisitorOnFile") Then
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 	<meta name="GENERATOR" content="Microsoft FrontPage (Visual InterDev Edition) 2.0">
-	<title>KFC Download</title>
+	<title>Download</title>
 </head>
 <basefont face="Verdana, Arial, Helvetica">
 
@@ -269,7 +267,7 @@ Else
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 	<meta name="GENERATOR" content="Microsoft FrontPage (Visual InterDev Edition) 2.0">
-	<title>KFC Download</title>
+	<title>Download</title>
 </head>
 <basefont face="Verdana, Arial, Helvetica">
 
@@ -283,7 +281,7 @@ Sub DownloadPackage()
 
 	select case document.Download.Package.value
 <%
-	Set RS = Session("KFC").Execute("SELECT ""ID"",""Name"",""URL"" FROM ""Packages"" Order By ""Name""")
+	Set RS = Session("adoConn").Execute("SELECT ""ID"",""Name"",""URL"" FROM ""Packages"" Order By ""Name""")
 %>
 <% Do While Not RS.EOF %>
 		case <%= RS("ID")%>
@@ -297,13 +295,8 @@ Sub DownloadPackage()
 			Exit Sub
 	end select
 
-	Set KFC = CreateObject("ADODB.Connection")
-	KFC.ConnectionTimeout = <%= Session("KFC").ConnectionTimeout%>
-	KFC.CommandTimeout = <%= Session("KFC").CommandTimeout%>
-	KFC.Open "<%= Session("KFC").ConnectionString%>", "<%= Session("KFC.RuntimeUserName")%>", "<%= Session("KFC.RuntimePassword")%>"
-
 	Set rsAddRec = CreateObject("ADODB.Recordset")
-	rsAddRec.Open "Requests", KFC, adOpenKeyset, adLockBatchOptimistic
+	rsAddRec.Open "Requests", Session("adoConn"), adOpenKeyset, adLockBatchOptimistic
 	rsAddRec.AddNew
 
 	rsAddRec.Fields("VisitorID") = <%= Session("VisitorID")%>
@@ -326,7 +319,7 @@ Sub DownloadPackage()
 	End If
 	
 	Set rsAddRec=Nothing
-   Set FSO = Nothing
+    Set FSO = Nothing
 
 	if Success then
 		top.location.href = PackageURL
@@ -352,8 +345,6 @@ End Sub
 	Loop
 	RS.Close
 	Set RS = Nothing
-	Conn.Close
-	Set Conn = Nothing
 %>
             </select>
 		<p><font size="3"><input type="button" name="B1" value="Download" tabindex="7" OnClick="DownloadPackage()"></font></p>

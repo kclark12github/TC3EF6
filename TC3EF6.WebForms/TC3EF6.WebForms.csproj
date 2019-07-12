@@ -2461,7 +2461,8 @@
     <Content Include="Aircraft\ramfaq5.txt" />
     <Content Include="Aircraft\rec_aviation_military_FAQ.htm" />
     <Content Include="Books\avarAuthors.inc.asp" />
-    <Content Include="Books\avarlocations.inc.asp" />
+    <Content Include="Books\avarLocations.inc.asp" />
+    <Content Include="Books\avarMediaFormat.inc.asp" />
     <Content Include="Books\avarSubjects.inc.asp" />
     <Content Include="Books\BooksAction.asp" />
     <Content Include="Books\BooksForm.asp" />
@@ -4285,6 +4286,8 @@
     <Content Include="Java\UpgradeLog.htm" />
     <Content Include="Jokes\HowShitHappens.htm" />
     <Content Include="Lake.jar" />
+    <Content Include="Movies\avarMediaFormat.inc.asp" />
+    <Content Include="Music\avarMediaFormat.inc.asp" />
     <Content Include="SciFi\1701A01.JPG" />
     <Content Include="SciFi\adrift.jpg" />
     <Content Include="SciFi\BattlestarGalactica\1.GIF" />
@@ -8368,7 +8371,9 @@
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <Content Include="libman.json" />
-    <Content Include="Software\PS2GamesActio.asp" />
+    <Content Include="Software\avarLocations.inc.asp" />
+    <Content Include="Software\avarMediaFormat.inc.asp" />
+    <Content Include="Software\PS2GamesAction.asp" />
     <Content Include="Software\PS2GamesForm.asp" />
     <Content Include="Software\PS2GamesList.asp" />
     <Content Include="Software\SoftwareAction.asp" />

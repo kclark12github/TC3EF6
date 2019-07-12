@@ -1,19 +1,14 @@
 <% 
 Dim avarHomePorts
-If IsEmpty(Application(strDFName & "_Lookup_HomePorts")) Or strPagingMove = "Requery" Then
-    Set USNavyUSNavyShips = Server.CreateObject("ADODB.Connection")
-    USNavyShips.ConnectionTimeout = Session("USNavyShips_ConnectionTimeout")
-    USNavyShips.CommandTimeout = Session("USNavyShips_CommandTimeout")
-    USNavyShips.Open Session("KFC.ConnectionString"), Session("KFC.RuntimeUserName"), Session("KFC.RuntimePassword")
-	Set rsHomePorts = USNavyShips.Execute("SELECT ID, CityName FROM HomePort ORDER BY CityName")
+If IsEmpty(Application(strRSName & "_Lookup_HomePorts")) Or strPagingMove = "Requery" Then
 	avarHomePorts = Null
-	On Error Resume Next
-	avarHomePorts = rsHomePorts.GetRows()
-	if fDebugMode Then Response.Write "DEBUG: rsHomePorts consists of " & rsHomePorts.RecordCount & " rows...<br>" & CHR(13)
+	Set adoRS = Session("adoConn").Execute("SELECT ID, CityName FROM HomePort ORDER BY CityName")
+	'On Error Resume Next
+	avarHomePorts = adoRS.GetRows()
 	Application.Lock
-	Application(strDFName & "_Lookup_HomePorts") = avarHomePorts
+	Application(strRSName & "_Lookup_HomePorts") = avarHomePorts
 	Application.Unlock
 Else
-	avarHomePorts = Application(strDFName & "_Lookup_HomePorts")
+	avarHomePorts = Application(strRSName & "_Lookup_HomePorts")
 End If
 %>

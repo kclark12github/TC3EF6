@@ -40,13 +40,13 @@
 <%
 		Response.Write Chr(13)
 		'Response.Write "<" & "!-- DEBUG: " & strIgnoreFields & " -->" & CHR(13)
-		For each x In Session(strDFName & "_Recordset").Fields
+		For each x In Session(strRSName & "_Recordset").Fields
 			Response.Write "<" & "!-- DEBUG: " & x.name & " -->" & CHR(13)
 			If InStr(strIgnoreFields, QuotedString(x.Name)) = 0 Then
 				'Response.Write "<" & "!-- DEBUG: " & x.name & " is not in strIgnoreFields... -->" & CHR(13)
 				If InStr(strLookupFields, QuotedString(x.Name)) > 0 Then
-					'Response.Write "<" & "!-- DEBUG: FeedbackField """ & x.name & """, """ & x.name & """, """ & Application(strDFName & "_Lookup_" & x.Name & "s") & """ -->" & CHR(13)
-					FeedbackField x.Name, x.Name, Application(strDFName & "_Lookup_" & x.Name & "s")
+					'Response.Write "<" & "!-- DEBUG: FeedbackField """ & x.name & """, """ & x.name & """, """ & Application(strRSName & "_Lookup_" & x.Name & "s") & """ -->" & CHR(13)
+					FeedbackField x.Name, x.Name, Application(strRSName & "_Lookup_" & x.Name & "s")
 				Else
 					'Response.Write "<" & "!-- DEBUG: FeedbackField """ & x.name & """, """ & x.name & """, NULL -->" & CHR(13)
 					FeedbackField x.Name, x.Name, Null

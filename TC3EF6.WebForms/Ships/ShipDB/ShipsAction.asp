@@ -1,9 +1,8 @@
 <%@ LANGUAGE="VBScript" %>
 <%
-Dim strDFName
+Dim strRSName
 Dim strErrorAdditionalInfo
-strDBName = "USNavyShips"
-strDFName = "rsShips"
+strRSName = "rsShips"
 strTableName = "Ships"
 strBasePageName = "Ships"
 strPageTitle = "U.S. Navy Ships"

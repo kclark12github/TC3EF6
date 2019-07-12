@@ -1,9 +1,8 @@
 <%@ LANGUAGE="VBScript" %>
 <%
 Dim strPagingMove
-Dim strDFName
-strDBName = "KFC"
-strDFName = "rsDetailSets"
+Dim strRSName
+strRSName = "rsDetailSets"
 strTableName = "DetailSets"
 strBasePageName = "DetailSets"
 strPageTitle = "Detail Sets"
@@ -32,7 +31,7 @@ fDebugMode = False
 <%
 		'	ShowListField "ID", Null, False
 		ShowListField "Scale", Null, False
-		Response.Write "<TD BGCOLOR=White ALIGN=Left NOWRAP><FONT SIZE=-1><A HREF=" & QuotedString(strBasePageName & "Action.asp?Bookmark=" & tCurRec & "&DataAction=Find") & ">" & Session(strDFName & "_Recordset")("Name") & "</FONT></a></TD>"
+		Response.Write "<TD BGCOLOR=White ALIGN=Left NOWRAP><FONT SIZE=-1><A HREF=" & QuotedString(strBasePageName & "Action.asp?Bookmark=" & tCurRec & "&DataAction=Find") & ">" & Session(strRSName & "_Recordset")("Name") & "</FONT></a></TD>"
 %>
 <!-- #include virtual="/Includes/ListTemplateBottom.inc.asp"-->
 

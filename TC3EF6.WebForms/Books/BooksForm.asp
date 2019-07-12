@@ -2,15 +2,14 @@
 <%
 Dim strPagingMove	
 Dim strFormMode
-Dim strDFName
-strDBName = "KFC"
-strDFName = "rsBooks"
+Dim strRSName
+strRSName = "rsBooks"
 strTableName = "Books"
 strBasePageName = "Books"
 strPageTitle = "Library; Books"
-SQLstatement = "Select [Books].*,[Locations].[OName] As [Location] From [Books] Inner Join [Locations] On [Books].[LocationID]=[Locations].[ID] Order By [AlphaSort];"
+SQLstatement = "Select Books.*,Locations.Name As Location From Books Inner Join Locations On Books.LocationID=Locations.ID Order By AlphaSort;"
 strProtectedFields = """Cataloged"",""Inventoried"""
-strLookupFields = """Author"",""Subject"",""Location"""
+strLookupFields = """Author"",""Subject"",""MediaFormat"",""Location"""
 strHomeGIF = ""
 strFooterURL = ""
 strFooterTitle = ""
@@ -25,6 +24,7 @@ fDebugMode = False
 
 <!-- #include virtual="/Books/avarAuthors.inc.asp"-->
 <!-- #include virtual="/Books/avarSubjects.inc.asp"-->
+<!-- #include virtual="/Books/avarMediaFormat.inc.asp"-->
 <!-- #include virtual="/Books/avarLocations.inc.asp"-->
 
 <!---------------------------- Heading Section -------------------------------->

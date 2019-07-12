@@ -19,16 +19,15 @@ Sub Application_OnStart
 	WshShell.LogEvent 4, "Application_OnStart: Initializing Application Object"
 
 	Application.Lock
-
-	'Application("KFC.ConnectionString") = "Provider=MSDASQL.1;Persist Security Info=False;User ID=Admin;Data Source=C:\My Documents\Home Inventory\Database\Ken's Stuff.mdb;"
-	'Application("KFC.ConnectionString") = "DSN=TreasureChest;"
-    Application("KFC.ConnectionString") = "Driver={SQL Server Native Client 11.0};Server=(localdb)\MSSQLLocalDB;Database=TC3EF6;Trusted_Connection=yes;"
-	'Application("KFC.RuntimeUserName") = "sa"
-	'Application("KFC.RuntimePassword") = "GZPR141SA"
-	Application("KFC.RuntimeUserName") = ""
-	Application("KFC.RuntimePassword") = ""
-	Application("KFC.ConnectionTimeout") = 120
-	Application("KFC.CommandTimeout") = 120
+	'Application("ConnectionString") = "Provider=MSDASQL.1;Persist Security Info=False;User ID=Admin;Data Source=C:\My Documents\Home Inventory\Database\Ken's Stuff.mdb;"
+	'Application("ConnectionString") = "DSN=TreasureChest;"
+    Application("ConnectionString") = "Driver={SQL Server Native Client 11.0};Server=(localdb)\MSSQLLocalDB;Database=TC3EF6;Trusted_Connection=yes;"
+	'Application("RuntimeUserName") = "sa"
+	'Application("RuntimePassword") = "GZPR141SA"
+	Application("RuntimeUserName") = ""
+	Application("RuntimePassword") = ""
+	Application("ConnectionTimeout") = 120
+	Application("CommandTimeout") = 120
 	
 	Application("ActiveSessions") = 0
 	Application("AdminPage") = "/Admin/Admin.asp"
@@ -151,25 +150,23 @@ Sub Session_OnStart
 	LogFile.WriteLine(now & ": Session_OnStart: Beginning session for Visitor #" & Session("Visitor") & " (ID: " & Session("ID") & ") - Active Sessions: " & ActiveSessions & "...")
 	LogFile.Close
 
-	Set Session("KFC") = Server.CreateObject("ADODB.Connection")
-	'Session("KFC.ConnectionString") = "Provider=MSDASQL.1;Persist Security Info=False;User ID=Admin;Data Source=C:\My Documents\Home Inventory\Database\Ken's Stuff.mdb;"
-	Session("KFC").ConnectionString = Application("KFC.ConnectionString")
-	Session("KFC").ConnectionTimeout = Application("KFC.ConnectionTimeout")
-	Session("KFC").CommandTimeout = Application("KFC.CommandTimeout")
-	Set Session("KFC.Connection") = Session("KFC")	'... for backward compatibility...
+	'Set Session("KFC") = Server.CreateObject("ADODB.Connection")
+	''Session("KFC.ConnectionString") = "Provider=MSDASQL.1;Persist Security Info=False;User ID=Admin;Data Source=C:\My Documents\Home Inventory\Database\Ken's Stuff.mdb;"
+	'Session("KFC").ConnectionString = Application("ConnectionString")
+	'Session("KFC").ConnectionTimeout = Application("ConnectionTimeout")
+	'Session("KFC").CommandTimeout = Application("CommandTimeout")
+	'Set Session("KFC.Connection") = Session("KFC")	'... for backward compatibility...
 	
-	Set LogFile = Session("FileSystem").OpenTextFile(Application("ApplicationLogFilename"), ForAppending, True)
-	'LogFile.WriteLine(now & ":    Session(""KFC"").Open """ & Session("KFC").ConnectionString & """,""" & Application("KFC.RuntimeUserName") & """, """ & Application("KFC.RuntimePassword") & """")
-	LogFile.WriteLine(now & ":    Session(""KFC"").Open """ & Session("KFC").ConnectionString & """, """", """"")
-	LogFile.Close
-
-	Session("KFC").Open Session("KFC.ConnectionString"), "", ""
+	'Set LogFile = Session("FileSystem").OpenTextFile(Application("ApplicationLogFilename"), ForAppending, True)
+	''LogFile.WriteLine(now & ":    adoConn.Open """ & Application("ConnectionString") & """,""" & Application("RuntimeUserName") & """, """ & Application("RuntimePassword") & """")
+	'LogFile.WriteLine(now & ":    Session(""KFC"").Open """ & Session("KFC").ConnectionString & """, """", """"")
+	'LogFile.Close
 
 	fDebugLogin = True
 	Application.UnLock
 
 	' *********************************************************************************************************
-	' Validate Visitor against KFC.Visitors Table...
+	' Validate Visitor against Visitors Table...
 
 	Session("StartTime") = Now()
 	Session("DateLastVisit") = Session("StartTime")
@@ -285,11 +282,16 @@ Sub Session_OnStart
 			LogFile.Close
 		End If
 
+        Set Session("adoConn") = Server.CreateObject("ADODB.Connection")
+	    Session("adoConn").ConnectionTimeout = Application("ConnectionTimeout")
+	    Session("adoConn").CommandTimeout = Application("CommandTimeout")
+        Session("adoConn").Open Application("ConnectionString"), Application("RuntimeUserName"), Application("RuntimePassword")
+
 		Set cmdTemp = Server.CreateObject("ADODB.Command")
 		Set rsVisitor = Server.CreateObject("ADODB.Recordset")
 		cmdTemp.CommandText = "SELECT * FROM [Visitors] where ([Email] like '" & Session("E-Mail") & "')"
 		cmdTemp.CommandType = adCmdText
-		Set cmdTemp.ActiveConnection = Session("KFC")
+		Set cmdTemp.ActiveConnection = Session("adoConn")
 
 		On Error Resume Next
 		rsVisitor.Open cmdTemp, , adOpenKeyset, adLockOptimistic
@@ -414,7 +416,7 @@ Sub Session_OnStart
 	'   Set UserAccessInfo = Server.CreateObject("ADODB.Connection")
 	'   UserAccessInfo.ConnectionTimeout = Session("UserAccessInfo_ConnectionTimeout")
 	'   UserAccessInfo.CommandTimeout = Session("UserAccessInfo_CommandTimeout")
-	'   UserAccessInfo.Open Session("KFC.ConnectionString"), Session("KFC.RuntimeUserName"), Session("KFC.RuntimePassword")
+	'   UserAccessInfo.Open Application("ConnectionString"), Application("RuntimeUserName"), Application("RuntimePassword")
 
 	'   Set rsAddRec = Server.CreateObject("ADODB.Recordset")
 	'   rsAddRec.Open "UserAccessInfo", UserAccessInfo, adOpenKeyset, adLockBatchOptimistic
@@ -476,6 +478,10 @@ End Sub
 '=============================================================================================================
 Sub Session_OnEnd
 	Application.Lock
+    If Not Session("adoConn") Is Nothing Then 
+        Session("adoConn").Close()
+        Session("adoConn") = Nothing
+    End If
 	Application("ActiveSessions") = Application("ActiveSessions") - 1
 	ActiveSessions = Application("ActiveSessions")
   	If ActiveSessions = 0 Then
@@ -504,8 +510,6 @@ Sub Session_OnEnd
 		'End If
 	End If
 
-	Session("KFC").Close 
-	Set Session("KFC") = Nothing
 	Application.UnLock
 
 	Set LogFile = Session("FileSystem").OpenTextFile(Application("ApplicationLogFilename"), ForAppending, True)

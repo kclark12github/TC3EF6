@@ -1,9 +1,8 @@
 <%@ LANGUAGE="VBScript" %>
 <%
 Dim strPagingMove
-Dim strDFName
-strDBName = "KFC"
-strDFName = "rsEpisodes"
+Dim strRSName
+strRSName = "rsEpisodes"
 strTableName = "Episodes"
 strBasePageName = "Episodes"
 strPageTitle = "Video Library; TV Series"
@@ -23,6 +22,7 @@ fDebugMode = False
 <!---------------------------- Lookups Section ------------------------------->
 
 <!-- #include virtual="/Movies/avarDistributors.inc.asp"-->
+<!-- #include virtual="/Movies/avarMediaFormat.inc.asp"-->
 <!-- #include virtual="/Movies/avarSeriess.inc.asp"-->
 <!-- #include virtual="/Movies/avarSubjects.inc.asp"-->
 
@@ -36,7 +36,8 @@ fDebugMode = False
 <%
 		'	ShowListField "ID", Null, False
 		ShowListField "Series", avarSeriess, False
-		Response.Write "<TD BGCOLOR=White ALIGN=Left NOWRAP><FONT SIZE=-1><A HREF=" & QuotedString(strBasePageName & "Action.asp?Bookmark=" & tCurRec & "&DataAction=Find") & ">" & Session(strDFName & "_Recordset")("Number") & "</FONT></a></TD>"
-		Response.Write "<TD BGCOLOR=White ALIGN=Left NOWRAP><FONT SIZE=-1><A HREF=" & QuotedString(strBasePageName & "Action.asp?Bookmark=" & tCurRec & "&DataAction=Find") & ">" & Session(strDFName & "_Recordset")("Title") & "</FONT></a></TD>"
+		Response.Write "<TD BGCOLOR=White ALIGN=Left NOWRAP><FONT SIZE=-1><A HREF=" & QuotedString(strBasePageName & "Action.asp?Bookmark=" & tCurRec & "&DataAction=Find") & ">" & Session(strRSName & "_Recordset")("Series") & "</FONT></a></TD>"
+		Response.Write "<TD BGCOLOR=White ALIGN=Left NOWRAP><FONT SIZE=-1><A HREF=" & QuotedString(strBasePageName & "Action.asp?Bookmark=" & tCurRec & "&DataAction=Find") & ">" & Session(strRSName & "_Recordset")("Number") & "</FONT></a></TD>"
+		Response.Write "<TD BGCOLOR=White ALIGN=Left NOWRAP><FONT SIZE=-1><A HREF=" & QuotedString(strBasePageName & "Action.asp?Bookmark=" & tCurRec & "&DataAction=Find") & ">" & Session(strRSName & "_Recordset")("Title") & "</FONT></a></TD>"
 %>
 <!-- #include virtual="/Includes/ListTemplateBottom.inc.asp"-->

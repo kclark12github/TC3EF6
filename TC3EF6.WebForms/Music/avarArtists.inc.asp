@@ -1,19 +1,14 @@
 <% 
 Dim avarArtists
-If IsEmpty(Application(strDFName & "_Lookup_Artists")) Or strPagingMove = "Requery" Then
-    Set Music = Server.CreateObject("ADODB.Connection")
-    Music.ConnectionTimeout = Session(strDBName & "_ConnectionTimeout")
-    Music.CommandTimeout = Session(strDBName & "_CommandTimeout")
-    Music.Open Session("KFC.ConnectionString"), Session("KFC.RuntimeUserName"), Session("KFC.RuntimePassword")
-	Set rsArtists = Music.Execute("SELECT Distinct Artist FROM Music ORDER BY Artist")
+If IsEmpty(Application(strRSName & "_Lookup_Artists")) Or strPagingMove = "Requery" Then
 	avarArtists = Null
-	On Error Resume Next
-	avarArtists = rsArtists.GetRows()
-	if fDebugMode Then Response.Write "DEBUG: rsArtists consists of " & rsArtists.RecordCount & " rows...<br>" & CHR(13)
+	Set adoRS = Session("adoConn").Execute("SELECT Distinct Artist FROM " & strTableName & " ORDER BY Artist")
+	'On Error Resume Next
+	avarArtists = adoRS.GetRows()
 	Application.Lock
-	Application(strDFName & "_Lookup_Artists") = avarArtists
+	Application(strRSName & "_Lookup_Artists") = avarArtists
 	Application.Unlock
 Else
-	avarArtists = Application(strDFName & "_Lookup_Artists")
+	avarArtists = Application(strRSName & "_Lookup_Artists")
 End If
 %>

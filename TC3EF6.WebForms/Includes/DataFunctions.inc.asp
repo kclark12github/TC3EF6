@@ -65,13 +65,13 @@ Function QuotedString(varTemp)
 	End If
 End Function
 Function DebugQuotedString(varTemp)
-Response.Write "DEBUG: varTemp is """ & varTemp & """..." & CHR(13)
+    Response.Write "<" & "!-- DEBUG: varTemp is """ & varTemp & """... -->" & CHR(13)
 	If IsNull(varTemp) Then
 		DebugQuotedString = Chr(34) & Chr(34)
 	Else
 		DebugQuotedString = Chr(34) & CStr(varTemp) & Chr(34)
 	End If
-Response.Write "DEBUG: DebugQuotedString is " & DebugQuotedString & "..." & CHR(13)
+    Response.Write "<" & "!-- DEBUG: DebugQuotedString is " & DebugQuotedString & "... -->" & CHR(13)
 End Function
 
 '-------------------------------------------------------------------------------
@@ -157,7 +157,7 @@ End Function
 
 Function IsRequiredField(strFieldName)
 	IsRequiredField = False
-	If (Session(strDFName & "_Recordset")(strFieldName).Attributes And adFldIsNullable) = 0 Then 
+	If (Session(strRSName & "_Recordset")(strFieldName).Attributes And adFldIsNullable) = 0 Then 
 		IsRequiredField = True
 	End If
 End Function
@@ -175,7 +175,7 @@ Function CanUpdateField(strFieldName)
 	intUpdatable = (adFldUpdatable Or adFldUnknownUpdatable)
 	CanUpdateField = True
 	
-	If (Session(strDFName & "_Recordset")(strFieldName).Attributes And intUpdatable) = False Then
+	If (Session(strRSName & "_Recordset")(strFieldName).Attributes And intUpdatable) = False Then
 		CanUpdateField = False
 		Exit Function
 	End If
@@ -410,7 +410,7 @@ Function ShowListField(strFieldName, avarLookup, blnPassword)
 
 		Response.Write "<TD BGCOLOR=White NOWRAP><FONT SIZE=-1>" 
 		For intRow = 0 to UBound(avarLookup, 2)
-			If ConvertNull(avarLookup(intIDcolumn, intRow)) = ConvertNull(Session(strDFName & "_Recordset")(strFieldName)) Then
+			If ConvertNull(avarLookup(intIDcolumn, intRow)) = ConvertNull(Session(strRSName & "_Recordset")(strFieldName)) Then
 				Response.Write Server.HTMLEncode(ConvertNull(avarLookup(intValueColumn, intRow)))
 				Exit For
 			End If
@@ -418,12 +418,12 @@ Function ShowListField(strFieldName, avarLookup, blnPassword)
 		Response.Write "</FONT></TD>"
 		Exit Function
 	End If
-	nType = Session(strDFName & "_Recordset")(strFieldName).Type
+	nType = Session(strRSName & "_Recordset")(strFieldName).Type
 	
 	Select Case nType
 		Case adBoolean, adUnsignedTinyInt				'Boolean
 			strBool = ""
-			If Session(strDFName & "_Recordset")(strFieldName) <> 0 Then
+			If Session(strRSName & "_Recordset")(strFieldName) <> 0 Then
 				strBool = "True"
 			Else
 				strBool = "False"
@@ -437,41 +437,41 @@ Function ShowListField(strFieldName, avarLookup, blnPassword)
 			If ConvertNull(strFieldValue) = "" Then 
 				Response.Write "<TD BGCOLOR=White ><FONT SIZE=-1>&nbsp;</FONT></TD>"
 			Else
-				Response.Write "<TD BGCOLOR=White ><FONT SIZE=-1>" & FormatCurrency(Session(strDFName & "_Recordset")(strFieldName)) & "</FONT></TD>"
+				Response.Write "<TD BGCOLOR=White ><FONT SIZE=-1>" & FormatCurrency(Session(strRSName & "_Recordset")(strFieldName)) & "</FONT></TD>"
 			End If
 			
 		Case adLongVarChar, adLongVarWChar				'Memo
 			Response.Write "<TD BGCOLOR=White NOWRAP><FONT SIZE=-1>"
-			strPartial = Left(Session(strDFName & "_Recordset")(strFieldName), 50)			
+			strPartial = Left(Session(strRSName & "_Recordset")(strFieldName), 50)			
 			If ConvertNull(strPartial) = "" Then
 				Response.Write "&nbsp;"
 			Else
 				Response.Write HTMLEncode(strPartial)
 			End If
-			If Session(strDFName & "_Recordset")(strFieldName).ActualSize > 50 Then Response.Write "..."
+			If Session(strRSName & "_Recordset")(strFieldName).ActualSize > 50 Then Response.Write "..."
 			Response.Write "</FONT></TD>"
 			
 		Case Else
 			Response.Write "<TD BGCOLOR=White ALIGN=Left NOWRAP><FONT SIZE=-1>"
-			If ConvertNull(Session(strDFName & "_Recordset")(strFieldName)) = "" Then
+			If ConvertNull(Session(strRSName & "_Recordset")(strFieldName)) = "" Then
 				Response.Write "&nbsp;"
 			Else
 				' Check for special field types
-				Select Case UCase(Left(Session(strDFName & "_Recordset")(strFieldName).Name, 4))
+				Select Case UCase(Left(Session(strRSName & "_Recordset")(strFieldName).Name, 4))
 					Case "URL_"
-						Response.Write "<A HREF=" & QuotedString(Session(strDFName & "_Recordset")(strFieldName)) & ">"
-						Response.Write Server.HTMLEncode(ConvertNull(Session(strDFName & "_Recordset")(strFieldName)))
+						Response.Write "<A HREF=" & QuotedString(Session(strRSName & "_Recordset")(strFieldName)) & ">"
+						Response.Write Server.HTMLEncode(ConvertNull(Session(strRSName & "_Recordset")(strFieldName)))
 						Response.Write "</A>"
 					Case Else
-						If IsURL(Session(strDFName & "_Recordset")(strFieldName)) Then
-							Response.Write "<A HREF=" & QuotedString(Session(strDFName & "_Recordset")(strFieldName)) & ">"
-							Response.Write Server.HTMLEncode(ConvertNull(Session(strDFName & "_Recordset")(strFieldName)))
+						If IsURL(Session(strRSName & "_Recordset")(strFieldName)) Then
+							Response.Write "<A HREF=" & QuotedString(Session(strRSName & "_Recordset")(strFieldName)) & ">"
+							Response.Write Server.HTMLEncode(ConvertNull(Session(strRSName & "_Recordset")(strFieldName)))
 							Response.Write "</A>"
 						Else
 							If blnPassword Then
 								Response.Write "********"
 							Else
-								Response.Write Server.HTMLEncode(ConvertNull(Session(strDFName & "_Recordset")(strFieldName)))
+								Response.Write Server.HTMLEncode(ConvertNull(Session(strRSName & "_Recordset")(strFieldName)))
 							End If
 						End If
 				End Select
@@ -505,7 +505,7 @@ Sub ShowFormField(strFieldName, strLabel, blnIdentity, avarLookup, blnPassword, 
 
 	intMaxTextDisplay = Session("MaxTextDisplay")
 
-	if fDebugMode Then Response.Write "DEBUG: Inside ShowFormField(""" & strFieldname & """)...<br>" & CHR(13)
+	if fDebugMode Then Response.Write "<" & "!-- DEBUG: Inside ShowFormField(""" & strFieldname & """)... -->" & CHR(13)
 	strFieldValue = ""
 	nPos = Instr(strFieldName,".")
 	Do While nPos > 0 
@@ -515,18 +515,18 @@ Sub ShowFormField(strFieldName, strLabel, blnIdentity, avarLookup, blnPassword, 
 
 	' If not in Edit form mode then set value to empty so doesn't display
 	strFieldValue = ""
-	If strFormMode = "Edit" Then strFieldValue = RTrim(Session(strDFName & "_Recordset")(strFieldName))
+	If strFormMode = "Edit" Then strFieldValue = RTrim(Session(strRSName & "_Recordset")(strFieldName))
 	
 	' See if the field is required by checking the attributes 
 	blnFieldRequired = False
-	If (Session(strDFName & "_Recordset")(strFieldName).Attributes And adFldIsNullable) = 0 Then 
+	If (Session(strRSName & "_Recordset")(strFieldName).Attributes And adFldIsNullable) = 0 Then 
 		blnFieldRequired = True
 	End If
-	nType = Session(strDFName & "_Recordset")(strFieldName).Type
+	nType = Session(strRSName & "_Recordset")(strFieldName).Type
 	
 	' Set values for the MaxLength and Size attributes	
 	intMaxSize = dfMaxSize
-	intInputSize = Session(strDFName & "_Recordset")(strFieldName).DefinedSize + 2
+	intInputSize = Session(strRSName & "_Recordset")(strFieldName).DefinedSize + 2
 	If strFormMode <> "Filter" Then intMaxSize = intInputSize - 2
 	
 	' Write the field label and start the value cell
@@ -536,7 +536,7 @@ Sub ShowFormField(strFieldName, strLabel, blnIdentity, avarLookup, blnPassword, 
 	
 	' If the field is not updatable, then handle it like an Identity column and exit
 	If (blnProtect and IsNull(avarLookup)) or Not CanUpdateField(strFieldName) Then
-		if fDebugMode Then Response.Write "DEBUG:	Handling field like an Identity...<br>" & CHR(13)
+		if fDebugMode Then Response.Write "<" & "!-- DEBUG:	Handling field like an Identity... -->" & CHR(13)
 
 		' Special handling if Binary
 		Select Case nType
@@ -564,13 +564,13 @@ Sub ShowFormField(strFieldName, strLabel, blnIdentity, avarLookup, blnPassword, 
 				End Select
 		End Select
 		Response.Write "</FONT></TD></TR>" & CHR(13)
-		if fDebugMode Then Response.Write "DEBUG:	Exiting ShowFormField()...<br>" & CHR(13)
+		if fDebugMode Then Response.Write "<" & "!-- DEBUG:	Exiting ShowFormField()...-->" & CHR(13)
 		Exit Sub
 	End If
 	
 	' Handle lookups using a select and options
 	If Not IsNull(avarLookup) Then
-		if fDebugMode Then Response.Write "DEBUG: Inside ShowFormField() and avarLookup is Not Null...<br>" & CHR(13)
+		if fDebugMode Then Response.Write "<" & "!-- DEBUG: Inside ShowFormField() and avarLookup is Not Null and contains " & UBound(avarLookup,2) & " rows... -->" & CHR(13)
 		If Not blnProtect Then
 			Response.Write "			<SELECT NAME=" & QuotedString(strFieldName) & ">" & CHR(13)
 			' Add blank entry if not required or in filter mode
@@ -607,7 +607,7 @@ Sub ShowFormField(strFieldName, strLabel, blnIdentity, avarLookup, blnPassword, 
 					Exit Sub
 				End If
 			Else
-				if fDebugMode Then Response.Write "DEBUG: Inside avarLookup code in ShowFormField()...<br>" & CHR(13)
+				if fDebugMode Then Response.Write "<" & "!-- DEBUG: Inside avarLookup code in ShowFormField()... -->" & CHR(13)
 				Response.Write "				<OPTION VALUE=" & QuotedString(avarLookup(intIDcolumn, intRow))
 		        If strFormMode = "Edit" Then
 					If ConvertNull(avarLookup(intIDColumn, intRow)) = ConvertNull(strFieldValue) Then
@@ -715,7 +715,7 @@ Sub ShowFormField(strFieldName, strLabel, blnIdentity, avarLookup, blnPassword, 
 			Else
 				' Check for special URL field types
 ' Commented-out since the text box should now fit on a page...
-'				Select Case UCase(Left(Session(strDFName & "_Recordset")(strFieldName).Name, 4))
+'				Select Case UCase(Left(Session(strRSName & "_Recordset")(strFieldName).Name, 4))
 '					Case "URL_"
 '						If strFieldValue <> "" Then
 '							Response.Write "<A HREF=" & QuotedString(strFieldValue) & ">"
@@ -759,7 +759,7 @@ Sub ShowFormField(strFieldName, strLabel, blnIdentity, avarLookup, blnPassword, 
 				End If
 
 				' Check for special field types
-				Select Case UCase(Left(Session(strDFName & "_Recordset")(strFieldName).Name, 4))
+				Select Case UCase(Left(Session(strRSName & "_Recordset")(strFieldName).Name, 4))
 					Case "IMG_"
 						If strFieldValue <> "" Then
 							Response.Write "<BR><BR><IMG SRC=" & QuotedString(strFieldValue) & "><BR>&nbsp;<BR>"
@@ -850,7 +850,7 @@ End Function
 Function InsertField(strFieldName)
 	InsertField = True
 	If IsEmpty(Request(strFieldName)) Then Exit Function
-	Select Case Session(strDFName & "_Recordset")(strFieldName).Type
+	Select Case Session(strRSName & "_Recordset")(strFieldName).Type
  		Case adBinary, adVarBinary, adLongVarBinary		'Binary
 		Case Else
 			If CanUpdateField(strFieldName) Then
@@ -859,7 +859,7 @@ Function InsertField(strFieldName)
 					InsertField = False
 					Exit Function
 				End If				
-				Session(strDFName & "_Recordset")(strFieldName) = RestoreNull(Request(strFieldName))
+				Session(strRSName & "_Recordset")(strFieldName) = RestoreNull(Request(strFieldName))
 			End If
 	End Select
 End Function
@@ -876,18 +876,18 @@ Function UpdateField(strFieldName)
 	UpdateField = True
 
 	If IsEmpty(Request(strFieldName)) Then Exit Function
-	Select Case Session(strDFName & "_Recordset")(strFieldName).Type
+	Select Case Session(strRSName & "_Recordset")(strFieldName).Type
  		Case adBinary, adVarBinary, adLongVarBinary		'Binary
 		Case Else
 			' Only update if the value has changed
-			If Not IsEqual(ConvertToString(Session(strDFName & "_Recordset")(strFieldName)), RestoreNull(Request(strFieldName))) Then
+			If Not IsEqual(ConvertToString(Session(strRSName & "_Recordset")(strFieldName)), RestoreNull(Request(strFieldName))) Then
 				If CanUpdateField(strFieldName) Then						
 					If IsRequiredField(strFieldName) And IsNull(RestoreNull(Request(strFieldName))) Then
 						RaiseError errValueRequired, strFieldName
 						UpdateField = False
 						Exit Function
 					End If				
-					Session(strDFName & "_Recordset")(strFieldName) = RestoreNull(Request(strFieldName))
+					Session(strRSName & "_Recordset")(strFieldName) = RestoreNull(Request(strFieldName))
 				Else
 					RaiseError errNotEditable, strFieldName
 					UpdateField = False
@@ -917,7 +917,7 @@ Sub FilterField(ByVal strFieldName, avarLookup)
 	
 	' If empty then exit right away
 	If Request(strFieldName) = "" Then Exit Sub
-	nType = Session(strDFName & "_Recordset")(strFieldName).Type
+	nType = Session(strRSName & "_Recordset")(strFieldName).Type
 
 	' Handle "Neither" radio buttons...
 	Select Case nType
@@ -1024,7 +1024,7 @@ Sub FeedbackField(strFieldLabel, strFieldName, avarLookup)
 	If fDebugMode Then Response.Write "<" & "!-- DEBUG: " & strFieldName & " is not empty... -->" & chr(13)
 
 	' Test the data types and display appropriately	
-	Select Case Session(strDFName & "_Recordset")(strFieldName).Type
+	Select Case Session(strRSName & "_Recordset")(strFieldName).Type
 		Case adBoolean, adUnsignedTinyInt				'Boolean
 			strBool = ""
 			If Request(strFieldName) <> 0 Then

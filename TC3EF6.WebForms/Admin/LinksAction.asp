@@ -1,7 +1,6 @@
 <%@ LANGUAGE="VBScript" %>
 <%
-strDBName = "KFC"
-strDFName = "rsLinks"
+strRSName = "rsLinks"
 strTableName = "Links"
 strBasePageName = "Links"
 strPageTitle = "Links"

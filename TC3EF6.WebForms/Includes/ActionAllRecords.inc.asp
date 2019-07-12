@@ -1,10 +1,10 @@
 <%
 	Case "All Records"
 		On Error Resume Next
-		Session(strDFName & "_Filter") = ""
-		Session(strDFName & "_FilterDisplay") = ""
-		Session(strDFName & "_Recordset").Filter = ""
-		Session(strDFName & "_AbsolutePage") = 1
+		Session(strRSName & "_Filter") = ""
+		Session(strRSName & "_FilterDisplay") = ""
+		Session(strRSName & "_Recordset").Filter = ""
+		Session(strRSName & "_AbsolutePage") = 1
 		If ListFileExists Then
 			Response.Redirect strBasePageName & "List.asp"
 		Else

@@ -2,13 +2,12 @@
 <%
 Dim strPagingMove	
 Dim strFormMode
-Dim strDFName
-strDBName = "KFC"
-strDFName = "rsMovies"
-strTableName = "Movies"
+Dim strRSName
+strRSName = "rsMovies"
+strTableName = "Videos"
 strBasePageName = "Movies"
 strPageTitle = "Video Library; Movies"
-SQLstatement = "SELECT * FROM [Movies] order by Sort"
+SQLstatement = "SELECT * FROM [Videos] order by Sort"
 strLookupFields = """Distributor"",""Subject"""
 strHomeGIF = ""
 strFooterURL = ""
@@ -23,6 +22,7 @@ fDebugMode = False
 <!---------------------------- Lookups Section -------------------------------->
 
 <!-- #include virtual="/Movies/avarDistributors.inc.asp"-->
+<!-- #include virtual="/Movies/avarMediaFormat.inc.asp"-->
 <!-- #include virtual="/Movies/avarSubjects.inc.asp"-->
 
 <!---------------------------- Heading Section -------------------------------->

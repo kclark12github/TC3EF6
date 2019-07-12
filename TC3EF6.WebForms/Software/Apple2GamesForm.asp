@@ -2,15 +2,14 @@
 <%
 Dim strPagingMove	
 Dim strFormMode
-Dim strDFName
-strDBName = "Software"
-strDFName = "rsApple2Games"
-strTableName = "Apple2Games"
+Dim strRSName
+strRSName = "rsApple2Games"
+strTableName = "Software"
 strBasePageName = "Apple2Games"
 strPageTitle = "Software Library; Apple ][ Games"
 SQLstatement = "Select * From [Software] Where (Platform Like 'Apple%' Or Platform='CP/M') And [Type] Like 'Game%' Order By Title, Version;"
 strProtectedFields = """Cataloged"",""DateInventoried"""
-strLookupFields = """Platform"",""Publisher"",""Type"""
+strLookupFields = """MediaFormat"",""Location"",""Platform"",""Publisher"",""Type"""
 strHomeGIF = ""
 strFooterURL = ""
 strFooterTitle = ""
@@ -23,6 +22,8 @@ fDebugMode = False
 
 <!---------------------------- Lookups Section -------------------------------->
 
+<!-- #include virtual="/Software/avarLocations.inc.asp"-->
+<!-- #include virtual="/Software/avarMediaFormat.inc.asp"-->
 <!-- #include virtual="/Software/avarPlatforms.inc.asp"-->
 <!-- #include virtual="/Software/avarPublishers.inc.asp"-->
 <!-- #include virtual="/Software/avarTypes.inc.asp"-->

@@ -2,9 +2,8 @@
 <%
 Dim strPagingMove	
 Dim strFormMode
-Dim strDFName
-strDBName = "KFC"
-strDFName = "rsSciFiKits"
+Dim strRSName
+strRSName = "rsSciFiKits"
 strTableName = "Kits"
 strBasePageName = "SciFiModels"
 strPageTitle = "SciFi Models"

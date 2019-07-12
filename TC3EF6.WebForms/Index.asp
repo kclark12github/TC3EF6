@@ -66,7 +66,7 @@ End Sub
 Sub PopulateMenu(MenuLabel, ParentID)
 	dim rsLinks
 	Set rsLinks = Server.CreateObject("ADODB.Recordset")
-	rsLinks.Open "SELECT * FROM MenuEntries where (ButtonLabel like '" & MenuLabel & "' and ParentID=" & ParentID & ") order by ButtonLabel,ParentID,Label", Session("KFC"), adOpenForwardOnly, adLockOptimistic
+	rsLinks.Open "SELECT * FROM MenuEntries where (ButtonLabel like '" & MenuLabel & "' and ParentID=" & ParentID & ") order by ButtonLabel,ParentID,Label", Session("adoConn"), adOpenForwardOnly, adLockOptimistic
 	
 	Do While Not rsLinks.EOF
 		Response.Write "	Ad """ & rsLinks("ID") & """, """ & rsLinks("Label") & """, """ & rsLinks("URL") & """, """ & rsLinks("ParentID") & """" & Chr(13)

@@ -1,19 +1,14 @@
 <% 
 Dim avarClassifications
-If IsEmpty(Application(strDFName & "_Lookup_Classifications")) Or strPagingMove = "Requery" Then
-    Set USNavyUSNavyShips = Server.CreateObject("ADODB.Connection")
-    USNavyShips.ConnectionTimeout = Session("USNavyShips_ConnectionTimeout")
-    USNavyShips.CommandTimeout = Session("USNavyShips_CommandTimeout")
-    USNavyShips.Open Session("KFC.ConnectionString"), Session("KFC.RuntimeUserName"), Session("KFC.RuntimePassword")
-	Set rsClassifications = USNavyShips.Execute("SELECT ID, Type & " - " & Description FROM Classification ORDER BY Type")
+If IsEmpty(Application(strRSName & "_Lookup_Classifications")) Or strPagingMove = "Requery" Then
 	avarClassifications = Null
-	On Error Resume Next
-	avarClassifications = rsClassifications.GetRows()
-	if fDebugMode Then Response.Write "DEBUG: rsClassifications consists of " & rsClassifications.RecordCount & " rows...<br>" & CHR(13)
+	Set adoRS = Session("adoConn").Execute("SELECT ID, Type & " - " & Description FROM Classification ORDER BY Type")
+	'On Error Resume Next
+	avarClassifications = adoRS.GetRows()
 	Application.Lock
-	Application(strDFName & "_Lookup_Classifications") = avarClassifications
+	Application(strRSName & "_Lookup_Classifications") = avarClassifications
 	Application.Unlock
 Else
-	avarClassifications = Application(strDFName & "_Lookup_Classifications")
+	avarClassifications = Application(strRSName & "_Lookup_Classifications")
 End If
 %>

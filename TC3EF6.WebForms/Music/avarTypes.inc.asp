@@ -1,19 +1,14 @@
 <% 
 Dim avarTypes
-'If IsEmpty(Application(strDFName & "_Lookup_Types")) Or strPagingMove = "Requery" Then
-    Set Music = Server.CreateObject("ADODB.Connection")
-    Music.ConnectionTimeout = Session(strDBName & "_ConnectionTimeout")
-    Music.CommandTimeout = Session(strDBName & "_CommandTimeout")
-    Music.Open Session("KFC.ConnectionString"), Session("KFC.RuntimeUserName"), Session("KFC.RuntimePassword")
-	Set rsTypes = Music.Execute("SELECT Distinct Type FROM Music ORDER BY Type")
+If IsEmpty(Application(strRSName & "_Lookup_Types")) Or strPagingMove = "Requery" Then
 	avarTypes = Null
-	On Error Resume Next
-	avarTypes = rsTypes.GetRows()
-	if fDebugMode Then Response.Write "DEBUG: rsTypes consists of " & rsTypes.RecordCount & " rows...<br>" & CHR(13)
+	Set adoRS = Session("adoConn").Execute("SELECT Distinct Type FROM " & strTableName & " ORDER BY Type")
+	'On Error Resume Next
+	avarTypes = adoRS.GetRows()
 	Application.Lock
-	Application(strDFName & "_Lookup_Types") = avarTypes
+	Application(strRSName & "_Lookup_Types") = avarTypes
 	Application.Unlock
-'Else
-'	avarTypes = Application(strDFName & "_Lookup_Types")
-'End If
+Else
+	avarTypes = Application(strRSName & "_Lookup_Types")
+End If
 %>

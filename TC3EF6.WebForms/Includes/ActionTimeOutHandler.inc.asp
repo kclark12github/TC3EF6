@@ -1,7 +1,7 @@
 <%
 		' Make sure we exit and re-process the form if session has timed out
-		If IsEmpty(Session(strDFName & "_Recordset")) Then
-			WriteLog "Action - " & strDataAction & "; " & Session(strDFName & "_Recordset") & " is empty, refreshing (Session Timeout: " & Session.Timeout & ")..."
+		If IsEmpty(Session(strRSName & "_Recordset")) Then
+			WriteLog "Action - " & strDataAction & "; " & Session(strRSName & "_Recordset") & " is empty, refreshing (Session Timeout: " & Session.Timeout & ")..."
 			Response.Write "<html>" & CHR(13)
 			Response.Write "	<head>" & CHR(13)
 			Response.Write "		<meta NAME=""GENERATOR"" CONTENT=""Microsoft Visual InterDev"">" & CHR(13)

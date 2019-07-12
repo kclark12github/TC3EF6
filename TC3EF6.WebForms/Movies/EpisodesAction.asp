@@ -1,9 +1,8 @@
 <%@ LANGUAGE="VBScript" %>
 <%
-Dim strDFName
+Dim strRSName
 Dim strErrorAdditionalInfo
-strDBName = "KFC"
-strDFName = "rsEpisodes"
+strRSName = "rsEpisodes"
 strTableName = "Episodes"
 strBasePageName = "Episodes"
 strPageTitle = "Video Library; TV Series"
@@ -21,6 +20,7 @@ fDebugMode = False
 
 <!-- #include virtual="/Includes/DataFunctions.inc.asp"-->
 <!-- #include virtual="/Movies/avarDistributors.inc.asp"-->
+<!-- #include virtual="/Movies/avarMediaFormat.inc.asp"-->
 <!-- #include virtual="/Movies/avarSeriess.inc.asp"-->
 <!-- #include virtual="/Movies/avarSubjects.inc.asp"-->
 <!-- #include virtual="/Includes/ActionTemplateCode.inc.asp"-->

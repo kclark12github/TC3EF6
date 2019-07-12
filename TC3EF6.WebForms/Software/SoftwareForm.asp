@@ -2,15 +2,14 @@
 <%
 Dim strPagingMove	
 Dim strFormMode
-Dim strDFName
-strDBName = "Software"
-strDFName = "rsSoftware"
+Dim strRSName
+strRSName = "rsSoftware"
 strTableName = "Software"
 strBasePageName = "Software"
 strPageTitle = "Software Library;"
-SQLstatement = "Select * From [Software] Order By Type, Publisher, Title, Version;"
+SQLstatement = "Select Software.*,Locations.Name As Location From Software Inner Join Locations On Locations.ID=Software.LocationID Order By Type, Publisher, Title, Version;"
 strProtectedFields = """Cataloged"",""DateInventoried"""
-strLookupFields = """Platform"",""Publisher"",""Type"""
+strLookupFields = """MediaFormat"",""Location"",""Platform"",""Publisher"",""Type"""
 strHomeGIF = ""
 strFooterURL = ""
 strFooterTitle = ""
@@ -23,6 +22,8 @@ fDebugMode = False
 
 <!---------------------------- Lookups Section -------------------------------->
 
+<!-- #include virtual="/Software/avarLocations.inc.asp"-->
+<!-- #include virtual="/Software/avarMediaFormat.inc.asp"-->
 <!-- #include virtual="/Software/avarPlatforms.inc.asp"-->
 <!-- #include virtual="/Software/avarPublishers.inc.asp"-->
 <!-- #include virtual="/Software/avarTypes.inc.asp"-->

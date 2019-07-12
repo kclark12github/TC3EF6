@@ -2,9 +2,8 @@
 <%
 Dim strPagingMove	
 Dim strFormMode
-Dim strDFName
-strDBName = "KFC"
-strDFName = "rsEpisodes"
+Dim strRSName
+strRSName = "rsEpisodes"
 strTableName = "Episodes"
 strBasePageName = "Episodes"
 strPageTitle = "Video Library; TV Series"
@@ -23,6 +22,7 @@ fDebugMode = False
 <!---------------------------- Lookups Section -------------------------------->
 
 <!-- #include virtual="/Movies/avarDistributors.inc.asp"-->
+<!-- #include virtual="/Movies/avarMediaFormat.inc.asp"-->
 <!-- #include virtual="/Movies/avarSeriess.inc.asp"-->
 <!-- #include virtual="/Movies/avarSubjects.inc.asp"-->
 

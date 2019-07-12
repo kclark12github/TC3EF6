@@ -1,18 +1,14 @@
 <% 
 Dim avarEras
-If IsEmpty(Application(strDFName & "_Lookup_Eras")) Or strPagingMove = "Requery" Then
-    Set Hobby = Server.CreateObject("ADODB.Connection")
-    Hobby.ConnectionTimeout = Session(strDBName & "_ConnectionTimeout")
-    Hobby.CommandTimeout = Session(strDBName & "_CommandTimeout")
-    Hobby.Open Application("KFC.ConnectionString"), Session("KFC.RuntimeUserName"), Session("KFC.RuntimePassword")
-	Set rsEras = Hobby.Execute("Select Distinct Era From Kits Where Era Order By Era;")
+If IsEmpty(Application(strRSName & "_Lookup_Eras")) Or strPagingMove = "Requery" Then
 	avarEras = Null
-	On Error Resume Next
-	avarEras = rsEras.GetRows()
+	Set adoRS = Session("adoConn").Execute("Select Distinct Era From [" & strTableName & "] Order By Era;")
+	'On Error Resume Next
+	avarEras = adoRS.GetRows()
 	Application.Lock
-	Application(strDFName & "_Lookup_Eras") = avarEras
+	Application(strRSName & "_Lookup_Eras") = avarEras
 	Application.Unlock
 Else
-	avarEras = Application(strDFName & "_Lookup_Eras")
+	avarEras = Application(strRSName & "_Lookup_Eras")
 End If
 %>

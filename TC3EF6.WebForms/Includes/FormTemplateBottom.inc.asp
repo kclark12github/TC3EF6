@@ -1,6 +1,6 @@
 <!-- #include virtual="/Includes/FormTemplateBody1.inc.asp"-->
 <%
-	For each x In Session(strDFName & "_Recordset").Fields
+	For each x In Session(strRSName & "_Recordset").Fields
 		If InStr(strIgnoreFields, QuotedString(x.Name)) = 0 Then
 			fProtect = True
 			fIdentity = False
@@ -15,8 +15,10 @@
 				If InStr(strProtectedFields, QuotedString(x.Name)) <> 0 Then fIdentity = True
 			End Select
 			If InStr(strLookupFields, QuotedString(x.Name)) > 0 Then
-				ShowFormField x.Name, x.Name, fIdentity, Application(strDFName & "_Lookup_" & x.Name & "s"), fPassword, fProtect
+	            if fDebugMode Then Response.Write "<" & "!-- DEBUG: Found " & QuotedString(x.Name) & " within strLookupFields (""" & strlookupFields & """)... -->" & CHR(13)
+				ShowFormField x.Name, x.Name, fIdentity, Application(strRSName & "_Lookup_" & x.Name & "s"), fPassword, fProtect
 			Else
+	            if fDebugMode Then Response.Write "<" & "!-- DEBUG: Did not find " & QuotedString(x.Name) & " within strLookupFields (""" & strlookupFields & """)... -->" & CHR(13)
 				ShowFormField x.Name, x.Name, fIdentity, Null, fPassword, fProtect
 			End If
 		End If

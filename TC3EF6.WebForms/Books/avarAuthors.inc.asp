@@ -1,19 +1,17 @@
 <% 
 Dim avarAuthors
-If IsEmpty(Application(strDFName & "_Lookup_Authors")) Or strPagingMove = "Requery" Then
-	Set Books = Server.CreateObject("ADODB.Connection")
-	Books.ConnectionTimeout = Session(strDBName & "_ConnectionTimeout")
-	Books.CommandTimeout = Session(strDBName & "_CommandTimeout")
-    Books.Open Application("KFC.ConnectionString"), Session("KFC.RuntimeUserName"), Session("KFC.RuntimePassword")
-	Set rsAuthors = Books.Execute("SELECT DISTINCT Author FROM [Books] ORDER BY author")
+If IsEmpty(Application(strRSName & "_Lookup_Authors")) Or strPagingMove = "Requery" Then
 	avarAuthors = Null
-	On Error Resume Next
-	avarAuthors = rsAuthors.GetRows()
-	if fDebugMode Then Response.Write "DEBUG: rsAuthors consists of " & rsAuthors.RecordCount & " rows...<br>" & CHR(13)
+	if fDebugMode Then Response.Write "DEBUG: Creating new avarAuthors...<br>" & CHR(13)
+	Set adoRS = Session("adoConn").Execute("SELECT DISTINCT Author FROM [" & strTableName & "] ORDER BY author")
+	'On Error Resume Next
+	avarAuthors = adoRS.GetRows()
+	if fDebugMode Then Response.Write "DEBUG: avarAuthors contains " & UBound(avarAuthors,2) & " rows...<br>" & CHR(13)
 	Application.Lock
-	Application(strDFName & "_Lookup_Authors") = avarAuthors
+	Application(strRSName & "_Lookup_Authors") = avarAuthors
 	Application.Unlock
 Else
-	avarAuthors = Application(strDFName & "_Lookup_Authors")
+	if fDebugMode Then Response.Write "DEBUG: avarAuthors already exists and consists of " & UBound(Application(strRSName & "_Lookup_Authors"),2) & " rows...<br>" & CHR(13)
+	avarAuthors = Application(strRSName & "_Lookup_Authors")
 End If
 %>

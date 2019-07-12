@@ -1,19 +1,14 @@
 <% 
 Dim avarDistributors
-If IsEmpty(Application(strDFName & "_Lookup_Distributors")) Or strPagingMove = "Requery" Then
-    Set VideoTapes = Server.CreateObject("ADODB.Connection")
-    VideoTapes.ConnectionTimeout = Session(strDBName & "_ConnectionTimeout")
-    VideoTapes.CommandTimeout = Session(strDBName & "_CommandTimeout")
-    VideoTapes.Open Session("KFC.ConnectionString"), Session("KFC.RuntimeUserName"), Session("KFC.RuntimePassword")
-	Set rsDistributors = VideoTapes.Execute("SELECT Distinct Distributor FROM [Movies] ORDER BY Distributor")
+If IsEmpty(Application(strRSName & "_Lookup_Distributors")) Or strPagingMove = "Requery" Then
 	avarDistributors = Null
-	On Error Resume Next
-	avarDistributors = rsDistributors.GetRows()
-	if fDebugMode Then Response.Write "DEBUG: rsDistributors consists of " & rsDistributors.RecordCount & " rows...<br>" & CHR(13)
+	Set adoRS = Session("adoConn").Execute("SELECT Distinct Distributor FROM [" & strTableName & "] ORDER BY Distributor")
+	'On Error Resume Next
+	avarDistributors = adoRS.GetRows()
 	Application.Lock
-	Application(strDFName & "_Lookup_Distributors") = avarDistributors
+	Application(strRSName & "_Lookup_Distributors") = avarDistributors
 	Application.Unlock
 Else
-	avarDistributors = Application(strDFName & "_Lookup_Distributors")
+	avarDistributors = Application(strRSName & "_Lookup_Distributors")
 End If
 %>

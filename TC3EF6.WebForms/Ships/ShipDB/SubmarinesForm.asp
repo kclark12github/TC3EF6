@@ -2,10 +2,9 @@
 <%
 Dim strPagingMove	
 Dim strFormMode
-Dim strDFName
-strDBName = "USNavyShips"
-strDFName = "rsSubmarines"
-strTableName = "Submarines"
+Dim strRSName
+strRSName = "rsSubmarines"
+strTableName = "Ships"
 strBasePageName = "Submarines"
 strPageTitle = "U.S. Navy Submarines"
 SQLstatement = "SELECT * FROM Ships WHERE (HullNumber Like 'SS%') ORDER BY Classification, Number"

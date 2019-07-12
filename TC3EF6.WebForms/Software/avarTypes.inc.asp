@@ -1,19 +1,17 @@
 <% 
 Dim avarTypes
-If IsEmpty(Application(strDFName & "_Lookup_Types")) Or strPagingMove = "Requery" Then
-	Set Software = Server.CreateObject("ADODB.Connection")
-	Software.ConnectionTimeout = Session("Software_ConnectionTimeout")
-	Software.CommandTimeout = Session("Software_CommandTimeout")
-	Software.Open Session("KFC.ConnectionString"), Session("KFC.RuntimeUserName"), Session("KFC.RuntimePassword")
-	Set rsTypes = Software.Execute("SELECT DISTINCT Type FROM Software ORDER BY Type")
+If IsEmpty(Application(strRSName & "_Lookup_Types")) Or strPagingMove = "Requery" Then
 	avarTypes = Null
-	On Error Resume Next
-	avarTypes = rsTypes.GetRows()
-	if fDebugMode Then Response.Write "DEBUG: rsTypes consists of " & rsTypes.RecordCount & " rows...<br>" & CHR(13)
-	Application.Lock
-	Application(strDFName & "_Lookup_Types") = avarTypes
+	If fDebugMode Then Response.Write "DEBUG: Creating new avarTypes...<br>" & CHR(13)
+	Set adoRS = Session("adoConn").Execute("SELECT DISTINCT Type FROM [" & strTableName & "] ORDER BY Type")
+	'On Error Resume Next
+	avarTypes = adoRS.GetRows()
+	If fDebugMode Then Response.Write "DEBUG: avarTypes contains " & UBound(avarTypes,2) & " rows...<br>" & CHR(13)
+    Application.Lock
+	Application(strRSName & "_Lookup_Types") = avarTypes
 	Application.Unlock
 Else
-	avarTypes = Application(strDFName & "_Lookup_Types")
+	If fDebugMode Then Response.Write "DEBUG: avarPublishers already exists and consists of " & UBound(Application(strRSName & "_Lookup_Publishers"),2) & " rows...<br>" & CHR(13)
+	avarTypes = Application(strRSName & "_Lookup_Types")
 End If
 %>

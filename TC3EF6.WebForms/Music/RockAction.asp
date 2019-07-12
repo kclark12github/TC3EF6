@@ -1,13 +1,12 @@
 <%@ LANGUAGE="VBScript" %>
 <%
-Dim strDFName
+Dim strRSName
 Dim strErrorAdditionalInfo
-strDBName = "KFC"
-strDFName = "rsRock"
-strTableName = "Music"
+strRSName = "rsRock"
+strTableName = "Albums"
 strBasePageName = "Rock"
 strPageTitle = "Music Library; Rock"
-SQLstatement = "SELECT * FROM [Music] WHERE Type like 'ROCK' order by Alphasort, Year"
+SQLstatement = "SELECT * FROM [Albums] WHERE Type like 'ROCK' order by Alphasort, Year"
 strLookupFields = """Artist"",""Type"""
 strHomeGIF = ""
 strFooterURL = ""
@@ -21,5 +20,6 @@ fDebugMode = False
 
 <!-- #include virtual="/Includes/DataFunctions.inc.asp"-->
 <!-- #include virtual="/Music/avarArtists.inc.asp"-->
+<!-- #include virtual="/Music/avarMediaFormat.inc.asp"-->
 <!-- #include virtual="/Music/avarTypes.inc.asp"-->
 <!-- #include virtual="/Includes/ActionTemplateCode.inc.asp"-->
