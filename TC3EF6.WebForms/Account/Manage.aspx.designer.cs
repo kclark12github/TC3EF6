@@ -76,6 +76,15 @@ namespace TC3EF6.WebForms.Account {
         protected global::System.Web.UI.WebControls.HyperLink hlCreatePassword;
         
         /// <summary>
+        /// hlCrescendo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlCrescendo;
+        
+        /// <summary>
         /// chkMusic control.
         /// </summary>
         /// <remarks>

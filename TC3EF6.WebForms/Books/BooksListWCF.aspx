@@ -2,12 +2,12 @@
 <asp:Content id="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 <%
     //bool DebugMode = false;
-    string Theme = "brown";
     //string DFName = "rsBooks";
     //string SQLstatement = "Select [Books].*,[Locations].[OName] As [Location] From [Books] Inner Join [Locations] On [Books].[LocationID]=[Locations].[ID] Order By [AlphaSort];";
+    string Theme = "brown";
     string TableStyle = ""; // @"style=""width:100%;border-collapse:collapse;border-spacing:0px;font-family:Arial;""";
-    string TableHeaderStyle = $@"style=""background-image:url(/Images/{Theme}side/Navigation/Nav1.jpg);""";
-    string TableDetailStyle = $@"style=""color:{Theme};""";   // $@"background-image:url(/Images/{Theme}/Background/BACK2.jpg);";
+    string HeaderStyle = $@"style=""background-image:url(/Images/{Theme}side/Navigation/Nav1.jpg);""";
+    string DetailStyle = $@"style=""color:{Theme};""";   // $@"background-image:url(/Images/{Theme}/Background/BACK2.jpg);";
 %>
     <asp:ScriptManager runat="server">
         <Services>
@@ -58,12 +58,12 @@
         GetData();
     </script>
     <table id="BaseTable" border="1" class="data-list" <%=TableStyle%> title="<%=Page.Title%>">
-        <tr><th class="data-list" <%=TableHeaderStyle%>><%=Page.Title%></th></tr>
+        <tr><th class="data-list" <%=HeaderStyle%>><%=Page.Title%></th></tr>
         <tr><td>
         <div class="card-body">
             <table id="Records" 
                 class="table table-responsive-xl table-striped table-bordered table-hover compact order-column data-list-detail"
-                <%=TableDetailStyle%>
+                <%=DetailStyle%>
                 border="0" >
             </table>
         </div>

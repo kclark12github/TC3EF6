@@ -2,12 +2,12 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 <%
     //bool DebugMode = false;
-    string Theme = "brown";
     //string DFName = "rsBooks";
     //string SQLstatement = "Select [Books].*,[Locations].[OName] As [Location] From [Books] Inner Join [Locations] On [Books].[LocationID]=[Locations].[ID] Order By [AlphaSort];";
-    string TableStyle = "style='width:100%; border-collapse: collapse; border-spacing: 0px;font-family:Arial;'";
-    string TableHeaderStyle = $@"style='background-image:url(/Images/{Theme}/Navigation/Nav1.jpg);text-align:left;font-size:xx-large;font-style:italic;color:white;height:56px;white-space:nowrap;padding-left:10px;'";
-    string TableDetailStyle = "style='max-width:none;overflow-x:visible,scroll;background-color:white;color:brown;'";   // $@"background-image:url(/Images/{Theme}/Background/BACK2.jpg);";
+    string Theme = "brown";
+    string TableStyle = ""; // @"style=""width:100%;border-collapse:collapse;border-spacing:0px;font-family:Arial;""";
+    string HeaderStyle = $@"style=""background-image:url(/Images/{Theme}side/Navigation/Nav1.jpg);""";
+    string DetailStyle = $@"style=""color:{Theme};""";   // $@"background-image:url(/Images/{Theme}/Background/BACK2.jpg);";
 %>
 <%--    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>--%>
     <script type="text/javascript">
@@ -63,13 +63,13 @@
                 });
         });
     </script>
-    <table id="BaseTable" border="0" <%=TableStyle%> title="<%=Page.Title%>">
-        <tr><th <%=TableHeaderStyle%>><%=Page.Title%></th></tr>
+    <table id="BaseTable" border="0" class="data-list" <%=TableStyle%> title="<%=Page.Title%>">
+        <tr><th class="data-list" <%=HeaderStyle%>><%=Page.Title%></th></tr>
         <tr><td>
         <div class="card-body">
             <table id="Records" 
-                class="table table-responsive-xl table-striped table-bordered table-hover compact order-column"
-                <%=TableDetailStyle%>
+                class="table table-responsive-xl table-striped table-bordered table-hover compact order-column data-list-detail"
+                <%=DetailStyle%>
                 border="0" >
             </table>
         </div>

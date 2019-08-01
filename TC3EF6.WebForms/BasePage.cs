@@ -302,7 +302,7 @@ namespace TC3EF6.WebForms
         //-------------------------------------------------------------------------------
         //Function IsRequiredField(strFieldName)
         //    IsRequiredField = False
-        //    If(Session(strDFName & "_Recordset")(strFieldName).Attributes And adFldIsNullable) = 0 Then
+        //    If(Session(strRSName & "_Recordset")(strFieldName).Attributes And adFldIsNullable) = 0 Then
         //       IsRequiredField = True
         //    End If
         //End Function
@@ -318,7 +318,7 @@ namespace TC3EF6.WebForms
         //    Dim intUpdatable
         //    intUpdatable = (adFldUpdatable Or adFldUnknownUpdatable)
         //    CanUpdateField = True
-        //    If(Session(strDFName & "_Recordset")(strFieldName).Attributes And intUpdatable) = False Then
+        //    If(Session(strRSName & "_Recordset")(strFieldName).Attributes And intUpdatable) = False Then
         //        CanUpdateField = False
         //        Exit Function
         //    End If
@@ -595,7 +595,7 @@ namespace TC3EF6.WebForms
 //        Response.Write "<TD BGCOLOR=White NOWRAP><FONT SIZE=-1>" 
 //		For intRow = 0 to UBound(avarLookup, 2)
 
-//            If ConvertNull(avarLookup(intIDcolumn, intRow)) = ConvertNull(Session(strDFName & "_Recordset")(strFieldName)) Then
+//            If ConvertNull(avarLookup(intIDcolumn, intRow)) = ConvertNull(Session(strRSName & "_Recordset")(strFieldName)) Then
 //                Response.Write Server.HTMLEncode(ConvertNull(avarLookup(intValueColumn, intRow)))
 //				Exit For
 
@@ -607,7 +607,7 @@ namespace TC3EF6.WebForms
 
 //    End If
 
-//    nType = Session(strDFName & "_Recordset")(strFieldName).Type
+//    nType = Session(strRSName & "_Recordset")(strFieldName).Type
 
 
 //    Select Case nType
@@ -615,7 +615,7 @@ namespace TC3EF6.WebForms
 
 //            strBool = ""
 
-//            If Session(strDFName & "_Recordset")(strFieldName) <> 0 Then
+//            If Session(strRSName & "_Recordset")(strFieldName) <> 0 Then
 //                strBool = "True"
 
 //            Else
@@ -634,20 +634,20 @@ namespace TC3EF6.WebForms
 //            If ConvertNull(strFieldValue) = "" Then
 //                Response.Write "<TD BGCOLOR=White ><FONT SIZE=-1>&nbsp;</FONT></TD>"
 //			Else
-//                Response.Write "<TD BGCOLOR=White ><FONT SIZE=-1>" & FormatCurrency(Session(strDFName & "_Recordset")(strFieldName)) & "</FONT></TD>"
+//                Response.Write "<TD BGCOLOR=White ><FONT SIZE=-1>" & FormatCurrency(Session(strRSName & "_Recordset")(strFieldName)) & "</FONT></TD>"
 //			End If
 
 
 //        Case adLongVarChar, adLongVarWChar				//Memo
 
 //            Response.Write "<TD BGCOLOR=White NOWRAP><FONT SIZE=-1>"
-//			strPartial = Left(Session(strDFName & "_Recordset")(strFieldName), 50)			
+//			strPartial = Left(Session(strRSName & "_Recordset")(strFieldName), 50)			
 //			If ConvertNull(strPartial) = "" Then
 //                Response.Write "&nbsp;"
 //			Else
 //                Response.Write HTMLEncode(strPartial)
 //            End If
-//            If Session(strDFName & "_Recordset")(strFieldName).ActualSize > 50 Then Response.Write "..."
+//            If Session(strRSName & "_Recordset")(strFieldName).ActualSize > 50 Then Response.Write "..."
 //			Response.Write "</FONT></TD>"
 
 
@@ -655,28 +655,28 @@ namespace TC3EF6.WebForms
 
 //            Response.Write "<TD BGCOLOR=White ALIGN=Left NOWRAP><FONT SIZE=-1>"
 
-//            If ConvertNull(Session(strDFName & "_Recordset")(strFieldName)) = "" Then
+//            If ConvertNull(Session(strRSName & "_Recordset")(strFieldName)) = "" Then
 //                Response.Write "&nbsp;"
 //			Else
 //				// Check for special field types
 
-//                Select Case UCase(Left(Session(strDFName & "_Recordset")(strFieldName).Name, 4))
+//                Select Case UCase(Left(Session(strRSName & "_Recordset")(strFieldName).Name, 4))
 //					Case "URL_"
-//						Response.Write "<A HREF=" & QuotedString(Session(strDFName & "_Recordset")(strFieldName)) & ">"
-//						Response.Write Server.HTMLEncode(ConvertNull(Session(strDFName & "_Recordset")(strFieldName)))
+//						Response.Write "<A HREF=" & QuotedString(Session(strRSName & "_Recordset")(strFieldName)) & ">"
+//						Response.Write Server.HTMLEncode(ConvertNull(Session(strRSName & "_Recordset")(strFieldName)))
 //						Response.Write "</A>"
 //					Case Else
 
-//                        If IsURL(Session(strDFName & "_Recordset")(strFieldName)) Then
-//                            Response.Write "<A HREF=" & QuotedString(Session(strDFName & "_Recordset")(strFieldName)) & ">"
-//							Response.Write Server.HTMLEncode(ConvertNull(Session(strDFName & "_Recordset")(strFieldName)))
+//                        If IsURL(Session(strRSName & "_Recordset")(strFieldName)) Then
+//                            Response.Write "<A HREF=" & QuotedString(Session(strRSName & "_Recordset")(strFieldName)) & ">"
+//							Response.Write Server.HTMLEncode(ConvertNull(Session(strRSName & "_Recordset")(strFieldName)))
 //							Response.Write "</A>"
 //						Else
 //                            If blnPassword Then
 
 //                                Response.Write "********"
 //							Else
-//                                Response.Write Server.HTMLEncode(ConvertNull(Session(strDFName & "_Recordset")(strFieldName)))
+//                                Response.Write Server.HTMLEncode(ConvertNull(Session(strRSName & "_Recordset")(strFieldName)))
 //							End If
 
 //                        End If
@@ -741,21 +741,21 @@ namespace TC3EF6.WebForms
 //	// If not in Edit form mode then set value to empty so doesn't display
 
 //    strFieldValue = ""
-//	If strFormMode = "Edit" Then strFieldValue = RTrim(Session(strDFName & "_Recordset")(strFieldName))
+//	If strFormMode = "Edit" Then strFieldValue = RTrim(Session(strRSName & "_Recordset")(strFieldName))
 
 //            // See if the field is required by checking the attributes 
 
 //    blnFieldRequired = False
-//    If(Session(strDFName & "_Recordset")(strFieldName).Attributes And adFldIsNullable) = 0 Then
+//    If(Session(strRSName & "_Recordset")(strFieldName).Attributes And adFldIsNullable) = 0 Then
 //       blnFieldRequired = True
 
 //    End If
 
-//    nType = Session(strDFName & "_Recordset")(strFieldName).Type
+//    nType = Session(strRSName & "_Recordset")(strFieldName).Type
 	
 //	// Set values for the MaxLength and Size attributes	
 //	intMaxSize = dfMaxSize
-//    intInputSize = Session(strDFName & "_Recordset")(strFieldName).DefinedSize + 2
+//    intInputSize = Session(strRSName & "_Recordset")(strFieldName).DefinedSize + 2
 
 //    If strFormMode<> "Filter" Then intMaxSize = intInputSize - 2
 	
@@ -1028,7 +1028,7 @@ namespace TC3EF6.WebForms
 //            Else
 //				// Check for special URL field types
 //// Commented-out since the text box should now fit on a page...
-////				Select Case UCase(Left(Session(strDFName & "_Recordset")(strFieldName).Name, 4))
+////				Select Case UCase(Left(Session(strRSName & "_Recordset")(strFieldName).Name, 4))
 ////					Case "URL_"
 ////						If strFieldValue <> "" Then
 ////							Response.Write "<A HREF=" & QuotedString(strFieldValue) & ">"
@@ -1091,7 +1091,7 @@ namespace TC3EF6.WebForms
 
 //				// Check for special field types
 
-//                Select Case UCase(Left(Session(strDFName & "_Recordset")(strFieldName).Name, 4))
+//                Select Case UCase(Left(Session(strRSName & "_Recordset")(strFieldName).Name, 4))
 //					Case "IMG_"
 //						If strFieldValue<> "" Then
 //                            Response.Write "<BR><BR><IMG SRC=" & QuotedString(strFieldValue) & "><BR>&nbsp;<BR>"
@@ -1222,7 +1222,7 @@ namespace TC3EF6.WebForms
 
 //    InsertField = True
 //    If IsEmpty(Request(strFieldName)) Then Exit Function
-//    Select Case Session(strDFName & "_Recordset")(strFieldName).Type
+//    Select Case Session(strRSName & "_Recordset")(strFieldName).Type
 //         Case adBinary, adVarBinary, adLongVarBinary		//Binary
 //		Case Else
 
@@ -1235,7 +1235,7 @@ namespace TC3EF6.WebForms
 
 //                End If
 
-//                Session(strDFName & "_Recordset")(strFieldName) = RestoreNull(Request(strFieldName))
+//                Session(strRSName & "_Recordset")(strFieldName) = RestoreNull(Request(strFieldName))
 
 //            End If
 
@@ -1255,12 +1255,12 @@ namespace TC3EF6.WebForms
 //    UpdateField = True
 
 //    If IsEmpty(Request(strFieldName)) Then Exit Function
-//    Select Case Session(strDFName & "_Recordset")(strFieldName).Type
+//    Select Case Session(strRSName & "_Recordset")(strFieldName).Type
 //         Case adBinary, adVarBinary, adLongVarBinary		//Binary
 //		Case Else
 //			// Only update if the value has changed
 
-//            If Not IsEqual(ConvertToString(Session(strDFName & "_Recordset")(strFieldName)), RestoreNull(Request(strFieldName))) Then
+//            If Not IsEqual(ConvertToString(Session(strRSName & "_Recordset")(strFieldName)), RestoreNull(Request(strFieldName))) Then
 //                If CanUpdateField(strFieldName) Then
 //                    If IsRequiredField(strFieldName) And IsNull(RestoreNull(Request(strFieldName))) Then
 //                        RaiseError errValueRequired, strFieldName
@@ -1270,7 +1270,7 @@ namespace TC3EF6.WebForms
 
 //                    End If
 
-//                    Session(strDFName & "_Recordset")(strFieldName) = RestoreNull(Request(strFieldName))
+//                    Session(strRSName & "_Recordset")(strFieldName) = RestoreNull(Request(strFieldName))
 
 //                Else
 //                    RaiseError errNotEditable, strFieldName
@@ -1312,7 +1312,7 @@ namespace TC3EF6.WebForms
 	
 //	// If empty then exit right away
 //	If Request(strFieldName) = "" Then Exit Sub
-//    nType = Session(strDFName & "_Recordset")(strFieldName).Type
+//    nType = Session(strRSName & "_Recordset")(strFieldName).Type
 
 //	// Handle "Neither" radio buttons...
 
@@ -1456,7 +1456,7 @@ namespace TC3EF6.WebForms
 //    If fDebugMode Then Response.Write "<" & "!-- DEBUG: " & strFieldName & " is not empty... -->" & chr(13)
 
 //	// Test the data types and display appropriately	
-//	Select Case Session(strDFName & "_Recordset")(strFieldName).Type
+//	Select Case Session(strRSName & "_Recordset")(strFieldName).Type
 //        Case adBoolean, adUnsignedTinyInt				//Boolean
 //			strBool = ""
 //			If Request(strFieldName) <> 0 Then

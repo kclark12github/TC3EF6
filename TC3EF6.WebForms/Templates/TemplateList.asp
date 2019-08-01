@@ -20,9 +20,8 @@
 '-------------------------------------------------------------------------------
 
 Dim strPagingMove
-Dim strDFName
-strDBName = "Books"
-strDFName = "rsBooks"
+Dim strRSName
+strRSName = "rsBooks"
 strTableName = "Books"
 strBasePageName = "Books"
 strPageTitle = "Library; Miscellaneous"
@@ -52,7 +51,7 @@ fDebugMode = False
 <!-- #include virtual="/Includes/ListTemplateBody2.inc.asp"-->
 <%
 		'	ShowListField "ID", Null, False
-		Response.Write "<TD BGCOLOR=White ALIGN=Left NOWRAP><FONT SIZE=-1><A HREF=" & QuotedString(strBasePageName & "Action.asp?Bookmark=" & tCurRec & "&DataAction=Find") & ">" & Session(strDFName & "_Recordset")("Title") & "</FONT></a></TD>"
+		Response.Write "<TD BGCOLOR=White ALIGN=Left NOWRAP><FONT SIZE=-1><A HREF=" & QuotedString(strBasePageName & "Action.asp?Bookmark=" & tCurRec & "&DataAction=Find") & ">" & Session(strRSName & "_Recordset")("Title") & "</FONT></a></TD>"
 		ShowListField "Author", avarAuthors, False
 		ShowListField "Subject", Null, False
 %>

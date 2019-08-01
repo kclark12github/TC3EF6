@@ -19,10 +19,9 @@
 '		properly.
 '-------------------------------------------------------------------------------
 
-Dim strDFName
+Dim strRSName
 Dim strErrorAdditionalInfo
-strDBName = "Books"
-strDFName = "rsBooks"
+strRSName = "rsBooks"
 strTableName = "Books"
 strBasePageName = "Books"
 strPageTitle = "Library; Miscellaneous"

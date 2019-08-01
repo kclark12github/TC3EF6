@@ -186,7 +186,7 @@
                             <td style="text-align:left;width:50%">
                                 &copy; <%: DateTime.Now.Year %> - <%: Application["AppName"] %>
                             </td>
-                            <td style="text-align:right;width:50%;"><i>Page Last modified <b><%=GetPageLastModified()%></b></i>
+                            <td style="text-align:right;width:50%;"><i>Page last modified <b><%=GetPageLastModified()%></b></i>
                             </td>
                         </tr>
                     </table>

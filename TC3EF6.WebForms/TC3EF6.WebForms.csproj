@@ -226,9 +226,7 @@
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
     <Content Include="Admin\Admin.asp" />
-    <Content Include="Admin\Admin.aspx" />
     <Content Include="Admin\Confirm.asp" />
-    <Content Include="Admin\Confirm.aspx" />
     <Content Include="Admin\Download.asp" />
     <Content Include="Admin\LinksAction.asp" />
     <Content Include="Admin\LinksForm.asp" />
@@ -2473,7 +2471,6 @@
     <Content Include="Books\BooksListAjax.aspx" />
     <Content Include="Books\BooksListWCF.aspx" />
     <Content Include="Books\BooksService.svc" />
-    <Content Include="Books\Service1.svc" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -13051,20 +13048,6 @@
     <Compile Include="Account\VerifyPhoneNumber.aspx.designer.cs">
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Admin.aspx.cs">
-      <DependentUpon>Admin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Admin.aspx.designer.cs">
-      <DependentUpon>Admin.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Confirm.aspx.cs">
-      <DependentUpon>Confirm.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Confirm.aspx.designer.cs">
-      <DependentUpon>Confirm.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Aircraft\Aircraft.aspx.cs">
       <DependentUpon>Aircraft.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -13107,12 +13090,7 @@
     <Compile Include="Books\BooksListWCF.aspx.designer.cs">
       <DependentUpon>BooksListWCF.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Books\BooksService.svc.cs">
-      <DependentUpon>BooksService.svc</DependentUpon>
-    </Compile>
-    <Compile Include="Books\Service1.svc.cs">
-      <DependentUpon>Service1.svc</DependentUpon>
-    </Compile>
+    <Compile Include="Books\BooksService.cs" />
     <Compile Include="Includes\BasicFooter.inc.aspx.cs">
       <DependentUpon>BasicFooter.inc.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

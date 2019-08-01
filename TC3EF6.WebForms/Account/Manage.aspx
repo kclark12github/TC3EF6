@@ -45,7 +45,7 @@
                     </dd>
                 </dl>
                 <hr />
-                <h4>MIDI Files (not supported)</h4>
+                <h4 style="color:gray">MIDI Files (<asp:HyperLink Style="color:gray;" NavigateUrl="http://midkar.com/MidiStudio/Crescendo/index.html" Text="no longer supported" ID="hlCrescendo" runat="server" Target="_blank" ToolTip="Crescendo Version 5" />)</h4>
                 <script type="text/javascript">
                     //TODO: Abandoning this effort as I cannot consistently determine Checked and Enabled values of asp:CheckBox controls via jQuery
                     //window.onload = function () {alert('Window loaded');};
@@ -70,11 +70,11 @@
                     });
 --%>
                 </script>
-                <div style="padding-left:25px">
-                    <asp:CheckBox runat="server" ID="chkMusic" Text="Play MIDI Files" ToolTip="Use Crescendo to play various MIDI audio throughout the app" /><br />
+                <div style="padding-left:25px;color:gray;">
+                    <asp:CheckBox runat="server" ID="chkMusic" Text="Play MIDI Files" Enabled="false" ToolTip="Use Crescendo to play various MIDI audio throughout the app" /><br />
                     <div style="padding-left:25px">
-                        <asp:CheckBox runat="server" ID="chkAutoStart" Text="AutoStart" ToolTip="Automatically start Crescendo when pages load" /><br />
-                        <asp:CheckBox runat="server" ID="chkDetached" Text="Detached" ToolTip="Crescendo MIDI player should run detached (as opposed to embedded in the page)" /><br />
+                        <asp:CheckBox runat="server" ID="chkAutoStart" Text="AutoStart" Enabled="false" ToolTip="Automatically start Crescendo when pages load" /><br />
+                        <asp:CheckBox runat="server" ID="chkDetached" Text="Detached" Enabled="false" ToolTip="Crescendo MIDI player should run detached (as opposed to embedded in the page)" /><br />
                     </div>
                 </div>
                 <hr />
@@ -87,7 +87,7 @@
 <%--<%    }%>--%>
                 <h4>Welcome Page Image</h4>
                 <div style="width:100%;text-align:center;">
-                    <asp:CheckBox runat="server" ID="chkDoLakeGIF" Text="Lake Applet" ToolTip="Apply Lake animation to welcome image selected below (under construction)" /><br />
+                    <asp:CheckBox runat="server" ID="chkDoLakeGIF" Text="Lake Applet" ToolTip="Apply Lake animation to welcome image selected below (under construction)" />
                 </div>
 	            <div style="justify-content:center;width:100%">
                     <asp:RadioButtonList ID="rblImages" runat="server" RepeatDirection="Horizontal" RepeatColumns="4" RepeatLayout="Table">
@@ -95,10 +95,8 @@
                 </div>
             </div>
         </div>
-        <div class="form-group">
-            <div style="width:100%;text-align:center;">
-                <asp:Button runat="server" OnClick="SaveChanges_Click" Text="Save Changes" CssClass="btn btn-default" />
-            </div>
+        <div class="form-group mx-auto">
+            <asp:Button runat="server" OnClick="SaveChanges_Click" Text="Save Changes" CssClass="btn btn-default btn-light" />
         </div>
     </div>
 

@@ -45,12 +45,12 @@ namespace TC3EF6.WebForms
 
             #region Classic ASP Stuff
             Application.Lock();
-            //Application["KFC.ConnectionString"] = "Provider=MSDASQL.1;Persist Security Info=False;User ID=Admin;Data Source=C:\My Documents\Home Inventory\Database\Ken's Stuff.mdb; "
-            Application["KFC.ConnectionString"] = ConfigurationManager.ConnectionStrings["adoTC3EF6"].ConnectionString;
-            Application["KFC.RuntimeUserName"] = "";
-            Application["KFC.RuntimePassword"] = "";
-            Application["KFC.ConnectionTimeout"] = 120;
-            Application["KFC.CommandTimeout"] = 120;
+            //Application["ConnectionString"] = "Provider=MSDASQL.1;Persist Security Info=False;User ID=Admin;Data Source=C:\My Documents\Home Inventory\Database\Ken's Stuff.mdb; "
+            Application["ConnectionString"] = ConfigurationManager.ConnectionStrings["adoTC3EF6"].ConnectionString;
+            Application["RuntimeUserName"] = "";
+            Application["RuntimePassword"] = "";
+            Application["ConnectionTimeout"] = 120;
+            Application["CommandTimeout"] = 120;
             Application["ActiveSessions"] = 0;
             Application["AdminPage"] = @"/Admin/Admin.asp";
             Application["ApplicationLogFilename"] = Server.MapPath(@"/Logs") + @"\Application.log";
@@ -185,20 +185,17 @@ namespace TC3EF6.WebForms
             LogMessage($"Session_Start: Beginning session for Visitor #{Session["VisitorNumber"]} (ID: {Session["ID"]}) - Active Sessions: {Application["ActiveSessions"]}...");
             ADODB.Connection adoConn = new ADODB.Connection();
 
-            adoConn.ConnectionString = (string)Application["KFC.ConnectionString"];
-            adoConn.ConnectionTimeout = (int)Application["KFC.ConnectionTimeout"];
-            adoConn.CommandTimeout = (int)Application["KFC.CommandTimeout"];
-            Session["KFC"] = adoConn;
-            Session["KFC.Connection"] = Session["KFC"];  //... for backward compatibility...
+            adoConn.ConnectionTimeout = (int)Application["ConnectionTimeout"];
+            adoConn.CommandTimeout = (int)Application["CommandTimeout"];
 
-            LogMessage($@"Session[""KFC""].Open ""{adoConn.ConnectionString}"", """", """"");
-            adoConn.Open(adoConn.ConnectionString, "", "");
+            LogMessage($@"adoConn.Open ""{(string)Application["ConnectionString"]}"", """", """"");
+            adoConn.Open((string)Application["ConnectionString"], "", "");
 
             bool fDebugLogin = true;
             Application.UnLock();
 
             // *********************************************************************************************************
-            // Validate Visitor against KFC.Visitors Table...
+            // Validate Visitor against Visitors Table...
             Session["StartTime"] = DateTime.Now;
             Session["DateLastVisit"] = Session["StartTime"];
             Session["Owner"] = false;

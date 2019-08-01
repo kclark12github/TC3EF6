@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
@@ -10,20 +11,26 @@ using System.Web;
 using TC3EF6.Data;
 using TC3EF6.Domain.Classes.Stash;
 
-namespace TC3EF6.WebForms.Books
+namespace TC3EF6.Data.Services.WCF
 {
-    [ServiceBehavior]
-    [DataContract]
     [ServiceContract(Namespace = "")]
+    public interface IBooksService
+    {
+        [OperationContract]
+        void DoWork();
+        [OperationContract, WebGet]
+        DataTables<Book> GetData(int pageSize, int page, string search);
+    }
+
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
-    public class BooksService
+    public class BooksService : IBooksService
     {
         // To use HTTP GET, add [WebGet] attribute. (Default ResponseFormat is WebMessageFormat.Json)
         // To create an operation that returns XML,
         //     add [WebGet(ResponseFormat=WebMessageFormat.Xml)],
         //     and include the following line in the operation body:
         //         WebOperationContext.Current.OutgoingResponse.ContentType = "text/xml";
-        [OperationContract]
         public void DoWork()
         {
             // Add your operation implementation here
@@ -31,27 +38,26 @@ namespace TC3EF6.WebForms.Books
         }
 
         // Add more operations here and mark them with [OperationContract]
-        public static string PathInfo { get => (string)HttpContext.Current.Request.ServerVariables["PATH_INFO"]; }
+        private static string ModuleName { get => "TC3EF6.Data"; } //TODO: Get this from the Assembly...
         public void LogMessage(string Message)
         {
             using (var context = new TCContext())
             {
-                context.LogMessage((string)HttpContext.Current.Application["AppName"], Message);
+                context.LogMessage(ModuleName, Message);
             }
         }
-        protected static void LogMessage(string Milestone, string Message)
-        {
-            using (var context = new TCContext())
-            {
-                context.LogMessage(Milestone, Message);
-            }
-        }
+        //protected static void LogMessage(string Milestone, string Message)
+        //{
+        //    using (var context = new TCContext())
+        //    {
+        //        context.LogMessage(Milestone, Message);
+        //    }
+        //}
         // To use HTTP GET, add [WebGet] attribute. (Default ResponseFormat is WebMessageFormat.Json)
         // To create an operation that returns XML,
         //     add [WebGet(ResponseFormat=WebMessageFormat.Xml)],
         //     and include the following line in the operation body:
         //         WebOperationContext.Current.OutgoingResponse.ContentType = "text/xml";
-        [OperationContract, WebGet]
         public DataTables<Book> GetData(int pageSize, int page, string search)
         {
             DataTables<Book> result = new DataTables<Book>();
@@ -64,7 +70,7 @@ namespace TC3EF6.WebForms.Books
                 //int startRec = Convert.ToInt32(HttpContext.Current.Request.Params["start"]);
                 //int pageSize = Convert.ToInt32(HttpContext.Current.Request.Params["length"]);
                 // Loading.    
-                LogMessage($@"{PathInfo}", "Reading data...");
+                LogMessage("Reading data...");
                 var context = new TCContext();
                 IQueryable<Book> query = context.Books.AsNoTracking();
                 int totalRecords = query.Count();   // Total record count.
@@ -88,7 +94,7 @@ namespace TC3EF6.WebForms.Books
                 //int page = (startRec + pageSize) / pageSize;
                 int startRec = page * pageSize;
                 result.Data = query.Skip(startRec).Take(pageSize).ToList();
-                LogMessage($@"{ PathInfo}", $"Read {result.Data.Count:#,##0} (page #{page:#,##0}) of {(filteredRecords == totalRecords ? $"{totalRecords:#,##0}" : $"{filteredRecords:#,##0} filtered ({totalRecords:#,##0} total)")} Books.");
+                LogMessage($"Read {result.Data.Count:#,##0} (page #{page:#,##0}) of {(filteredRecords == totalRecords ? $"{totalRecords:#,##0}" : $"{filteredRecords:#,##0} filtered ({totalRecords:#,##0} total)")} Books.");
                 // Loading drop down lists.   (??? )
                 //result.Draw = Convert.ToInt32(draw);
                 result.RecordsTotal = totalRecords;
@@ -96,7 +102,7 @@ namespace TC3EF6.WebForms.Books
             }
             catch (Exception ex)
             {
-                LogMessage($@"{ PathInfo}", ex.Message);
+                LogMessage(ex.Message);
             }
             //WebOperationContext.Current.OutgoingResponse.ContentType = "application/json";
             return result;

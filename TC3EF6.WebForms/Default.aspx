@@ -63,9 +63,9 @@
     else
     {
         //Response.Write(@"<p><a href="""" style=""padding: 4px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-color: #000000; border-width: thin; color: #000000; background-color: #F0F0F0"">Preferences</a></p>");
-        Response.Write(@"<button type=""button"" class=""btn btn-secondary btn-sm"" data-toggle=""modal"" onclick=""top.location.href='/Admin/Admin.aspx'"" id=""preferences-button"">");
-        Response.Write(@"    <span class=""fas fa-plus-square mr-1""></span><span>Preferences</span>");
-        Response.Write(@"</button>");
+        //Response.Write(@"<button type=""button"" class=""btn btn-secondary btn-sm"" data-toggle=""modal"" onclick=""top.location.href='/Admin/Admin.aspx'"" id=""preferences-button"">");
+        //Response.Write(@"    <span class=""fas fa-plus-square mr-1""></span><span>Preferences</span>");
+        //Response.Write(@"</button>");
     }
 %>
         </div>

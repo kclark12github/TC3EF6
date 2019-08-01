@@ -32,9 +32,8 @@
 
 Dim strPagingMove	
 Dim strFormMode
-Dim strDFName
-strDBName = "Books"
-strDFName = "rsBooks"
+Dim strRSName
+strRSName = "rsBooks"
 strTableName = "Books"
 strBasePageName = "Books"
 strPageTitle = "Library; Miscellaneous"
