@@ -15,6 +15,13 @@ using System.Diagnostics;
 
 namespace TC3EF6
 {
+    public class Cat
+    {
+        public int TailLength { get; set; } = 4;
+        public Cat Friend { get; set; }
+        public string Meow { get; set; } = "Meow!";
+    }
+
     class Program
     {
         static void Main(string[] args)
@@ -32,6 +39,12 @@ namespace TC3EF6
             //TestFindWithImages();
             //TestDynamicGet();
             //TestAppState();
+
+            var myCat = new Cat() { Friend = new Cat() };
+            string test = null;
+            Console.WriteLine($"My cat says \"{test}\"");
+            Console.WriteLine(myCat?.Friend?.Friend.Meow);
+
 
             if (Debugger.IsAttached)
             {

@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace TC3EF6.Web
+namespace TC3EF6.WebMVC
 {
     public class BundleConfig
     {

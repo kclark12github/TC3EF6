@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("TreasureChest3® - ASP.NET Edition")]
 [assembly: AssemblyDescription("ASP.NET Edition of the TreasureChest3 Application")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyTrademark("TC3EF6.Web™")]
+[assembly: AssemblyTrademark("TC3EF6.WebMVC™")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible

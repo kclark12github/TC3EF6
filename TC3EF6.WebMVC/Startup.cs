@@ -1,11 +1,13 @@
-﻿using Owin;
+﻿using Microsoft.Owin;
+using Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TC3EF6.Web
+[assembly: OwinStartupAttribute(typeof(TC3EF6.WebMVC.Startup))]
+namespace TC3EF6.WebMVC
 {
     using AppFunc = Func<IDictionary<string, object>, Task>;
     public partial class Startup

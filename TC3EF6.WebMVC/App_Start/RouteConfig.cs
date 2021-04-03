@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace TC3EF6.Web
+namespace TC3EF6.WebMVC
 {
     public class RouteConfig
     {

@@ -7,8 +7,8 @@
         SelectMethod="GetProviderNames" ViewStateMode="Disabled">
         <ItemTemplate>
             <p>
-                <button type="submit" class="btn btn-default" name="provider" value="<%#: Item %>"
-                    title="Log in using your <%#: Item %> account.">
+                <%--<asp:Button runat="server" OnClick="LogIn" Text="Log in" CssClass="btn btn-default btn-dark" />--%>
+                <button type="submit" class="btn btn-default btn-dark" name="provider" value="<%#: Item %>" title="Log in using your <%#: Item %> account.">
                     <%#: Item %>
                 </button>
             </p>

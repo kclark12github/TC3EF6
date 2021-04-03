@@ -12,7 +12,7 @@ using TC3EF6.Data;
 using TC3EF6.Data.Services;
 using TC3EF6.Domain.Classes.Stash;
 
-namespace TC3EF6.Web
+namespace TC3EF6.WebMVC
 {
     public partial class Startup
     {

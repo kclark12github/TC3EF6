@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -6,12 +7,19 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.DataProtection;
 using Microsoft.Owin.Security.Google;
+using Microsoft.Owin.Security.OpenIdConnect;
 using Owin;
 using TC3EF6.WebForms.Models;
 
 namespace TC3EF6.WebForms
 {
     public partial class Startup {
+
+        private static string clientId = ConfigurationManager.AppSettings["ida:ClientId"];
+        private static string aadInstance = EnsureTrailingSlash(ConfigurationManager.AppSettings["ida:AADInstance"]);
+        private static string tenantId = ConfigurationManager.AppSettings["ida:TenantId"];
+        private static string postLogoutRedirectUri = ConfigurationManager.AppSettings["ida:PostLogoutRedirectUri"];
+        private static string authority = aadInstance + tenantId;
 
         // For more information on configuring authentication, please visit https://go.microsoft.com/fwlink/?LinkId=301883
         public void ConfigureAuth(IAppBuilder app)
@@ -46,10 +54,18 @@ namespace TC3EF6.WebForms
             // This is similar to the RememberMe option when you log in.
             app.UseTwoFactorRememberBrowserCookie(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
 
-            // Uncomment the following lines to enable logging in with third party login providers
+            app.UseOpenIdConnectAuthentication(
+                new OpenIdConnectAuthenticationOptions
+                {
+                    //Caption = "Microsoft",
+                    ClientId = clientId,
+                    Authority = authority,
+                    PostLogoutRedirectUri = postLogoutRedirectUri
+                });
+            //Uncomment the following lines to enable logging in with third party login providers
             //app.UseMicrosoftAccountAuthentication(
-            //    clientId: "",
-            //    clientSecret: "");
+            //    clientId: clientId,
+            //    clientSecret: clientSecret);  
 
             //app.UseTwitterAuthentication(
             //   consumerKey: "",
@@ -59,11 +75,17 @@ namespace TC3EF6.WebForms
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "1091175422981-17ag0cefru3k5rknqqaq37d5grol6715.apps.googleusercontent.com",
+                ClientSecret = "9aTmdNLMpy-t5LqfddYMPGDq"
+            });
+        }
+        private static string EnsureTrailingSlash(string value)
+        {
+            if (value == null) value = string.Empty;
+            if (!value.EndsWith("/", StringComparison.Ordinal)) return value + "/";
+            return value;
         }
     }
 }
