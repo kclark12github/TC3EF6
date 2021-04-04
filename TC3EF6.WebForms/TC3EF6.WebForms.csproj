@@ -8405,6 +8405,9 @@
     <Content Include="libman.json" />
     <Content Include="Software\avarLocations.inc.asp" />
     <Content Include="Software\avarMediaFormat.inc.asp" />
+    <Content Include="Software\GamesAction.asp" />
+    <Content Include="Software\GamesForm.asp" />
+    <Content Include="Software\GamesList.asp" />
     <Content Include="Software\PS2GamesAction.asp" />
     <Content Include="Software\PS2GamesForm.asp" />
     <Content Include="Software\PS2GamesList.asp" />

@@ -2,12 +2,7 @@
 <!-- #include virtual="/Includes/Constants.inc.asp"-->
 <%
 Application.Lock
-If Application("fDebugMode") or Application("fTraceMode") Then 
-	Set LogFile = Session("FileSystem").OpenTextFile(Application("ApplicationLogFilename"), ForAppending, TRUE)
-	LogFile.WriteLine(now & ": DEBUG: Index.asp Session(""ID""): " & Session("ID"))
-	LogFile.Close
-	Set LogFile = Nothing
-End If
+If Application("fDebugMode") or Application("fTraceMode") Then LogMessage Application("ApplicationLogFilename"), now & ": DEBUG: Index.asp Session(""ID""): " & Session("ID")
 Application.UnLock
 %>
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">

@@ -2,23 +2,12 @@
 <!-- #include virtual="/Includes/Constants.inc.asp"-->
 <script Language="VBScript" runat="Server">
 Application.Lock
-If Application("fDebugMode") or Application("fTraceMode") Then 
-	Set LogFile = Session("FileSystem").OpenTextFile(Application("ApplicationLogFilename"), ForAppending, TRUE)
-	LogFile.WriteLine(now & ": DEBUG: Welcome.asp Session(""ID""): " & Session("ID"))
-	LogFile.Close
-	Set LogFile = Nothing
-End If
+If Application("fDebugMode") or Application("fTraceMode") Then LogMessage Application("ApplicationLogFilename"), now & ": DEBUG: Welcome.asp Session(""ID""): " & Session("ID")
 
 'Supported the now defunct FPHitCount webbot
-'Set LogFile = Session("FileSystem").OpenTextFile(Application("WelcomeCountFilename"), ForWriting, TRUE)
-'LogFile.WriteLine("FPCountFile " & String(11 - Len(Application("Visitors")), "0") & Application("Visitors") - 1)
-'LogFile.Close
+'WriteToFile Application("WelcomeCountFilename"), "FPCountFile " & String(11 - Len(Application("Visitors")), "0") & Application("Visitors") - 1
 
-Set LogFile = Session("FileSystem").OpenTextFile(Application("VisitorCountFilename"), ForWriting, TRUE)
-LogFile.WriteLine(Application("Visitors"))
-LogFile.Close
-
-Set LogFile = Nothing
+WriteToFile Application("VisitorCountFilename"), Application("Visitors")
 Application.UnLock
 </script>
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">

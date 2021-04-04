@@ -13,17 +13,15 @@
 
 '=============================================================================================================
 Sub Application_OnStart
-	Set FileSystem = Server.CreateObject("Scripting.FileSystemObject")
-	Set WshShell = Server.CreateObject("WScript.Shell")
-
-	WshShell.LogEvent 4, "Application_OnStart: Initializing Application Object"
+	LogEvent "Application_OnStart: Initializing Application Object"
 
 	Application.Lock
 	'Application("ConnectionString") = "Provider=MSDASQL.1;Persist Security Info=False;User ID=Admin;Data Source=C:\My Documents\Home Inventory\Database\Ken's Stuff.mdb;"
 	'Application("ConnectionString") = "DSN=TreasureChest;"
-    Application("ConnectionString") = "Driver={SQL Server Native Client 11.0};Server=(localdb)\MSSQLLocalDB;Database=TC3EF6;Trusted_Connection=yes;"
 	'Application("RuntimeUserName") = "sa"
 	'Application("RuntimePassword") = "GZPR141SA"
+    'Application("ConnectionString") = "Driver={SQL Server Native Client 11.0};Server=(localdb)\MSSQLLocalDB;Database=TC3EF6;Trusted_Connection=yes;"
+    Application("ConnectionString") = "Driver={SQL Server Native Client 11.0};Server=B54J71N;Database=TC3EF6;Trusted_Connection=yes;"
 	Application("RuntimeUserName") = ""
 	Application("RuntimePassword") = ""
 	Application("ConnectionTimeout") = 120
@@ -51,73 +49,41 @@ Sub Application_OnStart
    
 '	Set oPermChecker = Server.CreateObject("MSWC.PermissionChecker")
 '	If oPermChecker.HasAccess(Application("VisitorCountFileName")) Then
-		WshShell.LogEvent 4, "Application_OnStart: Opening " & Application("VisitorCountFileName")
-		Set LogFile = FileSystem.OpenTextFile(Application("VisitorCountFileName"), ForReading, False)
-		If Err.Number <> 0 Then
-			WshShell.LogEvent 4, Err.Description
-			Err.Clear
-		End If
-		WshShell.LogEvent 4, "Application_OnStart: Setting Application(""Visitors"") to value in open file"
-		Application("Visitors") = LogFile.ReadLine
-		WshShell.LogEvent 4, "Application_OnStart: Closing " & Application("VisitorCountFileName")
-		LogFile.Close
-		Set LogFile = Nothing
+		LogEvent "Application_OnStart: Setting Application(""Visitors"") to value in " & Application("VisitorCountFileName")
+		Application("Visitors") = GetVisitCount(Application("VisitorCountFileName"))
 '	End If
 	
 	If Application("fDebugMode") or Application("fTraceMode") Then 
-		WshShell.LogEvent 4, "Application_OnStart: Opening " & Application("TraceLogFileName")
-		Set LogFile = FileSystem.OpenTextFile(Application("TraceLogFilename"), ForAppending, True)
-		LogFile.WriteLine(String(132, "="))
-		LogFile.WriteLine(now & ": DEBUG: Application_OnStart: Read " & Application("VisitorCountFileName") & " and retrieved the visit count: " & """" & Application("Visitors") & """")
-		LogFile.Close
-		Set LogFile = Nothing
+		LogEvent "Application_OnStart: Opening " & Application("TraceLogFileName") & " (global.asa)"
+		LogMessage Application("TraceLogFileName"), String(132, "=") 
+		LogMessage Application("TraceLogFileName"), now & ": DEBUG: Application_OnStart: Read " & Application("VisitorCountFileName") & " and retrieved the visit count: " & """" & Application("Visitors") & """"
 	End If
 
-	WshShell.LogEvent 4, "Application_OnStart: Opening " & Application("ApplicationLogFileName")
-	Set LogFile = FileSystem.OpenTextFile(Application("ApplicationLogFilename"), ForAppending, True)
-	LogFile.WriteLine("================================================================================================================")
-	LogFile.WriteLine(now & ": Application_OnStart: Application Started; Visit Count: " & Application("Visitors") & "...")
-	LogFile.Close
-	Set LogFile = Nothing
+	LogEvent "Application_OnStart: Opening " & Application("ApplicationLogFileName")
+	LogMessage Application("ApplicationLogFilename"), String(132, "=") 
+	LogMessage Application("ApplicationLogFilename"), now & ": Application_OnStart: Application Started; Visit Count: " & Application("Visitors") & "..."
 
     'Supported the now defunct FPHitCount webbot
-	'WshShell.LogEvent 4, "Application_OnStart: Opening " & Application("WelcomeCountFileName")
-	'Set LogFile = FileSystem.OpenTextFile(Application("WelcomeCountFilename"), ForWriting, True)
-	'LogFile.WriteLine("FPCountFile " & String(11 - Len(Application("Visitors")), "0") & Application("Visitors"))
-	'LogFile.Close
-	'Set LogFile = Nothing
+	'LogEvent "Application_OnStart: Opening " & Application("WelcomeCountFileName")
+	'WriteToFile Application("WelcomeCountFilename"), "FPCountFile " & String(11 - Len(Application("Visitors")), "0") & Application("Visitors")
 	'If Application("fDebugMode") or Application("fTraceMode") Then 
-	'	Set LogFile = FileSystem.OpenTextFile(Application("TraceLogFilename"), ForAppending, TRUE)
-	'	LogFile.WriteLine(now & ": DEBUG: Application_OnStart: Updated " & Application("WelcomeCountFileName") & " with """ & "FPCountFile " & String(11 - Len(Application("Visitors")), "0") & Application("Visitors") & """")
-	'	LogFile.Close
-	'	Set LogFile = Nothing
+	'   LogMessage Application("TraceLogFilename"), now & ": DEBUG: Application_OnStart: Updated " & Application("WelcomeCountFileName") & " with """ & "FPCountFile " & String(11 - Len(Application("Visitors")), "0") & Application("Visitors") & """"
 	'End If
 
-	Set FileSystem = Nothing
 	Set oPermChecker = Nothing
 	Application.UnLock
 End Sub
 '=============================================================================================================
-SUB Application_OnEnd
+Sub Application_OnEnd
 	Application.Lock
 
-	Set FileSystem = Server.CreateObject("Scripting.FileSystemObject")
-	Set LogFile = FileSystem.OpenTextFile(Application("VisitorCountFileName"), ForWriting)
-	LogFile.WriteLine(Application("Visitors"))
-	LogFile.Close
+	WriteToFile Application("VisitorCountFileName"), Application("Visitors")
 	
 	If Application("fDebugMode") or Application("fTraceMode") Then 
-		Set LogFile = FileSystem.OpenTextFile(Application("TraceLogFilename"), ForAppending, True)
-		LogFile.WriteLine(now & ": DEBUG: Application_OnEnd: Updated " & Application("VisitorCountFileName") & " with """ & Application("Visitors") & """")
-		LogFile.Close
+		LogMessage Application("TraceLogFilename"), now & ": DEBUG: Application_OnEnd: Updated " & Application("VisitorCountFileName") & " with """ & Application("Visitors") & """"
 	End If
 
-	Set LogFile = FileSystem.OpenTextFile(Application("ApplicationLogFilename"), ForAppending, True)
-	LogFile.WriteLine(now & ": Application_OnEnd: Application Stopped; Visit Count: " & Application("Visitors") & "...")
-	LogFile.Close
-
-	Set LogFile = Nothing
-	Set FileSystem = Nothing
+	LogMessage Application("ApplicationLogFilename"), now & ": Application_OnEnd: Application Stopped; Visit Count: " & Application("Visitors") & "..."
 
 	Application.UnLock
 End Sub
@@ -139,16 +105,10 @@ Sub Session_OnStart
 	Application("ActiveSessions") = Application("ActiveSessions") + 1
 	ActiveSessions = Application("ActiveSessions")
 	Application("Visitors") = Application("Visitors") + 1
-	Set FileSystem = Server.CreateObject("Scripting.FileSystemObject")
-	Set LogFile = FileSystem.OpenTextFile(Application("VisitorCountFileName"), ForWriting)
-	LogFile.WriteLine(Application("Visitors"))
-	LogFile.Close
+	WriteToFile Application("VisitorCountFileName"), Application("Visitors")
 	Session("Visitor") = Application("Visitors")
 
-	Set Session("FileSystem") = Server.CreateObject("Scripting.FileSystemObject")
-	Set LogFile = Session("FileSystem").OpenTextFile(Application("ApplicationLogFilename"), ForAppending, True)
-	LogFile.WriteLine(now & ": Session_OnStart: Beginning session for Visitor #" & Session("Visitor") & " (ID: " & Session("ID") & ") - Active Sessions: " & ActiveSessions & "...")
-	LogFile.Close
+	LogMessage Application("ApplicationLogFilename"), now & ": Session_OnStart: Beginning session for Visitor #" & Session("Visitor") & " (ID: " & Session("ID") & ") - Active Sessions: " & ActiveSessions & "..."
 
 	'Set Session("KFC") = Server.CreateObject("ADODB.Connection")
 	''Session("KFC.ConnectionString") = "Provider=MSDASQL.1;Persist Security Info=False;User ID=Admin;Data Source=C:\My Documents\Home Inventory\Database\Ken's Stuff.mdb;"
@@ -157,10 +117,8 @@ Sub Session_OnStart
 	'Session("KFC").CommandTimeout = Application("CommandTimeout")
 	'Set Session("KFC.Connection") = Session("KFC")	'... for backward compatibility...
 	
-	'Set LogFile = Session("FileSystem").OpenTextFile(Application("ApplicationLogFilename"), ForAppending, True)
-	''LogFile.WriteLine(now & ":    adoConn.Open """ & Application("ConnectionString") & """,""" & Application("RuntimeUserName") & """, """ & Application("RuntimePassword") & """")
-	'LogFile.WriteLine(now & ":    Session(""KFC"").Open """ & Session("KFC").ConnectionString & """, """", """"")
-	'LogFile.Close
+	'LogMessage Application("ApplicationLogFilename"), now & ":    adoConn.Open """ & Application("ConnectionString") & """,""" & Application("RuntimeUserName") & """, """ & Application("RuntimePassword") & """"
+	'LogMessage Application("ApplicationLogFilename"), now & ":    Session(""KFC"").Open """ & Session("KFC").ConnectionString & """, """", """""
 
 	fDebugLogin = True
 	Application.UnLock
@@ -179,114 +137,28 @@ Sub Session_OnStart
 	Session("MinRowsForBottomButtons") = Application("MinRowsForBottomButtons")
 	Session("MaxTextDisplay") = Application("MaxTextDisplay")
 
-'	Set bc = Server.CreateObject("MSWC.BrowserType")
-'	If bc.Browser = "Unknown" Then 
-'		'Default to Internet Explorer 5.5...
-'		Session("Browser") = "IE"
-'		Session("Version") = "5.5"
-'		Session("MajorVersion") = 5
-'		Session("MinorVersion") = 5
-'		Session("Frames") = True
-'		Session("Tables") = True
-'		Session("Cookies") = True
-'		Session("BackgroundSounds") = True
-'		Session("VBScript") = True
-'		Session("ActiveXControls") = True
-'		Session("JavaScript") = True
-'		Session("JavaApplets") = True
-'		'Session("Win16") = False
-'		Session("Beta") = False
-'		'Session("AK") = False
-'		'Session("SK") = False
-'		'Session("AOL") = False
-'		Session("Crawler") = False
-'		Session("CDF") = True
+	If Application("fDebugMode") or Application("fTraceMode") Then LogMessage TraceLog, now & ": DEBUG: Session_OnStart: Requested page """ & Session("TargetPage") & """..."
 
-'		Set LogFile = Session("FileSystem").OpenTextFile(Application("ApplicationLogFilename"), ForAppending, True)
-'		LogFile.WriteLine(now & ":    Warning: MSWC.BrowserType: ""Unknown""; Assuming Internet Explorer Version " & bc.Version & " for Visitor #" & Session("Visitor") & " (ID: " & Session("ID") & ")...")
-'		LogFile.Close
-'	Else
-'		If Application("fDebugMode") or Application("fTraceMode") Then 
-'     		Set LogFile = Session("FileSystem").OpenTextFile(TraceLog, ForAppending, True)
-'    		LogFile.WriteLine(now & ": DEBUG: Session_OnStart: BrowserType Properties:")
-'			LogFile.WriteLine(now & ": DEBUG: Session_OnStart: " & vbTab & "Browser:" & vbTab & bc.Browser)
-'			LogFile.WriteLine(now & ": DEBUG: Session_OnStart: " & vbTab & "Version:" & vbTab & bc.Version)
-'			LogFile.WriteLine(now & ": DEBUG: Session_OnStart: " & vbTab & "MajorVer:" & vbTab & bc.MajorVer)
-'			LogFile.WriteLine(now & ": DEBUG: Session_OnStart: " & vbTab & "MinorVer:" & vbTab & bc.MinorVer)
-'			LogFile.WriteLine(now & ": DEBUG: Session_OnStart: " & vbTab & "Frames:" & vbTab & bc.Frames)
-'			LogFile.WriteLine(now & ": DEBUG: Session_OnStart: " & vbTab & "Tables:" & vbTab & bc.Tables)
-'			LogFile.WriteLine(now & ": DEBUG: Session_OnStart: " & vbTab & "Cookies:" & vbTab & bc.Cookies)
-'			LogFile.WriteLine(now & ": DEBUG: Session_OnStart: " & vbTab & "BackgroundSounds:" & vbTab & bc.BackgroundSounds)
-'			LogFile.WriteLine(now & ": DEBUG: Session_OnStart: " & vbTab & "VBScript:" & vbTab & bc.VBScript)
-'			LogFile.WriteLine(now & ": DEBUG: Session_OnStart: " & vbTab & "ActiveXControls:" & vbTab & bc.ActiveXControls)
-'			LogFile.WriteLine(now & ": DEBUG: Session_OnStart: " & vbTab & "JavaScript:" & vbTab & bc.JavaScript)
-'			LogFile.WriteLine(now & ": DEBUG: Session_OnStart: " & vbTab & "JavaApplets:" & vbTab & bc.JavaApplets)
-'			'LogFile.WriteLine(now & ": DEBUG: Session_OnStart: " & vbTab & "Win16:" & vbTab & bc.Win16)
-'			LogFile.WriteLine(now & ": DEBUG: Session_OnStart: " & vbTab & "Beta:" & vbTab & bc.Beta)
-'			'LogFile.WriteLine(now & ": DEBUG: Session_OnStart: " & vbTab & "AK:" & vbTab & bc.AK)
-'			'LogFile.WriteLine(now & ": DEBUG: Session_OnStart: " & vbTab & "SK:" & vbTab & bc.SK)
-'			'LogFile.WriteLine(now & ": DEBUG: Session_OnStart: " & vbTab & "AOL:" & vbTab & bc.AOL)
-'			LogFile.WriteLine(now & ": DEBUG: Session_OnStart: " & vbTab & "Crawler:" & vbTab & bc.Crawler)
-'			LogFile.WriteLine(now & ": DEBUG: Session_OnStart: " & vbTab & "CDF:" & vbTab & bc.CDF)
-'     		LogFile.Close
-'	    End If
-'		Session("Browser") = bc.Browser
-'		Session("Version") = bc.Version
-'		Session("MajorVersion") = bc.MajorVer
-'		Session("MinorVersion") = bc.MinorVer
-'		Session("Frames") = CStr(CBool(bc.Frames))
-'		Session("Tables") = CStr(CBool(bc.Tables))
-'		Session("Cookies") = CStr(CBool(bc.Cookies))
-'		Session("BackgroundSounds") = CStr(CBool(bc.BackgroundSounds))
-'		Session("VBScript") = CStr(CBool(bc.VBScript))
-'		Session("ActiveXControls") = CStr(CBool(bc.ActiveXControls))
-'		Session("JavaScript") = CStr(CBool(bc.JavaScript))
-'		Session("JavaApplets") = CStr(CBool(bc.JavaApplets))
-'		'Session("Win16") = CStr(CBool(bc.Win16))
-'		Session("Beta") = CStr(CBool(bc.Beta))
-'		'Session("AK") = CStr(CBool(bc.AK))
-'		'Session("SK") = CStr(CBool(bc.SK))
-'		'Session("AOL") = CStr(CBool(bc.AOL))
-'		Session("Crawler") = CStr(bc.Crawler)
-'		Session("CDF") = CStr(bc.CDF)
-'	End If
-'	Set bc = Nothing
-   
-'	Session("ScreenResolution") = Request.ServerVariables("HTTP_UA_PIXELS")
+	LogMessage TraceLog, now & ": DEBUG: Session_OnStart: Establishing adoConn Connection..."
+    Set Application("adoConn") = Server.CreateObject("ADODB.Connection")
+	Application("adoConn").ConnectionTimeout = Application("ConnectionTimeout")
+	Application("adoConn").CommandTimeout = Application("CommandTimeout")
+    Application("adoConn").Open Application("ConnectionString"), Application("RuntimeUserName"), Application("RuntimePassword")
+	Set Session("adoConn") = Application("adoConn")
 
-	If Application("fDebugMode") or Application("fTraceMode") Then 
-      	Set LogFile = Session("FileSystem").OpenTextFile(TraceLog, ForAppending, True)
-      	LogFile.WriteLine(now & ": DEBUG: Session_OnStart: Requested page """ & Session("TargetPage") & """...")
-      	LogFile.Close
-	End If
+	LogMessage TraceLog, now & ": DEBUG: Session_OnStart: Opened adoConn (" & Session("adoConn").ConnectionString & ")"
 
 	Session("VisitorOnFile") = False
-	Set LogFile = Session("FileSystem").OpenTextFile(TraceLog, ForAppending, True)
-	LogFile.WriteLine(now & ": DEBUG: Session_OnStart: Retrieved Cookie: " & """" & Request.Cookies("Data")("E-Mail") & """")
-	LogFile.Close
+	LogMessage TraceLog, now & ": DEBUG: Session_OnStart: Retrieved Cookie: " & """" & Request.Cookies("Data")("E-Mail") & """"
+
 	If Request.Cookies("Data")("E-Mail") <> "" Then
 		Session("VisitorOnFile") = True
 		Session("E-Mail") = Request.Cookies("Data")("E-Mail")
 		
-		If fDebugLogin Then 
-			Set LogFile = Session("FileSystem").OpenTextFile(TraceLog, ForAppending, True)
-			LogFile.WriteLine(now & ": DEBUG: Session_OnStart: Retrieved Cookie: " & """" & Session("E-Mail") & """")
-			LogFile.Close
-		End If
+		If fDebugLogin Then LogMessage TraceLog, now & ": DEBUG: Session_OnStart: Retrieved Cookie: " & """" & Session("E-Mail") & """"
 
-		' Record, retrieve information
-
-		If fDebugLogin Then 
-			Set LogFile = Session("FileSystem").OpenTextFile(TraceLog, ForAppending, True)
-			LogFile.WriteLine(now & ": DEBUG: Session_OnStart: Opening Record Set...")
-			LogFile.Close
-		End If
-
-        Set Session("adoConn") = Server.CreateObject("ADODB.Connection")
-	    Session("adoConn").ConnectionTimeout = Application("ConnectionTimeout")
-	    Session("adoConn").CommandTimeout = Application("CommandTimeout")
-        Session("adoConn").Open Application("ConnectionString"), Application("RuntimeUserName"), Application("RuntimePassword")
-
+		'Record, retrieve information
+		If fDebugLogin Then LogMessage TraceLog, now & ": DEBUG: Session_OnStart: Opening Record Set..."
 		Set cmdTemp = Server.CreateObject("ADODB.Command")
 		Set rsVisitor = Server.CreateObject("ADODB.Recordset")
 		cmdTemp.CommandText = "SELECT * FROM [Visitors] where ([Email] like '" & Session("E-Mail") & "')"
@@ -296,21 +168,9 @@ Sub Session_OnStart
 		On Error Resume Next
 		rsVisitor.Open cmdTemp, , adOpenKeyset, adLockOptimistic
 
-		If fDebugLogin Then 
-			Set LogFile = Session("FileSystem").OpenTextFile(TraceLog, ForAppending, True)
-			LogFile.WriteLine(now & ": DEBUG: Session_OnStart: Opened Record Set rsVisitor (" & cmdTemp.CommandText & ");  Error: " & Err.Number & " " & Err.Description & " " & Err.Source & "; SQL: " & rsVisitor.Source)
-			LogFile.Close
-		End If
-
+		If fDebugLogin Then LogMessage TraceLog, now & ": DEBUG: Session_OnStart: Opened Record Set rsVisitor (" & cmdTemp.CommandText & ");  Error: " & Err.Number & " " & Err.Description & " " & Err.Source & "; SQL: " & rsVisitor.Source
 		If Err.Number <> 0 Then 
-			Set LogFile = Session("FileSystem").OpenTextFile(Application("ApplicationLogFilename"), ForAppending, True)
-			LogFile.WriteLine(now & ": Error: " & Err.Number & " " & Err.Description & " " & Err.Source & "; SQL: " & rsVisitor.Source & " (global.asa)")
-			LogFile.Close
-
-			Set ErrorLogFile = Session("FileSystem").OpenTextFile(Application("ApplicationLogFilename"), ForAppending, True)
-			ErrorLogFile.WriteLine(now & ": Error: " & Err.Number & " " & Err.Description & " " & Err.Source & "; SQL: " & rsVisitor.Source & " (Session_OnStart)")
-			ErrorLogFile.Close
-			Set ErrorLogFile = Nothing
+			LogMessage Application("ApplicationLogFilename"), now & ": Error: " & Err.Number & " " & Err.Description & " " & Err.Source & "; SQL: " & rsVisitor.Source & " (Session_OnStart)"
 			Err.Clear
 
 			fEmptyRecordset = True
@@ -339,30 +199,26 @@ Sub Session_OnStart
 			Session("ButtonColor") = rsVisitor("ButtonColor")
 			Session("LakeGIF") = rsVisitor("lakeGIF")
 	      
-			Set LogFile = Session("FileSystem").OpenTextFile(Application("ApplicationLogFilename"), ForAppending, True)
-			LogFile.WriteLine(now & ":    Identified visitor #" & Session("Visitor") & " as """ & Session("E-Mail") & """...")
-			LogFile.Close
+			LogMessage Application("ApplicationLogFilename"), now & ":    Identified visitor #" & Session("Visitor") & " as """ & Session("E-Mail") & """..."
 	   	
 			if fDebugLogin then 
-				Set LogFile = Session("FileSystem").OpenTextFile(TraceLog, ForAppending, True)
-				LogFile.WriteLine(now & ": DEBUG: Session_OnStart: VisitorID=""" & Session("VisitorID") & """")
-				LogFile.WriteLine(now & ": DEBUG: Session_OnStart: E-Mail=""" & Session("E-Mail") & """")
-				LogFile.WriteLine(now & ": DEBUG: Session_OnStart: FirstName=""" & Session("FirstName") & """")
-				LogFile.WriteLine(now & ": DEBUG: Session_OnStart: LastName=""" & Session("LastName") & """")
-				LogFile.WriteLine(now & ": DEBUG: Session_OnStart: Address=""" & Session("Address") & """")
-				LogFile.WriteLine(now & ": DEBUG: Session_OnStart: Phone=""" & Session("Phone") & """")
-				LogFile.WriteLine(now & ": DEBUG: Session_OnStart: DateLastVisit=""" & Session("DateLastVisit") & """")
-				LogFile.WriteLine(now & ": DEBUG: Session_OnStart: Visits=""" & Session("Visits") & """")
-				LogFile.WriteLine(now & ": DEBUG: Session_OnStart: Music=""" & Session("Music") & """")
-				LogFile.WriteLine(now & ": DEBUG: Session_OnStart: AutoStart=""" & Session("AutoStart") & """")
-				LogFile.WriteLine(now & ": DEBUG: Session_OnStart: Detached=""" & Session("Detached") & """")
-				LogFile.WriteLine(now & ": DEBUG: Session_OnStart: DoLake=""" & Session("DoLake") & """")
-				LogFile.WriteLine(now & ": DEBUG: Session_OnStart: ButtonColor=""" & Session("ButtonColor") & """")
-				LogFile.WriteLine(now & ": DEBUG: Session_OnStart: LakeGIF=""" & Session("LakeGIF") & """")
-				LogFile.Close
+				LogMessage TraceLog, now & ": DEBUG: Session_OnStart: VisitorID=""" & Session("VisitorID") & """"
+				LogMessage TraceLog, now & ": DEBUG: Session_OnStart: E-Mail=""" & Session("E-Mail") & """"
+				LogMessage TraceLog, now & ": DEBUG: Session_OnStart: FirstName=""" & Session("FirstName") & """"
+				LogMessage TraceLog, now & ": DEBUG: Session_OnStart: LastName=""" & Session("LastName") & """"
+				LogMessage TraceLog, now & ": DEBUG: Session_OnStart: Address=""" & Session("Address") & """"
+				LogMessage TraceLog, now & ": DEBUG: Session_OnStart: Phone=""" & Session("Phone") & """"
+				LogMessage TraceLog, now & ": DEBUG: Session_OnStart: DateLastVisit=""" & Session("DateLastVisit") & """"
+				LogMessage TraceLog, now & ": DEBUG: Session_OnStart: Visits=""" & Session("Visits") & """"
+				LogMessage TraceLog, now & ": DEBUG: Session_OnStart: Music=""" & Session("Music") & """"
+				LogMessage TraceLog, now & ": DEBUG: Session_OnStart: AutoStart=""" & Session("AutoStart") & """"
+				LogMessage TraceLog, now & ": DEBUG: Session_OnStart: Detached=""" & Session("Detached") & """"
+				LogMessage TraceLog, now & ": DEBUG: Session_OnStart: DoLake=""" & Session("DoLake") & """"
+				LogMessage TraceLog, now & ": DEBUG: Session_OnStart: ButtonColor=""" & Session("ButtonColor") & """"
+				LogMessage TraceLog, now & ": DEBUG: Session_OnStart: LakeGIF=""" & Session("LakeGIF") & """"
 			end if
 
-        	' Refresh Cookie
+			'Refresh Cookie
 			Response.Cookies("Data")("E-Mail") = Session("E-Mail")
 			Response.Cookies("Data").expires = DateAdd("d", 90, Now())
 
@@ -372,38 +228,18 @@ Sub Session_OnStart
    			On Error Resume Next
 			rsVisitor.Update
 	      
-			if fDebugLogin Then 
-				Set LogFile = Session("FileSystem").OpenTextFile(TraceLog, ForAppending, True)
-				LogFile.WriteLine(now & ": DEBUG: Session_OnStart: Updated Record Set rsVisitor;  Error: " & Err.Number & " " & Err.Description)
-				LogFile.Close
-			End If
-
+			if fDebugLogin Then LogMessage TraceLog, now & ": DEBUG: Session_OnStart: Updated Record Set rsVisitor;  Error: " & Err.Number & " " & Err.Description
 			If Err.Number <> 0 Then 
-				Set LogFile = Session("FileSystem").OpenTextFile(Application("ApplicationLogFilename"), ForAppending, True)
-			    LogFile.WriteLine(now & ": Error: " & Err.Number & " " & Err.Description & " " & Err.Source & "; SQL: " & rsVisitor.Source & " (Session_OnStart)")
-				LogFile.Close
-						     
-				Set ErrorLogFile = Session("FileSystem").OpenTextFile(Application("ApplicationLogFilename"), ForAppending, True)
-			    ErrorLogFile.WriteLine(now & ": Error: " & Err.Number & " " & Err.Description & " " & Err.Source & "; SQL: " & rsVisitor.Source & " (Session_OnStart)")
-				ErrorLogFile.Close
-				Set ErrorLogFile = Nothing
+				LogMessage Application("ApplicationLogFilename"), now & ": Error: " & Err.Number & " " & Err.Description & " " & Err.Source & "; SQL: " & rsVisitor.Source & " (Session_OnStart)"
 			    Err.Clear
 			End If
 		end if
 
-		' Cleanup...
-   		If fDebugLogin Then 
-			Set LogFile = Session("FileSystem").OpenTextFile(TraceLog, ForAppending, True)
-			LogFile.WriteLine(now & ": DEBUG: Session_OnStart: Closing rsVisitor...")
-			LogFile.Close
-		End If
+		'Cleanup...
+   		If fDebugLogin Then LogMessage TraceLog, now & ": DEBUG: Session_OnStart: Closing rsVisitor..."
 
 		rsVisitor.Close
-		if fDebugLogin Then 
-			Set LogFile = Session("FileSystem").OpenTextFile(TraceLog, ForAppending, True)
-			LogFile.WriteLine(now & ": DEBUG: Session_OnStart: Closed Record Set rsVisitor;  Error: " & Err.Number & " " & Err.Description & " " & Err.Source)
-			LogFile.Close
-		End If
+		if fDebugLogin Then LogMessage TraceLog, now & ": DEBUG: Session_OnStart: Closed Record Set rsVisitor;  Error: " & Err.Number & " " & Err.Description & " " & Err.Source
 		Set rsVisitor = Nothing
 		Set cmdTemp = Nothing
 	End If
@@ -455,22 +291,13 @@ Sub Session_OnStart
 	'   rsAddRec.UpdateBatch
 	'   rsAddRec.Close
 	'   If Err.Number <> 0 Then
-	'      Set LogFile = Session("FileSystem").OpenTextFile(Application("ApplicationLogFilename"), ForAppending, True)
-	'      LogFile.WriteLine(now & ": Error: " & Err.Number & " " & Err.Description & " " & Err.Source & "; SQL: " & rsAddRec.Source & " (Session_OnStart)")
-	'      LogFile.Close
-
-	'      Set ErrorLogFile = Session("FileSystem").OpenTextFile(Application("ApplicationLogFilename"), ForAppending, True)
-	'      ErrorLogFile.WriteLine(now & ": Error: " & Err.Number & " " & Err.Description & " " & Err.Source & "; SQL: " & rsAddRec.Source & " (Session_OnStart)")
-	'      ErrorLogFile.Close
-	'      Set ErrorLogFile = Nothing
+	'      LogMessage Application("ApplicationLogFilename"), now & ": Error: " & Err.Number & " " & Err.Description & " " & Err.Source & "; SQL: " & rsAddRec.Source & " (Session_OnStart)"
 	'      Err.Clear
 	'   End If
 
 	'   Set rsAddRec=Nothing
 
-	Set LogFile = Session("FileSystem").OpenTextFile(Application("ApplicationLogFilename"), ForAppending, True)
-	LogFile.WriteLine(now & ": Session_OnStart: Completed process for visitor #" & Session("Visitor") & " (ID: " & Session("ID") & ") - " & Second(Now()-Session("StartTime")) & " Seconds elapsed...")
-	LogFile.Close
+	LogMessage Application("ApplicationLogFilename"), now & ": Session_OnStart: Completed process for visitor #" & Session("Visitor") & " (ID: " & Session("ID") & ") - " & Second(Now()-Session("StartTime")) & " Seconds elapsed..."
 	On Error Goto 0
 
 	Set LogFile = Nothing
@@ -485,39 +312,20 @@ Sub Session_OnEnd
 	Application("ActiveSessions") = Application("ActiveSessions") - 1
 	ActiveSessions = Application("ActiveSessions")
   	If ActiveSessions = 0 Then
-		Set LogFile = Session("FileSystem").OpenTextFile(Application("ApplicationLogFilename"), ForAppending, True)
-		LogFile.WriteLine(now & ": Session_OnEnd:    ActiveSessions is now zero, updating " & Application("VisitorCountFileName") & "...")
-		LogFile.Close
+		LogMessage Application("ApplicationLogFilename"), now & ": Session_OnEnd:    ActiveSessions is now zero, updating " & Application("VisitorCountFileName") & "..."
 
-		Set LogFile = Session("FileSystem").OpenTextFile(Application("VisitorCountFileName"), ForWriting, True)
-		LogFile.WriteLine(Application("Visitors"))
-		LogFile.Close
+		WriteToFile Application("VisitorCountFileName"), Application("Visitors")
 	   
-		If Application("fDebugMode") or Application("fTraceMode") Then 
-			Set LogFile = Session("FileSystem").OpenTextFile(TraceLog, ForAppending, True)
-			LogFile.WriteLine(now & ": DEBUG: Session_OnEnd: Updated " & Application("VisitorCountFileName") & " with """ & Application("Visitors") & """")
-			LogFile.Close
-		End If
+		If Application("fDebugMode") or Application("fTraceMode") Then LogMessage TraceLog, now & ": DEBUG: Session_OnEnd: Updated " & Application("VisitorCountFileName") & " with """ & Application("Visitors") & """"
 
         'Supported the now defunct FPHitCount webbot
-		'Set LogFile = Session("FileSystem").OpenTextFile(Application("WelcomeCountFilename"), ForWriting, True)
-		'LogFile.WriteLine("FPCountFile " & String(11 - Len(Application("Visitors")), "0") & Application("Visitors"))
-		'LogFile.Close
-		'If Application("fDebugMode") or Application("fTraceMode") Then 
-		'	Set LogFile = Session("FileSystem").OpenTextFile(TraceLog, ForAppending, True)
-		'	LogFile.WriteLine(now & ": DEBUG: Session_OnEnd: Updated " & Application("WelcomeCountFileName") & " with """ & "FPCountFile " & String(11 - Len(Application("Visitors")), "0") & Application("Visitors") & """")
-		'	LogFile.Close
-		'End If
+		'WriteToFile Application("WelcomeCountFilename"), "FPCountFile " & String(11 - Len(Application("Visitors")), "0") & Application("Visitors")
+		'If Application("fDebugMode") or Application("fTraceMode") Then LogMessage TraceLog, now & ": DEBUG: Session_OnEnd: Updated " & Application("WelcomeCountFileName") & " with """ & "FPCountFile " & String(11 - Len(Application("Visitors")), "0") & Application("Visitors") & """"
 	End If
 
 	Application.UnLock
 
-	Set LogFile = Session("FileSystem").OpenTextFile(Application("ApplicationLogFilename"), ForAppending, True)
-	LogFile.WriteLine(now & ": Session_OnEnd: Session Ended for visitor #" & Session("Visitor") & " (ID: " & Session("ID") & "); Elapsed Time: " & Second(Now()-Session("StartTime")) & " Seconds; Active Sessions: " & ActiveSessions & "...")
-	LogFile.Close
+	LogMessage Application("ApplicationLogFilename"), now & ": Session_OnEnd: Session Ended for visitor #" & Session("Visitor") & " (ID: " & Session("ID") & "); Elapsed Time: " & Second(Now()-Session("StartTime")) & " Seconds; Active Sessions: " & ActiveSessions & "..."
 	On Error Goto 0
-
-	Set LogFile = Nothing
-	'Set Session("FileSystem") = Nothing
 End Sub
 </SCRIPT>

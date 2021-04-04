@@ -38,6 +38,7 @@ namespace TC3EF6.WebForms
             Application["WebMaster"] = "Ken Clark";
             Application["WebMasterEmail"] = Application["Owner"];
             LogMessage($"Application_Start(object sender, EventArgs e)");
+            LogMessage($"HELLO HELLO HELLO");
 
             // Code that runs on application startup
             RouteConfig.RegisterRoutes(RouteTable.Routes);
@@ -70,52 +71,6 @@ namespace TC3EF6.WebForms
             Application["VisitorCountFileName"] = Server.MapPath(@"/VisitCount.txt");
             Application["WelcomeCountFileName"] = Server.MapPath(@"/_private/Welcome.asp.cnt");
 
-            //Set oPermChecker = Server.CreateObject("MSWC.PermissionChecker")
-            //If oPermChecker.HasAccess(Application["VisitorCountFileName")) Then
-            //    WshShell.LogEvent 4, "Application_OnStart: Opening " & Application["VisitorCountFileName")
-            //    Set LogFile = FileSystem.OpenTextFile(Application["VisitorCountFileName"), ForReading, False)
-            //    If Err.Number <> 0 Then
-            //        WshShell.LogEvent 4, Err.Description
-            //        Err.Clear
-            //    End If
-            //    WshShell.LogEvent 4, "Application_OnStart: Setting Application[""Visitors"") to value in open file"
-            //    Application["Visitors") = LogFile.ReadLine
-            //    WshShell.LogEvent 4, "Application_OnStart: Closing " & Application["VisitorCountFileName")
-            //    LogFile.Close
-            //    Set LogFile = Nothing
-            //End If
-
-            //If Application["fDebugMode") or Application["fTraceMode") Then
-            //    WshShell.LogEvent 4, "Application_OnStart: Opening " & Application["TraceLogFileName")
-            //    Set LogFile = FileSystem.OpenTextFile(Application["TraceLogFilename"), ForAppending, True)
-            //    LogFile.WriteLine(String(132, "="))
-            //    LogFile.WriteLine(now & ": DEBUG: Application_OnStart: Read " & Application["VisitorCountFileName") & " and retrieved the visit count: " & """" & Application["Visitors") & """")
-            //    LogFile.Close
-            //    Set LogFile = Nothing
-            //End If
-
-            //WshShell.LogEvent 4, "Application_OnStart: Opening " & Application["ApplicationLogFileName")
-            //Set LogFile = FileSystem.OpenTextFile(Application["ApplicationLogFilename"), ForAppending, True)
-            //LogFile.WriteLine("================================================================================================================")
-            //LogFile.WriteLine(now & ": Application_OnStart: Application Started; Visit Count: " & Application["Visitors") & "...")
-            //LogFile.Close
-            //Set LogFile = Nothing
-
-            //WshShell.LogEvent 4, "Application_OnStart: Opening " & Application["WelcomeCountFileName")
-            //Set LogFile = FileSystem.OpenTextFile(Application["WelcomeCountFilename"), ForWriting, True)
-            //LogFile.WriteLine("FPCountFile " & String(11 - Len(Application["Visitors")), "0") & Application["Visitors"))
-            //LogFile.Close
-            //Set LogFile = Nothing
-
-            //If Application["fDebugMode") or Application["fTraceMode") Then
-            //    Set LogFile = FileSystem.OpenTextFile(Application["TraceLogFilename"), ForAppending, TRUE)
-            //    LogFile.WriteLine(now & ": DEBUG: Application_OnStart: Updated " & Application["WelcomeCountFileName") & " with """ & "FPCountFile " & String(11 - Len(Application["Visitors")), "0") & Application["Visitors") & """")
-            //    LogFile.Close
-            //    Set LogFile = Nothing
-            //End If
-
-            //Set FileSystem = Nothing
-            //Set oPermChecker = Nothing
             Application.UnLock();
             #endregion
         }
@@ -188,8 +143,14 @@ namespace TC3EF6.WebForms
             adoConn.ConnectionTimeout = (int)Application["ConnectionTimeout"];
             adoConn.CommandTimeout = (int)Application["CommandTimeout"];
 
-            LogMessage($@"adoConn.Open ""{(string)Application["ConnectionString"]}"", """", """"");
+            LogMessage($@"Session_Start: adoConn.Open ""{(string)Application["ConnectionString"]}"", """", """"");
             adoConn.Open((string)Application["ConnectionString"], "", "");
+            Application["adoConn"] = adoConn;
+            Application["ConnectionString.asax"] = Application["ConnectionString"]; //To test if ASP stuff gets the same object...
+            Session["adoConn"] = adoConn;
+
+            
+
 
             bool fDebugLogin = true;
             Application.UnLock();

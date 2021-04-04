@@ -1,29 +1,28 @@
 <%@ LANGUAGE="VBScript" %>
 <%
-Dim strRSName
-Dim strErrorAdditionalInfo
-strRSName = "rsBooks"
-strTableName = "Books"
-strBasePageName = "Books"
-strPageTitle = "Library; Books"
-SQLstatement = "Select Books.*,Locations.Name As Location From Books Inner Join Locations On Books.LocationID=Locations.ID Order By AlphaSort;"
-strProtectedFields = """Cataloged"",""Inventoried"""
-strLookupFields = """Author"",""Subject"",""MediaFormat"",""Location"""
+strRSName = "rsGames"
+strTableName = "Software"
+strBasePageName = "Games"
+strPageTitle = "Software Library; Games"
+SQLstatement = "Select * From [Software] Where [Type] Like 'Game%' Order By Title, Version;"
+strProtectedFields = """Cataloged"",""DateInventoried"""
+strLookupFields = """MediaFormat"",""Location"",""Platform"",""Publisher"",""Type"""
 strHomeGIF = ""
 strFooterURL = ""
 strFooterTitle = ""
 strFormMode = "FeedBack"
-Theme = "Brownside"
+Theme = "Blueside"
 blnShowUserName = False
 TmpNumber = 0
-fDebugMode = True	'Application("fDebugMode")
+fDebugMode = False
 %>
 
 <!-- #include virtual="/Includes/DataFunctions.inc.asp"-->
-<!-- #include virtual="/Books/avarAuthors.inc.asp"-->
-<!-- #include virtual="/Books/avarSubjects.inc.asp"-->
-<!-- #include virtual="/Books/avarMediaFormat.inc.asp"-->
-<!-- #include virtual="/Books/avarLocations.inc.asp"-->
+<!-- #include virtual="/Software/avarLocations.inc.asp"-->
+<!-- #include virtual="/Software/avarMediaFormat.inc.asp"-->
+<!-- #include virtual="/Software/avarPlatforms.inc.asp"-->
+<!-- #include virtual="/Software/avarPublishers.inc.asp"-->
+<!-- #include virtual="/Software/avarTypes.inc.asp"-->
 <!-- #include virtual="/Includes/ActionTemplateTop.inc.asp"-->
 <!-- #include virtual="/Includes/ActionList.inc.asp"-->
 <!-- #include virtual="/Includes/ActionCancel.inc.asp"-->
@@ -52,7 +51,7 @@ fDebugMode = True	'Application("fDebugMode")
 							Select Case x.Name
 								Case "Cataloged"
 									Session(strRSName & "_Recordset")(x.Name) = -1
-								Case "Inventoried"
+								Case "DateInventoried"
 									Session(strRSName & "_Recordset")(x.Name) = Now()
 								Case Else
 									If Not InsertField(x.Name) Then Exit For

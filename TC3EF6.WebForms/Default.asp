@@ -2,12 +2,7 @@
 <!-- #include virtual="/Includes/Constants.inc.asp"-->
 <%
 Application.Lock
-If Application("fDebugMode") or Application("fTraceMode") Then 
-	Set LogFile = Session("FileSystem").OpenTextFile(Application("ApplicationLogFilename"), ForAppending, TRUE)
-	LogFile.WriteLine(now & ": DEBUG: Default.asp Session(""ID""): " & Session("ID"))
-	LogFile.Close
-	Set LogFile = Nothing
-End If
+If Application("fDebugMode") or Application("fTraceMode") Then LogMessage Application("ApplicationLogFilename"), now & ": DEBUG: Default.asp Session(""ID""): " & Session("ID")
 Application.UnLock
 %>
 <html>
@@ -21,21 +16,17 @@ Sub Window_onLoad()
 <%
 	If Application("fDebugMode") or Application("fTraceMode") Then 
 %>
-	'Alert("Window_onLoad: Window.Name: " & """" & Window.Name & """" & "; Parent.Name: " & """" & Parent.Name & """")
+	Alert("Window_onLoad: Window.Name: " & """" & Window.Name & """" & "; Parent.Name: " & """" & Parent.Name & """")
 <%
 	End If
 %>
 	If Window.Name <> "" and Window.Name <> "New_Window" Then
 <%
 		If Application("fDebugMode") or Application("fTraceMode") Then 
-			Set LogFile = Session("FileSystem").OpenTextFile(Application("TraceLogFilename"), ForAppending, TRUE)
-			LogFile.WriteLine(now & ": DEBUG: Window_onLoad: Redirecting to ""/"" because Window.Name isn't Null, nor ""New_Window""...")
+			LogMessage Application("TraceLogFilename"), now & ": DEBUG: Window_onLoad: Redirecting to ""/"" because Window.Name isn't Null, nor ""New_Window""..."
 			For Each key in Request.ServerVariables
-				LogFile.WriteLine(now & ": DEBUG: " & key & ":" & CHR(9) & """" & Request.ServerVariables(key) & """")
+				LogMessage Application("TraceLogFilename"), now & ": DEBUG: " & key & ":" & CHR(9) & """" & Request.ServerVariables(key) & """"
 			Next
-			LogFile.Close
-
-			Set LogFile = Nothing
 %>
 	Alert("Window_onLoad: Redirecting to ""/"" because Window.Name (""" & Window.Name & """) isn't null, nor ""New_Window""...")
 <%

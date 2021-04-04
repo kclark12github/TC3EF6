@@ -76,4 +76,39 @@ Const errValueRequired = 20012		'Value required
 '---- Other Values ----
 Const dfMaxSize = 100
 
+Function GetVisitCount(fileName)
+	Set FileSystem = Server.CreateObject("Scripting.FileSystemObject")
+	LogEvent "Application_OnStart: Opening " & fileName
+	Set file = FileSystem.OpenTextFile(fileName, ForReading, False)
+	If Err.Number <> 0 Then
+		LogEvent Err.Description
+		Err.Clear
+	End If
+	GetVisitCount = file.ReadLine
+	LogEvent "Application_OnStart: Closing " & fileName
+	file.Close
+	Set file = Nothing
+	Set FileSystem = Nothing
+End Function
+Sub LogEvent(message)
+	Set WshShell = Server.CreateObject("WScript.Shell")
+	WshShell.LogEvent 4, message
+	Set WshShell = Nothing
+End Sub
+Sub LogMessage(fileName, message)
+	Set FileSystem = Server.CreateObject("Scripting.FileSystemObject")
+	Set LogFile = FileSystem.OpenTextFile(filename, ForAppending, True)
+	LogFile.WriteLine(message)
+	LogFile.Close
+	Set LogFile = Nothing
+	Set FileSystem = Nothing
+End Sub
+Sub WriteToFile(fileName, message)
+	Set FileSystem = Server.CreateObject("Scripting.FileSystemObject")
+	Set LogFile = FileSystem.OpenTextFile(filename, ForWriting)
+	LogFile.WriteLine(message)
+	LogFile.Close
+	Set LogFile = Nothing
+	Set FileSystem = Nothing
+End Sub
 </Script>
