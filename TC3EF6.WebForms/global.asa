@@ -21,7 +21,7 @@ Sub Application_OnStart
 	'Application("RuntimeUserName") = "sa"
 	'Application("RuntimePassword") = "GZPR141SA"
     'Application("ConnectionString") = "Driver={SQL Server Native Client 11.0};Server=(localdb)\MSSQLLocalDB;Database=TC3EF6;Trusted_Connection=yes;"
-    Application("ConnectionString") = "Driver={SQL Server Native Client 11.0};Server=B54J71N;Database=TC3EF6;Trusted_Connection=yes;"
+    Application("ConnectionString") = "Driver={SQL Server Native Client 11.0};Server=B54J71N;Database=TC3EF6;User ID=kfc12;Password=b2Spirit;"
 	Application("RuntimeUserName") = ""
 	Application("RuntimePassword") = ""
 	Application("ConnectionTimeout") = 120
