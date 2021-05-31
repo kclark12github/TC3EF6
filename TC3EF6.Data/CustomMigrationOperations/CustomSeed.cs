@@ -230,7 +230,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             //    'Description = @"", ' +
             //    'PhysicalLocation = @"", ' +
             //    'OName = ' + IsNull('@"' +[tcLocations].[Location] + '"', '""') + ' },'
-            //From [GGGSCP1].[TreasureChest].[dbo].[Locations]
+            //From [TreasureChest2].[dbo].[Locations]
             //        [tcLocations]
             //Order By 1;
             context.Locations.AddOrUpdate(x => x.Name,
@@ -724,7 +724,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             //Select
             //     [Artist],[AlphaSort],[Media] As[MediaFormat],[Title],[Type],[Year],1,[DateInventoried],[DatePurchased],[DateVerified],
             //     [Locations].[ID],[Notes],[Price],[Value],[WishList],[tcMusic].[DateCreated],[tcMusic].[DateModified],[tcMusic].[ID]
-            //From [GGGSCP1].[TreasureChest].[dbo].[Music] [tcMusic]
+            //From [TreasureChest2].[dbo].[Music] [tcMusic]
             //     Inner Join[Locations] On[Locations].[OName]=[tcMusic].[Location]
             //Order By [AlphaSort];
 
@@ -737,7 +737,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             //    [Image],null,null,0,0,null,[AlphaSort],'Music',[Music].[ID],
             //    0,null,[tcMusic].[Artist]+' - '+[tcMusic].[Title]+' Cover' As [Caption],
             //    null,[tcMusic].[DateCreated],[tcMusic].[DateModified],[tcMusic].[ID]
-            //From [GGGSCP1].[TreasureChest].[dbo].[Music] [tcMusic]
+            //From [TreasureChest2].[dbo].[Music] [tcMusic]
             //    Inner Join [Music] On [Music].[OID]=[tcMusic].[ID]
             //Union
             //Select
@@ -745,7 +745,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             //    [OtherImage],null,null,0,0,null,[AlphaSort],'Music',[Music].[ID],
             //    0,null,[tcMusic].[Artist]+' - '+[tcMusic].[Title]+' Back' As [Caption],
             //    null,[tcMusic].[DateCreated],[tcMusic].[DateModified],[tcMusic].[ID]
-            //From [GGGSCP1].[TreasureChest].[dbo].[Music] [tcMusic]
+            //From [TreasureChest2].[dbo].[Music] [tcMusic]
             //    Inner Join [Music] On [Music].[OID]=[tcMusic].[ID]
             //Order By [tcMusic].[AlphaSort];
         }
@@ -826,7 +826,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"
             --sp_LogElapsed.sql
             --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
-            --   Copyright © 2019 All Rights Reserved.
+            --   Copyright © 2019-2021 All Rights Reserved.
             --*********************************************************************************************************************************
             --
             --    Modification History:
@@ -849,7 +849,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"
             --sp_LogError.sql
             --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
-            --   Copyright © 2019 All Rights Reserved.
+            --   Copyright © 2019-2021 All Rights Reserved.
             --*********************************************************************************************************************************
             --
             --    Modification History:
@@ -885,7 +885,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"
             --sp_LogMessage.sql
             --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
-            --   Copyright © 2019 All Rights Reserved.
+            --   Copyright © 2019-2021 All Rights Reserved.
             --*********************************************************************************************************************************
             --
             --    Modification History:
@@ -1061,7 +1061,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"
                 --Data Migration.sql
                 --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
-                --   Copyright © 2019 All Rights Reserved.
+                --   Copyright © 2019-2021 All Rights Reserved.
                 --*********************************************************************************************************************************
                 --
                 --    Modification History:
@@ -1132,7 +1132,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"
             --sp_PrepDataMigration.sql
             --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
-            --   Copyright © 2019 All Rights Reserved.
+            --   Copyright © 2019-2021 All Rights Reserved.
             --*********************************************************************************************************************************
             --
             --    Modification History:
@@ -1165,7 +1165,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                             Else ''
                         End As PhysicalLocation,
                         [tcLocations].[Location]
-                    From [GGGSCP1].[TreasureChest].[dbo].[Locations] [tcLocations]
+                    From [TreasureChest2].[dbo].[Locations] [tcLocations]
                         Left Outer Join [dbo].[Locations] [Locations] On [Locations].[OName]=[tcLocations].[Location]
                     Where [Locations].[OName] Is Null
                     Order By 1;
@@ -1187,7 +1187,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateAircraftDesignations.sql
             --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
-            --   Copyright © 2019 All Rights Reserved.
+            --   Copyright © 2019-2021 All Rights Reserved.
             --*********************************************************************************************************************************
             --
             --    Modification History:
@@ -1207,8 +1207,8 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [Designation],[Manufacturer],[Name],[Nicknames],[Notes],[Number],[ServiceDate],[Type],[Version],[DateCreated],[DateModified])
                     SELECT [ID],
                         [Designation],[Manufacturer],[Name],[Nicknames],[Notes],[Number],[Service Date],[Type],[Version],[DateCreated],[DateModified]
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Aircraft Designations] ORDER By [ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Aircraft Designations];
+                    FROM [TreasureChest2].[dbo].[Aircraft Designations] ORDER By [ID];
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Aircraft Designations];
                     Select @Actual=Count(*) From [dbo].[AircraftDesignations];
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -1221,11 +1221,11 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
                     SELECT [History].[ID],
                         [History].[Column],[History].[DateChanged],getdate(),getdate(),[History].[OriginalValue],[AircraftDesignations].[ID],'AircraftDesignations',[History].[Value],[History].[Who]
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+                    FROM [TreasureChest2].[dbo].[History] [History]
                         INNER JOIN [dbo].[AircraftDesignations] [AircraftDesignations] On [History].[TableName]='Aircraft Designations' And [AircraftDesignations].[OID]=[History].[RecordID]
                     WHERE [History].[TableName]='Aircraft Designations' 
                     ORDER BY [History].[ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[History] Where [TableName]='Aircraft Designations';
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[History] Where [TableName]='Aircraft Designations';
                     Select @Actual=Count(*) From [dbo].[History] Where [TableName]='AircraftDesignations';
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -1239,11 +1239,11 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [RecordID],[TableName],[Thumbnail],[URL],[Width])
                     SELECT Null,Upper('Aircraft Designations: '+[Aircraft Designations].[Name]),Null,'AircraftDesignations',getdate(),getdate(),Null,Null,[Image],[Aircraft Designations].[Name],Null,
                         [AircraftDesignations].[ID],'AircraftDesignations',0,Null,Null
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Aircraft Designations] [Aircraft Designations]
+                    FROM [TreasureChest2].[dbo].[Aircraft Designations] [Aircraft Designations]
                         INNER JOIN [dbo].[AircraftDesignations] [AircraftDesignations] On [Aircraft Designations].[ID]=[AircraftDesignations].[OID]
                     WHERE [Aircraft Designations].[Image] is not Null
                     ORDER BY [Aircraft Designations].[ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Aircraft Designations] Where [Image] is not Null;
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Aircraft Designations] Where [Image] is not Null;
                     Select @Actual=Count(*) From [dbo].[Images] Where [TableName]='AircraftDesignations';
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -1267,7 +1267,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateBlueAngelsHistory.sql
             --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
-            --   Copyright © 2019 All Rights Reserved.
+            --   Copyright © 2019-2021 All Rights Reserved.
             --*********************************************************************************************************************************
             --
             --    Modification History:
@@ -1287,8 +1287,8 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [ServiceDates],[AircraftType],[Decals],[DecalSets],[Kits],[Notes],[DateCreated],[DateModified])
                     SELECT     [ID],
                         [Dates],[Aircraft Type],[Decal Sets],Null,[Kits],[Notes],[DateCreated],[DateModified]
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Blue Angels History] ORDER By [ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Blue Angels History];
+                    FROM [TreasureChest2].[dbo].[Blue Angels History] ORDER By [ID];
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Blue Angels History];
                     Select @Actual=Count(*) From [dbo].[BlueAngelsHistory];
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -1302,11 +1302,11 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [RecordID],[TableName],[Thumbnail],[URL],[Width])
                     SELECT Null,Upper('Blue Angels History: '+[Blue Angels History].[Aircraft Type]),Null,'BlueAngelsHistory',getdate(),getdate(),Null,Null,[Image],[Blue Angels History].[Aircraft Type],Null,
                         [BlueAngelsHistory].[ID],'BlueAngelsHistory',0,Null,Null
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Blue Angels History] [Blue Angels History]
+                    FROM [TreasureChest2].[dbo].[Blue Angels History] [Blue Angels History]
                         INNER JOIN [dbo].[BlueAngelsHistory] [BlueAngelsHistory] On [Blue Angels History].[ID]=[BlueAngelsHistory].[OID]
                     WHERE [Blue Angels History].[Image] is not Null
                     ORDER BY [Blue Angels History].[ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Blue Angels History] Where [Image] is not Null;
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Blue Angels History] Where [Image] is not Null;
                     Select @Actual=Count(*) From [dbo].[Images] Where [TableName]='BlueAngelsHistory';
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -1330,7 +1330,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateBooks.sql
             --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
-            --   Copyright © 2019 All Rights Reserved.
+            --   Copyright © 2019-2021 All Rights Reserved.
             --*********************************************************************************************************************************
             --
             --    Modification History:
@@ -1360,12 +1360,12 @@ namespace TC3EF6.Data.CustomMigrationOperations
                                 End
                             Else [Locations].[ID]
                         End As [LocationID]
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Books] [Books]
+                    FROM [TreasureChest2].[dbo].[Books] [Books]
                         LEFT OUTER JOIN [dbo].[Locations] [Locations] On [Books].[Location]=[Locations].[OName]
                         INNER JOIN [dbo].[Locations] [WishListLocation] On [WishListLocation].[Name]='WishList'
                         INNER JOIN [dbo].[Locations] [UnknownLocation] On [UnknownLocation].[Name]='Unknown'
                     ORDER BY [Books].[ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Books];
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Books];
                     Select @Actual=Count(*) From [dbo].[Books];
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -1378,7 +1378,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
                     SELECT [History].[ID],
                         [History].[Column],[History].[DateChanged],getdate(),getdate(),[History].[OriginalValue],[Books].[ID],[History].[TableName],[History].[Value],[History].[Who]
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+                    FROM [TreasureChest2].[dbo].[History] [History]
                         INNER JOIN [dbo].[Books] [Books] On [History].[TableName]='Books' And [Books].[OID]=[History].[RecordID]
                     WHERE [History].[TableName]='Books' 
                     ORDER BY [History].[ID];
@@ -1388,8 +1388,8 @@ namespace TC3EF6.Data.CustomMigrationOperations
                     Select [History].[ID],[History].[Column],[History].[DateChanged],getdate() As [DateCreated],getdate() As [DateModified],[History].[OriginalValue],
                         [History].[RecordID] As [OID],[History].[TableName],[History].[Value],[History].[Who],NEWID() As [RecordID]
                     Into #DeletedHistory 
-                    From [GGGSCP1].[TreasureChest].[dbo].[History] [History]
-                    Where [History].[TableName]='Books' And Not Exists(Select * From [GGGSCP1].[TreasureChest].[dbo].[Books] Where [ID]=[History].[RecordID])
+                    From [TreasureChest2].[dbo].[History] [History]
+                    Where [History].[TableName]='Books' And Not Exists(Select * From [TreasureChest2].[dbo].[Books] Where [ID]=[History].[RecordID])
                     Order By [History].[RecordID];    --618
                     Declare h cursor for Select Distinct [OID] From [#DeletedHistory] Order By [OID];
                     Open h;
@@ -1405,7 +1405,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                     INSERT INTO [dbo].[History] ([OID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
                     SELECT [ID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who] FROM [#DeletedHistory] ORDER BY [ID];
                     Drop Table #DeletedHistory;
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[History] Where [TableName]='Books';
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[History] Where [TableName]='Books';
                     Select @Actual=Count(*) From [dbo].[History] Where [TableName]='Books';
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -1419,7 +1419,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [RecordID],[TableName],[Thumbnail],[URL],[Width])
                     SELECT Null,Upper('BOOKS: '+[Books].[Title]),[Books].[Title]+' (Front Cover)','Books',getdate(),getdate(),Null,Null,[Image],[Books].[Title],Null,
                         [newBooks].[ID],'Books',0,Null,Null
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Books] [Books]
+                    FROM [TreasureChest2].[dbo].[Books] [Books]
                         INNER JOIN [dbo].[Books] [newBooks] On [Books].[ID]=[newBooks].[OID]
                     WHERE [Books].[Image] is not Null
                     ORDER BY [Books].[ID];
@@ -1428,12 +1428,12 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [RecordID],[TableName],[Thumbnail],[URL],[Width])
                     SELECT Null,Upper('BOOKS: '+[Books].[Title]),[Books].[Title]+' (Back Cover)','Books',getdate(),getdate(),Null,Null,[OtherImage],[Books].[Title],Null,
                         [newBooks].[ID],'Books',0,Null,Null
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Books] [Books]
+                    FROM [TreasureChest2].[dbo].[Books] [Books]
                         INNER JOIN [dbo].[Books] [newBooks] On [Books].[ID]=[newBooks].[OID]
                     WHERE [Books].[OtherImage] is not Null
                     ORDER BY [Books].[ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Books] Where [Image] is not Null;
-                    Select @Expected=@Expected+Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Books] Where [OtherImage] is not Null;
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Books] Where [Image] is not Null;
+                    Select @Expected=@Expected+Count(*) From [TreasureChest2].[dbo].[Books] Where [OtherImage] is not Null;
                     Select @Actual=Count(*) From [dbo].[Images] Where [TableName]='Books';
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -1457,7 +1457,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateCollectables.sql
             --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
-            --   Copyright © 2019 All Rights Reserved.
+            --   Copyright © 2019-2021 All Rights Reserved.
             --*********************************************************************************************************************************
             --
             --    Modification History:
@@ -1487,12 +1487,12 @@ namespace TC3EF6.Data.CustomMigrationOperations
                                 End
                             Else [Locations].[ID]
                         End As [LocationID]
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Collectables] [Collectables]
+                    FROM [TreasureChest2].[dbo].[Collectables] [Collectables]
                         LEFT OUTER JOIN [dbo].[Locations] [Locations] On [Collectables].[Location]=[Locations].[OName]
                         INNER JOIN [dbo].[Locations] [WishListLocation] On [WishListLocation].[Name]='WishList'
                         INNER JOIN [dbo].[Locations] [UnknownLocation] On [UnknownLocation].[Name]='Unknown'
                     ORDER BY [Collectables].[ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Collectables];
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Collectables];
                     Select @Actual=Count(*) From [dbo].[Collectables];
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -1505,7 +1505,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
                     SELECT [History].[ID],
                         [History].[Column],[History].[DateChanged],getdate(),getdate(),[History].[OriginalValue],[Collectables].[ID],[History].[TableName],[History].[Value],[History].[Who]
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+                    FROM [TreasureChest2].[dbo].[History] [History]
                         INNER JOIN [dbo].[Collectables] [Collectables] On [History].[TableName]='Collectables' And [Collectables].[OID]=[History].[RecordID]
                     WHERE [History].[TableName]='Collectables' 
                     ORDER BY [History].[ID];
@@ -1515,8 +1515,8 @@ namespace TC3EF6.Data.CustomMigrationOperations
                     Select [History].[ID],[History].[Column],[History].[DateChanged],getdate() As [DateCreated],getdate() As [DateModified],[History].[OriginalValue],
                         [History].[RecordID] As [OID],[History].[TableName],[History].[Value],[History].[Who],NEWID() As [RecordID]
                     Into #DeletedHistory 
-                    From [GGGSCP1].[TreasureChest].[dbo].[History] [History]
-                    Where [History].[TableName]='Collectables' And Not Exists(Select * From [GGGSCP1].[TreasureChest].[dbo].[Collectables] Where [ID]=[History].[RecordID])
+                    From [TreasureChest2].[dbo].[History] [History]
+                    Where [History].[TableName]='Collectables' And Not Exists(Select * From [TreasureChest2].[dbo].[Collectables] Where [ID]=[History].[RecordID])
                     Order By [History].[RecordID];
                     Declare h cursor for Select Distinct [OID] From [#DeletedHistory] Order By [OID];
                     Open h;
@@ -1532,7 +1532,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                     INSERT INTO [dbo].[History] ([OID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
                     SELECT [ID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who] FROM [#DeletedHistory] ORDER BY [ID];
                     Drop Table #DeletedHistory;
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[History] Where [TableName]='Collectables';
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[History] Where [TableName]='Collectables';
                     Select @Actual=Count(*) From [dbo].[History] Where [TableName]='Collectables';
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -1546,7 +1546,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [RecordID],[TableName],[Thumbnail],[URL],[Width])
                     SELECT Null,Upper('Collectables: '+[Collectables].[Name]),[Collectables].[Name],'Collectables',getdate(),getdate(),Null,Null,[Image],[Collectables].[Name],Null,
                         [newCollectables].[ID],'Collectables',0,Null,Null
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Collectables] [Collectables]
+                    FROM [TreasureChest2].[dbo].[Collectables] [Collectables]
                         INNER JOIN [dbo].[Collectables] [newCollectables] On [Collectables].[ID]=[newCollectables].[OID]
                     WHERE [Collectables].[Image] is not Null
                     ORDER BY [Collectables].[ID];
@@ -1555,12 +1555,12 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [RecordID],[TableName],[Thumbnail],[URL],[Width])
                     SELECT Null,Upper('Collectables: '+[Collectables].[Name]),[Collectables].[Name],'Collectables',getdate(),getdate(),Null,Null,[OtherImage],[Collectables].[Name],Null,
                         [newCollectables].[ID],'Collectables',0,Null,Null
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Collectables] [Collectables]
+                    FROM [TreasureChest2].[dbo].[Collectables] [Collectables]
                         INNER JOIN [dbo].[Collectables] [newCollectables] On [Collectables].[ID]=[newCollectables].[OID]
                     WHERE [Collectables].[OtherImage] is not Null
                     ORDER BY [Collectables].[ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Collectables] Where [Image] is not Null;
-                    Select @Expected=@Expected+Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Collectables] Where [OtherImage] is not Null;
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Collectables] Where [Image] is not Null;
+                    Select @Expected=@Expected+Count(*) From [TreasureChest2].[dbo].[Collectables] Where [OtherImage] is not Null;
                     Select @Actual=Count(*) From [dbo].[Images] Where [TableName]='Collectables';
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -1584,7 +1584,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateCompanies.sql
             --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
-            --   Copyright © 2019 All Rights Reserved.
+            --   Copyright © 2019-2021 All Rights Reserved.
             --*********************************************************************************************************************************
             --
             --    Modification History:
@@ -1604,8 +1604,8 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [Account],[Address],[Code],[DateCreated],[DateModified],[Name],[Phone],[ProductType],[ShortName],[WebSite])
                     SELECT [ID],
                         [Account],[Address],[Code],[DateCreated],[DateModified],[Name],[Phone],[ProductType],[ShortName],[WebSite]
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Companies] ORDER BY [ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Companies];
+                    FROM [TreasureChest2].[dbo].[Companies] ORDER BY [ID];
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Companies];
                     Select @Actual=Count(*) From [dbo].[Companies];
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -1618,11 +1618,11 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
                     SELECT [History].[ID],
                         [History].[Column],[History].[DateChanged],getdate(),getdate(),[History].[OriginalValue],[Companies].[ID],'Companies',[History].[Value],[History].[Who]
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+                    FROM [TreasureChest2].[dbo].[History] [History]
                         INNER JOIN [dbo].[Companies] [Companies] On [History].[TableName]='Companies' And [Companies].[OID]=[History].[RecordID]
                     WHERE [History].[TableName]='Companies' 
                     ORDER BY [History].[ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[History] Where [TableName]='Companies';
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[History] Where [TableName]='Companies';
                     Select @Actual=Count(*) From [dbo].[History] Where [TableName]='Companies';
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -1646,7 +1646,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateDecals.sql
             --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
-            --   Copyright © 2019 All Rights Reserved.
+            --   Copyright © 2019-2021 All Rights Reserved.
             --*********************************************************************************************************************************
             --
             --    Modification History:
@@ -1676,12 +1676,12 @@ namespace TC3EF6.Data.CustomMigrationOperations
                                 End
                             Else [Locations].[ID]
                         End As [LocationID]
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Decals] [Decals]
+                    FROM [TreasureChest2].[dbo].[Decals] [Decals]
                         LEFT OUTER JOIN [dbo].[Locations] [Locations] On [Decals].[Location]=[Locations].[OName]
                         INNER JOIN [dbo].[Locations] [WishListLocation] On [WishListLocation].[Name]='WishList'
                         INNER JOIN [dbo].[Locations] [UnknownLocation] On [UnknownLocation].[Name]='Unknown'
                     ORDER BY [Decals].[ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Decals];
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Decals];
                     Select @Actual=Count(*) From [dbo].[Decals];
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -1694,7 +1694,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
                     SELECT [History].[ID],
                         [History].[Column],[History].[DateChanged],getdate(),getdate(),[History].[OriginalValue],[Decals].[ID],[History].[TableName],[History].[Value],[History].[Who]
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+                    FROM [TreasureChest2].[dbo].[History] [History]
                         INNER JOIN [dbo].[Decals] [Decals] On [History].[TableName]='Decals' And [Decals].[OID]=[History].[RecordID]
                     WHERE [History].[TableName]='Decals' 
                     ORDER BY [History].[ID];
@@ -1704,8 +1704,8 @@ namespace TC3EF6.Data.CustomMigrationOperations
                     Select [History].[ID],[History].[Column],[History].[DateChanged],getdate() As [DateCreated],getdate() As [DateModified],[History].[OriginalValue],
                         [History].[RecordID] As [OID],[History].[TableName],[History].[Value],[History].[Who],NEWID() As [RecordID]
                     Into #DeletedHistory 
-                    From [GGGSCP1].[TreasureChest].[dbo].[History] [History]
-                    Where [History].[TableName]='Decals' And Not Exists(Select * From [GGGSCP1].[TreasureChest].[dbo].[Decals] Where [ID]=[History].[RecordID])
+                    From [TreasureChest2].[dbo].[History] [History]
+                    Where [History].[TableName]='Decals' And Not Exists(Select * From [TreasureChest2].[dbo].[Decals] Where [ID]=[History].[RecordID])
                     Order By [History].[RecordID];
                     Select @OrphanedHistoryCount=Count(*) From [#DeletedHistory];
                     Declare h cursor for Select Distinct [OID] From [#DeletedHistory] Order By [OID];
@@ -1722,7 +1722,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                     INSERT INTO [dbo].[History] ([OID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
                     SELECT [ID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who] FROM [#DeletedHistory] ORDER BY [ID];
                     Drop Table #DeletedHistory;
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[History] Where [TableName]='Decals';
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[History] Where [TableName]='Decals';
                     Select @Actual=Count(*) From [dbo].[History] Where [TableName]='Decals';
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -1738,7 +1738,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [Decals].[Scale]+' '+[Decals].[Designation]+' '+[Decals].[Name]+' ('+[Decals].[Reference]+')',
                         'Decals',getdate(),getdate(),Null,Null,[Image],[Decals].[Name],Null,
                         [newDecals].[ID],'Decals',0,Null,Null
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Decals] [Decals]
+                    FROM [TreasureChest2].[dbo].[Decals] [Decals]
                         INNER JOIN [dbo].[Decals] [newDecals] On [Decals].[ID]=[newDecals].[OID]
                     WHERE [Decals].[Image] is not Null
                     ORDER BY [Decals].[ID];
@@ -1749,12 +1749,12 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [Decals].[Scale]+' '+[Decals].[Designation]+' '+[Decals].[Name]+' ('+[Decals].[Reference]+')',
                         'Decals',getdate(),getdate(),Null,Null,[OtherImage],[Decals].[Name],Null,
                         [newDecals].[ID],'Decals',0,Null,Null
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Decals] [Decals]
+                    FROM [TreasureChest2].[dbo].[Decals] [Decals]
                         INNER JOIN [dbo].[Decals] [newDecals] On [Decals].[ID]=[newDecals].[OID]
                     WHERE [Decals].[OtherImage] is not Null
                     ORDER BY [Decals].[ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Decals] Where [Image] is not Null;
-                    Select @Expected=@Expected+Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Decals] Where [OtherImage] is not Null;
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Decals] Where [Image] is not Null;
+                    Select @Expected=@Expected+Count(*) From [TreasureChest2].[dbo].[Decals] Where [OtherImage] is not Null;
                     Select @Actual=Count(*) From [dbo].[Images] Where [TableName]='Decals';
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -1766,7 +1766,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                     Declare kitCursor Cursor For
                         Select [Kits].[ID] As [Kits.ID],[OKits].[DecalID] As [Decal.OID],[Decals].[ID] As [Decal.ID]
                         From [dbo].[Kits] 
-                            Inner Join [GGGSCP1].[TreasureChest].[dbo].[Kits] [OKits] On [OKits].ID=[Kits].[OID]
+                            Inner Join [TreasureChest2].[dbo].[Kits] [OKits] On [OKits].ID=[Kits].[OID]
                             Inner Join [dbo].[Decals] On [Decals].[OID]=[OKits].[DecalID];
                     Open kitCursor;
                     Fetch Next From kitCursor Into @KitID, @DecalOID, @DecalID;
@@ -1777,7 +1777,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                     End;
                     Close kitCursor;
                     Deallocate kitCursor;
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Kits] Where [DecalID] is not Null;
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Kits] Where [DecalID] is not Null;
                     Select @Actual=Count(*) From [dbo].[Kits] Where [Decal_ID] is not Null;
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -1801,7 +1801,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateDetailSets.sql
             --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
-            --   Copyright © 2019 All Rights Reserved.
+            --   Copyright © 2019-2021 All Rights Reserved.
             --*********************************************************************************************************************************
             --
             --    Modification History:
@@ -1831,12 +1831,12 @@ namespace TC3EF6.Data.CustomMigrationOperations
                                 End
                             Else [Locations].[ID]
                         End As [LocationID]
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Detail Sets] [Detail Sets]
+                    FROM [TreasureChest2].[dbo].[Detail Sets] [Detail Sets]
                         LEFT OUTER JOIN [dbo].[Locations] [Locations] On [Detail Sets].[Location]=[Locations].[OName]
                         INNER JOIN [dbo].[Locations] [WishListLocation] On [WishListLocation].[Name]='WishList'
                         INNER JOIN [dbo].[Locations] [UnknownLocation] On [UnknownLocation].[Name]='Unknown'
                     ORDER BY [Detail Sets].[ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Detail Sets];
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Detail Sets];
                     Select @Actual=Count(*) From [dbo].[DetailSets];
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -1849,7 +1849,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
                     SELECT [History].[ID],
                         [History].[Column],[History].[DateChanged],getdate(),getdate(),[History].[OriginalValue],[DetailSets].[ID],'DetailSets',[History].[Value],[History].[Who]
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+                    FROM [TreasureChest2].[dbo].[History] [History]
                         INNER JOIN [dbo].[DetailSets] [DetailSets] On [History].[TableName]='Detail Sets' And [DetailSets].[OID]=[History].[RecordID]
                     WHERE [History].[TableName]='Detail Sets' 
                     ORDER BY [History].[ID];
@@ -1859,8 +1859,8 @@ namespace TC3EF6.Data.CustomMigrationOperations
                     Select [History].[ID],[History].[Column],[History].[DateChanged],getdate() As [DateCreated],getdate() As [DateModified],[History].[OriginalValue],
                         [History].[RecordID] As [OID],'DetailSets' As [TableName],[History].[Value],[History].[Who],NEWID() As [RecordID]
                     Into #DeletedHistory 
-                    From [GGGSCP1].[TreasureChest].[dbo].[History] [History]
-                    Where [History].[TableName]='Detail Sets' And Not Exists(Select * From [GGGSCP1].[TreasureChest].[dbo].[Detail Sets] Where [ID]=[History].[RecordID])
+                    From [TreasureChest2].[dbo].[History] [History]
+                    Where [History].[TableName]='Detail Sets' And Not Exists(Select * From [TreasureChest2].[dbo].[Detail Sets] Where [ID]=[History].[RecordID])
                     Order By [History].[RecordID];
                     Select @OrphanedHistoryCount=Count(*) From [#DeletedHistory];
                     Declare h cursor for Select Distinct [OID] From [#DeletedHistory] Order By [OID];
@@ -1877,7 +1877,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                     INSERT INTO [dbo].[History] ([OID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
                     SELECT [ID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who] FROM [#DeletedHistory] ORDER BY [ID];
                     Drop Table #DeletedHistory;
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[History] Where [TableName]='Detail Sets';
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[History] Where [TableName]='Detail Sets';
                     Select @Actual=Count(*) From [dbo].[History] Where [TableName]='DetailSets';
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -1893,7 +1893,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [Detail Sets].[Scale]+' '+[Detail Sets].[Designation]+' '+[Detail Sets].[Name]+' ('+[Detail Sets].[Reference]+')',
                         'DetailSets',getdate(),getdate(),Null,Null,[Image],[Detail Sets].[Name],Null,
                         [DetailSets].[ID],'DetailSets',0,Null,Null
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Detail Sets] [Detail Sets]
+                    FROM [TreasureChest2].[dbo].[Detail Sets] [Detail Sets]
                         INNER JOIN [dbo].[DetailSets] [DetailSets] On [Detail Sets].[ID]=[DetailSets].[OID]
                     WHERE [Detail Sets].[Image] is not Null
                     ORDER BY [Detail Sets].[ID];
@@ -1904,12 +1904,12 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [Detail Sets].[Scale]+' '+[Detail Sets].[Designation]+' '+[Detail Sets].[Name]+' ('+[Detail Sets].[Reference]+')',
                         'DetailSets',getdate(),getdate(),Null,Null,[OtherImage],[Detail Sets].[Name],Null,
                         [DetailSets].[ID],'DetailSets',0,Null,Null
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Detail Sets] [Detail Sets]
+                    FROM [TreasureChest2].[dbo].[Detail Sets] [Detail Sets]
                         INNER JOIN [dbo].[DetailSets] [DetailSets] On [Detail Sets].[ID]=[DetailSets].[OID]
                     WHERE [Detail Sets].[OtherImage] is not Null
                     ORDER BY [Detail Sets].[ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Detail Sets] Where [Image] is not Null;
-                    Select @Expected=@Expected+Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Detail Sets] Where [OtherImage] is not Null;
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Detail Sets] Where [Image] is not Null;
+                    Select @Expected=@Expected+Count(*) From [TreasureChest2].[dbo].[Detail Sets] Where [OtherImage] is not Null;
                     Select @Actual=Count(*) From [dbo].[Images] Where [TableName]='DetailSets';
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -1921,7 +1921,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                     Declare kitCursor Cursor For
                         Select [Kits].[ID] As [Kits.ID],[OKits].[DetailSetID] As [DetailSet.OID],[DetailSets].[ID] As [DetailSet.ID]
                         From [dbo].[Kits] 
-                            Inner Join [GGGSCP1].[TreasureChest].[dbo].[Kits] [OKits] On [OKits].ID=[Kits].[OID]
+                            Inner Join [TreasureChest2].[dbo].[Kits] [OKits] On [OKits].ID=[Kits].[OID]
                             Inner Join [dbo].[DetailSets] On [DetailSets].[OID]=[OKits].[DetailSetID];
                     Open kitCursor;
                     Fetch Next From kitCursor Into @KitID, @DetailSetOID, @DetailSetID;
@@ -1932,7 +1932,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                     End;
                     Close kitCursor;
                     Deallocate kitCursor;
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Kits] Where [DetailSetID] is not Null;
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Kits] Where [DetailSetID] is not Null;
                     Select @Actual=Count(*) From [dbo].[Kits] Where [DetailSet_ID] is not Null;
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -1956,7 +1956,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateEpisodes.sql
             --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
-            --   Copyright © 2019 All Rights Reserved.
+            --   Copyright © 2019-2021 All Rights Reserved.
             --*********************************************************************************************************************************
             --
             --    Modification History:
@@ -1986,12 +1986,12 @@ namespace TC3EF6.Data.CustomMigrationOperations
                                 End
                             Else [Locations].[ID]
                         End As [LocationID]
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Episodes] [Episodes]
+                    FROM [TreasureChest2].[dbo].[Episodes] [Episodes]
                         LEFT OUTER JOIN [dbo].[Locations] [Locations] On [Episodes].[Location]=[Locations].[OName]
                         INNER JOIN [dbo].[Locations] [WishListLocation] On [WishListLocation].[Name]='WishList'
                         INNER JOIN [dbo].[Locations] [UnknownLocation] On [UnknownLocation].[Name]='Unknown'
                     ORDER BY [Episodes].[ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Episodes];
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Episodes];
                     Select @Actual=Count(*) From [dbo].[Episodes];
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -2004,7 +2004,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
                     SELECT [History].[ID],
                         [History].[Column],[History].[DateChanged],getdate(),getdate(),[History].[OriginalValue],[Episodes].[ID],[History].[TableName],[History].[Value],[History].[Who]
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+                    FROM [TreasureChest2].[dbo].[History] [History]
                         INNER JOIN [dbo].[Episodes] [Episodes] On [History].[TableName]='Episodes' And [Episodes].[OID]=[History].[RecordID]
                     WHERE [History].[TableName]='Episodes' 
                     ORDER BY [History].[ID];
@@ -2014,8 +2014,8 @@ namespace TC3EF6.Data.CustomMigrationOperations
                     Select [History].[ID],[History].[Column],[History].[DateChanged],getdate() As [DateCreated],getdate() As [DateModified],[History].[OriginalValue],
                         [History].[RecordID] As [OID],[History].[TableName],[History].[Value],[History].[Who],NEWID() As [RecordID]
                     Into #DeletedHistory 
-                    From [GGGSCP1].[TreasureChest].[dbo].[History] [History]
-                    Where [History].[TableName]='Episodes' And Not Exists(Select * From [GGGSCP1].[TreasureChest].[dbo].[Episodes] Where [ID]=[History].[RecordID])
+                    From [TreasureChest2].[dbo].[History] [History]
+                    Where [History].[TableName]='Episodes' And Not Exists(Select * From [TreasureChest2].[dbo].[Episodes] Where [ID]=[History].[RecordID])
                     Order By [History].[RecordID];
                     Select @OrphanedHistoryCount=Count(*) From [#DeletedHistory];
                     Declare h cursor for Select Distinct [OID] From [#DeletedHistory] Order By [OID];
@@ -2032,7 +2032,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                     INSERT INTO [dbo].[History] ([OID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
                     SELECT [ID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who] FROM [#DeletedHistory] ORDER BY [ID];
                     Drop Table #DeletedHistory;
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[History] Where [TableName]='Episodes';
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[History] Where [TableName]='Episodes';
                     Select @Actual=Count(*) From [dbo].[History] Where [TableName]='Episodes';
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -2046,7 +2046,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [RecordID],[TableName],[Thumbnail],[URL],[Width])
                     SELECT Null,Upper('Episodes: '+[Episodes].[Title]),[Episodes].[Title],'Episodes',getdate(),getdate(),Null,Null,[Image],[Episodes].[Title],Null,
                         [newEpisodes].[ID],'Episodes',0,Null,Null
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Episodes] [Episodes]
+                    FROM [TreasureChest2].[dbo].[Episodes] [Episodes]
                         INNER JOIN [dbo].[Episodes] [newEpisodes] On [Episodes].[ID]=[newEpisodes].[OID]
                     WHERE [Episodes].[Image] is not Null
                     ORDER BY [Episodes].[ID];
@@ -2055,12 +2055,12 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [RecordID],[TableName],[Thumbnail],[URL],[Width])
                     SELECT Null,Upper('Episodes: '+[Episodes].[Title]),[Episodes].[Title],'Episodes',getdate(),getdate(),Null,Null,[OtherImage],[Episodes].[Title],Null,
                         [newEpisodes].[ID],'Episodes',0,Null,Null
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Episodes] [Episodes]
+                    FROM [TreasureChest2].[dbo].[Episodes] [Episodes]
                         INNER JOIN [dbo].[Episodes] [newEpisodes] On [Episodes].[ID]=[newEpisodes].[OID]
                     WHERE [Episodes].[OtherImage] is not Null
                     ORDER BY [Episodes].[ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Episodes] Where [Image] is not Null;
-                    Select @Expected=@Expected+Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Episodes] Where [OtherImage] is not Null;
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Episodes] Where [Image] is not Null;
+                    Select @Expected=@Expected+Count(*) From [TreasureChest2].[dbo].[Episodes] Where [OtherImage] is not Null;
                     Select @Actual=Count(*) From [dbo].[Images] Where [TableName]='Episodes';
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -2084,7 +2084,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateFinishingProducts.sql
             --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
-            --   Copyright © 2019 All Rights Reserved.
+            --   Copyright © 2019-2021 All Rights Reserved.
             --*********************************************************************************************************************************
             --
             --    Modification History:
@@ -2102,7 +2102,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                     Delete From [dbo].[FinishingProducts];
                     INSERT INTO [dbo].[FinishingProducts] ([OID],
                         [Cataloged],[Count],[DateCreated],[DateInventoried],[DateModified],[DatePurchased],[DateVerified],[Manufacturer],[Name],
-                        [Notes],[Price],[ProductCatalog],[Reference],[Type],[Value],[WishList],[LocationID])
+                        [Notes],[Price],[ProductCatalog],[Reference],[Type],[Value],[WishList],[LocationID],[Scale],[Nation],[Designation])
                     SELECT [Finishing Products].[ID],
                         1,[Count],[Finishing Products].[DateCreated],[DateInventoried],[Finishing Products].[DateModified],[DatePurchased],[DateVerified],[Manufacturer],[Finishing Products].[Name],
                         [Notes],[Price],[ProductCatalog],[Reference],[Type],[Value],[WishList],
@@ -2113,13 +2113,13 @@ namespace TC3EF6.Data.CustomMigrationOperations
                                     Else [UnknownLocation].[ID]
                                 End
                             Else [Locations].[ID]
-                        End As [LocationID]
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Finishing Products] [Finishing Products]
+                        End As [LocationID],[Scale],[Nation],[Designation]
+                    FROM [TreasureChest2].[dbo].[Finishing Products] [Finishing Products]
                         LEFT OUTER JOIN [dbo].[Locations] [Locations] On [Finishing Products].[Location]=[Locations].[OName]
                         INNER JOIN [dbo].[Locations] [WishListLocation] On [WishListLocation].[Name]='WishList'
                         INNER JOIN [dbo].[Locations] [UnknownLocation] On [UnknownLocation].[Name]='Unknown'
                     ORDER BY [Finishing Products].[ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Finishing Products];
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Finishing Products];
                     Select @Actual=Count(*) From [dbo].[FinishingProducts];
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -2132,7 +2132,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
                     SELECT [History].[ID],
                         [History].[Column],[History].[DateChanged],getdate(),getdate(),[History].[OriginalValue],[FinishingProducts].[ID],'FinishingProducts',[History].[Value],[History].[Who]
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+                    FROM [TreasureChest2].[dbo].[History] [History]
                         INNER JOIN [dbo].[FinishingProducts] [FinishingProducts] On [History].[TableName]='Finishing Products' And [FinishingProducts].[OID]=[History].[RecordID]
                     WHERE [History].[TableName]='Finishing Products' 
                     ORDER BY [History].[ID];
@@ -2142,8 +2142,8 @@ namespace TC3EF6.Data.CustomMigrationOperations
                     Select [History].[ID],[History].[Column],[History].[DateChanged],getdate() As [DateCreated],getdate() As [DateModified],[History].[OriginalValue],
                         [History].[RecordID] As [OID],[History].[TableName],[History].[Value],[History].[Who],NEWID() As [RecordID]
                     Into #DeletedHistory 
-                    From [GGGSCP1].[TreasureChest].[dbo].[History] [History]
-                    Where [History].[TableName]='Finishing Products' And Not Exists(Select * From [GGGSCP1].[TreasureChest].[dbo].[Finishing Products] Where [ID]=[History].[RecordID])
+                    From [TreasureChest2].[dbo].[History] [History]
+                    Where [History].[TableName]='Finishing Products' And Not Exists(Select * From [TreasureChest2].[dbo].[Finishing Products] Where [ID]=[History].[RecordID])
                     Order By [History].[RecordID];
                     Select @OrphanedHistoryCount=Count(*) From [#DeletedHistory];
                     Declare h cursor for Select Distinct [OID] From [#DeletedHistory] Order By [OID];
@@ -2160,7 +2160,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                     INSERT INTO [dbo].[History] ([OID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
                     SELECT [ID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],'FinishingProducts',[Value],[Who] FROM [#DeletedHistory] ORDER BY [ID];
                     Drop Table #DeletedHistory;
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[History] Where [TableName]='Finishing Products';
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[History] Where [TableName]='Finishing Products';
                     Select @Actual=Count(*) From [dbo].[History] Where [TableName]='FinishingProducts';
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -2174,11 +2174,21 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [RecordID],[TableName],[Thumbnail],[URL],[Width])
                     SELECT Null,Upper('Finishing Products: '+[Finishing Products].[Name]),[Finishing Products].[Name],'FinishingProducts',getdate(),getdate(),Null,Null,[Image],[Finishing Products].[Name],Null,
                         [FinishingProducts].[ID],'FinishingProducts',0,Null,Null
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Finishing Products] [Finishing Products]
+                    FROM [TreasureChest2].[dbo].[Finishing Products] [Finishing Products]
                         INNER JOIN [dbo].[FinishingProducts] [FinishingProducts] On [Finishing Products].[ID]=[FinishingProducts].[OID]
                     WHERE [Finishing Products].[Image] is not Null
                     ORDER BY [Finishing Products].[ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Finishing Products] Where [Image] is not Null;
+                    INSERT INTO [dbo].[Images] ([OID],
+                        [AlphaSort],[Caption],[Category],[DateCreated],[DateModified],[FileName],[Height],[Image],[Name],[Notes],
+                        [RecordID],[TableName],[Thumbnail],[URL],[Width])
+                    SELECT Null,Upper('Finishing Products: '+[Finishing Products].[Name]),[Finishing Products].[Name],'FinishingProducts',getdate(),getdate(),Null,Null,[OtherImage],[Finishing Products].[Name],Null,
+                        [FinishingProducts].[ID],'FinishingProducts',0,Null,Null
+                    FROM [TreasureChest2].[dbo].[Finishing Products] [Finishing Products]
+                        INNER JOIN [dbo].[FinishingProducts] [FinishingProducts] On [Finishing Products].[ID]=[FinishingProducts].[OID]
+                    WHERE [Finishing Products].[Image] is not Null
+                    ORDER BY [Finishing Products].[ID];
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Finishing Products] Where [Image] is not Null;
+                    Select @Expected=@Expected+Count(*) From [TreasureChest2].[dbo].[Finishing Products] Where [OtherImage] is not Null;
                     Select @Actual=Count(*) From [dbo].[Images] Where [TableName]='FinishingProducts';
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -2202,7 +2212,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateImages.sql
             --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
-            --   Copyright © 2019 All Rights Reserved.
+            --   Copyright © 2019-2021 All Rights Reserved.
             --*********************************************************************************************************************************
             --
             --    Modification History:
@@ -2223,9 +2233,9 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [RecordID],[TableName],[Thumbnail],[URL],[Width])
                     SELECT [ID],Upper('IMAGES: '+[Sort]),[Caption],[Category],[DateCreated],[DateModified],[FileName],[Height],[Image],[Name],[Notes],
                         Null,Null,0,[URL],[Width]
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Images] Where [Images].[Image] is not Null
+                    FROM [TreasureChest2].[dbo].[Images] Where [Images].[Image] is not Null
                     ORDER BY [Images].[ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Images] Where [Images].[Image] is not Null;
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Images] Where [Images].[Image] is not Null;
                     Select @Actual=Count(*) From [dbo].[Images] Where [RecordID] is Null And [TableName] is Null;
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -2238,7 +2248,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
                     SELECT [History].[ID],
                         [History].[Column],[History].[DateChanged],getdate(),getdate(),[History].[OriginalValue],[Images].[ID],[History].[TableName],[History].[Value],[History].[Who]
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+                    FROM [TreasureChest2].[dbo].[History] [History]
                         INNER JOIN [dbo].[Images] [Images] On [History].[TableName]='Images' And [Images].[OID]=[History].[RecordID]
                     WHERE [History].[TableName]='Images' 
                     ORDER BY [History].[ID];
@@ -2248,8 +2258,8 @@ namespace TC3EF6.Data.CustomMigrationOperations
                     Select [History].[ID],[History].[Column],[History].[DateChanged],getdate() As [DateCreated],getdate() As [DateModified],[History].[OriginalValue],
                         [History].[RecordID] As [OID],[History].[TableName],[History].[Value],[History].[Who],NEWID() As [RecordID]
                     Into #DeletedHistory 
-                    From [GGGSCP1].[TreasureChest].[dbo].[History] [History]
-                    Where [History].[TableName]='Images' And Not Exists(Select * From [GGGSCP1].[TreasureChest].[dbo].[Images] Where [ID]=[History].[RecordID])
+                    From [TreasureChest2].[dbo].[History] [History]
+                    Where [History].[TableName]='Images' And Not Exists(Select * From [TreasureChest2].[dbo].[Images] Where [ID]=[History].[RecordID])
                     Order By [History].[RecordID];
                     Declare h cursor for Select Distinct [OID] From [#DeletedHistory] Order By [OID];
                     Open h;
@@ -2265,7 +2275,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                     INSERT INTO [dbo].[History] ([OID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
                     SELECT [ID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who] FROM [#DeletedHistory] ORDER BY [ID];
                     Drop Table #DeletedHistory;
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[History] Where [TableName]='Images';
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[History] Where [TableName]='Images';
                     Select @Actual=Count(*) From [dbo].[History] Where [TableName]='Images';
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -2289,7 +2299,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateKits.sql
             --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
-            --   Copyright © 2019 All Rights Reserved.
+            --   Copyright © 2019-2021 All Rights Reserved.
             --*********************************************************************************************************************************
             --
             --    Modification History:
@@ -2321,12 +2331,12 @@ namespace TC3EF6.Data.CustomMigrationOperations
                                 End
                             Else [Locations].[ID]
                         End As [LocationID]
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Kits] [Kits]
+                    FROM [TreasureChest2].[dbo].[Kits] [Kits]
                         LEFT OUTER JOIN [dbo].[Locations] [Locations] On [Kits].[Location]=[Locations].[OName]
                         INNER JOIN [dbo].[Locations] [WishListLocation] On [WishListLocation].[Name]='WishList'
                         INNER JOIN [dbo].[Locations] [UnknownLocation] On [UnknownLocation].[Name]='Unknown'
                     ORDER BY [Kits].[ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Kits];
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Kits];
                     Select @Actual=Count(*) From [dbo].[Kits];
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -2339,7 +2349,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
                     SELECT [History].[ID],
                         [History].[Column],[History].[DateChanged],getdate(),getdate(),[History].[OriginalValue],[Kits].[ID],[History].[TableName],[History].[Value],[History].[Who]
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+                    FROM [TreasureChest2].[dbo].[History] [History]
                         INNER JOIN [dbo].[Kits] [Kits] On [History].[TableName]='Kits' And [Kits].[OID]=[History].[RecordID]
                     WHERE [History].[TableName]='Kits' 
                     ORDER BY [History].[ID];
@@ -2349,8 +2359,8 @@ namespace TC3EF6.Data.CustomMigrationOperations
                     Select [History].[ID],[History].[Column],[History].[DateChanged],getdate() As [DateCreated],getdate() As [DateModified],[History].[OriginalValue],
                         [History].[RecordID] As [OID],[History].[TableName],[History].[Value],[History].[Who],NEWID() As [RecordID]
                     Into #DeletedHistory 
-                    From [GGGSCP1].[TreasureChest].[dbo].[History] [History]
-                    Where [History].[TableName]='Kits' And Not Exists(Select * From [GGGSCP1].[TreasureChest].[dbo].[Kits] Where [ID]=[History].[RecordID])
+                    From [TreasureChest2].[dbo].[History] [History]
+                    Where [History].[TableName]='Kits' And Not Exists(Select * From [TreasureChest2].[dbo].[Kits] Where [ID]=[History].[RecordID])
                     Order By [History].[RecordID];
                     Select @OrphanedHistoryCount=Count(*) From [#DeletedHistory];
                     Declare h cursor for Select Distinct [OID] From [#DeletedHistory] Order By [OID];
@@ -2367,7 +2377,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                     INSERT INTO [dbo].[History] ([OID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
                     SELECT [ID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who] FROM [#DeletedHistory] ORDER BY [ID];
                     Drop Table #DeletedHistory;
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[History] Where [TableName]='Kits';
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[History] Where [TableName]='Kits';
                     Select @Actual=Count(*) From [dbo].[History] Where [TableName]='Kits';
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -2383,7 +2393,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [Kits].[Scale]+' '+[Kits].[Designation]+' '+[Kits].[Name]+' ('+[Kits].[Reference]+')',
                         'Kits',getdate(),getdate(),Null,Null,[Image],[Kits].[Name],Null,
                         [newKits].[ID],'Kits',0,Null,Null
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Kits] [Kits]
+                    FROM [TreasureChest2].[dbo].[Kits] [Kits]
                         INNER JOIN [dbo].[Kits] [newKits] On [Kits].[ID]=[newKits].[OID]
                     WHERE [Kits].[Image] is not Null
                     ORDER BY [Kits].[ID];
@@ -2394,12 +2404,12 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [Kits].[Scale]+' '+[Kits].[Designation]+' '+[Kits].[Name]+' ('+[Kits].[Reference]+')',
                         'Kits',getdate(),getdate(),Null,Null,[OtherImage],[Kits].[Name],Null,
                         [newKits].[ID],'Kits',0,Null,Null
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Kits] [Kits]
+                    FROM [TreasureChest2].[dbo].[Kits] [Kits]
                         INNER JOIN [dbo].[Kits] [newKits] On [Kits].[ID]=[newKits].[OID]
                     WHERE [Kits].[OtherImage] is not Null
                     ORDER BY [Kits].[ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Kits] Where [Image] is not Null;
-                    Select @Expected=@Expected+Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Kits] Where [OtherImage] is not Null;
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Kits] Where [Image] is not Null;
+                    Select @Expected=@Expected+Count(*) From [TreasureChest2].[dbo].[Kits] Where [OtherImage] is not Null;
                     Select @Actual=Count(*) From [dbo].[Images] Where [TableName]='Kits';
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -2423,7 +2433,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateMovies.sql
             --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
-            --   Copyright © 2019 All Rights Reserved.
+            --   Copyright © 2019-2021 All Rights Reserved.
             --*********************************************************************************************************************************
             --
             --    Modification History:
@@ -2455,12 +2465,12 @@ namespace TC3EF6.Data.CustomMigrationOperations
                                 End
                             Else [Locations].[ID]
                         End As [LocationID],'Movies'
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Movies] [Movies]
+                    FROM [TreasureChest2].[dbo].[Movies] [Movies]
                         LEFT OUTER JOIN [dbo].[Locations] [Locations] On [Movies].[Location]=[Locations].[OName]
                         INNER JOIN [dbo].[Locations] [WishListLocation] On [WishListLocation].[Name]='WishList'
                         INNER JOIN [dbo].[Locations] [UnknownLocation] On [UnknownLocation].[Name]='Unknown'
                     ORDER BY [Movies].[ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Movies];
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Movies];
                     Select @Actual=Count(*) From [dbo].[Videos] Where [SourceTable]='Movies';
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -2472,7 +2482,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
                     SELECT [History].[ID],
                         [History].[Column],[History].[DateChanged],getdate(),getdate(),[History].[OriginalValue],[Videos].[ID],'Videos',[History].[Value],[History].[Who]
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+                    FROM [TreasureChest2].[dbo].[History] [History]
                         INNER JOIN [dbo].[Videos] [Videos] On [History].[TableName]='Movies' And [Videos].[OID]=[History].[RecordID]
                     WHERE [History].[TableName]='Movies' 
                     ORDER BY [History].[ID];
@@ -2482,8 +2492,8 @@ namespace TC3EF6.Data.CustomMigrationOperations
                     Select [History].[ID],[History].[Column],[History].[DateChanged],getdate() As [DateCreated],getdate() As [DateModified],[History].[OriginalValue],
                         [History].[RecordID] As [OID],[History].[TableName],[History].[Value],[History].[Who],NEWID() As [RecordID]
                     Into #DeletedHistory 
-                    From [GGGSCP1].[TreasureChest].[dbo].[History] [History]
-                    Where [History].[TableName]='Movies' And Not Exists(Select * From [GGGSCP1].[TreasureChest].[dbo].[Movies] Where [ID]=[History].[RecordID])
+                    From [TreasureChest2].[dbo].[History] [History]
+                    Where [History].[TableName]='Movies' And Not Exists(Select * From [TreasureChest2].[dbo].[Movies] Where [ID]=[History].[RecordID])
                     Order By [History].[RecordID];
                     Select @OrphanedHistoryCount=Count(*) From [#DeletedHistory];
                     Declare h cursor for Select Distinct [OID] From [#DeletedHistory] Order By [OID];
@@ -2500,7 +2510,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                     INSERT INTO [dbo].[History] ([OID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
                     SELECT [ID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who] FROM [#DeletedHistory] ORDER BY [ID];
                     Drop Table #DeletedHistory;
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[History] Where [TableName]='Movies';
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[History] Where [TableName]='Movies';
                     Select @Actual=@OrphanedHistoryCount+Count(*) From [dbo].[History] Where [TableName]='Videos' And [History].[RecordID] In (Select ID From [dbo].[Videos] Where [SourceTable]='Movies');
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -2513,7 +2523,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [RecordID],[TableName],[Thumbnail],[URL],[Width])
                     SELECT Null,Upper('Videos: '+[Movies].[Title]),[Movies].[Title],'Videos',getdate(),getdate(),Null,Null,[Image],[Movies].[Title],Null,
                         [newVideos].[ID],'Videos',0,Null,Null
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Movies] [Movies]
+                    FROM [TreasureChest2].[dbo].[Movies] [Movies]
                         INNER JOIN [dbo].[Videos] [newVideos] On [Movies].[ID]=[newVideos].[OID]
                     WHERE [Movies].[Image] is not Null
                     ORDER BY [Movies].[ID];
@@ -2522,12 +2532,12 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [RecordID],[TableName],[Thumbnail],[URL],[Width])
                     SELECT Null,Upper('Videos: '+[Movies].[Title]),[Movies].[Title],'Videos',getdate(),getdate(),Null,Null,[OtherImage],[Movies].[Title],Null,
                         [newVideos].[ID],'Videos',0,Null,Null
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Movies] [Movies]
+                    FROM [TreasureChest2].[dbo].[Movies] [Movies]
                         INNER JOIN [dbo].[Videos] [newVideos] On [Movies].[ID]=[newVideos].[OID]
                     WHERE [Movies].[OtherImage] is not Null
                     ORDER BY [Movies].[ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Movies] Where [Image] is not Null;
-                    Select @Expected=@Expected+Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Movies] Where [OtherImage] is not Null;
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Movies] Where [Image] is not Null;
+                    Select @Expected=@Expected+Count(*) From [TreasureChest2].[dbo].[Movies] Where [OtherImage] is not Null;
                     Select @Actual=Count(*) From [dbo].[Images] Where [TableName]='Videos' And [Images].[RecordID] In (Select ID From [dbo].[Videos] Where [SourceTable]='Movies');
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -2551,13 +2561,13 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateMusic.sql
             --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
-            --   Copyright © 2019 All Rights Reserved.
+            --   Copyright © 2019-2021 All Rights Reserved.
             --*********************************************************************************************************************************
             --
             --    Modification History:
             --    Date:       Developer:        Description:
-            --  06/02/19    Ken Clark       Enhanced to handle Artists/Tracks & Albums replacement for Music;
-            --    02/01/19    Ken Clark        Created;
+            --    06/02/19    Ken Clark         Enhanced to handle Artists/Tracks & Albums replacement for Music;
+            --    02/01/19    Ken Clark         Created;
             --=================================================================================================================================
             
             Create Procedure sp_MigrateMusic As 
@@ -2574,9 +2584,9 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [Name],[AlphaSort],[AKA],[Comments],[DateCreated],[DateModified])
                     SELECT [Artists].[ID],
                         [Name],[AlphaSort],[AKA],NULL,getdate() As [DateCreated],getdate() As [DateModified]
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Artists] [Artists]
+                    FROM [TreasureChest2].[dbo].[Artists] [Artists]
                     ORDER BY [Artists].[ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Artists];
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Artists];
                     Select @Actual=Count(*) From [dbo].[Artists];
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -2599,13 +2609,13 @@ namespace TC3EF6.Data.CustomMigrationOperations
                                 End
                             Else [Locations].[ID]
                         End As [LocationID]
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Music] [Music]
+                    FROM [TreasureChest2].[dbo].[Music] [Music]
                         LEFT OUTER JOIN [dbo].[Locations] [Locations] On [Music].[Location]=[Locations].[OName]
                         INNER JOIN [dbo].[Locations] [WishListLocation] On [WishListLocation].[Name]='WishList'
                         INNER JOIN [dbo].[Locations] [UnknownLocation] On [UnknownLocation].[Name]='Unknown'
                         LEFT OUTER JOIN [dbo].[Artists] [Artists] On [Music].[ArtistID]=[Artists].[OID]
                     ORDER BY [Music].[ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Music];
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Music];
                     Select @Actual=Count(*) From [dbo].[Albums];
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -2618,7 +2628,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
                     SELECT [History].[ID],
                         [History].[Column],[History].[DateChanged],getdate(),getdate(),[History].[OriginalValue],[Albums].[ID],'Albums',[History].[Value],[History].[Who]
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+                    FROM [TreasureChest2].[dbo].[History] [History]
                         INNER JOIN [dbo].[Albums] [Albums] On [History].[TableName]='Music' And [Albums].[OID]=[History].[RecordID]
                     WHERE [History].[TableName]='Music' 
                     ORDER BY [History].[ID];
@@ -2628,8 +2638,8 @@ namespace TC3EF6.Data.CustomMigrationOperations
                     Select [History].[ID],[History].[Column],[History].[DateChanged],getdate() As [DateCreated],getdate() As [DateModified],[History].[OriginalValue],
                         [History].[RecordID] As [OID],'Albums' As [TableName],[History].[Value],[History].[Who],NEWID() As [RecordID]
                     Into #DeletedHistory 
-                    From [GGGSCP1].[TreasureChest].[dbo].[History] [History]
-                    Where [History].[TableName]='Music' And Not Exists(Select * From [GGGSCP1].[TreasureChest].[dbo].[Music] Where [ID]=[History].[RecordID])
+                    From [TreasureChest2].[dbo].[History] [History]
+                    Where [History].[TableName]='Music' And Not Exists(Select * From [TreasureChest2].[dbo].[Music] Where [ID]=[History].[RecordID])
                     Order By [History].[RecordID];
                     Declare h cursor for Select Distinct [OID] From [#DeletedHistory] Order By [OID];
                     Open h;
@@ -2645,7 +2655,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                     INSERT INTO [dbo].[History] ([OID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
                     SELECT [ID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who] FROM [#DeletedHistory] ORDER BY [ID];
                     Drop Table #DeletedHistory;
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[History] Where [TableName]='Music';
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[History] Where [TableName]='Music';
                     Select @Actual=Count(*) From [dbo].[History] Where [TableName]='Albums';
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -2659,11 +2669,21 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [RecordID],[TableName],[Thumbnail],[URL],[Width])
                     SELECT Null,Upper('Albums: '+[Music].[Title]),[Music].[Artist]+': '+[Music].[Title]+' Cover','Albums',getdate(),getdate(),Null,Null,[Image],[Music].[Title],Null,
                         [newMusic].[ID],'Albums',0,Null,Null
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Music] [Music]
+                    FROM [TreasureChest2].[dbo].[Music] [Music]
                         INNER JOIN [dbo].[Albums] [newMusic] On [Music].[ID]=[newMusic].[OID]
                     WHERE [Music].[Image] is not Null
                     ORDER BY [Music].[ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Music] Where [Image] is not Null;
+                    INSERT INTO [dbo].[Images] ([OID],
+                        [AlphaSort],[Caption],[Category],[DateCreated],[DateModified],[FileName],[Height],[Image],[Name],[Notes],
+                        [RecordID],[TableName],[Thumbnail],[URL],[Width])
+                    SELECT Null,Upper('Albums: '+[Music].[Title]),[Music].[Artist]+': '+[Music].[Title]+' Cover','Albums',getdate(),getdate(),Null,Null,[OtherImage],[Music].[Title],Null,
+                        [newMusic].[ID],'Albums',0,Null,Null
+                    FROM [TreasureChest2].[dbo].[Music] [Music]
+                        INNER JOIN [dbo].[Albums] [newMusic] On [Music].[ID]=[newMusic].[OID]
+                    WHERE [Music].[Image] is not Null
+                    ORDER BY [Music].[ID];
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Music] Where [Image] is not Null;
+                    Select @Expected=@Expected+Count(*) From [TreasureChest2].[dbo].[Music] Where [OtherImage] is not Null;
                     Select @Actual=Count(*) From [dbo].[Images] Where [TableName]='Albums';
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -2684,12 +2704,12 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [Tracks].[Year],[Album],[Albums].[ID] As [AlbumID],
                         [Disc],[Track],[Tracks].[Title],[Duration],[Composer],[Comment],[Path],[Lyrics],[Publisher],
                         getdate() As [DateCreated],getdate() As [DateModified]
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Tracks] [Tracks]
+                    FROM [TreasureChest2].[dbo].[Tracks] [Tracks]
                         LEFT OUTER JOIN [dbo].[Artists] [Artists] On [Tracks].[Artist]=[Artists].[Name]
                         LEFT OUTER JOIN [dbo].[Artists] [AlbumArtists] On [Tracks].[AlbumArtistID]=[AlbumArtists].[OID]
                         LEFT OUTER JOIN [dbo].[Albums] [Albums] On [Tracks].[AlbumID]=[Albums].[OID]
                     ORDER BY [Tracks].[ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Tracks];
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Tracks];
                     Select @Actual=Count(*) From [dbo].[Tracks];
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -2713,7 +2733,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateQueries.sql
             --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
-            --   Copyright © 2019 All Rights Reserved.
+            --   Copyright © 2019-2021 All Rights Reserved.
             --*********************************************************************************************************************************
             --
             --    Modification History:
@@ -2733,8 +2753,8 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [Access],[DateCreated],[DateModified],[Description],[Name],[QueryText])
                     SELECT ROW_NUMBER() OVER (Order by Name) AS ID,
                         [Access],[DateCreated],[DateModified],[Description],[Name],[Query]
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Query] ORDER BY [ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Query];
+                    FROM [TreasureChest2].[dbo].[Query] ORDER BY [ID];
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Query];
                     Select @Actual=Count(*) From [dbo].[Query];
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -2758,7 +2778,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateRockets.sql
             --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
-            --   Copyright © 2019 All Rights Reserved.
+            --   Copyright © 2019-2021 All Rights Reserved.
             --*********************************************************************************************************************************
             --
             --    Modification History:
@@ -2788,12 +2808,12 @@ namespace TC3EF6.Data.CustomMigrationOperations
                                 End
                             Else [Locations].[ID]
                         End As [LocationID]
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Rockets] [Rockets]
+                    FROM [TreasureChest2].[dbo].[Rockets] [Rockets]
                         LEFT OUTER JOIN [dbo].[Locations] [Locations] On [Rockets].[Location]=[Locations].[OName]
                         INNER JOIN [dbo].[Locations] [WishListLocation] On [WishListLocation].[Name]='WishList'
                         INNER JOIN [dbo].[Locations] [UnknownLocation] On [UnknownLocation].[Name]='Unknown'
                     ORDER BY [Rockets].[ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Rockets];
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Rockets];
                     Select @Actual=Count(*) From [dbo].[Rockets];
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -2806,7 +2826,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
                     SELECT [History].[ID],
                         [History].[Column],[History].[DateChanged],getdate(),getdate(),[History].[OriginalValue],[Rockets].[ID],[History].[TableName],[History].[Value],[History].[Who]
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+                    FROM [TreasureChest2].[dbo].[History] [History]
                         INNER JOIN [dbo].[Rockets] [Rockets] On [History].[TableName]='Rockets' And [Rockets].[OID]=[History].[RecordID]
                     WHERE [History].[TableName]='Rockets' 
                     ORDER BY [History].[ID];
@@ -2816,8 +2836,8 @@ namespace TC3EF6.Data.CustomMigrationOperations
                     Select [History].[ID],[History].[Column],[History].[DateChanged],getdate() As [DateCreated],getdate() As [DateModified],[History].[OriginalValue],
                         [History].[RecordID] As [OID],[History].[TableName],[History].[Value],[History].[Who],NEWID() As [RecordID]
                     Into #DeletedHistory 
-                    From [GGGSCP1].[TreasureChest].[dbo].[History] [History]
-                    Where [History].[TableName]='Rockets' And Not Exists(Select * From [GGGSCP1].[TreasureChest].[dbo].[Rockets] Where [ID]=[History].[RecordID])
+                    From [TreasureChest2].[dbo].[History] [History]
+                    Where [History].[TableName]='Rockets' And Not Exists(Select * From [TreasureChest2].[dbo].[Rockets] Where [ID]=[History].[RecordID])
                     Order By [History].[RecordID];
                     Select @OrphanedHistoryCount=Count(*) From [#DeletedHistory];
                     Declare h cursor for Select Distinct [OID] From [#DeletedHistory] Order By [OID];
@@ -2834,7 +2854,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                     INSERT INTO [dbo].[History] ([OID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
                     SELECT [ID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who] FROM [#DeletedHistory] ORDER BY [ID];
                     Drop Table #DeletedHistory;
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[History] Where [TableName]='Rockets';
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[History] Where [TableName]='Rockets';
                     Select @Actual=Count(*) From [dbo].[History] Where [TableName]='Rockets';
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -2848,11 +2868,11 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [RecordID],[TableName],[Thumbnail],[URL],[Width])
                     SELECT Null,Upper('Rockets: '+[Rockets].[Name]),[Rockets].[Name],'Rockets',getdate(),getdate(),Null,Null,[Image],[Rockets].[Name],Null,
                         [newRockets].[ID],'Rockets',0,Null,Null
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Rockets] [Rockets]
+                    FROM [TreasureChest2].[dbo].[Rockets] [Rockets]
                         INNER JOIN [dbo].[Rockets] [newRockets] On [Rockets].[ID]=[newRockets].[OID]
                     WHERE [Rockets].[Image] is not Null
                     ORDER BY [Rockets].[ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Rockets] Where [Image] is not Null;
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Rockets] Where [Image] is not Null;
                     Select @Actual=Count(*) From [dbo].[Images] Where [TableName]='Rockets';
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -2876,7 +2896,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateShipClasses.sql
             --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
-            --   Copyright © 2019 All Rights Reserved.
+            --   Copyright © 2019-2021 All Rights Reserved.
             --*********************************************************************************************************************************
             --
             --    Modification History:
@@ -2898,10 +2918,10 @@ namespace TC3EF6.Data.CustomMigrationOperations
                     SELECT [Class].[ID],
                         [Class].[Aircraft],[Class].[ASW Weapons],[Class].[Beam],[Class].[Boilers],[Class].[DateCreated],[Class].[DateModified],[Class].[Description],[Class].[Displacement],[Class].[Draft],[Class].[EW],[Class].[Fire Control],
                         [Class].[Guns],[Class].[Length],[Class].[Manning],[Class].[Missiles],[Class].[Name],[Class].[Notes],[Class].[Propulsion],[Class].[Radars],[Class].[Sonars],[Class].[Speed],[Class].[Year],[ShipClassTypes].[ID]
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Class] [Class]
+                    FROM [TreasureChest2].[dbo].[Class] [Class]
                         INNER JOIN [dbo].[ShipClassTypes] [ShipClassTypes] On [Class].[ClassificationID]=[ShipClassTypes].[OID]
                     ORDER BY [Class].[ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Class];
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Class];
                     Select @Actual=Count(*) From [dbo].[ShipClass];
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -2914,11 +2934,11 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
                     SELECT [History].[ID],
                         [History].[Column],[History].[DateChanged],getdate(),getdate(),[History].[OriginalValue],[ShipClass].[ID],'ShipClass',[History].[Value],[History].[Who]
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+                    FROM [TreasureChest2].[dbo].[History] [History]
                         INNER JOIN [dbo].[ShipClass] [ShipClass] On [History].[TableName]='Class' And [ShipClass].[OID]=[History].[RecordID]
                     WHERE [History].[TableName]='Class' 
                     ORDER BY [History].[ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[History] Where [TableName]='Class';
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[History] Where [TableName]='Class';
                     Select @Actual=Count(*) From [dbo].[History] Where [TableName]='ShipClass';
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -2932,11 +2952,11 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [RecordID],[TableName],[Thumbnail],[URL],[Width])
                     SELECT Null,Upper('Ship Class: '+[Class].[Name]),Null,'ShipClass',getdate(),getdate(),Null,Null,[Image],[Class].[Name],Null,
                         [ShipClass].[ID],'ShipClass',0,Null,Null
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Class] [Class]
+                    FROM [TreasureChest2].[dbo].[Class] [Class]
                         INNER JOIN [dbo].[ShipClass] [ShipClass] On [Class].[ID]=[ShipClass].[OID]
                     WHERE [Class].[Image] is not Null
                     ORDER BY [Class].[ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Class] Where [Image] is not Null;
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Class] Where [Image] is not Null;
                     Select @Actual=Count(*) From [dbo].[Images] Where [TableName]='ShipClass';
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -2960,7 +2980,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateShipClassTypes.sql
             --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
-            --   Copyright © 2019 All Rights Reserved.
+            --   Copyright © 2019-2021 All Rights Reserved.
             --*********************************************************************************************************************************
             --
             --    Modification History:
@@ -2976,13 +2996,13 @@ namespace TC3EF6.Data.CustomMigrationOperations
                 Begin Try
                     exec sp_LogMessage @Milestone, 'ShipClassTypes/Classifications...';
                     --Seed method will have already added most this static data...
-                    Update [ShipClassTypes] Set [OID]=(Select Top 1 ID From [GGGSCP1].[TreasureChest].[dbo].[Classification] Where [Type]=[TypeCode] And [Classification].[Description]=[ShipClassTypes].[Description]);
-                    Update [ShipClassTypes] Set [OID]=(Select Top 1 ID From [GGGSCP1].[TreasureChest].[dbo].[Classification] Where [Type] Is Null And [Classification].[Description]='Unassigned') Where [ShipClassTypes].[Description]='Unassigned';
+                    Update [ShipClassTypes] Set [OID]=(Select Top 1 ID From [TreasureChest2].[dbo].[Classification] Where [Type]=[TypeCode] And [Classification].[Description]=[ShipClassTypes].[Description]);
+                    Update [ShipClassTypes] Set [OID]=(Select Top 1 ID From [TreasureChest2].[dbo].[Classification] Where [Type] Is Null And [Classification].[Description]='Unassigned') Where [ShipClassTypes].[Description]='Unassigned';
                     --INSERT INTO [dbo].[ShipClassTypes] ([OID],
                     --    [DateCreated],[DateModified],[Description],[TypeCode])
                     --SELECT [ID],
                     --    [DateCreated],[DateModified],[Description],[Type]
-                    --FROM [GGGSCP1].[TreasureChest].[dbo].[Classification] ORDER BY [ID];
+                    --FROM [TreasureChest2].[dbo].[Classification] ORDER BY [ID];
             
                     exec sp_LogMessage @Milestone, '   History';
                     Delete From [dbo].[History] Where [History].[TableName]='ShipClassTypes';
@@ -2990,11 +3010,11 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
                     SELECT [History].[ID],
                         [History].[Column],[History].[DateChanged],getdate(),getdate(),[History].[OriginalValue],[ShipClassificationTypes].[ID],'ShipClassTypes',[History].[Value],[History].[Who]
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+                    FROM [TreasureChest2].[dbo].[History] [History]
                         INNER JOIN [dbo].[ShipClassTypes] [ShipClassificationTypes] On [History].[TableName]='Classification' And [ShipClassificationTypes].[OID]=[History].[RecordID]
                     WHERE [History].[TableName]='Classification' 
                     ORDER BY [History].[ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[History] Where [TableName]='Classification';
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[History] Where [TableName]='Classification';
                     Select @Actual=Count(*) From [dbo].[History] Where [TableName]='ShipClassTypes';
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -3018,7 +3038,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateShips.sql
             --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
-            --   Copyright © 2019 All Rights Reserved.
+            --   Copyright © 2019-2021 All Rights Reserved.
             --*********************************************************************************************************************************
             --
             --    Modification History:
@@ -3044,11 +3064,11 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [Ships].[Draft],[Ships].[EW],[Ships].[Fire Control],[Ships].[Guns],[Ships].[History]+[Ships].[More History],[Ships].[HomePort],[Ships].[HullNumber],[Ships].[URL_Internet],[Ships].[Length],[Ships].[URL_Local],[Ships].[Manning],[Ships].[Missiles],
                         [Ships].[Name],[Ships].[Notes],[Ships].[Number],[Ships].[Propulsion],[Ships].[Radars],[Ships].[Sonars],[Ships].[Speed],[Ships].[Status],[Ships].[Zip Code],
                         [ShipClass].[ID],[ShipClassTypes].[ID]
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Ships]
+                    FROM [TreasureChest2].[dbo].[Ships]
                         INNER JOIN [dbo].[ShipClass] [ShipClass] On [Ships].[ClassID]=[ShipClass].[OID]
                         INNER JOIN [dbo].[ShipClassTypes] [ShipClassTypes] On [Ships].[ClassificationID]=[ShipClassTypes].[OID]
                     ORDER BY [Ships].[ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Ships];
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Ships];
                     Select @Actual=Count(*) From [dbo].[Ships];
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -3061,11 +3081,11 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
                     SELECT [History].[ID],
                         [History].[Column],[History].[DateChanged],getdate(),getdate(),[History].[OriginalValue],[Ships].[ID],'Ships',[History].[Value],[History].[Who]
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+                    FROM [TreasureChest2].[dbo].[History] [History]
                         INNER JOIN [dbo].[Ships] [Ships] On [History].[TableName]='Ships' And [Ships].[OID]=[History].[RecordID]
                     WHERE [History].[TableName]='Ships' 
                     ORDER BY [History].[ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[History] Where [TableName]='Ships';
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[History] Where [TableName]='Ships';
                     Select @Actual=Count(*) From [dbo].[History] Where [TableName]='Ships';
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -3079,11 +3099,11 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [RecordID],[TableName],[Thumbnail],[URL],[Width])
                     SELECT Null,Upper('Ships: '+[Ships].[Name]),Null,'Ships',getdate(),getdate(),Null,Null,[Image],[Ships].[Name],Null,
                         [newShips].[ID],'Ships',0,Null,Null
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Ships] [Ships]
+                    FROM [TreasureChest2].[dbo].[Ships] [Ships]
                         INNER JOIN [dbo].[Ships] [newShips] On [Ships].[ID]=[newShips].[OID]
                     WHERE [Ships].[Image] is not Null
                     ORDER BY [Ships].[ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Ships] Where [Image] is not Null;
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Ships] Where [Image] is not Null;
                     Select @Actual=Count(*) From [dbo].[Images] Where [TableName]='Ships';
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -3107,7 +3127,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateSoftware.sql
             --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
-            --   Copyright © 2019 All Rights Reserved.
+            --   Copyright © 2019-2021 All Rights Reserved.
             --*********************************************************************************************************************************
             --
             --    Modification History:
@@ -3137,12 +3157,12 @@ namespace TC3EF6.Data.CustomMigrationOperations
                                 End
                             Else [Locations].[ID]
                         End As [LocationID]
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Software] [Software]
+                    FROM [TreasureChest2].[dbo].[Software] [Software]
                         LEFT OUTER JOIN [dbo].[Locations] [Locations] On [Software].[Location]=[Locations].[OName]
                         INNER JOIN [dbo].[Locations] [WishListLocation] On [WishListLocation].[Name]='WishList'
                         INNER JOIN [dbo].[Locations] [UnknownLocation] On [UnknownLocation].[Name]='Unknown'
                     ORDER BY [Software].[ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Software];
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Software];
                     Select @Actual=Count(*) From [dbo].[Software];
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -3155,7 +3175,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
                     SELECT [History].[ID],
                         [History].[Column],[History].[DateChanged],getdate(),getdate(),[History].[OriginalValue],[Software].[ID],[History].[TableName],[History].[Value],[History].[Who]
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+                    FROM [TreasureChest2].[dbo].[History] [History]
                         INNER JOIN [dbo].[Software] [Software] On [History].[TableName]='Software' And [Software].[OID]=[History].[RecordID]
                     WHERE [History].[TableName]='Software' 
                     ORDER BY [History].[ID];
@@ -3165,8 +3185,8 @@ namespace TC3EF6.Data.CustomMigrationOperations
                     Select [History].[ID],[History].[Column],[History].[DateChanged],getdate() As [DateCreated],getdate() As [DateModified],[History].[OriginalValue],
                         [History].[RecordID] As [OID],[History].[TableName],[History].[Value],[History].[Who],NEWID() As [RecordID]
                     Into #DeletedHistory 
-                    From [GGGSCP1].[TreasureChest].[dbo].[History] [History]
-                    Where [History].[TableName]='Software' And Not Exists(Select * From [GGGSCP1].[TreasureChest].[dbo].[Software] Where [ID]=[History].[RecordID])
+                    From [TreasureChest2].[dbo].[History] [History]
+                    Where [History].[TableName]='Software' And Not Exists(Select * From [TreasureChest2].[dbo].[Software] Where [ID]=[History].[RecordID])
                     Order By [History].[RecordID];
                     Declare h cursor for Select Distinct [OID] From [#DeletedHistory] Order By [OID];
                     Open h;
@@ -3182,7 +3202,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                     INSERT INTO [dbo].[History] ([OID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
                     SELECT [ID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who] FROM [#DeletedHistory] ORDER BY [ID];
                     Drop Table #DeletedHistory;
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[History] Where [TableName]='Software';
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[History] Where [TableName]='Software';
                     Select @Actual=Count(*) From [dbo].[History] Where [TableName]='Software';
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -3196,7 +3216,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [RecordID],[TableName],[Thumbnail],[URL],[Width])
                     SELECT Null,Upper('Software: '+[Software].[Title]),Null,'Software',getdate(),getdate(),Null,Null,[Image],[Software].[Title],Null,
                         [newSoftware].[ID],'Software',0,Null,Null
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Software] [Software]
+                    FROM [TreasureChest2].[dbo].[Software] [Software]
                         INNER JOIN [dbo].[Software] [newSoftware] On [Software].[ID]=[newSoftware].[OID]
                     WHERE [Software].[Image] is not Null
                     ORDER BY [Software].[ID];
@@ -3205,12 +3225,12 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [RecordID],[TableName],[Thumbnail],[URL],[Width])
                     SELECT Null,Upper('Software: '+[Software].[Title]),Null,'Software',getdate(),getdate(),Null,Null,[OtherImage],[Software].[Title],Null,
                         [newSoftware].[ID],'Software',0,Null,Null
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Software] [Software]
+                    FROM [TreasureChest2].[dbo].[Software] [Software]
                         INNER JOIN [dbo].[Software] [newSoftware] On [Software].[ID]=[newSoftware].[OID]
                     WHERE [Software].[OtherImage] is not Null
                     ORDER BY [Software].[ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Software] Where [Image] is not Null;
-                    Select @Expected=@Expected+Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Software] Where [OtherImage] is not Null;
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Software] Where [Image] is not Null;
+                    Select @Expected=@Expected+Count(*) From [TreasureChest2].[dbo].[Software] Where [OtherImage] is not Null;
                     Select @Actual=Count(*) From [dbo].[Images] Where [TableName]='Software';
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -3234,7 +3254,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateSpecials.sql
             --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
-            --   Copyright © 2019 All Rights Reserved.
+            --   Copyright © 2019-2021 All Rights Reserved.
             --*********************************************************************************************************************************
             --
             --    Modification History:
@@ -3266,12 +3286,12 @@ namespace TC3EF6.Data.CustomMigrationOperations
                                 End
                             Else [Locations].[ID]
                         End As [LocationID],'Specials'
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Specials] [Specials]
+                    FROM [TreasureChest2].[dbo].[Specials] [Specials]
                         LEFT OUTER JOIN [dbo].[Locations] [Locations] On [Specials].[Location]=[Locations].[OName]
                         INNER JOIN [dbo].[Locations] [WishListLocation] On [WishListLocation].[Name]='WishList'
                         INNER JOIN [dbo].[Locations] [UnknownLocation] On [UnknownLocation].[Name]='Unknown'
                     ORDER BY [Specials].[ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Specials];
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Specials];
                     Select @Actual=Count(*) From [dbo].[Videos] Where [SourceTable]='Specials';
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -3283,7 +3303,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
                     SELECT [History].[ID],
                         [History].[Column],[History].[DateChanged],getdate(),getdate(),[History].[OriginalValue],[Videos].[ID],'Videos',[History].[Value],[History].[Who]
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+                    FROM [TreasureChest2].[dbo].[History] [History]
                         INNER JOIN [dbo].[Videos] [Videos] On [History].[TableName]='Specials' And [Videos].[OID]=[History].[RecordID]
                     WHERE [History].[TableName]='Specials' 
                     ORDER BY [History].[ID];
@@ -3293,8 +3313,8 @@ namespace TC3EF6.Data.CustomMigrationOperations
                     Select [History].[ID],[History].[Column],[History].[DateChanged],getdate() As [DateCreated],getdate() As [DateModified],[History].[OriginalValue],
                         [History].[RecordID] As [OID],[History].[TableName],[History].[Value],[History].[Who],NEWID() As [RecordID]
                     Into #DeletedHistory 
-                    From [GGGSCP1].[TreasureChest].[dbo].[History] [History]
-                    Where [History].[TableName]='Specials' And Not Exists(Select * From [GGGSCP1].[TreasureChest].[dbo].[Specials] Where [ID]=[History].[RecordID])
+                    From [TreasureChest2].[dbo].[History] [History]
+                    Where [History].[TableName]='Specials' And Not Exists(Select * From [TreasureChest2].[dbo].[Specials] Where [ID]=[History].[RecordID])
                     Order By [History].[RecordID];
                     Select @OrphanedHistoryCount=Count(*) From [#DeletedHistory];
                     Declare h cursor for Select Distinct [OID] From [#DeletedHistory] Order By [OID];
@@ -3311,7 +3331,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                     INSERT INTO [dbo].[History] ([OID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
                     SELECT [ID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who] FROM [#DeletedHistory] ORDER BY [ID];
                     Drop Table #DeletedHistory;
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[History] Where [TableName]='Specials';
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[History] Where [TableName]='Specials';
                     Select @Actual=@OrphanedHistoryCount+Count(*) From [dbo].[History] Where [TableName]='Videos' And [History].[RecordID] In (Select ID From [dbo].[Videos] Where [SourceTable]='Specials');
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -3324,7 +3344,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [RecordID],[TableName],[Thumbnail],[URL],[Width])
                     SELECT Null,Upper('Videos: '+[Specials].[Title]),[Specials].[Title],'Videos',getdate(),getdate(),Null,Null,[Image],[Specials].[Title],Null,
                         [newSpecials].[ID],'Videos',0,Null,Null
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Specials] [Specials]
+                    FROM [TreasureChest2].[dbo].[Specials] [Specials]
                         INNER JOIN [dbo].[Videos] [newSpecials] On [Specials].[ID]=[newSpecials].[OID]
                     WHERE [Specials].[Image] is not Null
                     ORDER BY [Specials].[ID];
@@ -3333,12 +3353,12 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [RecordID],[TableName],[Thumbnail],[URL],[Width])
                     SELECT Null,Upper('Videos: '+[Specials].[Title]),[Specials].[Title],'Videos',getdate(),getdate(),Null,Null,[OtherImage],[Specials].[Title],Null,
                         [newSpecials].[ID],'Videos',0,Null,Null
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Specials] [Specials]
+                    FROM [TreasureChest2].[dbo].[Specials] [Specials]
                         INNER JOIN [dbo].[Videos] [newSpecials] On [Specials].[ID]=[newSpecials].[OID]
                     WHERE [Specials].[OtherImage] is not Null
                     ORDER BY [Specials].[ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Specials] Where [Image] is not Null;
-                    Select @Expected=@Expected+Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Specials] Where [OtherImage] is not Null;
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Specials] Where [Image] is not Null;
+                    Select @Expected=@Expected+Count(*) From [TreasureChest2].[dbo].[Specials] Where [OtherImage] is not Null;
                     Select @Actual=Count(*) From [dbo].[Images] Where [TableName]='Videos' And [Images].[RecordID] In (Select ID From [dbo].[Videos] Where [SourceTable]='Specials');
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -3362,7 +3382,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateTools.sql
             --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
-            --   Copyright © 2019 All Rights Reserved.
+            --   Copyright © 2019-2021 All Rights Reserved.
             --*********************************************************************************************************************************
             --
             --    Modification History:
@@ -3392,12 +3412,12 @@ namespace TC3EF6.Data.CustomMigrationOperations
                                 End
                             Else [Locations].[ID]
                         End As [LocationID]
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Tools] [Tools]
+                    FROM [TreasureChest2].[dbo].[Tools] [Tools]
                         LEFT OUTER JOIN [dbo].[Locations] [Locations] On [Tools].[Location]=[Locations].[OName]
                         INNER JOIN [dbo].[Locations] [WishListLocation] On [WishListLocation].[Name]='WishList'
                         INNER JOIN [dbo].[Locations] [UnknownLocation] On [UnknownLocation].[Name]='Unknown'
                     ORDER BY [Tools].[ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Tools];
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Tools];
                     Select @Actual=Count(*) From [dbo].[Tools];
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -3410,7 +3430,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
                     SELECT [History].[ID],
                         [History].[Column],[History].[DateChanged],getdate(),getdate(),[History].[OriginalValue],[Tools].[ID],[History].[TableName],[History].[Value],[History].[Who]
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+                    FROM [TreasureChest2].[dbo].[History] [History]
                         INNER JOIN [dbo].[Tools] [Tools] On [History].[TableName]='Tools' And [Tools].[OID]=[History].[RecordID]
                     WHERE [History].[TableName]='Tools' 
                     ORDER BY [History].[ID];
@@ -3420,8 +3440,8 @@ namespace TC3EF6.Data.CustomMigrationOperations
                     Select [History].[ID],[History].[Column],[History].[DateChanged],getdate() As [DateCreated],getdate() As [DateModified],[History].[OriginalValue],
                         [History].[RecordID] As [OID],[History].[TableName],[History].[Value],[History].[Who],NEWID() As [RecordID]
                     Into #DeletedHistory 
-                    From [GGGSCP1].[TreasureChest].[dbo].[History] [History]
-                    Where [History].[TableName]='Tools' And Not Exists(Select * From [GGGSCP1].[TreasureChest].[dbo].[Tools] Where [ID]=[History].[RecordID])
+                    From [TreasureChest2].[dbo].[History] [History]
+                    Where [History].[TableName]='Tools' And Not Exists(Select * From [TreasureChest2].[dbo].[Tools] Where [ID]=[History].[RecordID])
                     Order By [History].[RecordID];
                     Select @OrphanedHistoryCount=Count(*) From [#DeletedHistory];
                     Declare h cursor for Select Distinct [OID] From [#DeletedHistory] Order By [OID];
@@ -3438,7 +3458,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                     INSERT INTO [dbo].[History] ([OID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
                     SELECT [ID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who] FROM [#DeletedHistory] ORDER BY [ID];
                     Drop Table #DeletedHistory;
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[History] Where [TableName]='Tools';
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[History] Where [TableName]='Tools';
                     Select @Actual=Count(*) From [dbo].[History] Where [TableName]='Tools';
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -3452,11 +3472,11 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [RecordID],[TableName],[Thumbnail],[URL],[Width])
                     SELECT Null,Upper('Tools: '+[Tools].[Name]),[Tools].[Name],'Tools',getdate(),getdate(),Null,Null,[Image],[Tools].[Name],Null,
                         [newTools].[ID],'Tools',0,Null,Null
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Tools] [Tools]
+                    FROM [TreasureChest2].[dbo].[Tools] [Tools]
                         INNER JOIN [dbo].[Tools] [newTools] On [Tools].[ID]=[newTools].[OID]
                     WHERE [Tools].[Image] is not Null
                     ORDER BY [Tools].[ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Tools] Where [Image] is not Null;
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Tools] Where [Image] is not Null;
                     Select @Actual=Count(*) From [dbo].[Images] Where [TableName]='Tools';
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -3480,7 +3500,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateTrains.sql
             --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
-            --   Copyright © 2019 All Rights Reserved.
+            --   Copyright © 2019-2021 All Rights Reserved.
             --*********************************************************************************************************************************
             --
             --    Modification History:
@@ -3510,12 +3530,12 @@ namespace TC3EF6.Data.CustomMigrationOperations
                                 End
                             Else [Locations].[ID]
                         End As [LocationID]
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Trains] [Trains]
+                    FROM [TreasureChest2].[dbo].[Trains] [Trains]
                         LEFT OUTER JOIN [dbo].[Locations] [Locations] On [Trains].[Location]=[Locations].[OName]
                         INNER JOIN [dbo].[Locations] [WishListLocation] On [WishListLocation].[Name]='WishList'
                         INNER JOIN [dbo].[Locations] [UnknownLocation] On [UnknownLocation].[Name]='Unknown'
                     ORDER BY [Trains].[ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Trains];
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Trains];
                     Select @Actual=Count(*) From [dbo].[Trains];
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -3528,7 +3548,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
                     SELECT [History].[ID],
                         [History].[Column],[History].[DateChanged],getdate(),getdate(),[History].[OriginalValue],[Trains].[ID],[History].[TableName],[History].[Value],[History].[Who]
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[History] [History]
+                    FROM [TreasureChest2].[dbo].[History] [History]
                         INNER JOIN [dbo].[Trains] [Trains] On [History].[TableName]='Trains' And [Trains].[OID]=[History].[RecordID]
                     WHERE [History].[TableName]='Trains' 
                     ORDER BY [History].[ID];
@@ -3538,8 +3558,8 @@ namespace TC3EF6.Data.CustomMigrationOperations
                     Select [History].[ID],[History].[Column],[History].[DateChanged],getdate() As [DateCreated],getdate() As [DateModified],[History].[OriginalValue],
                         [History].[RecordID] As [OID],[History].[TableName],[History].[Value],[History].[Who],NEWID() As [RecordID]
                     Into #DeletedHistory 
-                    From [GGGSCP1].[TreasureChest].[dbo].[History] [History]
-                    Where [History].[TableName]='Trains' And Not Exists(Select * From [GGGSCP1].[TreasureChest].[dbo].[Trains] Where [ID]=[History].[RecordID])
+                    From [TreasureChest2].[dbo].[History] [History]
+                    Where [History].[TableName]='Trains' And Not Exists(Select * From [TreasureChest2].[dbo].[Trains] Where [ID]=[History].[RecordID])
                     Order By [History].[RecordID];
                     Select @OrphanedHistoryCount=Count(*) From [#DeletedHistory];
                     Declare h cursor for Select Distinct [OID] From [#DeletedHistory] Order By [OID];
@@ -3556,7 +3576,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                     INSERT INTO [dbo].[History] ([OID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
                     SELECT [ID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who] FROM [#DeletedHistory] ORDER BY [ID];
                     Drop Table #DeletedHistory;
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[History] Where [TableName]='Trains';
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[History] Where [TableName]='Trains';
                     Select @Actual=Count(*) From [dbo].[History] Where [TableName]='Trains';
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -3570,11 +3590,11 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [RecordID],[TableName],[Thumbnail],[URL],[Width])
                     SELECT Null,Upper('Trains: '+[Trains].[Line]),[Trains].[Line],'Trains',getdate(),getdate(),Null,Null,[Image],[Trains].[Line],Null,
                         [newTrains].[ID],'Trains',0,Null,Null
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Trains] [Trains]
+                    FROM [TreasureChest2].[dbo].[Trains] [Trains]
                         INNER JOIN [dbo].[Trains] [newTrains] On [Trains].[ID]=[newTrains].[OID]
                     WHERE [Trains].[Image] is not Null
                     ORDER BY [Trains].[ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Trains] Where [Image] is not Null;
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Trains] Where [Image] is not Null;
                     Select @Actual=Count(*) From [dbo].[Images] Where [TableName]='Trains';
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -3598,7 +3618,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateVideoResearch.sql
             --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
-            --   Copyright © 2019 All Rights Reserved.
+            --   Copyright © 2019-2021 All Rights Reserved.
             --*********************************************************************************************************************************
             --
             --    Modification History:
@@ -3630,12 +3650,12 @@ namespace TC3EF6.Data.CustomMigrationOperations
                                 End
                             Else [Locations].[ID]
                         End As [LocationID],'Video Research'
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Video Research] [Video Research]
+                    FROM [TreasureChest2].[dbo].[Video Research] [Video Research]
                         LEFT OUTER JOIN [dbo].[Locations] [Locations] On [Video Research].[Location]=[Locations].[OName]
                         INNER JOIN [dbo].[Locations] [WishListLocation] On [WishListLocation].[Name]='WishList'
                         INNER JOIN [dbo].[Locations] [UnknownLocation] On [UnknownLocation].[Name]='Unknown'
                     ORDER BY [Video Research].[ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Video Research];
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Video Research];
                     Select @Actual=Count(*) From [dbo].[Videos] Where [SourceTable]='Video Research';
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -3647,8 +3667,8 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
                     SELECT [History].[ID],
                         [History].[Column],[History].[DateChanged],getdate(),getdate(),[History].[OriginalValue],[Videos].[ID],'Videos',[History].[Value],[History].[Who]
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[History] [History]
-                        INNER JOIN [GGGSCP1].[TreasureChest].[dbo].[Video Research] [Video Research] On [History].[TableName]='Video Research' And [History].[RecordID]=[Video Research].[ID]
+                    FROM [TreasureChest2].[dbo].[History] [History]
+                        INNER JOIN [TreasureChest2].[dbo].[Video Research] [Video Research] On [History].[TableName]='Video Research' And [History].[RecordID]=[Video Research].[ID]
                         INNER JOIN [dbo].[Videos] [Videos] On [Video Research].[ID]=[Videos].[OID]
                             And [History].[RecordID]=[Video Research].[ID]
                     WHERE [History].[TableName]='Video Research' 
@@ -3659,8 +3679,8 @@ namespace TC3EF6.Data.CustomMigrationOperations
                     Select [History].[ID],[History].[Column],[History].[DateChanged],getdate() As [DateCreated],getdate() As [DateModified],[History].[OriginalValue],
                         [History].[RecordID] As [OID],[History].[TableName],[History].[Value],[History].[Who],NEWID() As [RecordID]
                     Into #DeletedHistory 
-                    From [GGGSCP1].[TreasureChest].[dbo].[History] [History]
-                    Where [History].[TableName]='Video Research' And Not Exists(Select * From [GGGSCP1].[TreasureChest].[dbo].[Video Research] Where [ID]=[History].[RecordID])
+                    From [TreasureChest2].[dbo].[History] [History]
+                    Where [History].[TableName]='Video Research' And Not Exists(Select * From [TreasureChest2].[dbo].[Video Research] Where [ID]=[History].[RecordID])
                     Order By [History].[RecordID];
                     Select @OrphanedHistoryCount=Count(*) From [#DeletedHistory];
                     Declare h cursor for Select Distinct [OID] From [#DeletedHistory] Order By [OID];
@@ -3677,7 +3697,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                     INSERT INTO [dbo].[History] ([OID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who])
                     SELECT [ID],[Column],[DateChanged],[DateCreated],[DateModified],[OriginalValue],[RecordID],[TableName],[Value],[Who] FROM [#DeletedHistory] ORDER BY [ID];
                     Drop Table #DeletedHistory;
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[History] Where [TableName]='Video Research';
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[History] Where [TableName]='Video Research';
                     Select @Actual=@OrphanedHistoryCount+Count(*) From [dbo].[History] Where [TableName]='Videos' And [History].[RecordID] In (Select ID From [dbo].[Videos] Where [SourceTable]='Video Research');
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -3690,7 +3710,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [RecordID],[TableName],[Thumbnail],[URL],[Width])
                     SELECT Null,Upper('Videos: '+[Video Research].[Title]),[Video Research].[Title],'Videos',getdate(),getdate(),Null,Null,[Image],[Video Research].[Title],Null,
                         [newVideo Research].[ID],'Videos',0,Null,Null
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Video Research] [Video Research]
+                    FROM [TreasureChest2].[dbo].[Video Research] [Video Research]
                         INNER JOIN [dbo].[Videos] [newVideo Research] On [Video Research].[ID]=[newVideo Research].[OID]
                     WHERE [Video Research].[Image] is not Null
                     ORDER BY [Video Research].[ID];
@@ -3699,12 +3719,12 @@ namespace TC3EF6.Data.CustomMigrationOperations
                         [RecordID],[TableName],[Thumbnail],[URL],[Width])
                     SELECT Null,Upper('Videos: '+[Video Research].[Title]),[Video Research].[Title],'Videos',getdate(),getdate(),Null,Null,[OtherImage],[Video Research].[Title],Null,
                         [newVideo Research].[ID],'Videos',0,Null,Null
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Video Research] [Video Research]
+                    FROM [TreasureChest2].[dbo].[Video Research] [Video Research]
                         INNER JOIN [dbo].[Videos] [newVideo Research] On [Video Research].[ID]=[newVideo Research].[OID]
                     WHERE [Video Research].[OtherImage] is not Null
                     ORDER BY [Video Research].[ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Video Research] Where [Image] is not Null;
-                    Select @Expected=@Expected+Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Video Research] Where [OtherImage] is not Null;
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Video Research] Where [Image] is not Null;
+                    Select @Expected=@Expected+Count(*) From [TreasureChest2].[dbo].[Video Research] Where [OtherImage] is not Null;
                     Select @Actual=Count(*) From [dbo].[Images] Where [TableName]='Videos' And [Images].[RecordID] In (Select ID From [dbo].[Videos] Where [SourceTable]='Video Research');
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);
@@ -3728,7 +3748,7 @@ namespace TC3EF6.Data.CustomMigrationOperations
             context.Database.ExecuteSqlCommand(@"
             --sp_MigrateQueries.sql
             --   SQL Server TreasureChest Database Conversion to the EntityFramweork Version...
-            --   Copyright © 2019 All Rights Reserved.
+            --   Copyright © 2019-2021 All Rights Reserved.
             --*********************************************************************************************************************************
             --
             --    Modification History:
@@ -3750,8 +3770,8 @@ namespace TC3EF6.Data.CustomMigrationOperations
                     SELECT [ID],
                         [LastName],[FirstName],[Address],[Phone],[E-Mail],[DateLastVisit],[Visits],
                         [Music],[AutoStart],[Detached],[ButtonColor],[DoLake],[LakeGIF]
-                    FROM [GGGSCP1].[TreasureChest].[dbo].[Visitors] ORDER BY [ID];
-                    Select @Expected=Count(*) From [GGGSCP1].[TreasureChest].[dbo].[Visitors];
+                    FROM [TreasureChest2].[dbo].[Visitors] ORDER BY [ID];
+                    Select @Expected=Count(*) From [TreasureChest2].[dbo].[Visitors];
                     Select @Actual=Count(*) From [dbo].[Visitors];
                     If @Actual <> @Expected Begin 
                         Set @Message='Actual ('+Convert(nvarchar(10),@Actual)+') count does not match expected ('+Convert(nvarchar(10),@Expected)+') - Difference of '+Convert(nvarchar(10),@Actual-@Expected);

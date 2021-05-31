@@ -38,7 +38,6 @@ namespace TC3EF6.WebForms
             Application["WebMaster"] = "Ken Clark";
             Application["WebMasterEmail"] = Application["Owner"];
             LogMessage($"Application_Start(object sender, EventArgs e)");
-            LogMessage($"HELLO HELLO HELLO");
 
             // Code that runs on application startup
             RouteConfig.RegisterRoutes(RouteTable.Routes);
