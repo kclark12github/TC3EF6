@@ -8,7 +8,7 @@ using TC3EF6.Domain.Annotations;
 namespace TC3EF6.Domain.Classes.Stash
 {
     [DataContract, Table("FinishingProducts"), TableDescription("Inventory of Finishing Products (i.e. Paint, Brushes, etc.).")]
-    public partial class FinishingProduct : HobbyBase
+    public partial class FinishingProduct : KitBase
     {
         #region "Locals"
         private double? mCount = null;
