@@ -5,7 +5,7 @@
   "devDependencies": {},
   "dependencies": {
     "fontawesome": "5.6.3",
-    "jszip": "3.2.1",
+    "jszip": "3.7.0",
     "pdfmake": "0.1.54",
     "datatables.net-bs4": "1.10.19",
     "datatables.net-buttons-bs4": "2.2.0",
