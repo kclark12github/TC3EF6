@@ -10,6 +10,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
+using System.Web.UI;
 using TC3EF6.Data;
 using TC3EF6.Data.Services;
 using TC3EF6.Data.Services.SQL;
@@ -42,6 +43,11 @@ namespace TC3EF6.WebForms
             // Code that runs on application startup
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            ScriptManager.ScriptResourceMapping.AddDefinition("bootstrap", new ScriptResourceDefinition
+            {
+                Path = "~/Scripts/bootstrap.bundle.min.js",
+                DebugPath = "~/Scripts/bootstrap.bundle.js"
+            });
 
             #region Classic ASP Stuff
             Application.Lock();

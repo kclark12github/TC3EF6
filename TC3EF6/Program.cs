@@ -8,7 +8,7 @@ using TC3EF6.Data.Services;
 using TC3EF6.Domain.Classes;
 using TC3EF6.Domain.Classes.Stash;
 
-using System.Linq.Dynamic;
+using System.Linq.Dynamic.Core;
 using System.Reflection;
 using System.Xml.Linq;
 using System.Diagnostics;
@@ -413,7 +413,7 @@ namespace TC3EF6
             //    Inner Join Images On Images.RecordID = Kits.ID
             //Where Type = 'SciFi: Star Wars' And Manufacturer = 'BANDAI' And Scale = '1/72'
             //Order By Scale,Designation,Kits.Name;
-            Console.WriteLine("Join Demo using Extension Methods (and System.Linq.Dynamic extensions)...");
+            Console.WriteLine("Join Demo using Extension Methods (and System.Linq.Dynamic.Core extensions)...");
             query = await new SqlImageRepository<Kit>().GetAllAsync();
             var q1Data = query.Where("Type=\"SciFi: Star Wars\" && Manufacturer=\"BANDAI\" && Scale=\"1/72\"")
                 .OrderBy("Designation,Name");
