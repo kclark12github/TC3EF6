@@ -26,24 +26,24 @@ namespace TC3EF6
     {
         static void Main(string[] args)
         {
-            //TestLocations();
-            //TestBooks();
-            //TestMusic();
+            TestLocations();
+            TestBooks();
+            TestQueryMusic();
             //TestEpisodes();
-            //TestGroupByComprehension();
-            //TestGroupByFluent();
-            //TestJoinComprehension();
-            //TestJoinFluent();
-            //TestDynamic();
-            //TestFind();
-            //TestFindWithImages();
-            //TestDynamicGet();
-            //TestAppState();
+            TestGroupByComprehension();
+            TestGroupByFluent();
+            TestJoinComprehension();
+            TestJoinFluent();
+            TestDynamic();
+            TestFind();
+            TestFindWithImages();
+            TestDynamicGet();
+            TestAppState();
 
-            var myCat = new Cat() { Friend = new Cat() };
-            string test = null;
-            Console.WriteLine($"My cat says \"{test}\"");
-            Console.WriteLine(myCat?.Friend?.Friend.Meow);
+            //var myCat = new Cat() { Friend = new Cat() };
+            //string test = null;
+            //Console.WriteLine($"My cat says \"{test}\"");
+            //Console.WriteLine(myCat?.Friend?.Meow);
 
 
             if (Debugger.IsAttached)
